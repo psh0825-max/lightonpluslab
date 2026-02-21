@@ -400,6 +400,7 @@ section{padding:60px 0; position:relative; z-index:1}
     </a>
     <nav class="nav-links" aria-label="메뉴">
       <a href="#services">서비스</a>
+      <a href="#momoi">Momoi</a>
       <a href="#process">프로세스</a>
       <a href="#work">프로젝트</a>
       <a href="#about">소개</a>
@@ -561,38 +562,88 @@ section{padding:60px 0; position:relative; z-index:1}
     </div>
   </section>
 
-  <!-- WORK -->
-  <section id="work">
-    <div class="section-label reveal">프로젝트 예시</div>
-    <h2 class="section-title reveal">이런 것들을 만들 수 있습니다</h2>
-    <p class="section-desc reveal">아래는 가능한 형태 예시입니다. 실제로는 목표/예산/일정에 맞게 구성합니다.</p>
-    <div class="work">
-      <div class="card reveal">
-        <h3>🗓 AI 일정/업무 도우미</h3>
-        <p>캘린더/메모/음성 입력을 통합해 자동 정리, 요약, 리마인드까지 제공.</p>
-        <div class="meta" style="margin-top:12px">
-          <span class="badge">LLM</span><span class="badge">Speech</span><span class="badge">Mobile</span>
+  <!-- PRODUCT: MOMOI -->
+  <section id="momoi">
+    <div class="section-label reveal">대표 제품</div>
+    <h2 class="section-title reveal">Momoi — AI 기반 업무 관리</h2>
+    <p class="section-desc reveal">LightOn Plus Lab이 직접 만든 프로덕트. AI가 업무를 정리하고, 일정을 관리하고, 팀 생산성을 높여줍니다.</p>
+    <div class="hero-grid">
+      <div class="hero-card reveal">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
+          <div style="font-weight:900; font-size:17px;">🗓 Momoi</div>
+          <span class="badge" style="background:linear-gradient(135deg, var(--glow1), var(--glow2)); border:none;">Live</span>
+        </div>
+        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;">
+          할 일, 캘린더, 메모를 하나로. AI가 자연어로 일정을 파싱하고, 업무를 요약하고, 우선순위를 제안합니다.
+        </p>
+        <div class="kpi" role="list">
+          <div class="box"><b>📋 태스크</b><span>AI 자동 분류 & 우선순위</span></div>
+          <div class="box"><b>🗓 캘린더</b><span>Google Calendar 연동</span></div>
+          <div class="box"><b>📧 이메일</b><span>Gmail 통합 인박스</span></div>
+          <div class="box"><b>🎙 음성</b><span>음성 입력 → 태스크 변환</span></div>
+        </div>
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="https://momoi.lightonpluslab.com" target="_blank">🚀 Momoi 사용해보기</a>
         </div>
       </div>
-      <div class="card reveal reveal-delay-1">
+      <div class="hero-card reveal reveal-delay-1">
+        <div style="font-weight:900; font-size:17px; margin-bottom:12px;">기술 구성</div>
+        <div class="meta" style="margin-bottom:16px">
+          <span class="badge">Next.js</span>
+          <span class="badge">Supabase</span>
+          <span class="badge">OpenAI</span>
+          <span class="badge">Vercel</span>
+        </div>
+        <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
+          <p style="margin-bottom:8px;">✅ 자연어 날짜 인식 (오늘/내일/다음주 → 자동 파싱)</p>
+          <p style="margin-bottom:8px;">✅ Gmail API & Google Calendar 양방향 동기화</p>
+          <p style="margin-bottom:8px;">✅ 음성 녹음 → 텍스트 변환 (모든 브라우저 지원)</p>
+          <p style="margin-bottom:8px;">✅ 37개국 공휴일 자동 표시</p>
+          <p>✅ 모바일 최적화 (PWA, 스와이프 UX)</p>
+        </div>
+        <div class="tagline">
+          <div>
+            <div style="font-weight:800; font-size:14px">슬로건</div>
+            <div style="color:var(--muted); margin-top:4px; font-size:13px">AI가 정리하고, 당신은 실행만.</div>
+          </div>
+          <code>momoi.ai</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-label reveal">더 많은 가능성</div>
+    <h2 class="section-title reveal">이런 것들도 만들 수 있습니다</h2>
+    <p class="section-desc reveal">Momoi 외에도 다양한 AI 제품을 만듭니다. 목표/예산/일정에 맞게 구성합니다.</p>
+    <div class="work">
+      <div class="card reveal">
         <h3>📄 문서 검색(RAG) 기반 Q&amp;A</h3>
         <p>사내/개인 문서를 업로드하고 질문하면 근거 기반 답변을 제공.</p>
         <div class="meta" style="margin-top:12px">
           <span class="badge">RAG</span><span class="badge">Vector DB</span><span class="badge">Web</span>
         </div>
       </div>
-      <div class="card reveal">
+      <div class="card reveal reveal-delay-1">
         <h3>📸 이미지/카메라 기반 AI</h3>
         <p>카메라 입력을 분석해 분류/검출/가이드 제공 (예: 스캔, 측정, 인식).</p>
         <div class="meta" style="margin-top:12px">
           <span class="badge">Vision</span><span class="badge">On-device/Cloud</span>
         </div>
       </div>
-      <div class="card reveal reveal-delay-1">
+      <div class="card reveal">
         <h3>🤝 고객 지원 자동화</h3>
         <p>FAQ + 티켓 요약 + 답변 초안 생성으로 CS 속도/품질 개선.</p>
         <div class="meta" style="margin-top:12px">
           <span class="badge">LLM</span><span class="badge">Automation</span>
+        </div>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <h3>⚡ 업무 자동화 봇</h3>
+        <p>반복 업무를 자동화하는 챗봇/워크플로우. 텔레그램, 슬랙, 이메일 연동.</p>
+        <div class="meta" style="margin-top:12px">
+          <span class="badge">LLM</span><span class="badge">API</span><span class="badge">Automation</span>
         </div>
       </div>
     </div>
