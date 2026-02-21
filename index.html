@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LightOn Plus Lab — AI Apps & Innovation</title>
+<meta name="description" content="AI 기능이 들어간 앱을 만드는 개인 개발 스튜디오, LightOn Plus Lab" />
+<meta property="og:title" content="LightOn Plus Lab" />
+<meta property="og:description" content="AI Apps & Innovation — 아이디어에 AI를 더합니다." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="logo-new.png" />
+<style>
+:root{
+  --bg:#050710; --card:#0B1220; --text:#EAF0FF; --muted:#8B9BC0;
+  --line:rgba(255,255,255,.08);
+  --glow1:#2D7DFF; --glow2:#7C4DFF; --glow3:#00E5FF;
+  --shadow: 0 24px 80px rgba(0,0,0,.5);
+  --radius: 22px;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit; text-decoration:none}
+.container{max-width:1140px; margin:0 auto; padding:0 24px}
+
+/* ── ANIMATED BG ── */
+.bg-glow{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(900px 600px at 15% 10%, rgba(45,125,255,.14), transparent 60%),
+    radial-gradient(900px 600px at 85% 20%, rgba(124,77,255,.12), transparent 60%),
+    radial-gradient(900px 600px at 50% 90%, rgba(0,229,255,.08), transparent 60%);
+}
+.bg-grid{
+  position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.035;
+  background-image:
+    linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── PARTICLES ── */
+.particles{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
+.particle{
+  position:absolute; border-radius:50%;
+  background: radial-gradient(circle, rgba(45,125,255,.6), transparent 70%);
+  animation: floatParticle linear infinite;
+  opacity:0;
+}
+@keyframes floatParticle{
+  0%{transform:translateY(100vh) scale(0); opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{transform:translateY(-100px) scale(1); opacity:0}
+}
+
+/* ── NAV ── */
+.nav{
+  position:sticky; top:0; z-index:100;
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(5,7,16,.65);
+  border-bottom:1px solid var(--line);
+  transition: background .3s;
+}
+.nav-inner{
+  display:flex; align-items:center; justify-content:space-between; height:68px;
+}
+.brand{
+  display:flex; align-items:center; gap:12px;
+  font-weight:700; letter-spacing:.2px;
+}
+.brand img{
+  width:38px; height:38px; border-radius:10px; object-fit:contain;
+  background:#fff; padding:1px;
+  filter: drop-shadow(0 4px 12px rgba(45,125,255,.3));
+}
+.brand small{display:block; font-weight:600; color:var(--muted); letter-spacing:0; margin-top:2px; font-size:12px}
+.nav-links{display:flex; gap:6px; align-items:center; color:var(--muted); font-weight:600; font-size:14px}
+.nav-links a{padding:8px 14px; border-radius:10px; transition: all .15s}
+.nav-links a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:13px 20px; border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color:var(--text); font-weight:700; font-size:14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  transition: all .2s ease; cursor:pointer;
+  position:relative; overflow:hidden;
+}
+.btn::before{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(255,255,255,.08), transparent);
+  opacity:0; transition: opacity .2s;
+}
+.btn:hover{transform: translateY(-2px); border-color:rgba(255,255,255,.2)}
+.btn:hover::before{opacity:1}
+.btn.primary{
+  border:none;
+  background: linear-gradient(135deg, var(--glow1), var(--glow2));
+  box-shadow: 0 16px 48px rgba(45,125,255,.25), inset 0 1px 0 rgba(255,255,255,.15);
+}
+.btn.primary:hover{filter:brightness(1.1); box-shadow: 0 20px 60px rgba(45,125,255,.35)}
+
+/* ── HERO ── */
+.hero{padding:90px 0 50px; position:relative; z-index:1}
+.hero-top{text-align:center; margin-bottom:50px}
+.hero-logo{
+  width:220px; height:auto; object-fit:contain; border-radius:24px;
+  background:#fff; padding:8px 12px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.1),
+    0 20px 60px rgba(45,125,255,.3),
+    0 0 120px rgba(45,125,255,.15),
+    0 0 120px rgba(124,77,255,.1);
+  margin-bottom:32px;
+  animation: logoPulse 4s ease-in-out infinite;
+}
+@keyframes logoPulse{
+  0%,100%{box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 20px 60px rgba(45,125,255,.3), 0 0 120px rgba(45,125,255,.15), 0 0 120px rgba(124,77,255,.1)}
+  50%{box-shadow: 0 0 0 1px rgba(255,255,255,.15), 0 24px 80px rgba(45,125,255,.45), 0 0 160px rgba(45,125,255,.2), 0 0 160px rgba(124,77,255,.15)}
+}
+.pillrow{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:24px}
+.pill{
+  border:1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.04);
+  padding:8px 14px; border-radius:999px;
+  color:rgba(234,240,255,.85); font-weight:700; font-size:13px;
+  backdrop-filter:blur(4px);
+}
+.headline{
+  font-size: clamp(38px, 5vw, 64px); line-height:1.08;
+  letter-spacing:-1px; margin-bottom:18px;
+}
+.headline .gradient{
+  background: linear-gradient(135deg, var(--glow1), var(--glow3), var(--glow2));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.sub{
+  color:var(--muted); font-size: clamp(16px, 1.4vw, 19px);
+  line-height:1.75; max-width:60ch; margin:0 auto 30px;
+}
+.hero-btns{display:flex; gap:14px; flex-wrap:wrap; justify-content:center}
+
+/* ── HERO GRID ── */
+.hero-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:18px;
+  margin-top:20px;
+}
+.hero-card{
+  background: rgba(11,18,32,.6);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow: var(--shadow);
+  padding:22px; position:relative; overflow:hidden;
+  transition: transform .2s, border-color .2s;
+}
+.hero-card:hover{transform:translateY(-3px); border-color:rgba(255,255,255,.15)}
+.hero-card::before{
+  content:""; position:absolute; inset:-1px;
+  background: radial-gradient(500px 180px at 40% 0%, rgba(45,125,255,.18), transparent 60%);
+  pointer-events:none;
+}
+.kpi{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px}
+.kpi .box{
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  border-radius:16px; padding:14px;
+  transition: background .2s;
+}
+.kpi .box:hover{background:rgba(255,255,255,.06)}
+.kpi .box b{display:block; font-size:20px; margin-bottom:2px}
+.kpi .box span{color:var(--muted); font-weight:600; font-size:12px}
+.tagline{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:16px 18px; border-radius:16px;
+  border:1px dashed rgba(255,255,255,.12);
+  background:rgba(255,255,255,.02);
+  margin-top:16px;
+}
+.tagline code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color:var(--glow3); font-size:13px;
+  background:rgba(0,229,255,.06);
+  padding:6px 12px; border-radius:12px;
+  border:1px solid rgba(0,229,255,.15);
+}
+.meta{display:flex; gap:8px; flex-wrap:wrap}
+.badge{
+  font-size:12px; font-weight:700;
+  color:rgba(234,240,255,.85);
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+  padding:6px 12px; border-radius:999px;
+}
+
+/* ── SECTIONS ── */
+section{padding:60px 0; position:relative; z-index:1}
+.section-label{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--glow1); font-weight:800; font-size:13px;
+  text-transform:uppercase; letter-spacing:1.5px;
+  margin-bottom:12px;
+}
+.section-label::before{
+  content:""; width:24px; height:2px;
+  background:linear-gradient(90deg, var(--glow1), var(--glow2));
+  border-radius:2px;
+}
+.section-title{font-size:clamp(26px,3vw,36px); margin-bottom:10px; letter-spacing:-.3px}
+.section-desc{color:var(--muted); margin-bottom:28px; line-height:1.75; max-width:65ch}
+
+/* ── CARDS ── */
+.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.card{
+  background:rgba(11,18,32,.55);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.25);
+  transition: all .25s ease;
+  position:relative; overflow:hidden;
+}
+.card::after{
+  content:""; position:absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, transparent, var(--glow1), var(--glow2), transparent);
+  opacity:0; transition: opacity .3s;
+}
+.card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.18)}
+.card:hover::after{opacity:1}
+.card h3{margin-bottom:10px; font-size:17px}
+.card p{color:var(--muted); line-height:1.75; font-size:14px}
+.icon{
+  width:44px; height:44px; border-radius:14px;
+  display:grid; place-items:center; margin-bottom:14px;
+  background: linear-gradient(135deg, rgba(45,125,255,.15), rgba(124,77,255,.15));
+  border:1px solid rgba(255,255,255,.08);
+  transition: all .2s;
+}
+.card:hover .icon{
+  background: linear-gradient(135deg, rgba(45,125,255,.25), rgba(124,77,255,.25));
+  box-shadow: 0 8px 24px rgba(45,125,255,.2);
+}
+.icon svg{opacity:.9}
+
+/* ── WORK ── */
+.work{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.work .card{min-height:160px}
+
+/* ── PROCESS ── */
+.process{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+  counter-reset: step;
+}
+.step{
+  background:rgba(11,18,32,.55);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px 24px;
+  position:relative;
+  counter-increment: step;
+  transition: all .25s;
+}
+.step:hover{transform:translateY(-3px); border-color:rgba(255,255,255,.15)}
+.step::before{
+  content: counter(step);
+  display:flex; align-items:center; justify-content:center;
+  width:36px; height:36px; border-radius:12px;
+  background: linear-gradient(135deg, var(--glow1), var(--glow2));
+  font-weight:900; font-size:16px;
+  margin-bottom:14px;
+  box-shadow: 0 8px 24px rgba(45,125,255,.2);
+}
+.step h3{margin-bottom:8px; font-size:16px}
+.step p{color:var(--muted); line-height:1.7; font-size:14px}
+
+/* ── STATS ── */
+.stats{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  margin-top:32px;
+}
+.stat{
+  text-align:center;
+  padding:28px 16px;
+  background:rgba(11,18,32,.55);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  transition: all .25s;
+}
+.stat:hover{transform:translateY(-3px); border-color:rgba(255,255,255,.15)}
+.stat-num{
+  font-size:36px; font-weight:900; line-height:1;
+  background: linear-gradient(135deg, var(--glow1), var(--glow3));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:6px;
+}
+.stat-label{color:var(--muted); font-size:13px; font-weight:600}
+
+/* ── CTA ── */
+.cta{padding:50px 0 80px}
+.cta-box{
+  background: linear-gradient(135deg, rgba(45,125,255,.14), rgba(124,77,255,.10));
+  border:1px solid rgba(255,255,255,.12);
+  border-radius: calc(var(--radius) + 8px);
+  padding:36px;
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.06);
+  display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  position:relative; overflow:hidden;
+}
+.cta-box::before{
+  content:""; position:absolute; top:-50%; right:-20%; width:400px; height:400px;
+  background: radial-gradient(circle, rgba(124,77,255,.15), transparent 70%);
+  pointer-events:none;
+}
+.cta-box h2{font-size:24px; margin-bottom:6px}
+.cta-box p{color:var(--muted); line-height:1.7}
+
+.contact-card{
+  margin-top:18px;
+  background:rgba(11,18,32,.55);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:24px;
+}
+.contact-card h3{margin-bottom:8px; font-size:17px}
+.contact-links{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+.contact-link{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 16px; border-radius:14px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+  font-weight:600; font-size:14px;
+  transition: all .2s;
+}
+.contact-link:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); transform:translateY(-1px)}
+
+/* ── FOOTER ── */
+.footer{
+  padding:28px 0 44px;
+  border-top:1px solid var(--line);
+  color:var(--muted); font-size:13px;
+  position:relative; z-index:1;
+}
+.footer-row{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center}
+.smalllinks{display:flex; gap:16px; flex-wrap:wrap}
+.smalllinks a{transition: color .15s}
+.smalllinks a:hover{color:var(--text)}
+
+/* ── SCROLL ANIMATION ── */
+.reveal{
+  opacity:0; transform:translateY(30px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible{opacity:1; transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .work{grid-template-columns:1fr}
+  .process{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .hero{padding:60px 0 30px}
+  .hero-logo{width:90px; height:90px}
+}
+@media(max-width:480px){
+  .stats{grid-template-columns:1fr}
+  .cta-box{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- BG EFFECTS -->
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
+<div class="particles" id="particles"></div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="LightOn Plus Lab 홈">
+      <img src="logo-new.png" alt="LightOn Plus Lab" />
+      <div>LightOn Plus Lab<small>AI Apps &amp; Innovation</small></div>
+    </a>
+    <nav class="nav-links" aria-label="메뉴">
+      <a href="#services">서비스</a>
+      <a href="#process">프로세스</a>
+      <a href="#work">프로젝트</a>
+      <a href="#about">소개</a>
+      <a href="#contact">문의</a>
+    </nav>
+    <a class="btn primary" href="#contact">프로젝트 문의</a>
+  </div>
+</header>
+
+<main id="top" class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-top">
+      <img src="logo-new.png" alt="LightOn Plus Lab" class="hero-logo" />
+      <div class="pillrow" aria-label="키워드">
+        <span class="pill">🤖 AI 기능 탑재</span>
+        <span class="pill">📱 앱 개발</span>
+        <span class="pill">⚡ 빠른 프로토타이핑</span>
+        <span class="pill">🚀 MVP → 런칭</span>
+      </div>
+      <h1 class="headline">아이디어에 <span class="gradient">AI를 더해</span><br/>앱으로 출시합니다.</h1>
+      <p class="sub">
+        LightOn Plus Lab은 개인 개발 스튜디오입니다.<br/>
+        기획부터 개발, 배포까지 핵심을 빠르게 구현해 <strong>"작동하는 제품"</strong>을 만듭니다.
+      </p>
+      <div class="hero-btns">
+        <a class="btn primary" href="#contact">💬 상담/견적 요청</a>
+        <a class="btn" href="#services">서비스 보기 →</a>
+      </div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-card reveal">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
+          <div style="font-weight:900; font-size:17px;">What we build</div>
+          <span class="badge">One-person Studio</span>
+        </div>
+        <p style="color:var(--muted); line-height:1.75;">
+          AI 기능을 "데모"가 아닌 "제품"으로.<br/>안정적 운영과 확장까지 고려합니다.
+        </p>
+        <div class="kpi" role="list">
+          <div class="box"><b>Fast MVP</b><span>2~6주 내 가시화</span></div>
+          <div class="box"><b>AI Ready</b><span>LLM / 비전 / 음성</span></div>
+          <div class="box"><b>Ship</b><span>배포 / 스토어 등록</span></div>
+          <div class="box"><b>Maintain</b><span>모니터링 / 개선</span></div>
+        </div>
+      </div>
+
+      <div class="hero-card reveal reveal-delay-1">
+        <div style="font-weight:900; font-size:17px; margin-bottom:12px;">기술 스택</div>
+        <div class="meta" style="margin-bottom:16px">
+          <span class="badge">Web / Mobile</span>
+          <span class="badge">API / Cloud</span>
+          <span class="badge">LLM / RAG</span>
+          <span class="badge">Vision / Speech</span>
+        </div>
+        <div class="tagline">
+          <div>
+            <div style="font-weight:800; font-size:14px">슬로건</div>
+            <div style="color:var(--muted); margin-top:4px; font-size:13px">당신의 서비스에 AI를 자연스럽게 붙입니다.</div>
+          </div>
+          <code>L+ = AI</code>
+        </div>
+        <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--line)">
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <span class="badge">Next.js</span>
+            <span class="badge">React Native</span>
+            <span class="badge">Python</span>
+            <span class="badge">Supabase</span>
+            <span class="badge">OpenAI</span>
+            <span class="badge">Vercel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label reveal">서비스</div>
+    <h2 class="section-title reveal">AI를 중심으로 제품을 만듭니다</h2>
+    <p class="section-desc reveal">
+      "AI 기능"을 중심으로 앱/웹 제품을 만듭니다. 필요하면 데이터 파이프라인과 운영까지 같이 설계합니다.
+    </p>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M7 7h10v10H7z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+            <path d="M4 12h3M17 12h3M12 4v3M12 17v3" stroke="currentColor" stroke-width="2" opacity=".7"/>
+          </svg>
+        </div>
+        <h3>AI 기능 탑재</h3>
+        <p>챗봇, 요약, 검색(RAG), 추천, 자동화 등 제품에 자연스럽게 녹여냅니다.</p>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" opacity=".7"/>
+            <path d="M7 17h10a4 4 0 0 0 0-8 5 5 0 0 0-10 1 3 3 0 0 0 0 7Z" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>API &amp; 배포</h3>
+        <p>서버/API 설계부터 배포, 모니터링까지. 운영 가능한 형태로 정리합니다.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>MVP 제작</h3>
+        <p>빠르게 실험 가능한 MVP를 만들고, 검증 후 기능을 확장합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="section-label reveal">프로세스</div>
+    <h2 class="section-title reveal">이렇게 진행됩니다</h2>
+    <p class="section-desc reveal">짧은 주기로 공유/피드백 → 빠른 반복. 최소 2주부터 결과물을 확인할 수 있습니다.</p>
+    <div class="process">
+      <div class="step reveal">
+        <h3>상담 &amp; 기획</h3>
+        <p>목표, 핵심 기능, 일정, 예산을 정리합니다. 필요하면 간단한 PoC로 가능성을 먼저 확인합니다.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <h3>개발 &amp; 피드백</h3>
+        <p>1~2주 단위로 빌드를 공유하고 피드백을 반영합니다. 빠른 반복이 핵심입니다.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <h3>배포 &amp; 운영</h3>
+        <p>스토어 등록, 도메인, 모니터링까지 세팅하고 안정적으로 넘겨드립니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section>
+    <div class="stats">
+      <div class="stat reveal">
+        <div class="stat-num" data-target="2">0</div>
+        <div class="stat-label">주 내 MVP 시작</div>
+      </div>
+      <div class="stat reveal reveal-delay-1">
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-label">% 코드 소유권</div>
+      </div>
+      <div class="stat reveal reveal-delay-2">
+        <div class="stat-num" data-target="24">0</div>
+        <div class="stat-label">시간 내 첫 응답</div>
+      </div>
+      <div class="stat reveal reveal-delay-3">
+        <div class="stat-num" data-target="7">0</div>
+        <div class="stat-label">일 무료 수정 기간</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-label reveal">프로젝트 예시</div>
+    <h2 class="section-title reveal">이런 것들을 만들 수 있습니다</h2>
+    <p class="section-desc reveal">아래는 가능한 형태 예시입니다. 실제로는 목표/예산/일정에 맞게 구성합니다.</p>
+    <div class="work">
+      <div class="card reveal">
+        <h3>🗓 AI 일정/업무 도우미</h3>
+        <p>캘린더/메모/음성 입력을 통합해 자동 정리, 요약, 리마인드까지 제공.</p>
+        <div class="meta" style="margin-top:12px">
+          <span class="badge">LLM</span><span class="badge">Speech</span><span class="badge">Mobile</span>
+        </div>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <h3>📄 문서 검색(RAG) 기반 Q&amp;A</h3>
+        <p>사내/개인 문서를 업로드하고 질문하면 근거 기반 답변을 제공.</p>
+        <div class="meta" style="margin-top:12px">
+          <span class="badge">RAG</span><span class="badge">Vector DB</span><span class="badge">Web</span>
+        </div>
+      </div>
+      <div class="card reveal">
+        <h3>📸 이미지/카메라 기반 AI</h3>
+        <p>카메라 입력을 분석해 분류/검출/가이드 제공 (예: 스캔, 측정, 인식).</p>
+        <div class="meta" style="margin-top:12px">
+          <span class="badge">Vision</span><span class="badge">On-device/Cloud</span>
+        </div>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <h3>🤝 고객 지원 자동화</h3>
+        <p>FAQ + 티켓 요약 + 답변 초안 생성으로 CS 속도/품질 개선.</p>
+        <div class="meta" style="margin-top:12px">
+          <span class="badge">LLM</span><span class="badge">Automation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label reveal">소개</div>
+    <h2 class="section-title reveal">빠른 실행력, 제품 감각</h2>
+    <p class="section-desc reveal">
+      "기능 추가"가 아니라 "사용자가 계속 쓰는 흐름"을 만듭니다.
+    </p>
+    <div class="cards">
+      <div class="card reveal">
+        <h3>🎯 원칙</h3>
+        <p>빠르게 만들기 → 사용자 반응으로 개선 → 운영 가능한 구조로 정리</p>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <h3>💡 강점</h3>
+        <p>AI를 실제 제품에 붙일 때 필요한 UX, 비용, 성능, 운영을 함께 고려합니다.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <h3>🔄 협업</h3>
+        <p>짧은 주기로 공유/피드백 → 빠른 반복. 문서/일정/우선순위를 투명하게 관리합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="cta">
+    <div class="cta-box reveal">
+      <div>
+        <h2>프로젝트가 있으신가요?</h2>
+        <p>문의 템플릿을 복사해서 이메일이나 DM으로 보내주세요. 24시간 내 회신드립니다.</p>
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap">
+        <button class="btn primary" id="copyBtn" type="button">📋 문의 템플릿 복사</button>
+        <a class="btn" href="#top">↑ 맨 위로</a>
+      </div>
+    </div>
+    <div class="contact-card reveal">
+      <h3>연락처</h3>
+      <p style="color:var(--muted); font-size:14px">편하신 채널로 연락주세요.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:psh0825@gmail.com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2"/></svg>
+          psh0825@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-row">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
+      <div class="smalllinks">
+        <a href="#services">서비스</a>
+        <a href="#process">프로세스</a>
+        <a href="#work">프로젝트</a>
+        <a href="#about">소개</a>
+        <a href="#contact">문의</a>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+// Year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Particles
+(function(){
+  const c = document.getElementById("particles");
+  for(let i=0;i<20;i++){
+    const p = document.createElement("div");
+    p.className = "particle";
+    const s = Math.random()*4+2;
+    p.style.cssText = `
+      width:${s}px; height:${s}px;
+      left:${Math.random()*100}%;
+      animation-duration:${Math.random()*15+10}s;
+      animation-delay:${Math.random()*10}s;
+      background: radial-gradient(circle, ${['rgba(45,125,255,.5)','rgba(124,77,255,.5)','rgba(0,229,255,.5)'][i%3]}, transparent 70%);
+    `;
+    c.appendChild(p);
+  }
+})();
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add("visible"); observer.unobserve(e.target)}
+  });
+}, {threshold:0.1, rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+// Counter animation
+const counterObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.dataset.target;
+    const duration = 1200;
+    const start = performance.now();
+    function tick(now){
+      const p = Math.min((now-start)/duration, 1);
+      const ease = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(target*ease);
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    counterObs.unobserve(el);
+  });
+}, {threshold:0.5});
+document.querySelectorAll(".stat-num").forEach(el=>counterObs.observe(el));
+
+// Copy template
+const template = `안녕하세요, LightOn Plus Lab에 프로젝트 문의드립니다.
+
+[1] 무엇을 만들고 싶나요?
+- 예: AI 기능이 들어간 앱/웹 서비스, 자동화, 문서검색(RAG), 챗봇, 이미지/음성 기능 등
+
+[2] 핵심 기능(우선순위 1~3개)
+- 1)
+- 2)
+- 3)
+
+[3] 대상 사용자 / 사용 시나리오
+- 예: 누구(고객)가 어떤 상황에서 어떻게 쓰나요?
+
+[4] 일정
+- 시작 희망일:
+- 1차 MVP 희망일:
+
+[5] 예산 범위(선택)
+- 예: ○○만원 ~ ○○만원
+
+[6] 참고 링크/자료(선택)
+- 기획서/메모/레퍼런스/유사 서비스 링크
+
+연락처:
+- 이름:
+- 이메일/메신저:
+`;
+
+document.getElementById("copyBtn").addEventListener("click", async()=>{
+  try{
+    await navigator.clipboard.writeText(template);
+    const btn = document.getElementById("copyBtn");
+    const old = btn.textContent;
+    btn.textContent = "✅ 복사 완료!";
+    setTimeout(()=>btn.textContent = old, 1500);
+  }catch(e){alert("복사 실패: 브라우저 권한을 확인해주세요.")}
+});
+</script>
+</body>
+</html>
