@@ -367,6 +367,35 @@ section{padding:60px 0; position:relative; z-index:1}
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
 
+/* ── HAMBURGER ── */
+.hamburger{
+  display:none; flex-direction:column; gap:5px; cursor:pointer;
+  background:none; border:none; padding:8px; border-radius:10px;
+  transition: background .15s;
+}
+.hamburger:hover{background:rgba(255,255,255,.06)}
+.hamburger span{
+  display:block; width:22px; height:2px;
+  background:var(--text); border-radius:2px;
+  transition: all .25s ease;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0; transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.mobile-menu{
+  display:none; position:fixed; top:68px; left:0; right:0; z-index:99;
+  background:rgba(5,7,16,.96); backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+  padding:16px 24px 24px; flex-direction:column; gap:4px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  padding:12px 14px; border-radius:12px; font-weight:600; font-size:15px;
+  transition: background .15s; color:var(--muted);
+}
+.mobile-menu a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+
 /* ── MOBILE ── */
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr}
@@ -375,6 +404,8 @@ section{padding:60px 0; position:relative; z-index:1}
   .process{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
+  .hamburger{display:flex}
+  .nav-cta-desktop{display:none}
   .hero{padding:60px 0 30px}
   .hero-logo{width:min(320px, 85vw)}
 }
@@ -406,9 +437,20 @@ section{padding:60px 0; position:relative; z-index:1}
       <a href="#about">소개</a>
       <a href="#contact">문의</a>
     </nav>
-    <a class="btn primary" href="#contact">프로젝트 문의</a>
+    <a class="btn primary nav-cta-desktop" href="#contact">프로젝트 문의</a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
+  <a href="#services" class="mobile-link">서비스</a>
+  <a href="#momoi" class="mobile-link">Momoi</a>
+  <a href="#process" class="mobile-link">프로세스</a>
+  <a href="#work" class="mobile-link">프로젝트</a>
+  <a href="#about" class="mobile-link">소개</a>
+  <a href="#contact" class="mobile-link">문의</a>
+</nav>
 
 <main id="top" class="container">
 
@@ -566,7 +608,7 @@ section{padding:60px 0; position:relative; z-index:1}
   <section id="momoi">
     <div class="section-label reveal">대표 제품</div>
     <h2 class="section-title reveal">Momoi — AI 기반 업무 관리</h2>
-    <p class="section-desc reveal">LightOn Plus Lab이 직접 만든 프로덕트. AI가 업무를 정리하고, 일정을 관리하고, 팀 생산성을 높여줍니다.</p>
+    <p class="section-desc reveal">LightOn Plus Lab이 직접 만들고 운영 중인 프로덕트. 통화 녹음을 올리면 AI가 자동으로 요약하고 할 일을 추출합니다.</p>
     <div class="hero-grid">
       <div class="hero-card reveal">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
@@ -574,13 +616,13 @@ section{padding:60px 0; position:relative; z-index:1}
           <span class="badge" style="background:linear-gradient(135deg, var(--glow1), var(--glow2)); border:none;">Live</span>
         </div>
         <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;">
-          할 일, 캘린더, 메모를 하나로. AI가 자연어로 일정을 파싱하고, 업무를 요약하고, 우선순위를 제안합니다.
+          통화 녹음을 올리면 AI가 발신자·요약·할 일을 자동 추출. 업무 메모, 메시지를 한곳에서 관리하는 AI 인박스.
         </p>
         <div class="kpi" role="list">
-          <div class="box"><b>📋 태스크</b><span>AI 자동 분류 & 우선순위</span></div>
-          <div class="box"><b>🗓 캘린더</b><span>Google Calendar 연동</span></div>
-          <div class="box"><b>📧 이메일</b><span>Gmail 통합 인박스</span></div>
-          <div class="box"><b>🎙 음성</b><span>음성 입력 → 태스크 변환</span></div>
+          <div class="box"><b>🎙 통화 요약</b><span>녹음 업로드 → AI 자동 정리</span></div>
+          <div class="box"><b>📋 AI 분류</b><span>업무/개인/프로젝트 자동 분류</span></div>
+          <div class="box"><b>🗓 캘린더</b><span>일정 자동 추출 & 관리</span></div>
+          <div class="box"><b>📲 PWA</b><span>홈 화면 설치 & 푸시 알림</span></div>
         </div>
         <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
           <a class="btn primary" href="https://momoi.lightonpluslab.com" target="_blank">🚀 Momoi 사용해보기</a>
@@ -595,18 +637,18 @@ section{padding:60px 0; position:relative; z-index:1}
           <span class="badge">Vercel</span>
         </div>
         <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
-          <p style="margin-bottom:8px;">✅ 자연어 날짜 인식 (오늘/내일/다음주 → 자동 파싱)</p>
-          <p style="margin-bottom:8px;">✅ Gmail API & Google Calendar 양방향 동기화</p>
-          <p style="margin-bottom:8px;">✅ 음성 녹음 → 텍스트 변환 (모든 브라우저 지원)</p>
-          <p style="margin-bottom:8px;">✅ 37개국 공휴일 자동 표시</p>
-          <p>✅ 모바일 최적화 (PWA, 스와이프 UX)</p>
+          <p style="margin-bottom:8px;">✅ 통화 녹음 파일 자동 전사 & 핵심 요약</p>
+          <p style="margin-bottom:8px;">✅ AI가 발신자·일정·액션아이템 자동 추출</p>
+          <p style="margin-bottom:8px;">✅ 업무/개인/프로젝트 스마트 분류</p>
+          <p style="margin-bottom:8px;">✅ 37개국 공휴일 포함 캘린더</p>
+          <p>✅ 모바일 최적화 PWA (홈 화면 설치 지원)</p>
         </div>
         <div class="tagline">
           <div>
             <div style="font-weight:800; font-size:14px">슬로건</div>
             <div style="color:var(--muted); margin-top:4px; font-size:13px">AI가 정리하고, 당신은 실행만.</div>
           </div>
-          <code>momoi.ai</code>
+          <code>momoi</code>
         </div>
       </div>
     </div>
@@ -688,9 +730,9 @@ section{padding:60px 0; position:relative; z-index:1}
       <h3>연락처</h3>
       <p style="color:var(--muted); font-size:14px">편하신 채널로 연락주세요.</p>
       <div class="contact-links">
-        <a class="contact-link" href="mailto:psh0825@gmail.com">
+        <a class="contact-link" href="mailto:support@lightonpluslab.com">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2"/></svg>
-          psh0825@gmail.com
+          support@lightonpluslab.com
         </a>
       </div>
     </div>
@@ -706,6 +748,8 @@ section{padding:60px 0; position:relative; z-index:1}
         <a href="#work">프로젝트</a>
         <a href="#about">소개</a>
         <a href="#contact">문의</a>
+        <a href="https://momoi.lightonpluslab.com/privacy" target="_blank">개인정보처리방침</a>
+        <a href="https://momoi.lightonpluslab.com/terms" target="_blank">이용약관</a>
       </div>
     </div>
   </footer>
@@ -715,6 +759,22 @@ section{padding:60px 0; position:relative; z-index:1}
 <script>
 // Year
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Hamburger menu
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+hamburger.addEventListener("click", () => {
+  const open = mobileMenu.classList.toggle("open");
+  hamburger.classList.toggle("open", open);
+  hamburger.setAttribute("aria-expanded", open);
+});
+document.querySelectorAll(".mobile-link").forEach(a => {
+  a.addEventListener("click", () => {
+    mobileMenu.classList.remove("open");
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", false);
+  });
+});
 
 // Particles
 (function(){
