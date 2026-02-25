@@ -432,6 +432,7 @@ section{padding:60px 0; position:relative; z-index:1}
     <nav class="nav-links" aria-label="메뉴">
       <a href="#services">서비스</a>
       <a href="#momoi">Momoi</a>
+      <a href="#receipt-ai">영수증AI</a>
       <a href="#process">프로세스</a>
       <a href="#work">프로젝트</a>
       <a href="#about">소개</a>
@@ -446,6 +447,7 @@ section{padding:60px 0; position:relative; z-index:1}
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
   <a href="#services" class="mobile-link">서비스</a>
   <a href="#momoi" class="mobile-link">Momoi</a>
+  <a href="#receipt-ai" class="mobile-link">영수증AI</a>
   <a href="#process" class="mobile-link">프로세스</a>
   <a href="#work" class="mobile-link">프로젝트</a>
   <a href="#about" class="mobile-link">소개</a>
@@ -650,6 +652,57 @@ section{padding:60px 0; position:relative; z-index:1}
             <div style="color:var(--muted); margin-top:4px; font-size:13px">AI가 정리하고, 당신은 실행만.</div>
           </div>
           <code>momoi</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT: RECEIPT AI -->
+  <section id="receipt-ai">
+    <div class="section-label reveal">AI 경비 관리</div>
+    <h2 class="section-title reveal">영수증AI — 사진 한 장으로 경비 자동 관리</h2>
+    <p class="section-desc reveal">영수증을 촬영하면 AI가 가게명, 금액, 항목을 자동 인식하고 카테고리별로 분류합니다. 월별 지출 리포트와 세금 공제 항목까지.</p>
+    <div class="hero-grid">
+      <div class="hero-card reveal">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
+          <div style="font-weight:900; font-size:17px;">🧾 영수증AI</div>
+          <span class="badge" style="background:linear-gradient(135deg, #059669, #0d9488); border:none;">Live</span>
+        </div>
+        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;">
+          영수증 사진을 찍으면 GPT-4o Vision이 모든 정보를 자동 추출. 9개 카테고리 자동 분류, 월별 리포트, 세금 공제 표시까지.
+        </p>
+        <div class="kpi" role="list">
+          <div class="box"><b>📸 AI OCR</b><span>사진 촬영 → 자동 인식</span></div>
+          <div class="box"><b>🏷️ 자동 분류</b><span>9개 카테고리 자동 분류</span></div>
+          <div class="box"><b>📊 지출 리포트</b><span>월별 분석 & 전월 비교</span></div>
+          <div class="box"><b>💰 세금 공제</b><span>공제 가능 항목 자동 표시</span></div>
+        </div>
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="https://receipt.lightonpluslab.com" target="_blank" style="background:linear-gradient(135deg, #059669, #0d9488);">🧾 영수증AI 사용해보기</a>
+          <a class="btn" href="https://receipt.lightonpluslab.com/guide" target="_blank">📖 사용 가이드</a>
+        </div>
+      </div>
+      <div class="hero-card reveal reveal-delay-1">
+        <div style="font-weight:900; font-size:17px; margin-bottom:12px;">기술 구성</div>
+        <div class="meta" style="margin-bottom:16px">
+          <span class="badge">Next.js</span>
+          <span class="badge">Supabase</span>
+          <span class="badge">GPT-4o Vision</span>
+          <span class="badge">Vercel</span>
+        </div>
+        <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
+          <p style="margin-bottom:8px;">✅ GPT-4o Vision 영수증 자동 인식 (OCR)</p>
+          <p style="margin-bottom:8px;">✅ 식비/교통/의료 등 9개 카테고리 분류</p>
+          <p style="margin-bottom:8px;">✅ 월별 지출 리포트 & 전월 대비 분석</p>
+          <p style="margin-bottom:8px;">✅ 세금 공제 가능 항목 자동 표시</p>
+          <p>✅ 모바일 최적화 PWA (후면 카메라 촬영)</p>
+        </div>
+        <div class="tagline">
+          <div>
+            <div style="font-weight:800; font-size:14px">슬로건</div>
+            <div style="color:var(--muted); margin-top:4px; font-size:13px">찍으면 끝, AI가 정리합니다.</div>
+          </div>
+          <code>receipt-ai</code>
         </div>
       </div>
     </div>
