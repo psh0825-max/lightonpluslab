@@ -435,6 +435,21 @@ section{padding:60px 0; position:relative; z-index:1}
   .stats{grid-template-columns:1fr}
   .cta-box{padding:24px}
 }
+
+.hero-showcase{
+  width:min(900px, 90vw); height:auto; border-radius:20px;
+  margin:40px auto 0; display:block;
+  box-shadow: 0 20px 60px rgba(45,125,255,.2), 0 0 120px rgba(124,77,255,.1);
+  animation: logoPulse 4s ease-in-out infinite;
+  border:1px solid rgba(255,255,255,.08);
+}
+.hero-pattern-bg{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background: url('hero-pattern.jpg') center/cover no-repeat;
+  opacity:0.07;
+  mix-blend-mode:screen;
+}
+
 </style>
 </head>
 <body>
@@ -442,6 +457,7 @@ section{padding:60px 0; position:relative; z-index:1}
 <!-- BG EFFECTS -->
 <div class="bg-glow"></div>
 <div class="bg-grid"></div>
+<div class="hero-pattern-bg"></div>
 <div class="particles" id="particles"></div>
 
 <!-- NAV -->
@@ -517,7 +533,8 @@ section{padding:60px 0; position:relative; z-index:1}
       </div>
     </div>
 
-    <div class="hero-grid">
+    <img src="hero-apps.jpg" alt="AI Apps" class="hero-showcase reveal" />
+<div class="hero-grid">
       <div class="hero-card reveal">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
           <div style="font-weight:900; font-size:17px;" data-i18n="hero.card1.title">What we build</div>
