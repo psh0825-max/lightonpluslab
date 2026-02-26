@@ -367,6 +367,27 @@ section{padding:60px 0; position:relative; z-index:1}
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
 
+/* ── LANGUAGE SELECTOR ── */
+.lang-selector {
+  position: relative;
+  cursor: pointer;
+}
+.lang-selector select {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
+}
+.lang-selector select:hover {
+  border-color: rgba(255,255,255,.2);
+  background: rgba(255,255,255,.08);
+}
+
 /* ── HAMBURGER ── */
 .hamburger{
   display:none; flex-direction:column; gap:5px; cursor:pointer;
@@ -404,6 +425,7 @@ section{padding:60px 0; position:relative; z-index:1}
   .process{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
+  .lang-selector{display:none}
   .hamburger{display:flex}
   .nav-cta-desktop{display:none}
   .hero{padding:60px 0 30px}
@@ -430,28 +452,44 @@ section{padding:60px 0; position:relative; z-index:1}
       <div>LightOn Plus Lab<small>AI Apps &amp; Innovation</small></div>
     </a>
     <nav class="nav-links" aria-label="메뉴">
-      <a href="#services">서비스</a>
+      <a href="#services" data-i18n="nav.services">서비스</a>
       <a href="#momoi">Momoi</a>
-      <a href="#receipt-ai">영수증AI</a>
-      <a href="#process">프로세스</a>
-      <a href="#work">프로젝트</a>
-      <a href="#about">소개</a>
-      <a href="#contact">문의</a>
+      <a href="#receipt-ai" data-i18n="nav.receipt-ai">영수증AI</a>
+      <a href="#process" data-i18n="nav.process">프로세스</a>
+      <a href="#work" data-i18n="nav.work">프로젝트</a>
+      <a href="#about" data-i18n="nav.about">소개</a>
+      <a href="#contact" data-i18n="nav.contact">문의</a>
     </nav>
-    <a class="btn primary nav-cta-desktop" href="#contact">프로젝트 문의</a>
+    <div class="lang-selector">
+      <select id="languageSelector">
+        <option value="ko">🇰🇷 한국어</option>
+        <option value="en">🇺🇸 English</option>
+        <option value="ja">🇯🇵 日本語</option>
+        <option value="zh">🇨🇳 中文</option>
+      </select>
+    </div>
+    <a class="btn primary nav-cta-desktop" href="#contact" data-i18n="nav.cta">프로젝트 문의</a>
     <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-  <a href="#services" class="mobile-link">서비스</a>
+  <a href="#services" class="mobile-link" data-i18n="nav.services">서비스</a>
   <a href="#momoi" class="mobile-link">Momoi</a>
-  <a href="#receipt-ai" class="mobile-link">영수증AI</a>
-  <a href="#process" class="mobile-link">프로세스</a>
-  <a href="#work" class="mobile-link">프로젝트</a>
-  <a href="#about" class="mobile-link">소개</a>
-  <a href="#contact" class="mobile-link">문의</a>
+  <a href="#receipt-ai" class="mobile-link" data-i18n="nav.receipt-ai">영수증AI</a>
+  <a href="#process" class="mobile-link" data-i18n="nav.process">프로세스</a>
+  <a href="#work" class="mobile-link" data-i18n="nav.work">프로젝트</a>
+  <a href="#about" class="mobile-link" data-i18n="nav.about">소개</a>
+  <a href="#contact" class="mobile-link" data-i18n="nav.contact">문의</a>
+  <div class="lang-selector" style="padding: 12px 14px;">
+    <select id="mobileLanguageSelector">
+      <option value="ko">🇰🇷 한국어</option>
+      <option value="en">🇺🇸 English</option>
+      <option value="ja">🇯🇵 日本語</option>
+      <option value="zh">🇨🇳 中文</option>
+    </select>
+  </div>
 </nav>
 
 <main id="top" class="container">
@@ -461,51 +499,51 @@ section{padding:60px 0; position:relative; z-index:1}
     <div class="hero-top">
       <img src="logo-new.png" alt="LightOn Plus Lab" class="hero-logo" />
       <div class="pillrow" aria-label="키워드">
-        <span class="pill">🤖 AI 기능 탑재</span>
-        <span class="pill">📱 앱 개발</span>
-        <span class="pill">⚡ 빠른 프로토타이핑</span>
-        <span class="pill">🚀 MVP → 런칭</span>
+        <span class="pill" data-i18n="hero.pill1">🤖 AI 기능 탑재</span>
+        <span class="pill" data-i18n="hero.pill2">📱 앱 개발</span>
+        <span class="pill" data-i18n="hero.pill3">⚡ 빠른 프로토타이핑</span>
+        <span class="pill" data-i18n="hero.pill4">🚀 MVP → 런칭</span>
       </div>
-      <h1 class="headline">아이디어에 <span class="gradient">AI를 더해</span><br/>앱으로 출시합니다.</h1>
-      <p class="sub">
+      <h1 class="headline" data-i18n="hero.headline">아이디어에 <span class="gradient">AI를 더해</span><br/>앱으로 출시합니다.</h1>
+      <p class="sub" data-i18n="hero.subtitle">
         LightOn Plus Lab은 개인 개발 스튜디오입니다.<br/>
         기획부터 개발, 배포까지 핵심을 빠르게 구현해 <strong>"작동하는 제품"</strong>을 만듭니다.
       </p>
       <div class="hero-btns">
-        <a class="btn primary" href="#contact">💬 상담/견적 요청</a>
-        <a class="btn" href="#services">서비스 보기 →</a>
+        <a class="btn primary" href="#contact" data-i18n="hero.cta1">💬 상담/견적 요청</a>
+        <a class="btn" href="#services" data-i18n="hero.cta2">서비스 보기 →</a>
       </div>
     </div>
 
     <div class="hero-grid">
       <div class="hero-card reveal">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
-          <div style="font-weight:900; font-size:17px;">What we build</div>
-          <span class="badge">One-person Studio</span>
+          <div style="font-weight:900; font-size:17px;" data-i18n="hero.card1.title">What we build</div>
+          <span class="badge" data-i18n="hero.card1.badge">One-person Studio</span>
         </div>
-        <p style="color:var(--muted); line-height:1.75;">
+        <p style="color:var(--muted); line-height:1.75;" data-i18n="hero.card1.desc">
           AI 기능을 "데모"가 아닌 "제품"으로.<br/>안정적 운영과 확장까지 고려합니다.
         </p>
         <div class="kpi" role="list">
-          <div class="box"><b>Fast MVP</b><span>2~6주 내 가시화</span></div>
-          <div class="box"><b>AI Ready</b><span>LLM / 비전 / 음성</span></div>
-          <div class="box"><b>Ship</b><span>배포 / 스토어 등록</span></div>
-          <div class="box"><b>Maintain</b><span>모니터링 / 개선</span></div>
+          <div class="box"><b data-i18n="hero.card1.kpi1.title">Fast MVP</b><span data-i18n="hero.card1.kpi1.desc">2~6주 내 가시화</span></div>
+          <div class="box"><b data-i18n="hero.card1.kpi2.title">AI Ready</b><span data-i18n="hero.card1.kpi2.desc">LLM / 비전 / 음성</span></div>
+          <div class="box"><b data-i18n="hero.card1.kpi3.title">Ship</b><span data-i18n="hero.card1.kpi3.desc">배포 / 스토어 등록</span></div>
+          <div class="box"><b data-i18n="hero.card1.kpi4.title">Maintain</b><span data-i18n="hero.card1.kpi4.desc">모니터링 / 개선</span></div>
         </div>
       </div>
 
       <div class="hero-card reveal reveal-delay-1">
-        <div style="font-weight:900; font-size:17px; margin-bottom:12px;">기술 스택</div>
+        <div style="font-weight:900; font-size:17px; margin-bottom:12px;" data-i18n="hero.card2.title">기술 스택</div>
         <div class="meta" style="margin-bottom:16px">
-          <span class="badge">Web / Mobile</span>
-          <span class="badge">API / Cloud</span>
-          <span class="badge">LLM / RAG</span>
-          <span class="badge">Vision / Speech</span>
+          <span class="badge" data-i18n="hero.card2.badge1">Web / Mobile</span>
+          <span class="badge" data-i18n="hero.card2.badge2">API / Cloud</span>
+          <span class="badge" data-i18n="hero.card2.badge3">LLM / RAG</span>
+          <span class="badge" data-i18n="hero.card2.badge4">Vision / Speech</span>
         </div>
         <div class="tagline">
           <div>
-            <div style="font-weight:800; font-size:14px">슬로건</div>
-            <div style="color:var(--muted); margin-top:4px; font-size:13px">당신의 서비스에 AI를 자연스럽게 붙입니다.</div>
+            <div style="font-weight:800; font-size:14px" data-i18n="hero.card2.slogan.title">슬로건</div>
+            <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="hero.card2.slogan.desc">당신의 서비스에 AI를 자연스럽게 붙입니다.</div>
           </div>
           <code>L+ = AI</code>
         </div>
@@ -525,9 +563,9 @@ section{padding:60px 0; position:relative; z-index:1}
 
   <!-- SERVICES -->
   <section id="services">
-    <div class="section-label reveal">서비스</div>
-    <h2 class="section-title reveal">AI를 중심으로 제품을 만듭니다</h2>
-    <p class="section-desc reveal">
+    <div class="section-label reveal" data-i18n="services.label">서비스</div>
+    <h2 class="section-title reveal" data-i18n="services.title">AI를 중심으로 제품을 만듭니다</h2>
+    <p class="section-desc reveal" data-i18n="services.desc">
       "AI 기능"을 중심으로 앱/웹 제품을 만듭니다. 필요하면 데이터 파이프라인과 운영까지 같이 설계합니다.
     </p>
     <div class="cards">
@@ -538,8 +576,8 @@ section{padding:60px 0; position:relative; z-index:1}
             <path d="M4 12h3M17 12h3M12 4v3M12 17v3" stroke="currentColor" stroke-width="2" opacity=".7"/>
           </svg>
         </div>
-        <h3>AI 기능 탑재</h3>
-        <p>챗봇, 요약, 검색(RAG), 추천, 자동화 등 제품에 자연스럽게 녹여냅니다.</p>
+        <h3 data-i18n="services.card1.title">AI 기능 탑재</h3>
+        <p data-i18n="services.card1.desc">챗봇, 요약, 검색(RAG), 추천, 자동화 등 제품에 자연스럽게 녹여냅니다.</p>
       </div>
       <div class="card reveal reveal-delay-1">
         <div class="icon">
@@ -548,8 +586,8 @@ section{padding:60px 0; position:relative; z-index:1}
             <path d="M7 17h10a4 4 0 0 0 0-8 5 5 0 0 0-10 1 3 3 0 0 0 0 7Z" stroke="currentColor" stroke-width="2"/>
           </svg>
         </div>
-        <h3>API &amp; 배포</h3>
-        <p>서버/API 설계부터 배포, 모니터링까지. 운영 가능한 형태로 정리합니다.</p>
+        <h3 data-i18n="services.card2.title">API &amp; 배포</h3>
+        <p data-i18n="services.card2.desc">서버/API 설계부터 배포, 모니터링까지. 운영 가능한 형태로 정리합니다.</p>
       </div>
       <div class="card reveal reveal-delay-2">
         <div class="icon">
@@ -557,29 +595,29 @@ section{padding:60px 0; position:relative; z-index:1}
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h3>MVP 제작</h3>
-        <p>빠르게 실험 가능한 MVP를 만들고, 검증 후 기능을 확장합니다.</p>
+        <h3 data-i18n="services.card3.title">MVP 제작</h3>
+        <p data-i18n="services.card3.desc">빠르게 실험 가능한 MVP를 만들고, 검증 후 기능을 확장합니다.</p>
       </div>
     </div>
   </section>
 
   <!-- PROCESS -->
   <section id="process">
-    <div class="section-label reveal">프로세스</div>
-    <h2 class="section-title reveal">이렇게 진행됩니다</h2>
-    <p class="section-desc reveal">짧은 주기로 공유/피드백 → 빠른 반복. 최소 2주부터 결과물을 확인할 수 있습니다.</p>
+    <div class="section-label reveal" data-i18n="process.label">프로세스</div>
+    <h2 class="section-title reveal" data-i18n="process.title">이렇게 진행됩니다</h2>
+    <p class="section-desc reveal" data-i18n="process.desc">짧은 주기로 공유/피드백 → 빠른 반복. 최소 2주부터 결과물을 확인할 수 있습니다.</p>
     <div class="process">
       <div class="step reveal">
-        <h3>상담 &amp; 기획</h3>
-        <p>목표, 핵심 기능, 일정, 예산을 정리합니다. 필요하면 간단한 PoC로 가능성을 먼저 확인합니다.</p>
+        <h3 data-i18n="process.step1.title">상담 &amp; 기획</h3>
+        <p data-i18n="process.step1.desc">목표, 핵심 기능, 일정, 예산을 정리합니다. 필요하면 간단한 PoC로 가능성을 먼저 확인합니다.</p>
       </div>
       <div class="step reveal reveal-delay-1">
-        <h3>개발 &amp; 피드백</h3>
-        <p>1~2주 단위로 빌드를 공유하고 피드백을 반영합니다. 빠른 반복이 핵심입니다.</p>
+        <h3 data-i18n="process.step2.title">개발 &amp; 피드백</h3>
+        <p data-i18n="process.step2.desc">1~2주 단위로 빌드를 공유하고 피드백을 반영합니다. 빠른 반복이 핵심입니다.</p>
       </div>
       <div class="step reveal reveal-delay-2">
-        <h3>배포 &amp; 운영</h3>
-        <p>스토어 등록, 도메인, 모니터링까지 세팅하고 안정적으로 넘겨드립니다.</p>
+        <h3 data-i18n="process.step3.title">배포 &amp; 운영</h3>
+        <p data-i18n="process.step3.desc">스토어 등록, 도메인, 모니터링까지 세팅하고 안정적으로 넘겨드립니다.</p>
       </div>
     </div>
   </section>
@@ -589,50 +627,50 @@ section{padding:60px 0; position:relative; z-index:1}
     <div class="stats">
       <div class="stat reveal">
         <div class="stat-num" data-target="2">0</div>
-        <div class="stat-label">주 내 MVP 시작</div>
+        <div class="stat-label" data-i18n="stats.stat1">주 내 MVP 시작</div>
       </div>
       <div class="stat reveal reveal-delay-1">
         <div class="stat-num" data-target="100">0</div>
-        <div class="stat-label">% 코드 소유권</div>
+        <div class="stat-label" data-i18n="stats.stat2">% 코드 소유권</div>
       </div>
       <div class="stat reveal reveal-delay-2">
         <div class="stat-num" data-target="24">0</div>
-        <div class="stat-label">시간 내 첫 응답</div>
+        <div class="stat-label" data-i18n="stats.stat3">시간 내 첫 응답</div>
       </div>
       <div class="stat reveal reveal-delay-3">
         <div class="stat-num" data-target="7">0</div>
-        <div class="stat-label">일 무료 수정 기간</div>
+        <div class="stat-label" data-i18n="stats.stat4">일 무료 수정 기간</div>
       </div>
     </div>
   </section>
 
   <!-- PRODUCT: MOMOI -->
   <section id="momoi">
-    <div class="section-label reveal">대표 제품</div>
-    <h2 class="section-title reveal">Momoi — AI 기반 업무 관리</h2>
-    <p class="section-desc reveal">LightOn Plus Lab이 직접 만들고 운영 중인 프로덕트. 통화 녹음을 올리면 AI가 자동으로 요약하고 할 일을 추출합니다.</p>
+    <div class="section-label reveal" data-i18n="momoi.label">대표 제품</div>
+    <h2 class="section-title reveal" data-i18n="momoi.title">Momoi — AI 기반 업무 관리</h2>
+    <p class="section-desc reveal" data-i18n="momoi.desc">LightOn Plus Lab이 직접 만들고 운영 중인 프로덕트. 통화 녹음을 올리면 AI가 자동으로 요약하고 할 일을 추출합니다.</p>
     <div class="hero-grid">
       <div class="hero-card reveal">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
           <div style="font-weight:900; font-size:17px;">🗓 Momoi</div>
-          <span class="badge" style="background:linear-gradient(135deg, var(--glow1), var(--glow2)); border:none;">Live</span>
+          <span class="badge" style="background:linear-gradient(135deg, var(--glow1), var(--glow2)); border:none;" data-i18n="momoi.badge">Live</span>
         </div>
-        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;">
+        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;" data-i18n="momoi.card1.desc">
           통화 녹음을 올리면 AI가 발신자·요약·할 일을 자동 추출. 업무 메모, 메시지를 한곳에서 관리하는 AI 인박스.
         </p>
         <div class="kpi" role="list">
-          <div class="box"><b>🎙 통화 요약</b><span>녹음 업로드 → AI 자동 정리</span></div>
-          <div class="box"><b>📋 AI 분류</b><span>업무/개인/프로젝트 자동 분류</span></div>
-          <div class="box"><b>🗓 캘린더</b><span>일정 자동 추출 & 관리</span></div>
-          <div class="box"><b>📲 PWA</b><span>홈 화면 설치 & 푸시 알림</span></div>
+          <div class="box"><b data-i18n="momoi.card1.kpi1.title">🎙 통화 요약</b><span data-i18n="momoi.card1.kpi1.desc">녹음 업로드 → AI 자동 정리</span></div>
+          <div class="box"><b data-i18n="momoi.card1.kpi2.title">📋 AI 분류</b><span data-i18n="momoi.card1.kpi2.desc">업무/개인/프로젝트 자동 분류</span></div>
+          <div class="box"><b data-i18n="momoi.card1.kpi3.title">🗓 캘린더</b><span data-i18n="momoi.card1.kpi3.desc">일정 자동 추출 & 관리</span></div>
+          <div class="box"><b data-i18n="momoi.card1.kpi4.title">📲 PWA</b><span data-i18n="momoi.card1.kpi4.desc">홈 화면 설치 & 푸시 알림</span></div>
         </div>
         <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn primary" href="https://momoi.lightonpluslab.com" target="_blank">🚀 Momoi 사용해보기</a>
-          <a class="btn" href="https://momoi.lightonpluslab.com/guide" target="_blank">📖 사용 가이드</a>
+          <a class="btn primary" href="https://momoi.lightonpluslab.com" target="_blank" data-i18n="momoi.cta1">🚀 Momoi 사용해보기</a>
+          <a class="btn" href="https://momoi.lightonpluslab.com/guide" target="_blank" data-i18n="momoi.cta2">📖 사용 가이드</a>
         </div>
       </div>
       <div class="hero-card reveal reveal-delay-1">
-        <div style="font-weight:900; font-size:17px; margin-bottom:12px;">기술 구성</div>
+        <div style="font-weight:900; font-size:17px; margin-bottom:12px;" data-i18n="momoi.card2.title">기술 구성</div>
         <div class="meta" style="margin-bottom:16px">
           <span class="badge">Next.js</span>
           <span class="badge">Supabase</span>
@@ -640,16 +678,16 @@ section{padding:60px 0; position:relative; z-index:1}
           <span class="badge">Vercel</span>
         </div>
         <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
-          <p style="margin-bottom:8px;">✅ 통화 녹음 파일 자동 전사 & 핵심 요약</p>
-          <p style="margin-bottom:8px;">✅ AI가 발신자·일정·액션아이템 자동 추출</p>
-          <p style="margin-bottom:8px;">✅ 업무/개인/프로젝트 스마트 분류</p>
-          <p style="margin-bottom:8px;">✅ 37개국 공휴일 포함 캘린더</p>
-          <p>✅ 모바일 최적화 PWA (홈 화면 설치 지원)</p>
+          <p style="margin-bottom:8px;" data-i18n="momoi.card2.feature1">✅ 통화 녹음 파일 자동 전사 & 핵심 요약</p>
+          <p style="margin-bottom:8px;" data-i18n="momoi.card2.feature2">✅ AI가 발신자·일정·액션아이템 자동 추출</p>
+          <p style="margin-bottom:8px;" data-i18n="momoi.card2.feature3">✅ 업무/개인/프로젝트 스마트 분류</p>
+          <p style="margin-bottom:8px;" data-i18n="momoi.card2.feature4">✅ 37개국 공휴일 포함 캘린더</p>
+          <p data-i18n="momoi.card2.feature5">✅ 모바일 최적화 PWA (홈 화면 설치 지원)</p>
         </div>
         <div class="tagline">
           <div>
-            <div style="font-weight:800; font-size:14px">슬로건</div>
-            <div style="color:var(--muted); margin-top:4px; font-size:13px">AI가 정리하고, 당신은 실행만.</div>
+            <div style="font-weight:800; font-size:14px" data-i18n="momoi.card2.slogan.title">슬로건</div>
+            <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="momoi.card2.slogan.desc">AI가 정리하고, 당신은 실행만.</div>
           </div>
           <code>momoi</code>
         </div>
@@ -659,31 +697,31 @@ section{padding:60px 0; position:relative; z-index:1}
 
   <!-- PRODUCT: RECEIPT AI -->
   <section id="receipt-ai">
-    <div class="section-label reveal">AI 경비 관리</div>
-    <h2 class="section-title reveal">영수증AI — 사진 한 장으로 경비 자동 관리</h2>
-    <p class="section-desc reveal">영수증을 촬영하면 AI가 가게명, 금액, 항목을 자동 인식하고 카테고리별로 분류합니다. 월별 지출 리포트와 세금 공제 항목까지.</p>
+    <div class="section-label reveal" data-i18n="receiptai.label">AI 경비 관리</div>
+    <h2 class="section-title reveal" data-i18n="receiptai.title">영수증AI — 사진 한 장으로 경비 자동 관리</h2>
+    <p class="section-desc reveal" data-i18n="receiptai.desc">영수증을 촬영하면 AI가 가게명, 금액, 항목을 자동 인식하고 카테고리별로 분류합니다. 월별 지출 리포트와 세금 공제 항목까지.</p>
     <div class="hero-grid">
       <div class="hero-card reveal">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
-          <div style="font-weight:900; font-size:17px;">🧾 영수증AI</div>
-          <span class="badge" style="background:linear-gradient(135deg, #059669, #0d9488); border:none;">Live</span>
+          <div style="font-weight:900; font-size:17px;" data-i18n="receiptai.card1.title">🧾 영수증AI</div>
+          <span class="badge" style="background:linear-gradient(135deg, #059669, #0d9488); border:none;" data-i18n="receiptai.badge">Live</span>
         </div>
-        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;">
+        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;" data-i18n="receiptai.card1.desc">
           영수증 사진을 찍으면 GPT-4o Vision이 모든 정보를 자동 추출. 9개 카테고리 자동 분류, 월별 리포트, 세금 공제 표시까지.
         </p>
         <div class="kpi" role="list">
-          <div class="box"><b>📸 AI OCR</b><span>사진 촬영 → 자동 인식</span></div>
-          <div class="box"><b>🏷️ 자동 분류</b><span>9개 카테고리 자동 분류</span></div>
-          <div class="box"><b>📊 지출 리포트</b><span>월별 분석 & 전월 비교</span></div>
-          <div class="box"><b>💰 세금 공제</b><span>공제 가능 항목 자동 표시</span></div>
+          <div class="box"><b data-i18n="receiptai.card1.kpi1.title">📸 AI OCR</b><span data-i18n="receiptai.card1.kpi1.desc">사진 촬영 → 자동 인식</span></div>
+          <div class="box"><b data-i18n="receiptai.card1.kpi2.title">🏷️ 자동 분류</b><span data-i18n="receiptai.card1.kpi2.desc">9개 카테고리 자동 분류</span></div>
+          <div class="box"><b data-i18n="receiptai.card1.kpi3.title">📊 지출 리포트</b><span data-i18n="receiptai.card1.kpi3.desc">월별 분석 & 전월 비교</span></div>
+          <div class="box"><b data-i18n="receiptai.card1.kpi4.title">💰 세금 공제</b><span data-i18n="receiptai.card1.kpi4.desc">공제 가능 항목 자동 표시</span></div>
         </div>
         <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn primary" href="https://receipt.lightonpluslab.com" target="_blank" style="background:linear-gradient(135deg, #059669, #0d9488);">🧾 영수증AI 사용해보기</a>
-          <a class="btn" href="https://receipt.lightonpluslab.com/guide" target="_blank">📖 사용 가이드</a>
+          <a class="btn primary" href="https://receipt.lightonpluslab.com" target="_blank" style="background:linear-gradient(135deg, #059669, #0d9488);" data-i18n="receiptai.cta1">🧾 영수증AI 사용해보기</a>
+          <a class="btn" href="https://receipt.lightonpluslab.com/guide" target="_blank" data-i18n="receiptai.cta2">📖 사용 가이드</a>
         </div>
       </div>
       <div class="hero-card reveal reveal-delay-1">
-        <div style="font-weight:900; font-size:17px; margin-bottom:12px;">기술 구성</div>
+        <div style="font-weight:900; font-size:17px; margin-bottom:12px;" data-i18n="receiptai.card2.title">기술 구성</div>
         <div class="meta" style="margin-bottom:16px">
           <span class="badge">Next.js</span>
           <span class="badge">Supabase</span>
@@ -691,16 +729,16 @@ section{padding:60px 0; position:relative; z-index:1}
           <span class="badge">Vercel</span>
         </div>
         <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
-          <p style="margin-bottom:8px;">✅ GPT-4o Vision 영수증 자동 인식 (OCR)</p>
-          <p style="margin-bottom:8px;">✅ 식비/교통/의료 등 9개 카테고리 분류</p>
-          <p style="margin-bottom:8px;">✅ 월별 지출 리포트 & 전월 대비 분석</p>
-          <p style="margin-bottom:8px;">✅ 세금 공제 가능 항목 자동 표시</p>
-          <p>✅ 모바일 최적화 PWA (후면 카메라 촬영)</p>
+          <p style="margin-bottom:8px;" data-i18n="receiptai.card2.feature1">✅ GPT-4o Vision 영수증 자동 인식 (OCR)</p>
+          <p style="margin-bottom:8px;" data-i18n="receiptai.card2.feature2">✅ 식비/교통/의료 등 9개 카테고리 분류</p>
+          <p style="margin-bottom:8px;" data-i18n="receiptai.card2.feature3">✅ 월별 지출 리포트 & 전월 대비 분석</p>
+          <p style="margin-bottom:8px;" data-i18n="receiptai.card2.feature4">✅ 세금 공제 가능 항목 자동 표시</p>
+          <p data-i18n="receiptai.card2.feature5">✅ 모바일 최적화 PWA (후면 카메라 촬영)</p>
         </div>
         <div class="tagline">
           <div>
-            <div style="font-weight:800; font-size:14px">슬로건</div>
-            <div style="color:var(--muted); margin-top:4px; font-size:13px">찍으면 끝, AI가 정리합니다.</div>
+            <div style="font-weight:800; font-size:14px" data-i18n="receiptai.card2.slogan.title">슬로건</div>
+            <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="receiptai.card2.slogan.desc">찍으면 끝, AI가 정리합니다.</div>
           </div>
           <code>receipt-ai</code>
         </div>
@@ -710,34 +748,34 @@ section{padding:60px 0; position:relative; z-index:1}
 
   <!-- WORK -->
   <section id="work">
-    <div class="section-label reveal">더 많은 가능성</div>
-    <h2 class="section-title reveal">이런 것들도 만들 수 있습니다</h2>
-    <p class="section-desc reveal">Momoi 외에도 다양한 AI 제품을 만듭니다. 목표/예산/일정에 맞게 구성합니다.</p>
+    <div class="section-label reveal" data-i18n="work.label">더 많은 가능성</div>
+    <h2 class="section-title reveal" data-i18n="work.title">이런 것들도 만들 수 있습니다</h2>
+    <p class="section-desc reveal" data-i18n="work.desc">Momoi 외에도 다양한 AI 제품을 만듭니다. 목표/예산/일정에 맞게 구성합니다.</p>
     <div class="work">
       <div class="card reveal">
-        <h3>📄 문서 검색(RAG) 기반 Q&amp;A</h3>
-        <p>사내/개인 문서를 업로드하고 질문하면 근거 기반 답변을 제공.</p>
+        <h3 data-i18n="work.card1.title">📄 문서 검색(RAG) 기반 Q&amp;A</h3>
+        <p data-i18n="work.card1.desc">사내/개인 문서를 업로드하고 질문하면 근거 기반 답변을 제공.</p>
         <div class="meta" style="margin-top:12px">
           <span class="badge">RAG</span><span class="badge">Vector DB</span><span class="badge">Web</span>
         </div>
       </div>
       <div class="card reveal reveal-delay-1">
-        <h3>📸 이미지/카메라 기반 AI</h3>
-        <p>카메라 입력을 분석해 분류/검출/가이드 제공 (예: 스캔, 측정, 인식).</p>
+        <h3 data-i18n="work.card2.title">📸 이미지/카메라 기반 AI</h3>
+        <p data-i18n="work.card2.desc">카메라 입력을 분석해 분류/검출/가이드 제공 (예: 스캔, 측정, 인식).</p>
         <div class="meta" style="margin-top:12px">
           <span class="badge">Vision</span><span class="badge">On-device/Cloud</span>
         </div>
       </div>
       <div class="card reveal">
-        <h3>🤝 고객 지원 자동화</h3>
-        <p>FAQ + 티켓 요약 + 답변 초안 생성으로 CS 속도/품질 개선.</p>
+        <h3 data-i18n="work.card3.title">🤝 고객 지원 자동화</h3>
+        <p data-i18n="work.card3.desc">FAQ + 티켓 요약 + 답변 초안 생성으로 CS 속도/품질 개선.</p>
         <div class="meta" style="margin-top:12px">
           <span class="badge">LLM</span><span class="badge">Automation</span>
         </div>
       </div>
       <div class="card reveal reveal-delay-1">
-        <h3>⚡ 업무 자동화 봇</h3>
-        <p>반복 업무를 자동화하는 챗봇/워크플로우. 텔레그램, 슬랙, 이메일 연동.</p>
+        <h3 data-i18n="work.card4.title">⚡ 업무 자동화 봇</h3>
+        <p data-i18n="work.card4.desc">반복 업무를 자동화하는 챗봇/워크플로우. 텔레그램, 슬랙, 이메일 연동.</p>
         <div class="meta" style="margin-top:12px">
           <span class="badge">LLM</span><span class="badge">API</span><span class="badge">Automation</span>
         </div>
@@ -747,23 +785,23 @@ section{padding:60px 0; position:relative; z-index:1}
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="section-label reveal">소개</div>
-    <h2 class="section-title reveal">빠른 실행력, 제품 감각</h2>
-    <p class="section-desc reveal">
+    <div class="section-label reveal" data-i18n="about.label">소개</div>
+    <h2 class="section-title reveal" data-i18n="about.title">빠른 실행력, 제품 감각</h2>
+    <p class="section-desc reveal" data-i18n="about.desc">
       "기능 추가"가 아니라 "사용자가 계속 쓰는 흐름"을 만듭니다.
     </p>
     <div class="cards">
       <div class="card reveal">
-        <h3>🎯 원칙</h3>
-        <p>빠르게 만들기 → 사용자 반응으로 개선 → 운영 가능한 구조로 정리</p>
+        <h3 data-i18n="about.card1.title">🎯 원칙</h3>
+        <p data-i18n="about.card1.desc">빠르게 만들기 → 사용자 반응으로 개선 → 운영 가능한 구조로 정리</p>
       </div>
       <div class="card reveal reveal-delay-1">
-        <h3>💡 강점</h3>
-        <p>AI를 실제 제품에 붙일 때 필요한 UX, 비용, 성능, 운영을 함께 고려합니다.</p>
+        <h3 data-i18n="about.card2.title">💡 강점</h3>
+        <p data-i18n="about.card2.desc">AI를 실제 제품에 붙일 때 필요한 UX, 비용, 성능, 운영을 함께 고려합니다.</p>
       </div>
       <div class="card reveal reveal-delay-2">
-        <h3>🔄 협업</h3>
-        <p>짧은 주기로 공유/피드백 → 빠른 반복. 문서/일정/우선순위를 투명하게 관리합니다.</p>
+        <h3 data-i18n="about.card3.title">🔄 협업</h3>
+        <p data-i18n="about.card3.desc">짧은 주기로 공유/피드백 → 빠른 반복. 문서/일정/우선순위를 투명하게 관리합니다.</p>
       </div>
     </div>
   </section>
@@ -772,17 +810,17 @@ section{padding:60px 0; position:relative; z-index:1}
   <section id="contact" class="cta">
     <div class="cta-box reveal">
       <div>
-        <h2>프로젝트가 있으신가요?</h2>
-        <p>문의 템플릿을 복사해서 이메일이나 DM으로 보내주세요. 24시간 내 회신드립니다.</p>
+        <h2 data-i18n="contact.title">프로젝트가 있으신가요?</h2>
+        <p data-i18n="contact.desc">문의 템플릿을 복사해서 이메일이나 DM으로 보내주세요. 24시간 내 회신드립니다.</p>
       </div>
       <div style="display:flex; gap:12px; flex-wrap:wrap">
-        <button class="btn primary" id="copyBtn" type="button">📋 문의 템플릿 복사</button>
-        <a class="btn" href="#top">↑ 맨 위로</a>
+        <button class="btn primary" id="copyBtn" type="button" data-i18n="contact.copy_btn">📋 문의 템플릿 복사</button>
+        <a class="btn" href="#top" data-i18n="contact.top_btn">↑ 맨 위로</a>
       </div>
     </div>
     <div class="contact-card reveal">
-      <h3>연락처</h3>
-      <p style="color:var(--muted); font-size:14px">편하신 채널로 연락주세요.</p>
+      <h3 data-i18n="contact.card.title">연락처</h3>
+      <p style="color:var(--muted); font-size:14px" data-i18n="contact.card.desc">편하신 채널로 연락주세요.</p>
       <div class="contact-links">
         <a class="contact-link" href="mailto:support@lightonpluslab.com">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2"/></svg>
@@ -795,15 +833,15 @@ section{padding:60px 0; position:relative; z-index:1}
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-row">
-      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
+      <div data-i18n="footer.copyright">© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
       <div class="smalllinks">
-        <a href="#services">서비스</a>
-        <a href="#process">프로세스</a>
-        <a href="#work">프로젝트</a>
-        <a href="#about">소개</a>
-        <a href="#contact">문의</a>
-        <a href="https://momoi.lightonpluslab.com/privacy" target="_blank">개인정보처리방침</a>
-        <a href="https://momoi.lightonpluslab.com/terms" target="_blank">이용약관</a>
+        <a href="#services" data-i18n="footer.services">서비스</a>
+        <a href="#process" data-i18n="footer.process">프로세스</a>
+        <a href="#work" data-i18n="footer.work">프로젝트</a>
+        <a href="#about" data-i18n="footer.about">소개</a>
+        <a href="#contact" data-i18n="footer.contact">문의</a>
+        <a href="https://momoi.lightonpluslab.com/privacy" target="_blank" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="https://momoi.lightonpluslab.com/terms" target="_blank" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </footer>
@@ -876,8 +914,649 @@ const counterObs = new IntersectionObserver((entries)=>{
 }, {threshold:0.5});
 document.querySelectorAll(".stat-num").forEach(el=>counterObs.observe(el));
 
-// Copy template
-const template = `안녕하세요, LightOn Plus Lab에 프로젝트 문의드립니다.
+// Multi-language support
+const translations = {
+  ko: {
+    // Navigation
+    'nav.services': '서비스',
+    'nav.receipt-ai': '영수증AI',
+    'nav.process': '프로세스',
+    'nav.work': '프로젝트',
+    'nav.about': '소개',
+    'nav.contact': '문의',
+    'nav.cta': '프로젝트 문의',
+
+    // Hero
+    'hero.pill1': '🤖 AI 기능 탑재',
+    'hero.pill2': '📱 앱 개발',
+    'hero.pill3': '⚡ 빠른 프로토타이핑',
+    'hero.pill4': '🚀 MVP → 런칭',
+    'hero.headline': '아이디어에 <span class="gradient">AI를 더해</span><br/>앱으로 출시합니다.',
+    'hero.subtitle': 'LightOn Plus Lab은 개인 개발 스튜디오입니다.<br/>기획부터 개발, 배포까지 핵심을 빠르게 구현해 <strong>"작동하는 제품"</strong>을 만듭니다.',
+    'hero.cta1': '💬 상담/견적 요청',
+    'hero.cta2': '서비스 보기 →',
+    'hero.card1.title': 'What we build',
+    'hero.card1.badge': 'One-person Studio',
+    'hero.card1.desc': 'AI 기능을 "데모"가 아닌 "제품"으로.<br/>안정적 운영과 확장까지 고려합니다.',
+    'hero.card1.kpi1.title': 'Fast MVP',
+    'hero.card1.kpi1.desc': '2~6주 내 가시화',
+    'hero.card1.kpi2.title': 'AI Ready',
+    'hero.card1.kpi2.desc': 'LLM / 비전 / 음성',
+    'hero.card1.kpi3.title': 'Ship',
+    'hero.card1.kpi3.desc': '배포 / 스토어 등록',
+    'hero.card1.kpi4.title': 'Maintain',
+    'hero.card1.kpi4.desc': '모니터링 / 개선',
+    'hero.card2.title': '기술 스택',
+    'hero.card2.badge1': 'Web / Mobile',
+    'hero.card2.badge2': 'API / Cloud',
+    'hero.card2.badge3': 'LLM / RAG',
+    'hero.card2.badge4': 'Vision / Speech',
+    'hero.card2.slogan.title': '슬로건',
+    'hero.card2.slogan.desc': '당신의 서비스에 AI를 자연스럽게 붙입니다.',
+
+    // Services
+    'services.label': '서비스',
+    'services.title': 'AI를 중심으로 제품을 만듭니다',
+    'services.desc': '"AI 기능"을 중심으로 앱/웹 제품을 만듭니다. 필요하면 데이터 파이프라인과 운영까지 같이 설계합니다.',
+    'services.card1.title': 'AI 기능 탑재',
+    'services.card1.desc': '챗봇, 요약, 검색(RAG), 추천, 자동화 등 제품에 자연스럽게 녹여냅니다.',
+    'services.card2.title': 'API & 배포',
+    'services.card2.desc': '서버/API 설계부터 배포, 모니터링까지. 운영 가능한 형태로 정리합니다.',
+    'services.card3.title': 'MVP 제작',
+    'services.card3.desc': '빠르게 실험 가능한 MVP를 만들고, 검증 후 기능을 확장합니다.',
+
+    // Process
+    'process.label': '프로세스',
+    'process.title': '이렇게 진행됩니다',
+    'process.desc': '짧은 주기로 공유/피드백 → 빠른 반복. 최소 2주부터 결과물을 확인할 수 있습니다.',
+    'process.step1.title': '상담 & 기획',
+    'process.step1.desc': '목표, 핵심 기능, 일정, 예산을 정리합니다. 필요하면 간단한 PoC로 가능성을 먼저 확인합니다.',
+    'process.step2.title': '개발 & 피드백',
+    'process.step2.desc': '1~2주 단위로 빌드를 공유하고 피드백을 반영합니다. 빠른 반복이 핵심입니다.',
+    'process.step3.title': '배포 & 운영',
+    'process.step3.desc': '스토어 등록, 도메인, 모니터링까지 세팅하고 안정적으로 넘겨드립니다.',
+
+    // Stats
+    'stats.stat1': '주 내 MVP 시작',
+    'stats.stat2': '% 코드 소유권',
+    'stats.stat3': '시간 내 첫 응답',
+    'stats.stat4': '일 무료 수정 기간',
+
+    // Momoi
+    'momoi.label': '대표 제품',
+    'momoi.title': 'Momoi — AI 기반 업무 관리',
+    'momoi.desc': 'LightOn Plus Lab이 직접 만들고 운영 중인 프로덕트. 통화 녹음을 올리면 AI가 자동으로 요약하고 할 일을 추출합니다.',
+    'momoi.badge': 'Live',
+    'momoi.card1.desc': '통화 녹음을 올리면 AI가 발신자·요약·할 일을 자동 추출. 업무 메모, 메시지를 한곳에서 관리하는 AI 인박스.',
+    'momoi.card1.kpi1.title': '🎙 통화 요약',
+    'momoi.card1.kpi1.desc': '녹음 업로드 → AI 자동 정리',
+    'momoi.card1.kpi2.title': '📋 AI 분류',
+    'momoi.card1.kpi2.desc': '업무/개인/프로젝트 자동 분류',
+    'momoi.card1.kpi3.title': '🗓 캘린더',
+    'momoi.card1.kpi3.desc': '일정 자동 추출 & 관리',
+    'momoi.card1.kpi4.title': '📲 PWA',
+    'momoi.card1.kpi4.desc': '홈 화면 설치 & 푸시 알림',
+    'momoi.cta1': '🚀 Momoi 사용해보기',
+    'momoi.cta2': '📖 사용 가이드',
+    'momoi.card2.title': '기술 구성',
+    'momoi.card2.feature1': '✅ 통화 녹음 파일 자동 전사 & 핵심 요약',
+    'momoi.card2.feature2': '✅ AI가 발신자·일정·액션아이템 자동 추출',
+    'momoi.card2.feature3': '✅ 업무/개인/프로젝트 스마트 분류',
+    'momoi.card2.feature4': '✅ 37개국 공휴일 포함 캘린더',
+    'momoi.card2.feature5': '✅ 모바일 최적화 PWA (홈 화면 설치 지원)',
+    'momoi.card2.slogan.title': '슬로건',
+    'momoi.card2.slogan.desc': 'AI가 정리하고, 당신은 실행만.',
+
+    // Receipt AI
+    'receiptai.label': 'AI 경비 관리',
+    'receiptai.title': '영수증AI — 사진 한 장으로 경비 자동 관리',
+    'receiptai.desc': '영수증을 촬영하면 AI가 가게명, 금액, 항목을 자동 인식하고 카테고리별로 분류합니다. 월별 지출 리포트와 세금 공제 항목까지.',
+    'receiptai.badge': 'Live',
+    'receiptai.card1.title': '🧾 영수증AI',
+    'receiptai.card1.desc': '영수증 사진을 찍으면 GPT-4o Vision이 모든 정보를 자동 추출. 9개 카테고리 자동 분류, 월별 리포트, 세금 공제 표시까지.',
+    'receiptai.card1.kpi1.title': '📸 AI OCR',
+    'receiptai.card1.kpi1.desc': '사진 촬영 → 자동 인식',
+    'receiptai.card1.kpi2.title': '🏷️ 자동 분류',
+    'receiptai.card1.kpi2.desc': '9개 카테고리 자동 분류',
+    'receiptai.card1.kpi3.title': '📊 지출 리포트',
+    'receiptai.card1.kpi3.desc': '월별 분석 & 전월 비교',
+    'receiptai.card1.kpi4.title': '💰 세금 공제',
+    'receiptai.card1.kpi4.desc': '공제 가능 항목 자동 표시',
+    'receiptai.cta1': '🧾 영수증AI 사용해보기',
+    'receiptai.cta2': '📖 사용 가이드',
+    'receiptai.card2.title': '기술 구성',
+    'receiptai.card2.feature1': '✅ GPT-4o Vision 영수증 자동 인식 (OCR)',
+    'receiptai.card2.feature2': '✅ 식비/교통/의료 등 9개 카테고리 분류',
+    'receiptai.card2.feature3': '✅ 월별 지출 리포트 & 전월 대비 분석',
+    'receiptai.card2.feature4': '✅ 세금 공제 가능 항목 자동 표시',
+    'receiptai.card2.feature5': '✅ 모바일 최적화 PWA (후면 카메라 촬영)',
+    'receiptai.card2.slogan.title': '슬로건',
+    'receiptai.card2.slogan.desc': '찍으면 끝, AI가 정리합니다.',
+
+    // Work
+    'work.label': '더 많은 가능성',
+    'work.title': '이런 것들도 만들 수 있습니다',
+    'work.desc': 'Momoi 외에도 다양한 AI 제품을 만듭니다. 목표/예산/일정에 맞게 구성합니다.',
+    'work.card1.title': '📄 문서 검색(RAG) 기반 Q&A',
+    'work.card1.desc': '사내/개인 문서를 업로드하고 질문하면 근거 기반 답변을 제공.',
+    'work.card2.title': '📸 이미지/카메라 기반 AI',
+    'work.card2.desc': '카메라 입력을 분석해 분류/검출/가이드 제공 (예: 스캔, 측정, 인식).',
+    'work.card3.title': '🤝 고객 지원 자동화',
+    'work.card3.desc': 'FAQ + 티켓 요약 + 답변 초안 생성으로 CS 속도/품질 개선.',
+    'work.card4.title': '⚡ 업무 자동화 봇',
+    'work.card4.desc': '반복 업무를 자동화하는 챗봇/워크플로우. 텔레그램, 슬랙, 이메일 연동.',
+
+    // About
+    'about.label': '소개',
+    'about.title': '빠른 실행력, 제품 감각',
+    'about.desc': '"기능 추가"가 아니라 "사용자가 계속 쓰는 흐름"을 만듭니다.',
+    'about.card1.title': '🎯 원칙',
+    'about.card1.desc': '빠르게 만들기 → 사용자 반응으로 개선 → 운영 가능한 구조로 정리',
+    'about.card2.title': '💡 강점',
+    'about.card2.desc': 'AI를 실제 제품에 붙일 때 필요한 UX, 비용, 성능, 운영을 함께 고려합니다.',
+    'about.card3.title': '🔄 협업',
+    'about.card3.desc': '짧은 주기로 공유/피드백 → 빠른 반복. 문서/일정/우선순위를 투명하게 관리합니다.',
+
+    // Contact
+    'contact.title': '프로젝트가 있으신가요?',
+    'contact.desc': '문의 템플릿을 복사해서 이메일이나 DM으로 보내주세요. 24시간 내 회신드립니다.',
+    'contact.copy_btn': '📋 문의 템플릿 복사',
+    'contact.top_btn': '↑ 맨 위로',
+    'contact.card.title': '연락처',
+    'contact.card.desc': '편하신 채널로 연락주세요.',
+
+    // Footer
+    'footer.copyright': '© <span id="year"></span> LightOn Plus Lab. All rights reserved.',
+    'footer.services': '서비스',
+    'footer.process': '프로세스',
+    'footer.work': '프로젝트',
+    'footer.about': '소개',
+    'footer.contact': '문의',
+    'footer.privacy': '개인정보처리방침',
+    'footer.terms': '이용약관'
+  },
+  en: {
+    // Navigation
+    'nav.services': 'Services',
+    'nav.receipt-ai': 'Receipt AI',
+    'nav.process': 'Process',
+    'nav.work': 'Projects',
+    'nav.about': 'About',
+    'nav.contact': 'Contact',
+    'nav.cta': 'Project Inquiry',
+
+    // Hero
+    'hero.pill1': '🤖 AI-Powered',
+    'hero.pill2': '📱 App Development',
+    'hero.pill3': '⚡ Rapid Prototyping',
+    'hero.pill4': '🚀 MVP → Launch',
+    'hero.headline': 'Add <span class="gradient">AI to your ideas</span><br/>and launch as apps.',
+    'hero.subtitle': 'LightOn Plus Lab is an indie development studio.<br/>From planning to development and deployment, we rapidly implement the core features to create <strong>"working products"</strong>.',
+    'hero.cta1': '💬 Get Quote',
+    'hero.cta2': 'View Services →',
+    'hero.card1.title': 'What we build',
+    'hero.card1.badge': 'One-person Studio',
+    'hero.card1.desc': 'AI features as "products", not "demos".<br/>We consider stable operations and scalability.',
+    'hero.card1.kpi1.title': 'Fast MVP',
+    'hero.card1.kpi1.desc': 'Visible in 2-6 weeks',
+    'hero.card1.kpi2.title': 'AI Ready',
+    'hero.card1.kpi2.desc': 'LLM / Vision / Speech',
+    'hero.card1.kpi3.title': 'Ship',
+    'hero.card1.kpi3.desc': 'Deploy / Store Release',
+    'hero.card1.kpi4.title': 'Maintain',
+    'hero.card1.kpi4.desc': 'Monitoring / Improvements',
+    'hero.card2.title': 'Tech Stack',
+    'hero.card2.badge1': 'Web / Mobile',
+    'hero.card2.badge2': 'API / Cloud',
+    'hero.card2.badge3': 'LLM / RAG',
+    'hero.card2.badge4': 'Vision / Speech',
+    'hero.card2.slogan.title': 'Slogan',
+    'hero.card2.slogan.desc': 'We seamlessly integrate AI into your services.',
+
+    // Services
+    'services.label': 'Services',
+    'services.title': 'We build products centered around AI',
+    'services.desc': 'We create app/web products centered on "AI features". If needed, we also design data pipelines and operations together.',
+    'services.card1.title': 'AI Integration',
+    'services.card1.desc': 'Chatbots, summarization, search (RAG), recommendations, automation - seamlessly integrated into products.',
+    'services.card2.title': 'API & Deployment',
+    'services.card2.desc': 'From server/API design to deployment and monitoring. We organize it into an operational format.',
+    'services.card3.title': 'MVP Development',
+    'services.card3.desc': 'We build rapidly testable MVPs and expand features after validation.',
+
+    // Process
+    'process.label': 'Process',
+    'process.title': 'How we work',
+    'process.desc': 'Short cycles of sharing/feedback → rapid iteration. You can see results from a minimum of 2 weeks.',
+    'process.step1.title': 'Consultation & Planning',
+    'process.step1.desc': 'We organize goals, core features, timeline, and budget. If needed, we first confirm feasibility with a simple PoC.',
+    'process.step2.title': 'Development & Feedback',
+    'process.step2.desc': 'We share builds every 1-2 weeks and incorporate feedback. Rapid iteration is key.',
+    'process.step3.title': 'Deployment & Operations',
+    'process.step3.desc': 'We set up store registration, domains, monitoring and hand it over stably.',
+
+    // Stats
+    'stats.stat1': 'weeks to MVP start',
+    'stats.stat2': '% code ownership',
+    'stats.stat3': 'hour first response',
+    'stats.stat4': 'days free revision',
+
+    // Momoi
+    'momoi.label': 'Featured Product',
+    'momoi.title': 'Momoi — AI-powered Task Management',
+    'momoi.desc': 'A product built and operated directly by LightOn Plus Lab. Upload call recordings and AI automatically summarizes and extracts tasks.',
+    'momoi.badge': 'Live',
+    'momoi.card1.desc': 'Upload call recordings and AI automatically extracts caller info, summaries, and tasks. An AI inbox that manages work memos and messages in one place.',
+    'momoi.card1.kpi1.title': '🎙 Call Summary',
+    'momoi.card1.kpi1.desc': 'Upload recording → AI auto-organizes',
+    'momoi.card1.kpi2.title': '📋 AI Classification',
+    'momoi.card1.kpi2.desc': 'Auto-categorize work/personal/project',
+    'momoi.card1.kpi3.title': '🗓 Calendar',
+    'momoi.card1.kpi3.desc': 'Auto-extract & manage schedules',
+    'momoi.card1.kpi4.title': '📲 PWA',
+    'momoi.card1.kpi4.desc': 'Home screen install & push notifications',
+    'momoi.cta1': '🚀 Try Momoi',
+    'momoi.cta2': '📖 User Guide',
+    'momoi.card2.title': 'Technical Architecture',
+    'momoi.card2.feature1': '✅ Auto-transcription & core summarization of call recordings',
+    'momoi.card2.feature2': '✅ AI auto-extracts caller, schedules, action items',
+    'momoi.card2.feature3': '✅ Smart categorization of work/personal/project',
+    'momoi.card2.feature4': '✅ Calendar with holidays from 37 countries',
+    'momoi.card2.feature5': '✅ Mobile-optimized PWA (home screen installation)',
+    'momoi.card2.slogan.title': 'Slogan',
+    'momoi.card2.slogan.desc': 'AI organizes, you just execute.',
+
+    // Receipt AI
+    'receiptai.label': 'AI Expense Management',
+    'receiptai.title': 'Receipt AI — Auto expense management with one photo',
+    'receiptai.desc': 'Take a photo of receipts and AI automatically recognizes store names, amounts, and items, categorizing them. Monthly expense reports and tax deduction items included.',
+    'receiptai.badge': 'Live',
+    'receiptai.card1.title': '🧾 Receipt AI',
+    'receiptai.card1.desc': 'Take a photo of receipts and GPT-4o Vision automatically extracts all information. 9-category auto-classification, monthly reports, tax deduction indicators.',
+    'receiptai.card1.kpi1.title': '📸 AI OCR',
+    'receiptai.card1.kpi1.desc': 'Photo capture → Auto recognition',
+    'receiptai.card1.kpi2.title': '🏷️ Auto Classification',
+    'receiptai.card1.kpi2.desc': '9-category auto-classification',
+    'receiptai.card1.kpi3.title': '📊 Expense Reports',
+    'receiptai.card1.kpi3.desc': 'Monthly analysis & comparison',
+    'receiptai.card1.kpi4.title': '💰 Tax Deductions',
+    'receiptai.card1.kpi4.desc': 'Auto-mark deductible items',
+    'receiptai.cta1': '🧾 Try Receipt AI',
+    'receiptai.cta2': '📖 User Guide',
+    'receiptai.card2.title': 'Technical Architecture',
+    'receiptai.card2.feature1': '✅ GPT-4o Vision automatic receipt recognition (OCR)',
+    'receiptai.card2.feature2': '✅ 9-category classification: food/transport/medical etc.',
+    'receiptai.card2.feature3': '✅ Monthly expense reports & month-over-month analysis',
+    'receiptai.card2.feature4': '✅ Auto-display tax-deductible items',
+    'receiptai.card2.feature5': '✅ Mobile-optimized PWA (rear camera capture)',
+    'receiptai.card2.slogan.title': 'Slogan',
+    'receiptai.card2.slogan.desc': 'Snap and done, AI organizes it.',
+
+    // Work
+    'work.label': 'More Possibilities',
+    'work.title': 'We can also build these types of products',
+    'work.desc': 'Beyond Momoi, we create various AI products. Configured to match your goals/budget/timeline.',
+    'work.card1.title': '📄 Document Search (RAG) Q&A',
+    'work.card1.desc': 'Upload internal/personal documents and get evidence-based answers to questions.',
+    'work.card2.title': '📸 Image/Camera-based AI',
+    'work.card2.desc': 'Analyze camera input for classification/detection/guidance (e.g., scanning, measuring, recognition).',
+    'work.card3.title': '🤝 Customer Support Automation',
+    'work.card3.desc': 'FAQ + ticket summarization + draft response generation to improve CS speed/quality.',
+    'work.card4.title': '⚡ Work Automation Bots',
+    'work.card4.desc': 'Chatbots/workflows that automate repetitive tasks. Integrate with Telegram, Slack, email.',
+
+    // About
+    'about.label': 'About',
+    'about.title': 'Fast execution, product sense',
+    'about.desc': 'We create "user flows that keep people engaged", not just "feature additions".',
+    'about.card1.title': '🎯 Principles',
+    'about.card1.desc': 'Build quickly → improve with user feedback → organize into operational structure',
+    'about.card2.title': '💡 Strengths',
+    'about.card2.desc': 'When integrating AI into real products, we consider UX, cost, performance, and operations together.',
+    'about.card3.title': '🔄 Collaboration',
+    'about.card3.desc': 'Short cycles of sharing/feedback → rapid iteration. We transparently manage docs/schedule/priorities.',
+
+    // Contact
+    'contact.title': 'Have a project in mind?',
+    'contact.desc': 'Copy the inquiry template and send it via email or DM. We\'ll respond within 24 hours.',
+    'contact.copy_btn': '📋 Copy Inquiry Template',
+    'contact.top_btn': '↑ Back to Top',
+    'contact.card.title': 'Contact',
+    'contact.card.desc': 'Reach out through your preferred channel.',
+
+    // Footer
+    'footer.copyright': '© <span id="year"></span> LightOn Plus Lab. All rights reserved.',
+    'footer.services': 'Services',
+    'footer.process': 'Process',
+    'footer.work': 'Projects',
+    'footer.about': 'About',
+    'footer.contact': 'Contact',
+    'footer.privacy': 'Privacy Policy',
+    'footer.terms': 'Terms of Service'
+  },
+  ja: {
+    // Navigation
+    'nav.services': 'サービス',
+    'nav.receipt-ai': 'レシートAI',
+    'nav.process': 'プロセス',
+    'nav.work': 'プロジェクト',
+    'nav.about': '会社概要',
+    'nav.contact': 'お問い合わせ',
+    'nav.cta': 'プロジェクト相談',
+
+    // Hero
+    'hero.pill1': '🤖 AI機能搭載',
+    'hero.pill2': '📱 アプリ開発',
+    'hero.pill3': '⚡ 高速プロトタイピング',
+    'hero.pill4': '🚀 MVP → ローンチ',
+    'hero.headline': 'アイデアに<span class="gradient">AIを追加</span>して<br/>アプリとしてリリース',
+    'hero.subtitle': 'LightOn Plus Labは個人開発スタジオです。<br/>企画から開発、デプロイまで、コアを迅速に実装して<strong>「動作する製品」</strong>を作ります。',
+    'hero.cta1': '💬 相談・見積もり依頼',
+    'hero.cta2': 'サービス詳細 →',
+    'hero.card1.title': 'What we build',
+    'hero.card1.badge': 'One-person Studio',
+    'hero.card1.desc': 'AI機能を「デモ」ではなく「製品」として。<br/>安定運用と拡張性も考慮します。',
+    'hero.card1.kpi1.title': 'Fast MVP',
+    'hero.card1.kpi1.desc': '2〜6週間で可視化',
+    'hero.card1.kpi2.title': 'AI Ready',
+    'hero.card1.kpi2.desc': 'LLM / ビジョン / 音声',
+    'hero.card1.kpi3.title': 'Ship',
+    'hero.card1.kpi3.desc': 'デプロイ / ストア公開',
+    'hero.card1.kpi4.title': 'Maintain',
+    'hero.card1.kpi4.desc': 'モニタリング / 改善',
+    'hero.card2.title': '技術スタック',
+    'hero.card2.badge1': 'Web / Mobile',
+    'hero.card2.badge2': 'API / Cloud',
+    'hero.card2.badge3': 'LLM / RAG',
+    'hero.card2.badge4': 'Vision / Speech',
+    'hero.card2.slogan.title': 'スローガン',
+    'hero.card2.slogan.desc': 'あなたのサービスにAIを自然に組み込みます。',
+
+    // Services
+    'services.label': 'サービス',
+    'services.title': 'AIを中心とした製品を作ります',
+    'services.desc': '「AI機能」を中心としたアプリ・Web製品を作ります。必要に応じてデータパイプラインと運用も一緒に設計します。',
+    'services.card1.title': 'AI機能搭載',
+    'services.card1.desc': 'チャットボット、要約、検索（RAG）、推薦、自動化など、製品に自然に組み込みます。',
+    'services.card2.title': 'API & デプロイ',
+    'services.card2.desc': 'サーバー・API設計からデプロイ、モニタリングまで。運用可能な形で整理します。',
+    'services.card3.title': 'MVP制作',
+    'services.card3.desc': '迅速に実験可能なMVPを作成し、検証後に機能を拡張します。',
+
+    // Process
+    'process.label': 'プロセス',
+    'process.title': 'このように進めます',
+    'process.desc': '短い周期で共有・フィードバック → 高速反復。最短2週間から成果物を確認できます。',
+    'process.step1.title': '相談 & 企画',
+    'process.step1.desc': '目標、コア機能、スケジュール、予算を整理します。必要に応じて簡単なPoCで可能性を先に確認します。',
+    'process.step2.title': '開発 & フィードバック',
+    'process.step2.desc': '1〜2週間単位でビルドを共有し、フィードバックを反映します。高速反復が鍵です。',
+    'process.step3.title': 'デプロイ & 運用',
+    'process.step3.desc': 'ストア登録、ドメイン、モニタリングまでセットアップし、安定的にお渡しします。',
+
+    // Stats
+    'stats.stat1': '週間でMVP開始',
+    'stats.stat2': '% コード所有権',
+    'stats.stat3': '時間以内に初回回答',
+    'stats.stat4': '日間無料修正期間',
+
+    // Momoi
+    'momoi.label': '代表製品',
+    'momoi.title': 'Momoi — AI基盤業務管理',
+    'momoi.desc': 'LightOn Plus Labが直接制作・運営中のプロダクト。通話録音をアップロードするとAIが自動で要約しタスクを抽出します。',
+    'momoi.badge': 'Live',
+    'momoi.card1.desc': '通話録音をアップロードするとAIが発信者・要約・タスクを自動抽出。業務メモ、メッセージを一箇所で管理するAIインボックス。',
+    'momoi.card1.kpi1.title': '🎙 通話要約',
+    'momoi.card1.kpi1.desc': '録音アップロード → AI自動整理',
+    'momoi.card1.kpi2.title': '📋 AI分類',
+    'momoi.card1.kpi2.desc': '業務/個人/プロジェクト自動分類',
+    'momoi.card1.kpi3.title': '🗓 カレンダー',
+    'momoi.card1.kpi3.desc': 'スケジュール自動抽出 & 管理',
+    'momoi.card1.kpi4.title': '📲 PWA',
+    'momoi.card1.kpi4.desc': 'ホーム画面インストール & プッシュ通知',
+    'momoi.cta1': '🚀 Momoiを試す',
+    'momoi.cta2': '📖 使用ガイド',
+    'momoi.card2.title': '技術構成',
+    'momoi.card2.feature1': '✅ 通話録音ファイル自動転写 & 重要ポイント要約',
+    'momoi.card2.feature2': '✅ AIが発信者・スケジュール・アクションアイテムを自動抽出',
+    'momoi.card2.feature3': '✅ 業務/個人/プロジェクトスマート分類',
+    'momoi.card2.feature4': '✅ 37ヶ国祝日対応カレンダー',
+    'momoi.card2.feature5': '✅ モバイル最適化PWA（ホーム画面インストール対応）',
+    'momoi.card2.slogan.title': 'スローガン',
+    'momoi.card2.slogan.desc': 'AIが整理し、あなたは実行するだけ。',
+
+    // Receipt AI
+    'receiptai.label': 'AI経費管理',
+    'receiptai.title': 'レシートAI — 写真一枚で経費自動管理',
+    'receiptai.desc': 'レシートを撮影するとAIが店名、金額、項目を自動認識し、カテゴリ別に分類します。月別支出レポートと税務控除項目まで。',
+    'receiptai.badge': 'Live',
+    'receiptai.card1.title': '🧾 レシートAI',
+    'receiptai.card1.desc': 'レシート写真を撮るとGPT-4o Visionがすべての情報を自動抽出。9カテゴリ自動分類、月別レポート、税務控除表示まで。',
+    'receiptai.card1.kpi1.title': '📸 AI OCR',
+    'receiptai.card1.kpi1.desc': '写真撮影 → 自動認識',
+    'receiptai.card1.kpi2.title': '🏷️ 自動分類',
+    'receiptai.card1.kpi2.desc': '9カテゴリ自動分類',
+    'receiptai.card1.kpi3.title': '📊 支出レポート',
+    'receiptai.card1.kpi3.desc': '月別分析 & 前月比較',
+    'receiptai.card1.kpi4.title': '💰 税務控除',
+    'receiptai.card1.kpi4.desc': '控除可能項目自動表示',
+    'receiptai.cta1': '🧾 レシートAIを試す',
+    'receiptai.cta2': '📖 使用ガイド',
+    'receiptai.card2.title': '技術構成',
+    'receiptai.card2.feature1': '✅ GPT-4o Visionレシート自動認識（OCR）',
+    'receiptai.card2.feature2': '✅ 食費/交通/医療など9カテゴリ分類',
+    'receiptai.card2.feature3': '✅ 月別支出レポート & 前月対比分析',
+    'receiptai.card2.feature4': '✅ 税務控除可能項目自動表示',
+    'receiptai.card2.feature5': '✅ モバイル最適化PWA（背面カメラ撮影）',
+    'receiptai.card2.slogan.title': 'スローガン',
+    'receiptai.card2.slogan.desc': '撮って終わり、AIが整理します。',
+
+    // Work
+    'work.label': 'より多くの可能性',
+    'work.title': 'こんなものも作れます',
+    'work.desc': 'Momoi以外にも様々なAI製品を作ります。目標・予算・スケジュールに合わせて構成します。',
+    'work.card1.title': '📄 文書検索（RAG）ベースQ&A',
+    'work.card1.desc': '社内・個人文書をアップロードし、質問すると根拠ベースの回答を提供。',
+    'work.card2.title': '📸 画像・カメラベースAI',
+    'work.card2.desc': 'カメラ入力を分析して分類・検出・ガイド提供（例：スキャン、測定、認識）。',
+    'work.card3.title': '🤝 顧客サポート自動化',
+    'work.card3.desc': 'FAQ + チケット要約 + 回答下書き生成でCS速度・品質向上。',
+    'work.card4.title': '⚡ 業務自動化ボット',
+    'work.card4.desc': '反復業務を自動化するチャットボット・ワークフロー。Telegram、Slack、メール連携。',
+
+    // About
+    'about.label': '会社概要',
+    'about.title': '高速実行力、製品感覚',
+    'about.desc': '「機能追加」ではなく「ユーザーが継続利用するフロー」を作ります。',
+    'about.card1.title': '🎯 原則',
+    'about.card1.desc': '高速構築 → ユーザー反応で改善 → 運用可能な構造に整理',
+    'about.card2.title': '💡 強み',
+    'about.card2.desc': 'AIを実製品に組み込む際に必要なUX、コスト、性能、運用を総合的に考慮します。',
+    'about.card3.title': '🔄 協業',
+    'about.card3.desc': '短周期で共有・フィードバック → 高速反復。文書・スケジュール・優先順位を透明に管理します。',
+
+    // Contact
+    'contact.title': 'プロジェクトはありますか？',
+    'contact.desc': '問い合わせテンプレートをコピーしてメールまたはDMでお送りください。24時間以内に返信いたします。',
+    'contact.copy_btn': '📋 問い合わせテンプレートをコピー',
+    'contact.top_btn': '↑ トップへ',
+    'contact.card.title': '連絡先',
+    'contact.card.desc': 'お好みのチャンネルでご連絡ください。',
+
+    // Footer
+    'footer.copyright': '© <span id="year"></span> LightOn Plus Lab. All rights reserved.',
+    'footer.services': 'サービス',
+    'footer.process': 'プロセス',
+    'footer.work': 'プロジェクト',
+    'footer.about': '会社概要',
+    'footer.contact': 'お問い合わせ',
+    'footer.privacy': 'プライバシーポリシー',
+    'footer.terms': '利用規約'
+  },
+  zh: {
+    // Navigation
+    'nav.services': '服务',
+    'nav.receipt-ai': '发票AI',
+    'nav.process': '流程',
+    'nav.work': '项目',
+    'nav.about': '关于',
+    'nav.contact': '联系',
+    'nav.cta': '项目咨询',
+
+    // Hero
+    'hero.pill1': '🤖 AI功能集成',
+    'hero.pill2': '📱 应用开发',
+    'hero.pill3': '⚡ 快速原型',
+    'hero.pill4': '🚀 MVP → 上线',
+    'hero.headline': '为您的想法<span class="gradient">注入AI</span><br/>并打造成应用',
+    'hero.subtitle': 'LightOn Plus Lab是一家独立开发工作室。<br/>从策划到开发、部署，我们快速实现核心功能，打造<strong>"可运行的产品"</strong>。',
+    'hero.cta1': '💬 咨询报价',
+    'hero.cta2': '查看服务 →',
+    'hero.card1.title': 'What we build',
+    'hero.card1.badge': 'One-person Studio',
+    'hero.card1.desc': 'AI功能不是"演示"而是"产品"。<br/>我们考虑稳定运营和扩展性。',
+    'hero.card1.kpi1.title': 'Fast MVP',
+    'hero.card1.kpi1.desc': '2-6周内可见',
+    'hero.card1.kpi2.title': 'AI Ready',
+    'hero.card1.kpi2.desc': 'LLM / 视觉 / 语音',
+    'hero.card1.kpi3.title': 'Ship',
+    'hero.card1.kpi3.desc': '部署 / 应用商店上架',
+    'hero.card1.kpi4.title': 'Maintain',
+    'hero.card1.kpi4.desc': '监控 / 改进',
+    'hero.card2.title': '技术栈',
+    'hero.card2.badge1': 'Web / Mobile',
+    'hero.card2.badge2': 'API / Cloud',
+    'hero.card2.badge3': 'LLM / RAG',
+    'hero.card2.badge4': 'Vision / Speech',
+    'hero.card2.slogan.title': '口号',
+    'hero.card2.slogan.desc': '我们将AI自然地融入您的服务中。',
+
+    // Services
+    'services.label': '服务',
+    'services.title': '我们围绕AI构建产品',
+    'services.desc': '我们以"AI功能"为核心创建应用/网页产品。如有需要，还会一起设计数据管道和运营。',
+    'services.card1.title': 'AI功能集成',
+    'services.card1.desc': '聊天机器人、摘要、搜索（RAG）、推荐、自动化等，自然融入产品中。',
+    'services.card2.title': 'API & 部署',
+    'services.card2.desc': '从服务器/API设计到部署、监控。整理成可运营的形式。',
+    'services.card3.title': 'MVP制作',
+    'services.card3.desc': '构建可快速测试的MVP，验证后扩展功能。',
+
+    // Process
+    'process.label': '流程',
+    'process.title': '我们这样工作',
+    'process.desc': '短周期分享/反馈 → 快速迭代。最少2周就能看到成果。',
+    'process.step1.title': '咨询 & 规划',
+    'process.step1.desc': '整理目标、核心功能、时间表和预算。如有需要，先用简单的PoC确认可行性。',
+    'process.step2.title': '开发 & 反馈',
+    'process.step2.desc': '每1-2周分享构建并采纳反馈。快速迭代是关键。',
+    'process.step3.title': '部署 & 运营',
+    'process.step3.desc': '设置应用商店注册、域名、监控，稳定交付。',
+
+    // Stats
+    'stats.stat1': '周内启动MVP',
+    'stats.stat2': '% 代码所有权',
+    'stats.stat3': '小时内首次回复',
+    'stats.stat4': '天免费修改期',
+
+    // Momoi
+    'momoi.label': '代表产品',
+    'momoi.title': 'Momoi — AI驱动的任务管理',
+    'momoi.desc': 'LightOn Plus Lab直接构建和运营的产品。上传通话录音，AI自动总结并提取任务。',
+    'momoi.badge': 'Live',
+    'momoi.card1.desc': '上传通话录音，AI自动提取来电者、摘要、任务。一个集中管理工作备忘录和消息的AI收件箱。',
+    'momoi.card1.kpi1.title': '🎙 通话摘要',
+    'momoi.card1.kpi1.desc': '录音上传 → AI自动整理',
+    'momoi.card1.kpi2.title': '📋 AI分类',
+    'momoi.card1.kpi2.desc': '工作/个人/项目自动分类',
+    'momoi.card1.kpi3.title': '🗓 日历',
+    'momoi.card1.kpi3.desc': '自动提取和管理日程',
+    'momoi.card1.kpi4.title': '📲 PWA',
+    'momoi.card1.kpi4.desc': '主屏安装 & 推送通知',
+    'momoi.cta1': '🚀 试用Momoi',
+    'momoi.cta2': '📖 使用指南',
+    'momoi.card2.title': '技术架构',
+    'momoi.card2.feature1': '✅ 通话录音文件自动转录和核心摘要',
+    'momoi.card2.feature2': '✅ AI自动提取来电者、日程、行动项目',
+    'momoi.card2.feature3': '✅ 工作/个人/项目智能分类',
+    'momoi.card2.feature4': '✅ 包含37个国家节假日的日历',
+    'momoi.card2.feature5': '✅ 移动优化PWA（支持主屏安装）',
+    'momoi.card2.slogan.title': '口号',
+    'momoi.card2.slogan.desc': 'AI整理，您只需执行。',
+
+    // Receipt AI
+    'receiptai.label': 'AI费用管理',
+    'receiptai.title': '发票AI — 一张照片自动管理费用',
+    'receiptai.desc': '拍摄发票照片，AI自动识别商家名称、金额、项目并按类别分类。包括月度支出报告和税务抵扣项目。',
+    'receiptai.badge': 'Live',
+    'receiptai.card1.title': '🧾 发票AI',
+    'receiptai.card1.desc': '拍摄发票照片，GPT-4o Vision自动提取所有信息。9类自动分类、月度报告、税务抵扣显示。',
+    'receiptai.card1.kpi1.title': '📸 AI OCR',
+    'receiptai.card1.kpi1.desc': '拍照 → 自动识别',
+    'receiptai.card1.kpi2.title': '🏷️ 自动分类',
+    'receiptai.card1.kpi2.desc': '9类自动分类',
+    'receiptai.card1.kpi3.title': '📊 支出报告',
+    'receiptai.card1.kpi3.desc': '月度分析和对比',
+    'receiptai.card1.kpi4.title': '💰 税务抵扣',
+    'receiptai.card1.kpi4.desc': '自动标示可抵扣项目',
+    'receiptai.cta1': '🧾 试用发票AI',
+    'receiptai.cta2': '📖 使用指南',
+    'receiptai.card2.title': '技术架构',
+    'receiptai.card2.feature1': '✅ GPT-4o Vision发票自动识别（OCR）',
+    'receiptai.card2.feature2': '✅ 餐饮/交通/医疗等9类分类',
+    'receiptai.card2.feature3': '✅ 月度支出报告和环比分析',
+    'receiptai.card2.feature4': '✅ 税务抵扣项目自动显示',
+    'receiptai.card2.feature5': '✅ 移动优化PWA（后置摄像头拍摄）',
+    'receiptai.card2.slogan.title': '口号',
+    'receiptai.card2.slogan.desc': '拍照即可，AI来整理。',
+
+    // Work
+    'work.label': '更多可能性',
+    'work.title': '我们还能构建这些产品',
+    'work.desc': '除了Momoi，我们还能创建各种AI产品。根据您的目标/预算/时间表进行配置。',
+    'work.card1.title': '📄 文档搜索（RAG）问答',
+    'work.card1.desc': '上传内部/个人文档，提问时提供基于证据的答案。',
+    'work.card2.title': '📸 图像/摄像头AI',
+    'work.card2.desc': '分析摄像头输入进行分类/检测/指导（如：扫描、测量、识别）。',
+    'work.card3.title': '🤝 客户支持自动化',
+    'work.card3.desc': 'FAQ + 工单摘要 + 回复草稿生成，提升客服速度和质量。',
+    'work.card4.title': '⚡ 工作自动化机器人',
+    'work.card4.desc': '自动化重复工作的聊天机器人/工作流。集成Telegram、Slack、邮件。',
+
+    // About
+    'about.label': '关于',
+    'about.title': '快速执行，产品直觉',
+    'about.desc': '我们创建"让用户持续使用的流程"，而不仅仅是"功能添加"。',
+    'about.card1.title': '🎯 原则',
+    'about.card1.desc': '快速构建 → 用户反馈改进 → 整理为可运营结构',
+    'about.card2.title': '💡 优势',
+    'about.card2.desc': '将AI集成到实际产品时，我们综合考虑UX、成本、性能和运营。',
+    'about.card3.title': '🔄 协作',
+    'about.card3.desc': '短周期分享/反馈 → 快速迭代。透明管理文档/时间表/优先级。',
+
+    // Contact
+    'contact.title': '有项目想法？',
+    'contact.desc': '复制咨询模板，通过邮件或私信发送给我们。24小时内回复。',
+    'contact.copy_btn': '📋 复制咨询模板',
+    'contact.top_btn': '↑ 回到顶部',
+    'contact.card.title': '联系方式',
+    'contact.card.desc': '通过您喜欢的渠道联系我们。',
+
+    // Footer
+    'footer.copyright': '© <span id="year"></span> LightOn Plus Lab. All rights reserved.',
+    'footer.services': '服务',
+    'footer.process': '流程',
+    'footer.work': '项目',
+    'footer.about': '关于',
+    'footer.contact': '联系',
+    'footer.privacy': '隐私政策',
+    'footer.terms': '服务条款'
+  }
+};
+
+// Contact templates by language
+const contactTemplates = {
+  ko: `안녕하세요, LightOn Plus Lab에 프로젝트 문의드립니다.
 
 [1] 무엇을 만들고 싶나요?
 - 예: AI 기능이 들어간 앱/웹 서비스, 자동화, 문서검색(RAG), 챗봇, 이미지/음성 기능 등
@@ -903,16 +1582,181 @@ const template = `안녕하세요, LightOn Plus Lab에 프로젝트 문의드립
 연락처:
 - 이름:
 - 이메일/메신저:
-`;
+`,
+  en: `Hello, I'm inquiring about a project with LightOn Plus Lab.
+
+[1] What would you like to build?
+- e.g. AI-powered app/web service, automation, document search (RAG), chatbot, image/voice features, etc.
+
+[2] Core features (top 1-3 priorities)
+- 1)
+- 2)
+- 3)
+
+[3] Target users / Use scenarios
+- e.g. Who (customers) will use this in what situations and how?
+
+[4] Timeline
+- Preferred start date:
+- Target MVP date:
+
+[5] Budget range (optional)
+- e.g. $X,XXX ~ $X,XXX
+
+[6] Reference links/materials (optional)
+- Planning docs/notes/references/similar services
+
+Contact:
+- Name:
+- Email/Messenger:
+`,
+  ja: `こんにちは、LightOn Plus Labにプロジェクトについてお問い合わせいたします。
+
+[1] 何を作りたいですか？
+- 例：AI機能付きアプリ/Webサービス、自動化、文書検索（RAG）、チャットボット、画像/音声機能など
+
+[2] コア機能（優先順位1〜3）
+- 1)
+- 2)
+- 3)
+
+[3] 対象ユーザー / 使用シナリオ
+- 例：誰が（顧客）どのような状況でどのように使いますか？
+
+[4] スケジュール
+- 開始希望日：
+- 第1段階MVP希望日：
+
+[5] 予算範囲（任意）
+- 例：○○万円〜○○万円
+
+[6] 参考リンク/資料（任意）
+- 企画書/メモ/参考資料/類似サービスリンク
+
+連絡先：
+- 名前：
+- メール/メッセンジャー：
+`,
+  zh: `您好，我想就项目咨询LightOn Plus Lab。
+
+[1] 您想构建什么？
+- 例如：AI功能的应用/网页服务、自动化、文档搜索（RAG）、聊天机器人、图像/语音功能等
+
+[2] 核心功能（优先级1-3项）
+- 1)
+- 2)
+- 3)
+
+[3] 目标用户 / 使用场景
+- 例如：谁（客户）在什么情况下如何使用？
+
+[4] 时间表
+- 希望开始日期：
+- 第一阶段MVP目标日期：
+
+[5] 预算范围（可选）
+- 例如：￥X,XXX ~ ￥X,XXX
+
+[6] 参考链接/资料（可选）
+- 策划书/备忘录/参考资料/类似服务链接
+
+联系方式：
+- 姓名：
+- 邮箱/即时通讯：
+`
+};
+
+// Language switching functionality
+let currentLang = localStorage.getItem('preferredLanguage') || 'ko';
+
+function translatePage(lang) {
+  const elements = document.querySelectorAll('[data-i18n]');
+  elements.forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      element.innerHTML = translations[lang][key];
+    }
+  });
+
+  // Update HTML lang attribute
+  document.documentElement.lang = lang;
+  
+  // Update meta description
+  const metaDesc = {
+    ko: 'AI 기능이 들어간 앱을 만드는 개인 개발 스튜디오, LightOn Plus Lab',
+    en: 'Indie development studio creating AI-powered apps, LightOn Plus Lab',
+    ja: 'AI機能搭載アプリを制作する個人開発スタジオ、LightOn Plus Lab',
+    zh: '制作AI功能应用的独立开发工作室，LightOn Plus Lab'
+  };
+  document.querySelector('meta[name="description"]').content = metaDesc[lang];
+
+  // Update page title
+  const titles = {
+    ko: 'LightOn Plus Lab — AI Apps & Innovation',
+    en: 'LightOn Plus Lab — AI Apps & Innovation',
+    ja: 'LightOn Plus Lab — AI Apps & Innovation',
+    zh: 'LightOn Plus Lab — AI Apps & Innovation'
+  };
+  document.title = titles[lang];
+}
+
+function setupLanguageSelector() {
+  const desktopSelector = document.getElementById('languageSelector');
+  const mobileSelector = document.getElementById('mobileLanguageSelector');
+  
+  // Set initial values
+  desktopSelector.value = currentLang;
+  mobileSelector.value = currentLang;
+  
+  // Sync selectors
+  function syncSelectors(sourceSelector, targetSelector) {
+    sourceSelector.addEventListener('change', (e) => {
+      const lang = e.target.value;
+      targetSelector.value = lang;
+      currentLang = lang;
+      localStorage.setItem('preferredLanguage', lang);
+      translatePage(lang);
+    });
+  }
+  
+  syncSelectors(desktopSelector, mobileSelector);
+  syncSelectors(mobileSelector, desktopSelector);
+}
+
+// Initialize translations
+document.addEventListener('DOMContentLoaded', () => {
+  setupLanguageSelector();
+  translatePage(currentLang);
+});
+
+// Copy template (updated for multi-language)
+const template = contactTemplates[currentLang] || contactTemplates['ko'];
 
 document.getElementById("copyBtn").addEventListener("click", async()=>{
   try{
-    await navigator.clipboard.writeText(template);
+    const currentTemplate = contactTemplates[currentLang] || contactTemplates['ko'];
+    await navigator.clipboard.writeText(currentTemplate);
     const btn = document.getElementById("copyBtn");
     const old = btn.textContent;
-    btn.textContent = "✅ 복사 완료!";
+    
+    const successMessages = {
+      ko: "✅ 복사 완료!",
+      en: "✅ Copied!",
+      ja: "✅ コピー完了！",
+      zh: "✅ 复制成功！"
+    };
+    
+    btn.textContent = successMessages[currentLang] || successMessages['ko'];
     setTimeout(()=>btn.textContent = old, 1500);
-  }catch(e){alert("복사 실패: 브라우저 권한을 확인해주세요.")}
+  }catch(e){
+    const errorMessages = {
+      ko: "복사 실패: 브라우저 권한을 확인해주세요.",
+      en: "Copy failed: Please check browser permissions.",
+      ja: "コピー失敗：ブラウザの権限を確認してください。",
+      zh: "复制失败：请检查浏览器权限。"
+    };
+    alert(errorMessages[currentLang] || errorMessages['ko']);
+  }
 });
 </script>
 </body>
