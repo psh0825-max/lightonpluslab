@@ -455,6 +455,7 @@ section{padding:60px 0; position:relative; z-index:1}
       <a href="#services" data-i18n="nav.services">서비스</a>
       <a href="#momoi">Momoi</a>
       <a href="#receipt-ai" data-i18n="nav.receipt-ai">영수증AI</a>
+      <a href="#noddak" data-i18n="nav.noddak">노딱AI</a>
       <a href="#process" data-i18n="nav.process">프로세스</a>
       <a href="#work" data-i18n="nav.work">프로젝트</a>
       <a href="#about" data-i18n="nav.about">소개</a>
@@ -478,6 +479,7 @@ section{padding:60px 0; position:relative; z-index:1}
   <a href="#services" class="mobile-link" data-i18n="nav.services">서비스</a>
   <a href="#momoi" class="mobile-link">Momoi</a>
   <a href="#receipt-ai" class="mobile-link" data-i18n="nav.receipt-ai">영수증AI</a>
+  <a href="#noddak" class="mobile-link" data-i18n="nav.noddak">노딱AI</a>
   <a href="#process" class="mobile-link" data-i18n="nav.process">프로세스</a>
   <a href="#work" class="mobile-link" data-i18n="nav.work">프로젝트</a>
   <a href="#about" class="mobile-link" data-i18n="nav.about">소개</a>
@@ -741,6 +743,56 @@ section{padding:60px 0; position:relative; z-index:1}
             <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="receiptai.card2.slogan.desc">찍으면 끝, AI가 정리합니다.</div>
           </div>
           <code>receipt-ai</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT: NODDAK AI -->
+  <section id="noddak">
+    <div class="section-label reveal" data-i18n="noddak.label">AI 법률 도우미</div>
+    <h2 class="section-title reveal" data-i18n="noddak.title">노딱AI — 주차 딱지 이의신청 자동 작성</h2>
+    <p class="section-desc reveal" data-i18n="noddak.desc">주정차 위반 딱지 사진을 찍으면 AI가 도로교통법을 분석하고 이의신청서를 자동으로 작성합니다.</p>
+    <div class="hero-grid">
+      <div class="hero-card reveal">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
+          <div style="font-weight:900; font-size:17px;" data-i18n="noddak.card1.title">🚗 노딱AI</div>
+          <span class="badge" style="background:linear-gradient(135deg, #dc2626, #ef4444); border:none;" data-i18n="noddak.badge">Live</span>
+        </div>
+        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;" data-i18n="noddak.card1.desc">
+          딱지 사진을 찍으면 AI가 위반 내용을 자동 인식. 도로교통법·질서위반행위규제법 근거로 이의신청서를 즉시 생성합니다.
+        </p>
+        <div class="kpi" role="list">
+          <div class="box"><b data-i18n="noddak.card1.kpi1.title">📸 사진 분석</b><span data-i18n="noddak.card1.kpi1.desc">딱지 촬영 → 자동 인식</span></div>
+          <div class="box"><b data-i18n="noddak.card1.kpi2.title">⚖️ 법률 근거</b><span data-i18n="noddak.card1.kpi2.desc">도로교통법 원문 인용</span></div>
+          <div class="box"><b data-i18n="noddak.card1.kpi3.title">📝 신청서 생성</b><span data-i18n="noddak.card1.kpi3.desc">이의신청서 자동 작성</span></div>
+          <div class="box"><b data-i18n="noddak.card1.kpi4.title">🆓 무료</b><span data-i18n="noddak.card1.kpi4.desc">회원가입 없이 바로 사용</span></div>
+        </div>
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="https://noddak-1047636559780.asia-northeast3.run.app" target="_blank" style="background:linear-gradient(135deg, #dc2626, #ef4444);" data-i18n="noddak.cta1">🚗 노딱AI 사용해보기</a>
+          <a class="btn" href="https://noddak-1047636559780.asia-northeast3.run.app/guide" target="_blank" data-i18n="noddak.cta2">📖 사용 가이드</a>
+        </div>
+      </div>
+      <div class="hero-card reveal reveal-delay-1">
+        <div style="font-weight:900; font-size:17px; margin-bottom:12px;" data-i18n="noddak.card2.title">기술 구성</div>
+        <div class="meta" style="margin-bottom:16px">
+          <span class="badge">Next.js</span>
+          <span class="badge">Gemini 2.0</span>
+          <span class="badge">Cloud Run</span>
+        </div>
+        <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
+          <p style="margin-bottom:8px;" data-i18n="noddak.card2.feature1">✅ Gemini 2.0 Flash Vision 딱지 자동 인식</p>
+          <p style="margin-bottom:8px;" data-i18n="noddak.card2.feature2">✅ 도로교통법 제32~35조, 제142조, 제160조 원문 내장</p>
+          <p style="margin-bottom:8px;" data-i18n="noddak.card2.feature3">✅ 질서위반행위규제법 기반 이의신청서 생성</p>
+          <p style="margin-bottom:8px;" data-i18n="noddak.card2.feature4">✅ Google Cloud Run 서울 리전 배포</p>
+          <p data-i18n="noddak.card2.feature5">✅ 회원가입 없이 무료 사용</p>
+        </div>
+        <div class="tagline">
+          <div>
+            <div style="font-weight:800; font-size:14px" data-i18n="noddak.card2.slogan.title">슬로건</div>
+            <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="noddak.card2.slogan.desc">딱지? AI가 대신 싸워줍니다.</div>
+          </div>
+          <code>noddak</code>
         </div>
       </div>
     </div>
@@ -1033,6 +1085,33 @@ const translations = {
     'receiptai.card2.slogan.title': '슬로건',
     'receiptai.card2.slogan.desc': '찍으면 끝, AI가 정리합니다.',
 
+    // Noddak
+    'nav.noddak': '노딱AI',
+    'noddak.label': 'AI 법률 도우미',
+    'noddak.title': '노딱AI — 주차 딱지 이의신청 자동 작성',
+    'noddak.desc': '주정차 위반 딱지 사진을 찍으면 AI가 도로교통법을 분석하고 이의신청서를 자동으로 작성합니다.',
+    'noddak.badge': 'Live',
+    'noddak.card1.title': '🚗 노딱AI',
+    'noddak.card1.desc': '딱지 사진을 찍으면 AI가 위반 내용을 자동 인식. 도로교통법·질서위반행위규제법 근거로 이의신청서를 즉시 생성합니다.',
+    'noddak.card1.kpi1.title': '📸 사진 분석',
+    'noddak.card1.kpi1.desc': '딱지 촬영 → 자동 인식',
+    'noddak.card1.kpi2.title': '⚖️ 법률 근거',
+    'noddak.card1.kpi2.desc': '도로교통법 원문 인용',
+    'noddak.card1.kpi3.title': '📝 신청서 생성',
+    'noddak.card1.kpi3.desc': '이의신청서 자동 작성',
+    'noddak.card1.kpi4.title': '🆓 무료',
+    'noddak.card1.kpi4.desc': '회원가입 없이 바로 사용',
+    'noddak.cta1': '🚗 노딱AI 사용해보기',
+    'noddak.cta2': '📖 사용 가이드',
+    'noddak.card2.title': '기술 구성',
+    'noddak.card2.feature1': '✅ Gemini 2.0 Flash Vision 딱지 자동 인식',
+    'noddak.card2.feature2': '✅ 도로교통법 제32~35조, 제142조, 제160조 원문 내장',
+    'noddak.card2.feature3': '✅ 질서위반행위규제법 기반 이의신청서 생성',
+    'noddak.card2.feature4': '✅ Google Cloud Run 서울 리전 배포',
+    'noddak.card2.feature5': '✅ 회원가입 없이 무료 사용',
+    'noddak.card2.slogan.title': '슬로건',
+    'noddak.card2.slogan.desc': '딱지? AI가 대신 싸워줍니다.',
+
     // Work
     'work.label': '더 많은 가능성',
     'work.title': '이런 것들도 만들 수 있습니다',
@@ -1191,6 +1270,33 @@ const translations = {
     'receiptai.card2.feature5': '✅ Mobile-optimized PWA (rear camera capture)',
     'receiptai.card2.slogan.title': 'Slogan',
     'receiptai.card2.slogan.desc': 'Snap and done, AI organizes it.',
+
+    // Noddak
+    'nav.noddak': 'NoddakAI',
+    'noddak.label': 'AI Legal Assistant',
+    'noddak.title': 'NoddakAI — Auto Parking Ticket Appeal',
+    'noddak.desc': 'Take a photo of your parking ticket and AI analyzes traffic law to automatically generate an appeal letter.',
+    'noddak.badge': 'Live',
+    'noddak.card1.title': '🚗 NoddakAI',
+    'noddak.card1.desc': 'Snap a ticket photo and AI auto-recognizes violation details. Generates appeal letters with Road Traffic Act citations.',
+    'noddak.card1.kpi1.title': '📸 Photo Analysis',
+    'noddak.card1.kpi1.desc': 'Capture ticket → Auto recognition',
+    'noddak.card1.kpi2.title': '⚖️ Legal Basis',
+    'noddak.card1.kpi2.desc': 'Road Traffic Act citations',
+    'noddak.card1.kpi3.title': '📝 Appeal Letter',
+    'noddak.card1.kpi3.desc': 'Auto-generated appeal',
+    'noddak.card1.kpi4.title': '🆓 Free',
+    'noddak.card1.kpi4.desc': 'No signup required',
+    'noddak.cta1': '🚗 Try NoddakAI',
+    'noddak.cta2': '📖 User Guide',
+    'noddak.card2.title': 'Technical Architecture',
+    'noddak.card2.feature1': '✅ Gemini 2.0 Flash Vision ticket recognition',
+    'noddak.card2.feature2': '✅ Road Traffic Act Articles 32-35, 142, 160 embedded',
+    'noddak.card2.feature3': '✅ Appeal letter with legal citations',
+    'noddak.card2.feature4': '✅ Google Cloud Run Seoul deployment',
+    'noddak.card2.feature5': '✅ Free, no signup required',
+    'noddak.card2.slogan.title': 'Slogan',
+    'noddak.card2.slogan.desc': 'Got a ticket? AI fights for you.',
 
     // Work
     'work.label': 'More Possibilities',
@@ -1351,6 +1457,33 @@ const translations = {
     'receiptai.card2.slogan.title': 'スローガン',
     'receiptai.card2.slogan.desc': '撮って終わり、AIが整理します。',
 
+    // Noddak
+    'nav.noddak': 'NoddakAI',
+    'noddak.label': 'AI法律アシスタント',
+    'noddak.title': 'NoddakAI — 駐車違反切符の異議申立書自動作成',
+    'noddak.desc': '駐車違反切符の写真を撮ると、AIが道路交通法を分析し異議申立書を自動作成します。',
+    'noddak.badge': 'Live',
+    'noddak.card1.title': '🚗 NoddakAI',
+    'noddak.card1.desc': '切符の写真を撮るとAIが違反内容を自動認識。道路交通法の根拠で異議申立書を即時生成。',
+    'noddak.card1.kpi1.title': '📸 写真分析',
+    'noddak.card1.kpi1.desc': '切符撮影 → 自動認識',
+    'noddak.card1.kpi2.title': '⚖️ 法的根拠',
+    'noddak.card1.kpi2.desc': '道路交通法原文引用',
+    'noddak.card1.kpi3.title': '📝 申立書生成',
+    'noddak.card1.kpi3.desc': '異議申立書自動作成',
+    'noddak.card1.kpi4.title': '🆓 無料',
+    'noddak.card1.kpi4.desc': '会員登録不要',
+    'noddak.cta1': '🚗 NoddakAIを試す',
+    'noddak.cta2': '📖 使用ガイド',
+    'noddak.card2.title': '技術構成',
+    'noddak.card2.feature1': '✅ Gemini 2.0 Flash Vision切符自動認識',
+    'noddak.card2.feature2': '✅ 道路交通法第32~35条、第142条、第160条原文内蔵',
+    'noddak.card2.feature3': '✅ 法的根拠に基づく異議申立書生成',
+    'noddak.card2.feature4': '✅ Google Cloud Runソウルリージョン',
+    'noddak.card2.feature5': '✅ 会員登録不要、無料使用',
+    'noddak.card2.slogan.title': 'スローガン',
+    'noddak.card2.slogan.desc': '切符？AIが代わりに戦います。',
+
     // Work
     'work.label': 'より多くの可能性',
     'work.title': 'こんなものも作れます',
@@ -1509,6 +1642,33 @@ const translations = {
     'receiptai.card2.feature5': '✅ 移动优化PWA（后置摄像头拍摄）',
     'receiptai.card2.slogan.title': '口号',
     'receiptai.card2.slogan.desc': '拍照即可，AI来整理。',
+
+    // Noddak
+    'nav.noddak': 'NoddakAI',
+    'noddak.label': 'AI法律助手',
+    'noddak.title': 'NoddakAI — 停车罚单异议申请自动生成',
+    'noddak.desc': '拍摄停车罚单照片，AI分析交通法并自动生成异议申请书。',
+    'noddak.badge': 'Live',
+    'noddak.card1.title': '🚗 NoddakAI',
+    'noddak.card1.desc': '拍摄罚单照片，AI自动识别违规内容。基于道路交通法生成异议申请书。',
+    'noddak.card1.kpi1.title': '📸 照片分析',
+    'noddak.card1.kpi1.desc': '罚单拍照 → 自动识别',
+    'noddak.card1.kpi2.title': '⚖️ 法律依据',
+    'noddak.card1.kpi2.desc': '道路交通法原文引用',
+    'noddak.card1.kpi3.title': '📝 申请书生成',
+    'noddak.card1.kpi3.desc': '异议申请书自动生成',
+    'noddak.card1.kpi4.title': '🆓 免费',
+    'noddak.card1.kpi4.desc': '无需注册',
+    'noddak.cta1': '🚗 试用NoddakAI',
+    'noddak.cta2': '📖 使用指南',
+    'noddak.card2.title': '技术架构',
+    'noddak.card2.feature1': '✅ Gemini 2.0 Flash Vision罚单自动识别',
+    'noddak.card2.feature2': '✅ 道路交通法第32~35条、第142条、第160条原文内置',
+    'noddak.card2.feature3': '✅ 基于法律依据的异议申请书生成',
+    'noddak.card2.feature4': '✅ Google Cloud Run首尔区域部署',
+    'noddak.card2.feature5': '✅ 无需注册，免费使用',
+    'noddak.card2.slogan.title': '口号',
+    'noddak.card2.slogan.desc': '罚单？AI替你抗争。',
 
     // Work
     'work.label': '更多可能性',
