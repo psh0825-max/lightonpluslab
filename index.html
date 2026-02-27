@@ -471,6 +471,7 @@ section{padding:60px 0; position:relative; z-index:1}
       <a href="#services" data-i18n="nav.services">서비스</a>
       <a href="#momoi">Momoi</a>
       <a href="#receipt-ai" data-i18n="nav.receipt-ai">영수증AI</a>
+      <a href="#meongnyang" data-i18n="nav.meongnyang">멍냥로그</a>
       <a href="#noddak" data-i18n="nav.noddak">노딱AI</a>
       <a href="#process" data-i18n="nav.process">프로세스</a>
       <a href="#work" data-i18n="nav.work">프로젝트</a>
@@ -495,6 +496,7 @@ section{padding:60px 0; position:relative; z-index:1}
   <a href="#services" class="mobile-link" data-i18n="nav.services">서비스</a>
   <a href="#momoi" class="mobile-link">Momoi</a>
   <a href="#receipt-ai" class="mobile-link" data-i18n="nav.receipt-ai">영수증AI</a>
+  <a href="#meongnyang" class="mobile-link" data-i18n="nav.meongnyang">멍냥로그</a>
   <a href="#noddak" class="mobile-link" data-i18n="nav.noddak">노딱AI</a>
   <a href="#process" class="mobile-link" data-i18n="nav.process">프로세스</a>
   <a href="#work" class="mobile-link" data-i18n="nav.work">프로젝트</a>
@@ -766,6 +768,55 @@ section{padding:60px 0; position:relative; z-index:1}
   </section>
 
   <!-- PRODUCT: NODDAK AI -->
+  <section id="meongnyang">
+    <div class="section-label reveal" data-i18n="meongnyang.label">AI 펫 다이어리</div>
+    <h2 class="section-title reveal" data-i18n="meongnyang.title">멍냥로그 — AI가 써주는 반려동물 일기</h2>
+    <p class="section-desc reveal" data-i18n="meongnyang.desc">반려동물 사진 한 장이면 AI가 귀여운 1인칭 일기를 써줍니다. 우리 아이의 하루를 기록하세요.</p>
+    <div class="hero-grid">
+      <div class="hero-card reveal">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
+          <div style="font-weight:900; font-size:17px;" data-i18n="meongnyang.card1.title">🐾 멍냥로그</div>
+          <span class="badge" style="background:linear-gradient(135deg, #F59E0B, #EC4899); border:none;" data-i18n="meongnyang.badge">Live</span>
+        </div>
+        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;" data-i18n="meongnyang.card1.desc">
+          사진을 올리면 AI가 반려동물의 표정과 상황을 분석해 귀여운 1인칭 일기를 자동 생성합니다. 감정 태그와 함께 타임라인으로 기록됩니다.
+        </p>
+        <div class="kpi" role="list">
+          <div class="box"><b data-i18n="meongnyang.card1.kpi1.title">📸 사진 분석</b><span data-i18n="meongnyang.card1.kpi1.desc">표정·상황 자동 인식</span></div>
+          <div class="box"><b data-i18n="meongnyang.card1.kpi2.title">✍️ AI 일기</b><span data-i18n="meongnyang.card1.kpi2.desc">1인칭 귀여운 문체</span></div>
+          <div class="box"><b data-i18n="meongnyang.card1.kpi3.title">😊 감정 태그</b><span data-i18n="meongnyang.card1.kpi3.desc">해피·졸림·신남 등</span></div>
+          <div class="box"><b data-i18n="meongnyang.card1.kpi4.title">🔒 프라이버시</b><span data-i18n="meongnyang.card1.kpi4.desc">기기 내 저장 (IndexedDB)</span></div>
+        </div>
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="https://meongnyang-1047636559780.asia-northeast3.run.app" target="_blank" style="background:linear-gradient(135deg, #F59E0B, #EC4899);" data-i18n="meongnyang.cta1">🐾 멍냥로그 사용해보기</a>
+        </div>
+      </div>
+      <div class="hero-card reveal reveal-delay-1">
+        <div style="font-weight:900; font-size:17px; margin-bottom:12px;" data-i18n="meongnyang.card2.title">기술 구성</div>
+        <div class="meta" style="margin-bottom:16px">
+          <span class="badge">Next.js 15</span>
+          <span class="badge">Gemini 2.5 Vision</span>
+          <span class="badge">Cloud Run</span>
+          <span class="badge">IndexedDB</span>
+        </div>
+        <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
+          <p style="margin-bottom:8px;" data-i18n="meongnyang.card2.feature1">✅ Gemini 2.5 Flash Vision으로 사진 분석</p>
+          <p style="margin-bottom:8px;" data-i18n="meongnyang.card2.feature2">✅ 카와이 스타일 AI 일러스트레이션</p>
+          <p style="margin-bottom:8px;" data-i18n="meongnyang.card2.feature3">✅ IndexedDB 로컬 저장 (서버 전송 없음)</p>
+          <p style="margin-bottom:8px;" data-i18n="meongnyang.card2.feature4">✅ PWA 지원 — 홈 화면에 추가 가능</p>
+          <p data-i18n="meongnyang.card2.feature5">✅ 회원가입 없이 무료 사용</p>
+        </div>
+        <div class="tagline">
+          <div>
+            <div style="font-weight:800; font-size:14px" data-i18n="meongnyang.card2.slogan.title">슬로건</div>
+            <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="meongnyang.card2.slogan.desc">사진 한 장이면, AI가 일기를 써줘요 🐾</div>
+          </div>
+          <code>meongnyang</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="noddak">
     <div class="section-label reveal" data-i18n="noddak.label">AI 법률 도우미</div>
     <h2 class="section-title reveal" data-i18n="noddak.title">노딱AI — 주차 딱지 이의신청 자동 작성</h2>
@@ -1102,6 +1153,32 @@ const translations = {
     'receiptai.card2.slogan.title': '슬로건',
     'receiptai.card2.slogan.desc': '찍으면 끝, AI가 정리합니다.',
 
+    // MeongNyang
+    'nav.meongnyang': '멍냥로그',
+    'meongnyang.label': 'AI 펫 다이어리',
+    'meongnyang.title': '멍냥로그 — AI가 써주는 반려동물 일기',
+    'meongnyang.desc': '반려동물 사진 한 장이면 AI가 귀여운 1인칭 일기를 써줍니다. 우리 아이의 하루를 기록하세요.',
+    'meongnyang.badge': 'Live',
+    'meongnyang.card1.title': '🐾 멍냥로그',
+    'meongnyang.card1.desc': '사진을 올리면 AI가 반려동물의 표정과 상황을 분석해 귀여운 1인칭 일기를 자동 생성합니다. 감정 태그와 함께 타임라인으로 기록됩니다.',
+    'meongnyang.card1.kpi1.title': '📸 사진 분석',
+    'meongnyang.card1.kpi1.desc': '표정·상황 자동 인식',
+    'meongnyang.card1.kpi2.title': '✍️ AI 일기',
+    'meongnyang.card1.kpi2.desc': '1인칭 귀여운 문체',
+    'meongnyang.card1.kpi3.title': '😊 감정 태그',
+    'meongnyang.card1.kpi3.desc': '해피·졸림·신남 등',
+    'meongnyang.card1.kpi4.title': '🔒 프라이버시',
+    'meongnyang.card1.kpi4.desc': '기기 내 저장 (IndexedDB)',
+    'meongnyang.cta1': '🐾 멍냥로그 사용해보기',
+    'meongnyang.card2.title': '기술 구성',
+    'meongnyang.card2.feature1': '✅ Gemini 2.5 Flash Vision으로 사진 분석',
+    'meongnyang.card2.feature2': '✅ 카와이 스타일 AI 일러스트레이션',
+    'meongnyang.card2.feature3': '✅ IndexedDB 로컬 저장 (서버 전송 없음)',
+    'meongnyang.card2.feature4': '✅ PWA 지원 — 홈 화면에 추가 가능',
+    'meongnyang.card2.feature5': '✅ 회원가입 없이 무료 사용',
+    'meongnyang.card2.slogan.title': '슬로건',
+    'meongnyang.card2.slogan.desc': '사진 한 장이면, AI가 일기를 써줘요 🐾',
+
     // Noddak
     'nav.noddak': '노딱AI',
     'noddak.label': 'AI 법률 도우미',
@@ -1287,6 +1364,32 @@ const translations = {
     'receiptai.card2.feature5': '✅ Mobile-optimized PWA (rear camera capture)',
     'receiptai.card2.slogan.title': 'Slogan',
     'receiptai.card2.slogan.desc': 'Snap and done, AI organizes it.',
+
+    // MeongNyang
+    'nav.meongnyang': 'MeongNyang',
+    'meongnyang.label': 'AI Pet Diary',
+    'meongnyang.title': 'MeongNyang Log — AI-Written Pet Diary',
+    'meongnyang.desc': 'Just upload a photo of your pet and AI writes a cute first-person diary entry. Record your pet\'s daily moments.',
+    'meongnyang.badge': 'Live',
+    'meongnyang.card1.title': '🐾 MeongNyang Log',
+    'meongnyang.card1.desc': 'Upload a pet photo and AI analyzes facial expressions and situations to generate an adorable first-person diary. Saved with mood tags in a timeline.',
+    'meongnyang.card1.kpi1.title': '📸 Photo Analysis',
+    'meongnyang.card1.kpi1.desc': 'Auto-detect expressions',
+    'meongnyang.card1.kpi2.title': '✍️ AI Diary',
+    'meongnyang.card1.kpi2.desc': 'Cute first-person writing',
+    'meongnyang.card1.kpi3.title': '😊 Mood Tags',
+    'meongnyang.card1.kpi3.desc': 'Happy, sleepy, excited...',
+    'meongnyang.card1.kpi4.title': '🔒 Privacy',
+    'meongnyang.card1.kpi4.desc': 'Stored on device (IndexedDB)',
+    'meongnyang.cta1': '🐾 Try MeongNyang Log',
+    'meongnyang.card2.title': 'Tech Stack',
+    'meongnyang.card2.feature1': '✅ Gemini 2.5 Flash Vision photo analysis',
+    'meongnyang.card2.feature2': '✅ Kawaii-style AI illustrations',
+    'meongnyang.card2.feature3': '✅ IndexedDB local storage (no server upload)',
+    'meongnyang.card2.feature4': '✅ PWA support — add to home screen',
+    'meongnyang.card2.feature5': '✅ Free, no sign-up required',
+    'meongnyang.card2.slogan.title': 'Slogan',
+    'meongnyang.card2.slogan.desc': 'One photo, AI writes the diary 🐾',
 
     // Noddak
     'nav.noddak': 'NoddakAI',
@@ -1474,6 +1577,33 @@ const translations = {
     'receiptai.card2.slogan.title': 'スローガン',
     'receiptai.card2.slogan.desc': '撮って終わり、AIが整理します。',
 
+
+    // MeongNyang
+    'nav.meongnyang': 'メンニャンログ',
+    'meongnyang.label': 'AIペット日記',
+    'meongnyang.title': 'メンニャンログ — AIが書くペット日記',
+    'meongnyang.desc': 'ペットの写真1枚でAIがかわいい一人称日記を書きます。',
+    'meongnyang.badge': 'Live',
+    'meongnyang.card1.title': '🐾 メンニャンログ',
+    'meongnyang.card1.desc': '写真をアップするとAIが表情と状況を分析し、かわいい一人称日記を自動生成。',
+    'meongnyang.card1.kpi1.title': '📸 写真分析',
+    'meongnyang.card1.kpi1.desc': '表情・状況を自動認識',
+    'meongnyang.card1.kpi2.title': '✍️ AI日記',
+    'meongnyang.card1.kpi2.desc': 'かわいい一人称文体',
+    'meongnyang.card1.kpi3.title': '😊 感情タグ',
+    'meongnyang.card1.kpi3.desc': 'ハッピー・眠い・興奮',
+    'meongnyang.card1.kpi4.title': '🔒 プライバシー',
+    'meongnyang.card1.kpi4.desc': '端末内保存 (IndexedDB)',
+    'meongnyang.cta1': '🐾 メンニャンログを使う',
+    'meongnyang.card2.title': '技術構成',
+    'meongnyang.card2.feature1': '✅ Gemini 2.5 Flash Vision写真分析',
+    'meongnyang.card2.feature2': '✅ カワイイスタイルAIイラスト',
+    'meongnyang.card2.feature3': '✅ IndexedDBローカル保存',
+    'meongnyang.card2.feature4': '✅ PWA対応',
+    'meongnyang.card2.feature5': '✅ 無料・会員登録不要',
+    'meongnyang.card2.slogan.title': 'スローガン',
+    'meongnyang.card2.slogan.desc': '写真1枚で、AIが日記を書きます 🐾',
+
     // Noddak
     'nav.noddak': 'NoddakAI',
     'noddak.label': 'AI法律アシスタント',
@@ -1659,6 +1789,33 @@ const translations = {
     'receiptai.card2.feature5': '✅ 移动优化PWA（后置摄像头拍摄）',
     'receiptai.card2.slogan.title': '口号',
     'receiptai.card2.slogan.desc': '拍照即可，AI来整理。',
+
+
+    // MeongNyang
+    'nav.meongnyang': '萝善日记',
+    'meongnyang.label': 'AI宠物日记',
+    'meongnyang.title': '萝善日记 — AI为宠物写日记',
+    'meongnyang.desc': '只需一张宠物照片，AI就能写出可爱的第一人称日记。',
+    'meongnyang.badge': 'Live',
+    'meongnyang.card1.title': '🐾 萝善日记',
+    'meongnyang.card1.desc': '上传照片后AI分析宠物表情和场景，自动生成可爱的第一人称日记。',
+    'meongnyang.card1.kpi1.title': '📸 照片分析',
+    'meongnyang.card1.kpi1.desc': '自动识别表情·场景',
+    'meongnyang.card1.kpi2.title': '✍️ AI日记',
+    'meongnyang.card1.kpi2.desc': '可爱第一人称文体',
+    'meongnyang.card1.kpi3.title': '😊 情绪标签',
+    'meongnyang.card1.kpi3.desc': '开心·困倦·兴奋',
+    'meongnyang.card1.kpi4.title': '🔒 隐私保护',
+    'meongnyang.card1.kpi4.desc': '本地存储 (IndexedDB)',
+    'meongnyang.cta1': '🐾 使用萝善日记',
+    'meongnyang.card2.title': '技术构成',
+    'meongnyang.card2.feature1': '✅ Gemini 2.5 Flash Vision照片分析',
+    'meongnyang.card2.feature2': '✅ 可爱风格AI插画',
+    'meongnyang.card2.feature3': '✅ IndexedDB本地存储',
+    'meongnyang.card2.feature4': '✅ PWA支持',
+    'meongnyang.card2.feature5': '✅ 免费无需注册',
+    'meongnyang.card2.slogan.title': '标语',
+    'meongnyang.card2.slogan.desc': '一张照片，AI写日记 🐾',
 
     // Noddak
     'nav.noddak': 'NoddakAI',
