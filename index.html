@@ -40,6 +40,7 @@ a{color:inherit; text-decoration:none}
     radial-gradient(900px 600px at 85% 20%, rgba(124,77,255,.12), transparent 60%),
     radial-gradient(900px 600px at 50% 90%, rgba(0,229,255,.08), transparent 60%);
 }
+#products .hero-card:hover{ transform:translateY(-4px); box-shadow: 0 12px 40px rgba(45,125,255,.15); }
 .bg-grid{
   position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.035;
   background-image:
@@ -473,11 +474,7 @@ section{padding:60px 0; position:relative; z-index:1}
     <nav class="nav-links" aria-label="메뉴">
       <a href="#services" data-i18n="nav.services">서비스</a>
       <a href="#momoi">Momoi</a>
-      <a href="#receipt-ai" data-i18n="nav.receipt-ai">영수증AI</a>
-      <a href="#meongnyang" data-i18n="nav.meongnyang">멍냥로그</a>
-      <a href="#noddak" data-i18n="nav.noddak">노딱AI</a>
-      <a href="#bible-buddy" data-i18n="nav.bible-buddy">성경친구</a>
-      <a href="#bible-search" data-i18n="nav.bible-search">말씀찾기</a>
+      <a href="#products" data-i18n="nav.products">앱</a>
       <a href="#process" data-i18n="nav.process">프로세스</a>
       <a href="#work" data-i18n="nav.work">프로젝트</a>
       <a href="#about" data-i18n="nav.about">소개</a>
@@ -500,11 +497,7 @@ section{padding:60px 0; position:relative; z-index:1}
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
   <a href="#services" class="mobile-link" data-i18n="nav.services">서비스</a>
   <a href="#momoi" class="mobile-link">Momoi</a>
-  <a href="#receipt-ai" class="mobile-link" data-i18n="nav.receipt-ai">영수증AI</a>
-  <a href="#meongnyang" class="mobile-link" data-i18n="nav.meongnyang">멍냥로그</a>
-  <a href="#noddak" class="mobile-link" data-i18n="nav.noddak">노딱AI</a>
-  <a href="#bible-buddy" class="mobile-link" data-i18n="nav.bible-buddy">성경친구</a>
-  <a href="#bible-search" class="mobile-link" data-i18n="nav.bible-search">말씀찾기</a>
+  <a href="#products" class="mobile-link" data-i18n="nav.products">앱</a>
   <a href="#process" class="mobile-link" data-i18n="nav.process">프로세스</a>
   <a href="#work" class="mobile-link" data-i18n="nav.work">프로젝트</a>
   <a href="#about" class="mobile-link" data-i18n="nav.about">소개</a>
@@ -723,254 +716,88 @@ section{padding:60px 0; position:relative; z-index:1}
     </div>
   </section>
 
-  <!-- PRODUCT: RECEIPT AI -->
-  <section id="receipt-ai">
-    <div class="section-label reveal" data-i18n="receiptai.label">AI 경비 관리</div>
-    <h2 class="section-title reveal" data-i18n="receiptai.title">영수증AI — 사진 한 장으로 경비 자동 관리</h2>
-    <p class="section-desc reveal" data-i18n="receiptai.desc">영수증을 촬영하면 AI가 가게명, 금액, 항목을 자동 인식하고 카테고리별로 분류합니다. 월별 지출 리포트와 세금 공제 항목까지.</p>
-    <div class="hero-grid">
-      <div class="hero-card reveal">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
-          <div style="font-weight:900; font-size:17px;" data-i18n="receiptai.card1.title">🧾 영수증AI</div>
-          <span class="badge" style="background:linear-gradient(135deg, #059669, #0d9488); border:none;" data-i18n="receiptai.badge">Live</span>
-        </div>
-        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;" data-i18n="receiptai.card1.desc">
-          영수증 사진을 찍으면 GPT-4o Vision이 모든 정보를 자동 추출. 9개 카테고리 자동 분류, 월별 리포트, 세금 공제 표시까지.
-        </p>
-        <div class="kpi" role="list">
-          <div class="box"><b data-i18n="receiptai.card1.kpi1.title">📸 AI OCR</b><span data-i18n="receiptai.card1.kpi1.desc">사진 촬영 → 자동 인식</span></div>
-          <div class="box"><b data-i18n="receiptai.card1.kpi2.title">🏷️ 자동 분류</b><span data-i18n="receiptai.card1.kpi2.desc">9개 카테고리 자동 분류</span></div>
-          <div class="box"><b data-i18n="receiptai.card1.kpi3.title">📊 지출 리포트</b><span data-i18n="receiptai.card1.kpi3.desc">월별 분석 & 전월 비교</span></div>
-          <div class="box"><b data-i18n="receiptai.card1.kpi4.title">💰 세금 공제</b><span data-i18n="receiptai.card1.kpi4.desc">공제 가능 항목 자동 표시</span></div>
-        </div>
-        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn primary" href="https://receipt.lightonpluslab.com" target="_blank" style="background:linear-gradient(135deg, #059669, #0d9488);" data-i18n="receiptai.cta1">🧾 영수증AI 사용해보기</a>
-          <a class="btn" href="https://receipt.lightonpluslab.com/guide" target="_blank" data-i18n="receiptai.cta2">📖 사용 가이드</a>
-        </div>
-      </div>
-      <div class="hero-card reveal reveal-delay-1">
-        <div style="font-weight:900; font-size:17px; margin-bottom:12px;" data-i18n="receiptai.card2.title">기술 구성</div>
-        <div class="meta" style="margin-bottom:16px">
-          <span class="badge">Next.js</span>
-          <span class="badge">Supabase</span>
-          <span class="badge">GPT-4o Vision</span>
-          <span class="badge">Vercel</span>
-        </div>
-        <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
-          <p style="margin-bottom:8px;" data-i18n="receiptai.card2.feature1">✅ GPT-4o Vision 영수증 자동 인식 (OCR)</p>
-          <p style="margin-bottom:8px;" data-i18n="receiptai.card2.feature2">✅ 식비/교통/의료 등 9개 카테고리 분류</p>
-          <p style="margin-bottom:8px;" data-i18n="receiptai.card2.feature3">✅ 월별 지출 리포트 & 전월 대비 분석</p>
-          <p style="margin-bottom:8px;" data-i18n="receiptai.card2.feature4">✅ 세금 공제 가능 항목 자동 표시</p>
-          <p data-i18n="receiptai.card2.feature5">✅ 모바일 최적화 PWA (후면 카메라 촬영)</p>
-        </div>
-        <div class="tagline">
-          <div>
-            <div style="font-weight:800; font-size:14px" data-i18n="receiptai.card2.slogan.title">슬로건</div>
-            <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="receiptai.card2.slogan.desc">찍으면 끝, AI가 정리합니다.</div>
-          </div>
-          <code>receipt-ai</code>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- PRODUCTS GRID (compact) -->
+  <section id="products">
+    <div class="section-label reveal" data-i18n="products.label">우리가 만든 앱</div>
+    <h2 class="section-title reveal" data-i18n="products.title">모두 실제 운영 중인 AI 앱입니다</h2>
+    <p class="section-desc reveal" data-i18n="products.desc">각 앱을 클릭하면 바로 사용할 수 있습니다.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:20px; margin-top:32px;">
 
-  <!-- PRODUCT: NODDAK AI -->
-  <section id="meongnyang">
-    <div class="section-label reveal" data-i18n="meongnyang.label">AI 펫 다이어리</div>
-    <h2 class="section-title reveal" data-i18n="meongnyang.title">멍냥로그 — AI가 써주는 반려동물 일기</h2>
-    <p class="section-desc reveal" data-i18n="meongnyang.desc">반려동물 사진 한 장이면 AI가 귀여운 1인칭 일기를 써줍니다. 우리 아이의 하루를 기록하세요.</p>
-    <div class="hero-grid">
-      <div class="hero-card reveal">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
-          <div style="font-weight:900; font-size:17px;" data-i18n="meongnyang.card1.title">🐾 멍냥로그</div>
-          <span class="badge" style="background:linear-gradient(135deg, #F59E0B, #EC4899); border:none;" data-i18n="meongnyang.badge">Live</span>
-        </div>
-        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;" data-i18n="meongnyang.card1.desc">
-          사진을 올리면 AI가 반려동물의 표정과 상황을 분석해 귀여운 1인칭 일기를 자동 생성합니다. 감정 태그와 함께 타임라인으로 기록됩니다.
-        </p>
-        <div class="kpi" role="list">
-          <div class="box"><b data-i18n="meongnyang.card1.kpi1.title">📸 사진 분석</b><span data-i18n="meongnyang.card1.kpi1.desc">표정·상황 자동 인식</span></div>
-          <div class="box"><b data-i18n="meongnyang.card1.kpi2.title">✍️ AI 일기</b><span data-i18n="meongnyang.card1.kpi2.desc">1인칭 귀여운 문체</span></div>
-          <div class="box"><b data-i18n="meongnyang.card1.kpi3.title">😊 감정 태그</b><span data-i18n="meongnyang.card1.kpi3.desc">해피·졸림·신남 등</span></div>
-          <div class="box"><b data-i18n="meongnyang.card1.kpi4.title">🔒 프라이버시</b><span data-i18n="meongnyang.card1.kpi4.desc">기기 내 저장 (IndexedDB)</span></div>
-        </div>
-        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn primary" href="https://meongnyang-1047636559780.asia-northeast3.run.app" target="_blank" style="background:linear-gradient(135deg, #F59E0B, #EC4899);" data-i18n="meongnyang.cta1">🐾 멍냥로그 사용해보기</a>
-          <a class="btn" href="https://meongnyang-1047636559780.asia-northeast3.run.app/guide" target="_blank" data-i18n="meongnyang.cta2">📖 사용 가이드</a>
-        </div>
-      </div>
-      <div class="hero-card reveal reveal-delay-1">
-        <div style="font-weight:900; font-size:17px; margin-bottom:12px;" data-i18n="meongnyang.card2.title">기술 구성</div>
-        <div class="meta" style="margin-bottom:16px">
-          <span class="badge">Next.js 15</span>
-          <span class="badge">Gemini 2.5 Vision</span>
-          <span class="badge">Cloud Run</span>
-          <span class="badge">IndexedDB</span>
-        </div>
-        <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
-          <p style="margin-bottom:8px;" data-i18n="meongnyang.card2.feature1">✅ Gemini 2.5 Flash Vision으로 사진 분석</p>
-          <p style="margin-bottom:8px;" data-i18n="meongnyang.card2.feature2">✅ 카와이 스타일 AI 일러스트레이션</p>
-          <p style="margin-bottom:8px;" data-i18n="meongnyang.card2.feature3">✅ IndexedDB 로컬 저장 (서버 전송 없음)</p>
-          <p style="margin-bottom:8px;" data-i18n="meongnyang.card2.feature4">✅ PWA 지원 — 홈 화면에 추가 가능</p>
-          <p data-i18n="meongnyang.card2.feature5">✅ 회원가입 없이 무료 사용</p>
-        </div>
-        <div class="tagline">
-          <div>
-            <div style="font-weight:800; font-size:14px" data-i18n="meongnyang.card2.slogan.title">슬로건</div>
-            <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="meongnyang.card2.slogan.desc">사진 한 장이면, AI가 일기를 써줘요 🐾</div>
+      <!-- 영수증AI -->
+      <a href="https://receipt.lightonpluslab.com" target="_blank" class="hero-card reveal" id="receipt-ai"
+        style="text-decoration:none; cursor:pointer; transition:transform .2s, box-shadow .2s; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0; background:linear-gradient(135deg, rgba(5,150,105,.15), rgba(13,148,136,.08)); border-radius:var(--radius); pointer-events:none;"></div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div style="font-size:32px;">🧾</div>
+            <span class="badge" style="background:linear-gradient(135deg,#059669,#0d9488); border:none;">Live</span>
           </div>
-          <code>meongnyang</code>
+          <div style="font-weight:900; font-size:18px; margin-bottom:6px;" data-i18n="grid.receipt.title">영수증AI</div>
+          <p style="color:var(--muted); font-size:14px; line-height:1.7; margin-bottom:12px;" data-i18n="grid.receipt.desc">사진 한 장으로 경비 자동 관리. AI OCR + 9개 카테고리 분류 + 월별 리포트.</p>
+          <div class="meta"><span class="badge">GPT-4o Vision</span><span class="badge">Supabase</span><span class="badge">Vercel</span></div>
         </div>
-      </div>
-    </div>
-  </section>
+      </a>
 
-  <section id="noddak">
-    <div class="section-label reveal" data-i18n="noddak.label">AI 법률 도우미</div>
-    <h2 class="section-title reveal" data-i18n="noddak.title">노딱AI — 주차 딱지 이의신청 자동 작성</h2>
-    <p class="section-desc reveal" data-i18n="noddak.desc">주정차 위반 딱지 사진을 찍으면 AI가 도로교통법을 분석하고 이의신청서를 자동으로 작성합니다.</p>
-    <div class="hero-grid">
-      <div class="hero-card reveal">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
-          <div style="font-weight:900; font-size:17px;" data-i18n="noddak.card1.title">🚗 노딱AI</div>
-          <span class="badge" style="background:linear-gradient(135deg, #dc2626, #ef4444); border:none;" data-i18n="noddak.badge">Live</span>
-        </div>
-        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;" data-i18n="noddak.card1.desc">
-          딱지 사진을 찍으면 AI가 위반 내용을 자동 인식. 도로교통법·질서위반행위규제법 근거로 이의신청서를 즉시 생성합니다.
-        </p>
-        <div class="kpi" role="list">
-          <div class="box"><b data-i18n="noddak.card1.kpi1.title">📸 사진 분석</b><span data-i18n="noddak.card1.kpi1.desc">딱지 촬영 → 자동 인식</span></div>
-          <div class="box"><b data-i18n="noddak.card1.kpi2.title">⚖️ 법률 근거</b><span data-i18n="noddak.card1.kpi2.desc">도로교통법 원문 인용</span></div>
-          <div class="box"><b data-i18n="noddak.card1.kpi3.title">📝 신청서 생성</b><span data-i18n="noddak.card1.kpi3.desc">이의신청서 자동 작성</span></div>
-          <div class="box"><b data-i18n="noddak.card1.kpi4.title">🆓 무료</b><span data-i18n="noddak.card1.kpi4.desc">회원가입 없이 바로 사용</span></div>
-        </div>
-        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn primary" href="https://noddak-1047636559780.asia-northeast3.run.app" target="_blank" style="background:linear-gradient(135deg, #dc2626, #ef4444);" data-i18n="noddak.cta1">🚗 노딱AI 사용해보기</a>
-          <a class="btn" href="https://noddak-1047636559780.asia-northeast3.run.app/guide" target="_blank" data-i18n="noddak.cta2">📖 사용 가이드</a>
-        </div>
-      </div>
-      <div class="hero-card reveal reveal-delay-1">
-        <div style="font-weight:900; font-size:17px; margin-bottom:12px;" data-i18n="noddak.card2.title">기술 구성</div>
-        <div class="meta" style="margin-bottom:16px">
-          <span class="badge">Next.js</span>
-          <span class="badge">Gemini 2.5</span>
-          <span class="badge">Cloud Run</span>
-        </div>
-        <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
-          <p style="margin-bottom:8px;" data-i18n="noddak.card2.feature1">✅ Gemini 2.5 Flash Vision 딱지 자동 인식</p>
-          <p style="margin-bottom:8px;" data-i18n="noddak.card2.feature2">✅ 도로교통법 제32~35조, 제142조, 제160조 원문 내장</p>
-          <p style="margin-bottom:8px;" data-i18n="noddak.card2.feature3">✅ 질서위반행위규제법 기반 이의신청서 생성</p>
-          <p style="margin-bottom:8px;" data-i18n="noddak.card2.feature4">✅ Google Cloud Run 서울 리전 배포</p>
-          <p data-i18n="noddak.card2.feature5">✅ 회원가입 없이 무료 사용</p>
-        </div>
-        <div class="tagline">
-          <div>
-            <div style="font-weight:800; font-size:14px" data-i18n="noddak.card2.slogan.title">슬로건</div>
-            <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="noddak.card2.slogan.desc">딱지? AI가 대신 싸워줍니다.</div>
+      <!-- 멍냥로그 -->
+      <a href="https://meongnyang-1047636559780.asia-northeast3.run.app" target="_blank" class="hero-card reveal" id="meongnyang"
+        style="text-decoration:none; cursor:pointer; transition:transform .2s, box-shadow .2s; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0; background:linear-gradient(135deg, rgba(245,158,11,.15), rgba(236,72,153,.08)); border-radius:var(--radius); pointer-events:none;"></div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div style="font-size:32px;">🐾</div>
+            <span class="badge" style="background:linear-gradient(135deg,#F59E0B,#EC4899); border:none;">Live</span>
           </div>
-          <code>noddak</code>
+          <div style="font-weight:900; font-size:18px; margin-bottom:6px;" data-i18n="grid.meongnyang.title">멍냥로그</div>
+          <p style="color:var(--muted); font-size:14px; line-height:1.7; margin-bottom:12px;" data-i18n="grid.meongnyang.desc">반려동물 사진 → AI가 귀여운 1인칭 일기를 써줍니다. 감정 태그 + 타임라인.</p>
+          <div class="meta"><span class="badge">Gemini Vision</span><span class="badge">IndexedDB</span><span class="badge">Cloud Run</span></div>
         </div>
-      </div>
-    </div>
-  </section>
+      </a>
 
-  <!-- PRODUCT: BIBLE BUDDY -->
-  <section id="bible-buddy">
-    <div class="section-label reveal" data-i18n="biblebuddy.label">어린이 성경</div>
-    <h2 class="section-title reveal" data-i18n="biblebuddy.title">성경친구 — 어린이를 위한 인터랙티브 성경 학습</h2>
-    <p class="section-desc reveal" data-i18n="biblebuddy.desc">재미있는 퀴즈, 컬러링, AI 대화로 아이들이 성경 이야기를 자연스럽게 배울 수 있는 앱입니다.</p>
-    <div class="hero-grid">
-      <div class="hero-card reveal">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
-          <div style="font-weight:900; font-size:17px;" data-i18n="biblebuddy.card1.title">📖 성경친구</div>
-          <span class="badge" style="background:linear-gradient(135deg, #f59e0b, #ec4899); border:none;" data-i18n="biblebuddy.badge">Live</span>
-        </div>
-        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;" data-i18n="biblebuddy.card1.desc">
-          12개 성경 이야기, 60개 이상의 퀴즈, 30개 암송 구절, 컬러링, AI 캐릭터 대화 — 아이들의 눈높이에 맞춘 성경 학습 앱.
-        </p>
-        <div class="kpi" role="list">
-          <div class="box"><b data-i18n="biblebuddy.card1.kpi1.title">📚 12개 이야기</b><span data-i18n="biblebuddy.card1.kpi1.desc">성경 핵심 스토리</span></div>
-          <div class="box"><b data-i18n="biblebuddy.card1.kpi2.title">🧩 60+ 퀴즈</b><span data-i18n="biblebuddy.card1.kpi2.desc">O/X, 선택, 빈칸채우기</span></div>
-          <div class="box"><b data-i18n="biblebuddy.card1.kpi3.title">🎨 컬러링</b><span data-i18n="biblebuddy.card1.kpi3.desc">성경 장면 색칠하기</span></div>
-          <div class="box"><b data-i18n="biblebuddy.card1.kpi4.title">💬 AI 대화</b><span data-i18n="biblebuddy.card1.kpi4.desc">성경 캐릭터와 대화</span></div>
-        </div>
-        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn primary" href="https://bible-buddy-1047636559780.asia-northeast3.run.app" target="_blank" style="background:linear-gradient(135deg, #f59e0b, #ec4899);" data-i18n="biblebuddy.cta1">📖 성경친구 시작하기</a>
-        </div>
-      </div>
-      <div class="hero-card reveal reveal-delay-1">
-        <div style="font-weight:900; font-size:17px; margin-bottom:12px;" data-i18n="biblebuddy.card2.title">기술 구성</div>
-        <div class="meta" style="margin-bottom:16px">
-          <span class="badge">Next.js</span>
-          <span class="badge">Gemini 2.5</span>
-          <span class="badge">IndexedDB</span>
-          <span class="badge">Cloud Run</span>
-        </div>
-        <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
-          <p style="margin-bottom:8px;" data-i18n="biblebuddy.card2.feature1">✅ 게이미피케이션 — 배지, 포인트, 진행도</p>
-          <p style="margin-bottom:8px;" data-i18n="biblebuddy.card2.feature2">✅ Gemini AI 캐릭터 대화</p>
-          <p style="margin-bottom:8px;" data-i18n="biblebuddy.card2.feature3">✅ 터치 중심 어린이 UX (56px+ 터치타겟)</p>
-          <p style="margin-bottom:8px;" data-i18n="biblebuddy.card2.feature4">✅ 사운드 이펙트 (정답/오답/완료)</p>
-          <p data-i18n="biblebuddy.card2.feature5">✅ 오프라인 지원 — IndexedDB 저장</p>
-        </div>
-        <div class="tagline">
-          <div>
-            <div style="font-weight:800; font-size:14px" data-i18n="biblebuddy.card2.slogan.title">슬로건</div>
-            <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="biblebuddy.card2.slogan.desc">하나님의 이야기를, 놀이처럼.</div>
+      <!-- 노딱AI -->
+      <a href="https://noddak-1047636559780.asia-northeast3.run.app" target="_blank" class="hero-card reveal" id="noddak"
+        style="text-decoration:none; cursor:pointer; transition:transform .2s, box-shadow .2s; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0; background:linear-gradient(135deg, rgba(220,38,38,.15), rgba(239,68,68,.08)); border-radius:var(--radius); pointer-events:none;"></div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div style="font-size:32px;">🚗</div>
+            <span class="badge" style="background:linear-gradient(135deg,#dc2626,#ef4444); border:none;">Live</span>
           </div>
-          <code>bible-buddy</code>
+          <div style="font-weight:900; font-size:18px; margin-bottom:6px;" data-i18n="grid.noddak.title">노딱AI</div>
+          <p style="color:var(--muted); font-size:14px; line-height:1.7; margin-bottom:12px;" data-i18n="grid.noddak.desc">주차 딱지 사진 → 도로교통법 분석 → 이의신청서 자동 작성. 무료.</p>
+          <div class="meta"><span class="badge">Gemini 2.5</span><span class="badge">법률 DB</span><span class="badge">Cloud Run</span></div>
         </div>
-      </div>
-    </div>
-  </section>
+      </a>
 
-  <!-- PRODUCT: BIBLE SEARCH -->
-  <section id="bible-search">
-    <div class="section-label reveal" data-i18n="biblesearch.label">AI 성경 검색</div>
-    <h2 class="section-title reveal" data-i18n="biblesearch.title">말씀찾기 — 마음을 말하면 성경 구절을 찾아드려요</h2>
-    <p class="section-desc reveal" data-i18n="biblesearch.desc">음성이나 텍스트로 마음을 표현하면 AI가 꼭 맞는 성경 구절을 찾아줍니다. 개역개정 66권 31,088절 전문 내장.</p>
-    <div class="hero-grid">
-      <div class="hero-card reveal">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px">
-          <div style="font-weight:900; font-size:17px;" data-i18n="biblesearch.card1.title">✝️ 말씀찾기</div>
-          <span class="badge" style="background:linear-gradient(135deg, #7C3AED, #A78BFA); border:none;" data-i18n="biblesearch.badge">Live</span>
-        </div>
-        <p style="color:var(--muted); line-height:1.75; margin-bottom:16px;" data-i18n="biblesearch.card1.desc">
-          "외롭고 힘들어요"라고 말하면 AI가 위로의 말씀을 찾아줍니다. 직접 구절 검색, 음성 입력, 성경 읽기, 테마별 구절까지.
-        </p>
-        <div class="kpi" role="list">
-          <div class="box"><b data-i18n="biblesearch.card1.kpi1.title">🎤 음성 검색</b><span data-i18n="biblesearch.card1.kpi1.desc">말로 구절 찾기</span></div>
-          <div class="box"><b data-i18n="biblesearch.card1.kpi2.title">📖 31,088절</b><span data-i18n="biblesearch.card1.kpi2.desc">개역개정 전문 내장</span></div>
-          <div class="box"><b data-i18n="biblesearch.card1.kpi3.title">💜 감정 검색</b><span data-i18n="biblesearch.card1.kpi3.desc">AI가 마음에 맞는 구절 추천</span></div>
-          <div class="box"><b data-i18n="biblesearch.card1.kpi4.title">🔊 TTS 읽기</b><span data-i18n="biblesearch.card1.kpi4.desc">구절 음성 듣기</span></div>
-        </div>
-        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn primary" href="https://bible-search-1047636559780.asia-northeast3.run.app" target="_blank" style="background:linear-gradient(135deg, #7C3AED, #A78BFA);" data-i18n="biblesearch.cta1">✝️ 말씀찾기 사용해보기</a>
-        </div>
-      </div>
-      <div class="hero-card reveal reveal-delay-1">
-        <div style="font-weight:900; font-size:17px; margin-bottom:12px;" data-i18n="biblesearch.card2.title">기술 구성</div>
-        <div class="meta" style="margin-bottom:16px">
-          <span class="badge">Next.js 15</span>
-          <span class="badge">Gemini 2.5</span>
-          <span class="badge">Motion</span>
-          <span class="badge">Cloud Run</span>
-        </div>
-        <div style="color:var(--muted); line-height:1.75; font-size:14px; margin-bottom:16px;">
-          <p style="margin-bottom:8px;" data-i18n="biblesearch.card2.feature1">✅ Gemini 2.5 Flash 감정 분석 → 구절 매칭</p>
-          <p style="margin-bottom:8px;" data-i18n="biblesearch.card2.feature2">✅ 개역개정 66권 전체 DB (4.4MB JSON)</p>
-          <p style="margin-bottom:8px;" data-i18n="biblesearch.card2.feature3">✅ Web Speech API 음성 인식/합성</p>
-          <p style="margin-bottom:8px;" data-i18n="biblesearch.card2.feature4">✅ Glass morphism + 우주 테마 UI</p>
-          <p data-i18n="biblesearch.card2.feature5">✅ 10개 테마 × 6구절 + 오늘의 말씀</p>
-        </div>
-        <div class="tagline">
-          <div>
-            <div style="font-weight:800; font-size:14px" data-i18n="biblesearch.card2.slogan.title">슬로건</div>
-            <div style="color:var(--muted); margin-top:4px; font-size:13px" data-i18n="biblesearch.card2.slogan.desc">마음을 말하면, 말씀이 찾아옵니다.</div>
+      <!-- 성경친구 -->
+      <a href="https://bible-buddy-1047636559780.asia-northeast3.run.app" target="_blank" class="hero-card reveal" id="bible-buddy"
+        style="text-decoration:none; cursor:pointer; transition:transform .2s, box-shadow .2s; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0; background:linear-gradient(135deg, rgba(245,158,11,.15), rgba(236,72,153,.08)); border-radius:var(--radius); pointer-events:none;"></div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div style="font-size:32px;">📖</div>
+            <span class="badge" style="background:linear-gradient(135deg,#f59e0b,#ec4899); border:none;">Live</span>
           </div>
-          <code>bible-search</code>
+          <div style="font-weight:900; font-size:18px; margin-bottom:6px;" data-i18n="grid.biblebuddy.title">성경친구</div>
+          <p style="color:var(--muted); font-size:14px; line-height:1.7; margin-bottom:12px;" data-i18n="grid.biblebuddy.desc">어린이 성경 학습 — 12개 이야기, 60+ 퀴즈, 컬러링, AI 캐릭터 대화.</p>
+          <div class="meta"><span class="badge">Gemini AI</span><span class="badge">IndexedDB</span><span class="badge">Cloud Run</span></div>
         </div>
-      </div>
+      </a>
+
+      <!-- 말씀찾기 -->
+      <a href="https://bible-search-1047636559780.asia-northeast3.run.app" target="_blank" class="hero-card reveal" id="bible-search"
+        style="text-decoration:none; cursor:pointer; transition:transform .2s, box-shadow .2s; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0; background:linear-gradient(135deg, rgba(124,58,237,.15), rgba(167,139,250,.08)); border-radius:var(--radius); pointer-events:none;"></div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div style="font-size:32px;">✝️</div>
+            <span class="badge" style="background:linear-gradient(135deg,#7C3AED,#A78BFA); border:none;">Live</span>
+          </div>
+          <div style="font-weight:900; font-size:18px; margin-bottom:6px;" data-i18n="grid.biblesearch.title">말씀찾기</div>
+          <p style="color:var(--muted); font-size:14px; line-height:1.7; margin-bottom:12px;" data-i18n="grid.biblesearch.desc">마음을 말하면 AI가 성경 구절을 찾아줍니다. 음성 검색 + 31,088절 전문.</p>
+          <div class="meta"><span class="badge">Gemini 2.5</span><span class="badge">Web Speech</span><span class="badge">Cloud Run</span></div>
+        </div>
+      </a>
+
     </div>
   </section>
 
@@ -1315,7 +1142,23 @@ const translations = {
     'noddak.card2.slogan.title': '슬로건',
     'noddak.card2.slogan.desc': '딱지? AI가 대신 싸워줍니다.',
 
-    // Bible Buddy
+    // Products grid
+    'nav.products': '앱',
+    'products.label': '우리가 만든 앱',
+    'products.title': '모두 실제 운영 중인 AI 앱입니다',
+    'products.desc': '각 앱을 클릭하면 바로 사용할 수 있습니다.',
+    'grid.receipt.title': '영수증AI',
+    'grid.receipt.desc': '사진 한 장으로 경비 자동 관리. AI OCR + 9개 카테고리 분류 + 월별 리포트.',
+    'grid.meongnyang.title': '멍냥로그',
+    'grid.meongnyang.desc': '반려동물 사진 → AI가 귀여운 1인칭 일기를 써줍니다. 감정 태그 + 타임라인.',
+    'grid.noddak.title': '노딱AI',
+    'grid.noddak.desc': '주차 딱지 사진 → 도로교통법 분석 → 이의신청서 자동 작성. 무료.',
+    'grid.biblebuddy.title': '성경친구',
+    'grid.biblebuddy.desc': '어린이 성경 학습 — 12개 이야기, 60+ 퀴즈, 컬러링, AI 캐릭터 대화.',
+    'grid.biblesearch.title': '말씀찾기',
+    'grid.biblesearch.desc': '마음을 말하면 AI가 성경 구절을 찾아줍니다. 음성 검색 + 31,088절 전문.',
+
+    // Bible Buddy (kept for reference)
     'nav.bible-buddy': '성경친구',
     'biblebuddy.label': '어린이 성경',
     'biblebuddy.title': '성경친구 — 어린이를 위한 인터랙티브 성경 학습',
@@ -1580,7 +1423,23 @@ const translations = {
     'noddak.card2.slogan.title': 'Slogan',
     'noddak.card2.slogan.desc': 'Got a ticket? AI fights for you.',
 
-    // Bible Buddy
+    // Products grid
+    'nav.products': 'Apps',
+    'products.label': 'Our Apps',
+    'products.title': 'All live AI apps, built and running',
+    'products.desc': 'Click any app to try it now.',
+    'grid.receipt.title': 'ReceiptAI',
+    'grid.receipt.desc': 'Snap a receipt → AI extracts everything. 9 categories, monthly reports, tax deductions.',
+    'grid.meongnyang.title': 'MeongNyang Log',
+    'grid.meongnyang.desc': 'Pet photo → AI writes a cute first-person diary. Emotion tags + timeline.',
+    'grid.noddak.title': 'NoddakAI',
+    'grid.noddak.desc': 'Parking ticket photo → traffic law analysis → auto-generate appeal. Free.',
+    'grid.biblebuddy.title': 'Bible Buddy',
+    'grid.biblebuddy.desc': 'Kids Bible learning — 12 stories, 60+ quizzes, coloring, AI character chat.',
+    'grid.biblesearch.title': 'Bible Search',
+    'grid.biblesearch.desc': 'Share your heart, AI finds the right Bible verse. Voice search + 31,088 verses.',
+
+    // Bible Buddy (kept for reference)
     'nav.bible-buddy': 'Bible Buddy',
     'biblebuddy.label': 'Kids Bible',
     'biblebuddy.title': 'Bible Buddy — Interactive Bible Learning for Kids',
@@ -1846,7 +1705,20 @@ const translations = {
     'noddak.card2.slogan.title': 'スローガン',
     'noddak.card2.slogan.desc': '切符？AIが代わりに戦います。',
 
-    // Bible Buddy
+    'nav.products': 'アプリ',
+    'products.label': '私たちが作ったアプリ',
+    'products.title': 'すべて実際に運営中のAIアプリです',
+    'products.desc': 'アプリをクリックすると使えます。',
+    'grid.receipt.title': 'レシートAI',
+    'grid.receipt.desc': 'レシート撮影 → AI自動認識。9カテゴリ分類 + 月次レポート。',
+    'grid.meongnyang.title': 'ワンニャンログ',
+    'grid.meongnyang.desc': 'ペット写真 → AIが一人称日記を作成。感情タグ + タイムライン。',
+    'grid.noddak.title': 'ノッダクAI',
+    'grid.noddak.desc': '駐車違反切符 → 交通法分析 → 異議申立書自動作成。無料。',
+    'grid.biblebuddy.title': '聖書バディ',
+    'grid.biblebuddy.desc': '子供向け聖書学習 — 12の物語、60+クイズ、ぬりえ、AI対話。',
+    'grid.biblesearch.title': '御言葉検索',
+    'grid.biblesearch.desc': '心を伝えるとAIが聖書の言葉を見つけます。音声検索 + 31,088節。',
     'nav.bible-buddy': '聖書バディ',
     'biblebuddy.label': '子供向け聖書',
     'biblebuddy.title': '聖書バディ — 子供向けインタラクティブ聖書学習',
@@ -2112,7 +1984,20 @@ const translations = {
     'noddak.card2.slogan.title': '口号',
     'noddak.card2.slogan.desc': '罚单？AI替你抗争。',
 
-    // Bible Buddy
+    'nav.products': '应用',
+    'products.label': '我们构建的应用',
+    'products.title': '全部为实际运营中的AI应用',
+    'products.desc': '点击任意应用即可使用。',
+    'grid.receipt.title': '收据AI',
+    'grid.receipt.desc': '拍照收据 → AI自动识别。9大分类 + 月度报告。',
+    'grid.meongnyang.title': '汪喵日记',
+    'grid.meongnyang.desc': '宠物照片 → AI生成可爱第一人称日记。情感标签 + 时间线。',
+    'grid.noddak.title': '罚单AI',
+    'grid.noddak.desc': '停车罚单照片 → 交通法分析 → 自动生成申诉书。免费。',
+    'grid.biblebuddy.title': '圣经伙伴',
+    'grid.biblebuddy.desc': '儿童圣经学习 — 12个故事、60+测验、涂色、AI角色对话。',
+    'grid.biblesearch.title': '经文搜索',
+    'grid.biblesearch.desc': '说出心情，AI找到圣经经文。语音搜索 + 31,088节。',
     'nav.bible-buddy': '圣经伙伴',
     'biblebuddy.label': '儿童圣经',
     'biblebuddy.title': '圣经伙伴 — 儿童互动圣经学习',
