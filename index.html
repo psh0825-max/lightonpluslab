@@ -2555,17 +2555,22 @@ document.getElementById("copyBtn").addEventListener("click", async()=>{
 
 /* Mobile responsive */
 @media (max-width: 480px) {
-  #chatPanel {
-    width: calc(100vw - 40px);
-    height: calc(100vh - 140px);
-    bottom: 80px;
-    right: 20px;
-    left: 20px;
+  #chatWidget {
+    bottom: 16px;
+    right: 16px;
   }
-  
+  #chatPanel {
+    width: calc(100vw - 32px);
+    height: calc(100vh - 120px);
+    bottom: 70px;
+    right: 0;
+    left: 0;
+    margin: 0 16px;
+  }
   #chatBubble {
-    bottom: 20px;
-    right: 20px;
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
   }
 }
 
