@@ -2314,7 +2314,436 @@ document.getElementById("copyBtn").addEventListener("click", async()=>{
   }
 });
 </script>
-<!-- Crisp Live Chat -->
-<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="c6910b75-772b-4cdf-8cb5-1dfff7277e09";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+<!-- AI Chat Widget -->
+<div id="chatWidget">
+  <div id="chatBubble">💬</div>
+  <div id="chatPanel">
+    <div id="chatHeader">
+      <span>💬 LightOn+ AI 도우미</span>
+      <button id="chatClose">✕</button>
+    </div>
+    <div id="chatMessages">
+      <div class="message ai">
+        <div class="bubble">안녕하세요! 👋 LightOn Plus Lab AI 도우미입니다. 궁금한 점을 물어보세요!</div>
+      </div>
+    </div>
+    <div id="chatTyping" class="typing-indicator">
+      <span></span><span></span><span></span>
+    </div>
+    <div id="chatInput">
+      <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." maxlength="500">
+      <button id="sendButton">📤</button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Chat Widget Styles */
+#chatWidget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  font-family: inherit;
+}
+
+#chatBubble {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--glow1), var(--glow2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(45,125,255,0.3);
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+#chatBubble:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(45,125,255,0.4);
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(45,125,255,0.3); }
+  50% { box-shadow: 0 8px 24px rgba(45,125,255,0.5), 0 0 0 8px rgba(45,125,255,0.1); }
+}
+
+#chatPanel {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  width: 350px;
+  height: 500px;
+  background: rgba(11,18,32,0.95);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#chatHeader {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  color: var(--text);
+}
+
+#chatClose {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+#chatClose:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+}
+
+#chatMessages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  display: flex;
+  max-width: 80%;
+}
+
+.message.user {
+  align-self: flex-end;
+}
+
+.message.ai {
+  align-self: flex-start;
+}
+
+.bubble {
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.message.user .bubble {
+  background: linear-gradient(135deg, var(--glow1), var(--glow2));
+  color: white;
+}
+
+.message.ai .bubble {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.typing-indicator {
+  display: none;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+}
+
+.typing-indicator span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  margin: 0 2px;
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#chatInput {
+  padding: 16px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 8px;
+}
+
+#messageInput {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+#messageInput:focus {
+  border-color: var(--glow1);
+  box-shadow: 0 0 0 2px rgba(45,125,255,0.2);
+}
+
+#messageInput::placeholder {
+  color: var(--muted);
+}
+
+#sendButton {
+  padding: 12px 16px;
+  background: linear-gradient(135deg, var(--glow1), var(--glow2));
+  border: none;
+  border-radius: 24px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+  min-width: 48px;
+}
+
+#sendButton:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+#sendButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  #chatPanel {
+    width: calc(100vw - 40px);
+    height: calc(100vh - 140px);
+    bottom: 80px;
+    right: 20px;
+    left: 20px;
+  }
+  
+  #chatBubble {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* Scrollbar for chat messages */
+#chatMessages::-webkit-scrollbar {
+  width: 4px;
+}
+
+#chatMessages::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+}
+
+#chatMessages::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 2px;
+}
+</style>
+
+<script>
+// Chat Widget Functionality
+class ChatWidget {
+  constructor() {
+    this.isOpen = false;
+    this.messages = [];
+    this.messageCount = 0;
+    this.maxMessages = 50;
+    this.apiUrl = 'https://momoi.lightonpluslab.com/api/chat-support';
+    
+    this.init();
+  }
+
+  init() {
+    this.chatBubble = document.getElementById('chatBubble');
+    this.chatPanel = document.getElementById('chatPanel');
+    this.chatClose = document.getElementById('chatClose');
+    this.messageInput = document.getElementById('messageInput');
+    this.sendButton = document.getElementById('sendButton');
+    this.messagesContainer = document.getElementById('chatMessages');
+    this.typingIndicator = document.getElementById('chatTyping');
+    
+    this.setupEventListeners();
+  }
+
+  setupEventListeners() {
+    this.chatBubble.addEventListener('click', () => this.toggleChat());
+    this.chatClose.addEventListener('click', () => this.closeChat());
+    this.sendButton.addEventListener('click', () => this.sendMessage());
+    
+    this.messageInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        this.sendMessage();
+      }
+    });
+
+    this.messageInput.addEventListener('input', (e) => {
+      this.sendButton.disabled = !e.target.value.trim();
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (this.isOpen && !document.getElementById('chatWidget').contains(e.target)) {
+        this.closeChat();
+      }
+    });
+  }
+
+  toggleChat() {
+    if (this.isOpen) {
+      this.closeChat();
+    } else {
+      this.openChat();
+    }
+  }
+
+  openChat() {
+    this.isOpen = true;
+    this.chatPanel.style.display = 'flex';
+    this.chatBubble.style.transform = 'scale(0.9)';
+    this.messageInput.focus();
+    this.scrollToBottom();
+  }
+
+  closeChat() {
+    this.isOpen = false;
+    this.chatPanel.style.display = 'none';
+    this.chatBubble.style.transform = 'scale(1)';
+  }
+
+  async sendMessage() {
+    const text = this.messageInput.value.trim();
+    if (!text || this.messageCount >= this.maxMessages) return;
+
+    // Add user message
+    this.addMessage(text, 'user');
+    this.messageInput.value = '';
+    this.sendButton.disabled = true;
+    this.messageCount++;
+
+    // Show typing indicator
+    this.showTyping();
+    this.scrollToBottom();
+
+    try {
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: text,
+          history: this.messages.slice(-10) // Last 10 messages for context
+        })
+      });
+
+      const data = await response.json();
+      
+      this.hideTyping();
+
+      if (response.ok && data.reply) {
+        this.addMessage(data.reply, 'ai');
+      } else {
+        throw new Error(data.error || '응답을 받을 수 없습니다.');
+      }
+    } catch (error) {
+      console.error('Chat error:', error);
+      this.hideTyping();
+      this.addMessage('죄송합니다. 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 'ai');
+    }
+
+    this.scrollToBottom();
+  }
+
+  addMessage(content, role) {
+    // Store in history
+    this.messages.push({ role: role === 'user' ? 'user' : 'assistant', content });
+    
+    // Create message element
+    const messageEl = document.createElement('div');
+    messageEl.className = `message ${role}`;
+    messageEl.innerHTML = `<div class="bubble">${this.escapeHtml(content)}</div>`;
+    
+    this.messagesContainer.appendChild(messageEl);
+    
+    // Limit message display
+    const messageElements = this.messagesContainer.querySelectorAll('.message');
+    if (messageElements.length > 20) {
+      messageElements[0].remove();
+    }
+  }
+
+  showTyping() {
+    this.typingIndicator.style.display = 'block';
+  }
+
+  hideTyping() {
+    this.typingIndicator.style.display = 'none';
+  }
+
+  scrollToBottom() {
+    setTimeout(() => {
+      this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+    }, 100);
+  }
+
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+}
+
+// Initialize chat widget when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  new ChatWidget();
+});
+</script>
+
 </body>
 </html>
