@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<title>Products — LightOn Plus Lab</title>
+<meta name="description" content="LightOn Plus Lab이 만든 AI 앱 모음 — 무료, 유료, 출시 예정 앱을 한눈에 확인하세요." />
+<meta property="og:title" content="Products — LightOn Plus Lab" />
+<meta property="og:description" content="AI 기능이 들어간 앱을 만드는 개인 개발 스튜디오, LightOn Plus Lab" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="logo-new.png" />
+<style>
+:root{
+  --bg:#050710; --card:#0B1220; --text:#EAF0FF; --muted:#8B9BC0;
+  --line:rgba(255,255,255,.08);
+  --glow1:#2D7DFF; --glow2:#7C4DFF; --glow3:#00E5FF;
+  --shadow: 0 24px 80px rgba(0,0,0,.5);
+  --radius: 22px;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit; text-decoration:none}
+.container{max-width:1140px; margin:0 auto; padding:0 24px}
+
+/* ── ANIMATED BG ── */
+.bg-glow{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(900px 600px at 15% 10%, rgba(45,125,255,.14), transparent 60%),
+    radial-gradient(900px 600px at 85% 20%, rgba(124,77,255,.12), transparent 60%),
+    radial-gradient(900px 600px at 50% 90%, rgba(0,229,255,.08), transparent 60%);
+}
+.bg-grid{
+  position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.035;
+  background-image:
+    linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── PARTICLES ── */
+.particles{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
+.particle{
+  position:absolute; border-radius:50%;
+  background: radial-gradient(circle, rgba(45,125,255,.6), transparent 70%);
+  animation: floatParticle linear infinite;
+  opacity:0;
+}
+@keyframes floatParticle{
+  0%{transform:translateY(100vh) scale(0); opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{transform:translateY(-100px) scale(1); opacity:0}
+}
+
+/* ── NAV ── */
+.nav{
+  position:sticky; top:0; z-index:100;
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(5,7,16,.65);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  display:flex; align-items:center; justify-content:space-between; height:68px;
+}
+.brand{
+  display:flex; align-items:center; gap:12px;
+  font-weight:700; letter-spacing:.2px; white-space:nowrap;
+}
+.brand img{
+  width:140px; height:auto; border-radius:10px; object-fit:contain;
+  background:#fff; padding:4px 8px;
+  filter: drop-shadow(0 4px 12px rgba(45,125,255,.3));
+}
+.brand small{display:block; font-weight:600; color:var(--muted); letter-spacing:0; margin-top:2px; font-size:12px}
+.nav-links{display:flex; gap:2px; align-items:center; color:var(--muted); font-weight:600; font-size:13px; white-space:nowrap}
+.nav-links a{padding:6px 10px; border-radius:10px; transition: all .15s}
+.nav-links a:hover, .nav-links a.active{background:rgba(255,255,255,.06); color:var(--text)}
+.nav-links a.active{color:var(--glow1)}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:13px 20px; border-radius:14px; white-space:nowrap;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color:var(--text); font-weight:700; font-size:14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  transition: all .2s ease; cursor:pointer;
+  position:relative; overflow:hidden;
+}
+.btn::before{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(255,255,255,.08), transparent);
+  opacity:0; transition: opacity .2s;
+}
+.btn:hover{transform: translateY(-2px); border-color:rgba(255,255,255,.2)}
+.btn:hover::before{opacity:1}
+.btn.primary{
+  border:none;
+  background: linear-gradient(135deg, var(--glow1), var(--glow2));
+  box-shadow: 0 16px 48px rgba(45,125,255,.25), inset 0 1px 0 rgba(255,255,255,.15);
+}
+.btn.primary:hover{filter:brightness(1.1); box-shadow: 0 20px 60px rgba(45,125,255,.35)}
+.btn.sm{padding:9px 16px; font-size:13px; border-radius:12px}
+
+/* ── HAMBURGER ── */
+.hamburger{
+  display:none; flex-direction:column; gap:5px; cursor:pointer;
+  background:none; border:none; padding:8px; border-radius:10px;
+  transition: background .15s;
+}
+.hamburger:hover{background:rgba(255,255,255,.06)}
+.hamburger span{
+  display:block; width:22px; height:2px;
+  background:var(--text); border-radius:2px;
+  transition: all .25s ease;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0; transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.mobile-menu{
+  display:none; position:fixed; top:68px; left:0; right:0; z-index:99;
+  background:rgba(5,7,16,.96); backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+  padding:16px 24px 24px; flex-direction:column; gap:4px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  padding:12px 14px; border-radius:12px; font-weight:600; font-size:15px;
+  transition: background .15s; color:var(--muted);
+}
+.mobile-menu a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+
+/* ── PAGE HERO ── */
+.page-hero{
+  padding:70px 0 40px;
+  position:relative; z-index:1; text-align:center;
+}
+.page-hero .section-label{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--glow1); font-weight:800; font-size:13px;
+  text-transform:uppercase; letter-spacing:1.5px;
+  margin-bottom:16px;
+}
+.page-hero .section-label::before{
+  content:""; width:24px; height:2px;
+  background:linear-gradient(90deg, var(--glow1), var(--glow2));
+  border-radius:2px;
+}
+.page-hero h1{
+  font-size:clamp(32px, 5vw, 56px); line-height:1.1;
+  letter-spacing:-1px; margin-bottom:16px;
+}
+.gradient{
+  background: linear-gradient(135deg, var(--glow1), var(--glow3), var(--glow2));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.page-hero p{
+  color:var(--muted); font-size:clamp(15px, 1.4vw, 18px);
+  line-height:1.75; max-width:55ch; margin:0 auto;
+}
+
+/* ── SECTIONS ── */
+.section{padding:56px 0; position:relative; z-index:1}
+.section-header{margin-bottom:32px}
+.section-label{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--glow1); font-weight:800; font-size:13px;
+  text-transform:uppercase; letter-spacing:1.5px;
+  margin-bottom:12px;
+}
+.section-label::before{
+  content:""; width:24px; height:2px;
+  background:linear-gradient(90deg, var(--glow1), var(--glow2));
+  border-radius:2px;
+}
+.section-title{font-size:clamp(22px,3vw,30px); margin-bottom:8px; letter-spacing:-.3px}
+.section-desc{color:var(--muted); line-height:1.75; max-width:65ch; font-size:14px}
+
+/* ── APP GRID ── */
+.app-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+/* ── APP CARD ── */
+.app-card{
+  background:rgba(11,18,32,.6);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.25);
+  transition: all .25s ease;
+  position:relative; overflow:hidden;
+  display:flex; flex-direction:column; gap:14px;
+}
+.app-card::after{
+  content:""; position:absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, transparent, var(--glow1), var(--glow2), transparent);
+  opacity:0; transition: opacity .3s;
+}
+.app-card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.18)}
+.app-card:hover::after{opacity:1}
+.app-card-top{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+.app-icon{
+  width:48px; height:48px; border-radius:14px;
+  display:grid; place-items:center; flex-shrink:0;
+  background: linear-gradient(135deg, rgba(45,125,255,.15), rgba(124,77,255,.15));
+  border:1px solid rgba(255,255,255,.08);
+  font-size:22px;
+}
+.app-badge{
+  font-size:11px; font-weight:700;
+  padding:5px 10px; border-radius:999px;
+  white-space:nowrap; flex-shrink:0;
+}
+.badge-free{
+  color:#34D399; border:1px solid rgba(52,211,153,.25);
+  background:rgba(52,211,153,.08);
+}
+.badge-paid{
+  color:#FBBF24; border:1px solid rgba(251,191,36,.25);
+  background:rgba(251,191,36,.08);
+}
+.badge-soon{
+  color:var(--muted); border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+}
+.app-name{font-size:18px; font-weight:800; margin-bottom:2px}
+.app-desc{color:var(--muted); font-size:13px; line-height:1.7; flex:1}
+.app-footer{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-top:auto}
+.app-link{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:9px 16px; border-radius:12px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+  font-weight:700; font-size:13px;
+  transition: all .2s; color:var(--text);
+}
+.app-link:hover{background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.2); transform:translateY(-1px)}
+.app-link.primary-link{
+  border:none;
+  background: linear-gradient(135deg, var(--glow1), var(--glow2));
+  box-shadow: 0 8px 24px rgba(45,125,255,.2);
+}
+.app-link.primary-link:hover{filter:brightness(1.1)}
+
+/* ── COMING SOON CARD ── */
+.app-card.soon{opacity:.7}
+.app-card.soon:hover{opacity:1}
+
+/* ── SONGBIT PRICING ── */
+.songbit-section{
+  background: linear-gradient(135deg, rgba(45,125,255,.08), rgba(124,77,255,.06));
+  border:1px solid rgba(255,255,255,.1);
+  border-radius: calc(var(--radius) + 6px);
+  padding:36px;
+  position:relative; overflow:hidden;
+  margin-top:36px;
+}
+.songbit-section::before{
+  content:""; position:absolute; top:-40%; right:-10%; width:400px; height:400px;
+  background: radial-gradient(circle, rgba(124,77,255,.12), transparent 70%);
+  pointer-events:none;
+}
+.songbit-header{
+  display:flex; align-items:center; gap:16px; margin-bottom:28px; flex-wrap:wrap;
+}
+.songbit-icon{
+  width:56px; height:56px; border-radius:16px;
+  display:grid; place-items:center;
+  background: linear-gradient(135deg, rgba(45,125,255,.2), rgba(124,77,255,.2));
+  border:1px solid rgba(255,255,255,.12);
+  font-size:26px; flex-shrink:0;
+}
+.songbit-meta{}
+.songbit-meta h2{font-size:22px; font-weight:800; margin-bottom:4px}
+.songbit-meta p{color:var(--muted); font-size:13px; line-height:1.6}
+.free-note{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:7px 14px; border-radius:999px;
+  border:1px solid rgba(52,211,153,.2);
+  background:rgba(52,211,153,.06);
+  color:#34D399; font-size:12px; font-weight:700;
+  margin-bottom:24px;
+}
+
+/* ── PRICING GRID ── */
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.price-card{
+  background:rgba(11,18,32,.7);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px 24px;
+  text-align:center;
+  position:relative;
+  transition: all .25s ease;
+}
+.price-card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.18)}
+.price-card.popular{
+  border-color:rgba(45,125,255,.4);
+  background: linear-gradient(160deg, rgba(45,125,255,.08), rgba(11,18,32,.8));
+  box-shadow: 0 0 0 1px rgba(45,125,255,.3), 0 20px 60px rgba(45,125,255,.12);
+}
+.popular-badge{
+  position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+  background: linear-gradient(135deg, var(--glow1), var(--glow2));
+  color:#fff; font-size:11px; font-weight:800;
+  padding:4px 14px; border-radius:999px;
+  letter-spacing:.5px; white-space:nowrap;
+}
+.price-tier{color:var(--muted); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px}
+.price-amount{font-size:32px; font-weight:900; letter-spacing:-1px; margin-bottom:4px}
+.price-amount span{font-size:15px; font-weight:600; color:var(--muted)}
+.price-songs{
+  font-size:13px; color:var(--muted); margin-bottom:4px; line-height:1.6;
+}
+.price-bonus{
+  font-size:12px; font-weight:700;
+  color:#FBBF24; margin-bottom:20px;
+}
+.price-divider{
+  border:none; border-top:1px solid var(--line); margin:16px 0;
+}
+.price-link{
+  display:block; width:100%;
+  padding:11px; border-radius:14px;
+  font-weight:700; font-size:14px;
+  text-align:center;
+  transition: all .2s;
+}
+.price-card:not(.popular) .price-link{
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+}
+.price-card:not(.popular) .price-link:hover{
+  background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.22); transform:translateY(-1px);
+}
+.price-card.popular .price-link{
+  border:none;
+  background: linear-gradient(135deg, var(--glow1), var(--glow2));
+  color:#fff;
+  box-shadow: 0 12px 32px rgba(45,125,255,.25);
+}
+.price-card.popular .price-link:hover{filter:brightness(1.1); transform:translateY(-1px)}
+
+/* ── DIVIDER ── */
+.section-divider{
+  border:none; border-top:1px solid var(--line);
+  position:relative; z-index:1;
+}
+
+/* ── FOOTER ── */
+.footer{
+  padding:28px 0 44px;
+  border-top:1px solid var(--line);
+  color:var(--muted); font-size:13px;
+  position:relative; z-index:1;
+}
+.footer-row{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center}
+.smalllinks{display:flex; gap:16px; flex-wrap:wrap}
+.smalllinks a{transition: color .15s}
+.smalllinks a:hover{color:var(--text)}
+
+/* ── SCROLL ANIMATION ── */
+.reveal{
+  opacity:0; transform:translateY(28px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.visible{opacity:1; transform:translateY(0)}
+.reveal-delay-1{transition-delay:.08s}
+.reveal-delay-2{transition-delay:.16s}
+.reveal-delay-3{transition-delay:.24s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .app-grid{grid-template-columns:1fr 1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .nav-cta-desktop{display:none}
+  .page-hero{padding:50px 0 28px}
+  .songbit-section{padding:24px}
+}
+@media(max-width:600px){
+  .app-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
+<div class="particles" id="particles"></div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="/" aria-label="LightOn Plus Lab 홈">
+      <img src="logo-new.png" alt="LightOn Plus Lab" />
+      <div>LightOn Plus Lab<small>AI Apps &amp; Innovation</small></div>
+    </a>
+    <nav class="nav-links" aria-label="메뉴">
+      <a href="/#services">서비스</a>
+      <a href="/#momoi">Momoi</a>
+      <a href="/products.html" class="active">Products</a>
+      <a href="/#process">프로세스</a>
+      <a href="/#work">프로젝트</a>
+      <a href="/#about">소개</a>
+      <a href="/#contact">문의</a>
+    </nav>
+    <a class="btn primary nav-cta-desktop" href="/#contact">프로젝트 문의</a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
+  <a href="/#services" class="mobile-link">서비스</a>
+  <a href="/#momoi" class="mobile-link">Momoi</a>
+  <a href="/products.html" class="mobile-link">Products</a>
+  <a href="/#process" class="mobile-link">프로세스</a>
+  <a href="/#work" class="mobile-link">프로젝트</a>
+  <a href="/#about" class="mobile-link">소개</a>
+  <a href="/#contact" class="mobile-link">문의</a>
+</nav>
+
+<main class="container">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="section-label">🚀 Our Apps</div>
+    <h1>LightOn Plus Lab <span class="gradient">앱 목록</span></h1>
+    <p>AI가 탑재된 앱을 직접 사용해보세요. 무료로 바로 시작할 수 있는 앱부터 크레딧 기반 유료 앱까지.</p>
+  </div>
+
+  <!-- ─── FREE APPS ─── -->
+  <section class="section" id="free-apps">
+    <div class="section-header reveal">
+      <div class="section-label">🆓 Free Apps</div>
+      <h2 class="section-title">무료 앱</h2>
+      <p class="section-desc">지금 바로 무료로 사용할 수 있는 AI 앱입니다.</p>
+    </div>
+
+    <div class="app-grid">
+
+      <!-- momoi -->
+      <div class="app-card reveal">
+        <div class="app-card-top">
+          <div class="app-icon">🧠</div>
+          <span class="app-badge badge-free">무료</span>
+        </div>
+        <div>
+          <div class="app-name">momoi</div>
+          <div class="app-desc">회의를 녹음하면 AI가 자동으로 정리해드립니다. 할 일, 요약, 핵심 결정사항을 한눈에.</div>
+        </div>
+        <div class="app-footer">
+          <a class="app-link primary-link" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener">
+            앱 열기 →
+          </a>
+          <span style="color:var(--muted); font-size:12px;">AI 업무 관리</span>
+        </div>
+      </div>
+
+      <!-- AI 강의노트 -->
+      <div class="app-card reveal reveal-delay-1">
+        <div class="app-card-top">
+          <div class="app-icon">📚</div>
+          <span class="app-badge badge-free">무료</span>
+        </div>
+        <div>
+          <div class="app-name">AI 강의노트</div>
+          <div class="app-desc">강의를 녹음하면 AI가 요약·챕터·용어사전을 자동으로 생성합니다. 공부 효율을 극대화하세요.</div>
+        </div>
+        <div class="app-footer">
+          <a class="app-link primary-link" href="https://ai-lecture-note-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener">
+            앱 열기 →
+          </a>
+          <span style="color:var(--muted); font-size:12px;">강의 AI 요약</span>
+        </div>
+      </div>
+
+      <!-- 말씀찾기 -->
+      <div class="app-card reveal reveal-delay-2">
+        <div class="app-card-top">
+          <div class="app-icon">✝️</div>
+          <span class="app-badge badge-free">무료</span>
+        </div>
+        <div>
+          <div class="app-name">말씀찾기</div>
+          <div class="app-desc">궁금한 내용을 자연어로 입력하면 AI가 관련 성경 구절을 찾아드립니다.</div>
+        </div>
+        <div class="app-footer">
+          <a class="app-link primary-link" href="https://bible-search-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener">
+            앱 열기 →
+          </a>
+          <span style="color:var(--muted); font-size:12px;">AI 성경 검색</span>
+        </div>
+      </div>
+
+      <!-- 수학친구 -->
+      <div class="app-card reveal">
+        <div class="app-card-top">
+          <div class="app-icon">🔢</div>
+          <span class="app-badge badge-free">무료</span>
+        </div>
+        <div>
+          <div class="app-name">수학친구</div>
+          <div class="app-desc">수학 문제를 사진으로 찍거나 입력하면 AI가 단계별로 풀이 과정을 설명해줍니다.</div>
+        </div>
+        <div class="app-footer">
+          <a class="app-link primary-link" href="https://math-app-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener">
+            앱 열기 →
+          </a>
+          <span style="color:var(--muted); font-size:12px;">AI 수학 풀이</span>
+        </div>
+      </div>
+
+      <!-- 한글이랑놀자 -->
+      <div class="app-card reveal reveal-delay-1">
+        <div class="app-card-top">
+          <div class="app-icon">🌱</div>
+          <span class="app-badge badge-free">무료</span>
+        </div>
+        <div>
+          <div class="app-name">한글이랑놀자</div>
+          <div class="app-desc">아이들이 게임처럼 즐기며 한글을 배울 수 있는 학습 앱입니다.</div>
+        </div>
+        <div class="app-footer">
+          <a class="app-link primary-link" href="https://hangul-app.vercel.app" target="_blank" rel="noopener">
+            앱 열기 →
+          </a>
+          <span style="color:var(--muted); font-size:12px;">아이용 한글 학습</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ─── PAID APPS ─── -->
+  <section class="section" id="paid-apps">
+    <div class="section-header reveal">
+      <div class="section-label">💰 Paid Apps</div>
+      <h2 class="section-title">유료 앱</h2>
+      <p class="section-desc">무료로 체험 후 크레딧을 구매해 더 많이 사용할 수 있는 앱입니다.</p>
+    </div>
+
+    <!-- SongBit -->
+    <div class="songbit-section reveal">
+      <div class="songbit-header">
+        <div class="songbit-icon">🎵</div>
+        <div class="songbit-meta">
+          <h2>SongBit</h2>
+          <p>AI 작곡 스튜디오 — 텍스트 프롬프트로 나만의 음악을 만들어보세요.</p>
+        </div>
+        <a class="btn primary" href="https://songbit-940684465594.asia-northeast3.run.app" target="_blank" rel="noopener" style="margin-left:auto">앱 열기 →</a>
+      </div>
+
+      <div class="free-note">🎁 가입 시 3곡 무료 제공 — 신용카드 없이 바로 시작</div>
+
+      <div class="pricing-grid">
+
+        <!-- Starter -->
+        <div class="price-card reveal">
+          <div class="price-tier">Starter</div>
+          <div class="price-amount">5,000<span>원</span></div>
+          <div class="price-songs">11곡</div>
+          <div class="price-bonus">+1 보너스 곡</div>
+          <hr class="price-divider" />
+          <a class="price-link" href="https://songbit-940684465594.asia-northeast3.run.app" target="_blank" rel="noopener">구매하기</a>
+        </div>
+
+        <!-- Standard (Popular) -->
+        <div class="price-card popular reveal reveal-delay-1">
+          <div class="popular-badge">⭐ 인기</div>
+          <div class="price-tier">Standard</div>
+          <div class="price-amount">10,000<span>원</span></div>
+          <div class="price-songs">23곡</div>
+          <div class="price-bonus">+3 보너스 곡</div>
+          <hr class="price-divider" />
+          <a class="price-link" href="https://songbit-940684465594.asia-northeast3.run.app" target="_blank" rel="noopener">구매하기</a>
+        </div>
+
+        <!-- Premium -->
+        <div class="price-card reveal reveal-delay-2">
+          <div class="price-tier">Premium</div>
+          <div class="price-amount">30,000<span>원</span></div>
+          <div class="price-songs">70곡</div>
+          <div class="price-bonus">+10 보너스 곡</div>
+          <hr class="price-divider" />
+          <a class="price-link" href="https://songbit-940684465594.asia-northeast3.run.app" target="_blank" rel="noopener">구매하기</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ─── COMING SOON ─── -->
+  <section class="section" id="coming-soon">
+    <div class="section-header reveal">
+      <div class="section-label">🔜 Coming Soon</div>
+      <h2 class="section-title">출시 예정</h2>
+      <p class="section-desc">현재 개발 중인 앱들입니다. 출시 알림을 받으시려면 문의해주세요.</p>
+    </div>
+
+    <div class="app-grid">
+
+      <!-- AI 계약분석 -->
+      <div class="app-card soon reveal">
+        <div class="app-card-top">
+          <div class="app-icon">📄</div>
+          <span class="app-badge badge-soon">출시 예정</span>
+        </div>
+        <div>
+          <div class="app-name">AI 계약분석</div>
+          <div class="app-desc">계약서를 업로드하면 AI가 주요 조항, 리스크, 불리한 내용을 자동으로 분석해드립니다.</div>
+        </div>
+        <div class="app-footer">
+          <a class="app-link" href="/#contact">출시 알림 받기</a>
+        </div>
+      </div>
+
+      <!-- 영수증AI -->
+      <div class="app-card soon reveal reveal-delay-1">
+        <div class="app-card-top">
+          <div class="app-icon">🧾</div>
+          <span class="app-badge badge-soon">출시 예정</span>
+        </div>
+        <div>
+          <div class="app-name">영수증AI</div>
+          <div class="app-desc">영수증 사진을 찍으면 AI가 자동으로 항목을 분류하고 정산 보고서를 생성합니다.</div>
+        </div>
+        <div class="app-footer">
+          <a class="app-link" href="/#contact">출시 알림 받기</a>
+        </div>
+      </div>
+
+      <!-- FocusGuard -->
+      <div class="app-card soon reveal reveal-delay-2">
+        <div class="app-card-top">
+          <div class="app-icon">🎯</div>
+          <span class="app-badge badge-soon">출시 예정</span>
+        </div>
+        <div>
+          <div class="app-name">FocusGuard</div>
+          <div class="app-desc">집중력 저하 패턴을 AI가 분석하고 최적의 작업 리듬을 제안해 생산성을 높여드립니다.</div>
+        </div>
+        <div class="app-footer">
+          <a class="app-link" href="/#contact">출시 알림 받기</a>
+        </div>
+      </div>
+
+      <!-- Vibe Studio -->
+      <div class="app-card soon reveal">
+        <div class="app-card-top">
+          <div class="app-icon">✨</div>
+          <span class="app-badge badge-soon">출시 예정</span>
+        </div>
+        <div>
+          <div class="app-name">Vibe Studio</div>
+          <div class="app-desc">AI 프롬프트를 쉽게 작성하고 관리하는 도구. 다양한 AI 모델과 함께 창의적인 작업을 해보세요.</div>
+        </div>
+        <div class="app-footer">
+          <a class="app-link" href="/#contact">출시 알림 받기</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-row">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
+      <div class="smalllinks">
+        <a href="/#services">서비스</a>
+        <a href="/#process">프로세스</a>
+        <a href="/#work">프로젝트</a>
+        <a href="/#about">소개</a>
+        <a href="/#contact">문의</a>
+        <a href="/privacy.html" target="_blank">개인정보처리방침</a>
+        <a href="/terms.html" target="_blank">이용약관</a>
+      </div>
+    </div>
+    <div style="margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06); text-align:center; font-size:11px; color:#6B7DAA; line-height:1.8;">
+      상호: 라이트온 플러스 랩 | 대표: 박승혁 | 사업자등록번호: 229-15-70907<br>
+      통신판매업신고: 제 2026-안양동안-0514 호<br>
+      주소: 경기도 안양시 동안구 관평로 333, 6동 504호(관양동) | 전화: 070-8098-5734 | 이메일: support@lightonpluslab.com
+    </div>
+  </footer>
+
+</main>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Hamburger
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+hamburger.addEventListener("click", () => {
+  const open = mobileMenu.classList.toggle("open");
+  hamburger.classList.toggle("open", open);
+  hamburger.setAttribute("aria-expanded", open);
+});
+document.querySelectorAll(".mobile-link").forEach(a => {
+  a.addEventListener("click", () => {
+    mobileMenu.classList.remove("open");
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", false);
+  });
+});
+
+// Particles
+(function(){
+  const c = document.getElementById("particles");
+  for(let i=0;i<20;i++){
+    const p = document.createElement("div");
+    p.className = "particle";
+    const s = Math.random()*4+2;
+    p.style.cssText = `
+      width:${s}px; height:${s}px;
+      left:${Math.random()*100}%;
+      animation-duration:${Math.random()*15+10}s;
+      animation-delay:${Math.random()*10}s;
+      background: radial-gradient(circle, ${['rgba(45,125,255,.5)','rgba(124,77,255,.5)','rgba(0,229,255,.5)'][i%3]}, transparent 70%);
+    `;
+    c.appendChild(p);
+  }
+})();
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add("visible"); observer.unobserve(e.target); }
+  });
+}, {threshold:0.08, rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
