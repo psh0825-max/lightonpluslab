@@ -3,583 +3,237 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>회사 소개 — LightOn Plus Lab</title>
-<meta name="description" content="LightOn Plus Lab — 회사 소개" />
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
-<meta name="description" content="AI 기능이 들어간 앱을 만드는 개인 개발 스튜디오, LightOn Plus Lab" />
-<meta property="og:title" content="LightOn Plus Lab" />
-<meta property="og:description" content="AI Apps & Innovation — 아이디어에 AI를 더합니다." />
+<title>소개 — LightOn Plus Lab</title>
+<meta name="description" content="LightOn Plus Lab — 빠른 실행력과 제품 감각으로 AI 앱을 만드는 개인 개발 스튜디오" />
+<meta property="og:title" content="소개 — LightOn Plus Lab" />
 <meta property="og:type" content="website" />
 <link rel="icon" href="logo-new.png" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
 <style>
-:root{
-  --bg:#050710; --card:#0B1220; --text:#EAF0FF; --muted:#8B9BC0;
-  --line:rgba(255,255,255,.08);
-  --glow1:#2D7DFF; --glow2:#7C4DFF; --glow3:#00E5FF;
-  --shadow: 0 24px 80px rgba(0,0,0,.5);
-  --radius: 22px;
-}
-*{box-sizing:border-box; margin:0; padding:0}
+:root{--bg:#050710;--card:#0B1220;--text:#EAF0FF;--muted:#8B9BC0;--line:rgba(255,255,255,.08);--glow1:#2D7DFF;--glow2:#7C4DFF;--glow3:#00E5FF;--shadow:0 24px 80px rgba(0,0,0,.5);--radius:22px}
+*{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
-  color:var(--text);
-  background:var(--bg);
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
-a{color:inherit; text-decoration:none}
-.container{max-width:1140px; margin:0 auto; padding:0 24px}
-
-/* ── ANIMATED BG ── */
-.bg-glow{
-  position:fixed; inset:0; z-index:0; pointer-events:none;
-  background:
-    radial-gradient(900px 600px at 15% 10%, rgba(45,125,255,.14), transparent 60%),
-    radial-gradient(900px 600px at 85% 20%, rgba(124,77,255,.12), transparent 60%),
-    radial-gradient(900px 600px at 50% 90%, rgba(0,229,255,.08), transparent 60%);
-}
-#products .hero-card:hover{ transform:translateY(-4px); box-shadow: 0 12px 40px rgba(45,125,255,.15); }
-.bg-grid{
-  position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.035;
-  background-image:
-    linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* ── PARTICLES ── */
-.particles{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
-.particle{
-  position:absolute; border-radius:50%;
-  background: radial-gradient(circle, rgba(45,125,255,.6), transparent 70%);
-  animation: floatParticle linear infinite;
-  opacity:0;
-}
-@keyframes floatParticle{
-  0%{transform:translateY(100vh) scale(0); opacity:0}
-  10%{opacity:1}
-  90%{opacity:1}
-  100%{transform:translateY(-100px) scale(1); opacity:0}
-}
-
-/* ── NAV ── */
-.nav{
-  position:sticky; top:0; z-index:100;
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  background: rgba(5,7,16,.65);
-  border-bottom:1px solid var(--line);
-  transition: background .3s;
-}
-.nav-inner{
-  display:flex; align-items:center; justify-content:space-between; height:68px;
-}
-.brand{
-  display:flex; align-items:center; gap:12px;
-  font-weight:700; letter-spacing:.2px; white-space:nowrap;
-}
-.brand img{
-  width:140px; height:auto; border-radius:10px; object-fit:contain;
-  background:#fff; padding:4px 8px;
-  filter: drop-shadow(0 4px 12px rgba(45,125,255,.3));
-}
-.brand small{display:block; font-weight:600; color:var(--muted); letter-spacing:0; margin-top:2px; font-size:12px}
-.nav-links{display:flex; gap:2px; align-items:center; color:var(--muted); font-weight:600; font-size:13px; white-space:nowrap}
-.nav-links a{padding:6px 10px; border-radius:10px; transition: all .15s}
-.nav-links a:hover{background:rgba(255,255,255,.06); color:var(--text)}
-
-/* ── BUTTONS ── */
-.btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:10px;
-  padding:13px 20px; border-radius:14px; white-space:nowrap;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.05);
-  color:var(--text); font-weight:700; font-size:14px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.2);
-  transition: all .2s ease; cursor:pointer;
-  position:relative; overflow:hidden;
-}
-.btn::before{
-  content:""; position:absolute; inset:0;
-  background: linear-gradient(135deg, rgba(255,255,255,.08), transparent);
-  opacity:0; transition: opacity .2s;
-}
-.btn:hover{transform: translateY(-2px); border-color:rgba(255,255,255,.2)}
+body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 600px at 15% 10%,rgba(45,125,255,.14),transparent 60%),radial-gradient(900px 600px at 85% 20%,rgba(124,77,255,.12),transparent 60%),radial-gradient(900px 600px at 50% 90%,rgba(0,229,255,.08),transparent 60%)}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);background-size:60px 60px}
+.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(45,125,255,.6),transparent 70%);animation:floatParticle linear infinite;opacity:0}
+@keyframes floatParticle{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px) scale(1);opacity:0}}
+.nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);background:rgba(5,7,16,.65);border-bottom:1px solid var(--line);transition:background .3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+.brand img{width:140px;height:auto;border-radius:10px;object-fit:contain;background:#fff;padding:4px 8px;filter:drop-shadow(0 4px 12px rgba(45,125,255,.3))}
+.brand small{display:block;font-weight:600;color:var(--muted);letter-spacing:0;margin-top:2px;font-size:12px}
+.nav-links{display:flex;gap:2px;align-items:center;color:var(--muted);font-weight:600;font-size:13px;white-space:nowrap}
+.nav-links a{padding:6px 10px;border-radius:10px;transition:all .15s}
+.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.06);color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 20px;border-radius:14px;white-space:nowrap;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text);font-weight:700;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:all .2s ease;cursor:pointer;position:relative;overflow:hidden}
+.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent);opacity:0;transition:opacity .2s}
+.btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.2)}
 .btn:hover::before{opacity:1}
-.btn.primary{
-  border:none;
-  background: linear-gradient(135deg, var(--glow1), var(--glow2));
-  box-shadow: 0 16px 48px rgba(45,125,255,.25), inset 0 1px 0 rgba(255,255,255,.15);
-}
-.btn.primary:hover{filter:brightness(1.1); box-shadow: 0 20px 60px rgba(45,125,255,.35)}
-
-/* ── HERO ── */
-.hero{padding:90px 0 50px; position:relative; z-index:1}
-.hero-top{text-align:center; margin-bottom:50px}
-.hero-logo{
-  width:min(480px, 90vw); height:auto; object-fit:contain; border-radius:24px;
-  background:#fff; padding:16px 24px;
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.1),
-    0 20px 60px rgba(45,125,255,.3),
-    0 0 120px rgba(45,125,255,.15),
-    0 0 120px rgba(124,77,255,.1);
-  margin-bottom:32px;
-  animation: logoPulse 4s ease-in-out infinite;
-}
-@keyframes logoPulse{
-  0%,100%{box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 20px 60px rgba(45,125,255,.3), 0 0 120px rgba(45,125,255,.15), 0 0 120px rgba(124,77,255,.1)}
-  50%{box-shadow: 0 0 0 1px rgba(255,255,255,.15), 0 24px 80px rgba(45,125,255,.45), 0 0 160px rgba(45,125,255,.2), 0 0 160px rgba(124,77,255,.15)}
-}
-.pillrow{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:24px}
-.pill{
-  border:1px solid rgba(255,255,255,.1);
-  background: rgba(255,255,255,.04);
-  padding:8px 14px; border-radius:999px;
-  color:rgba(234,240,255,.85); font-weight:700; font-size:13px;
-  backdrop-filter:blur(4px);
-}
-.headline{
-  font-size: clamp(38px, 5vw, 64px); line-height:1.08;
-  letter-spacing:-1px; margin-bottom:18px;
-}
-.headline .gradient{
-  background: linear-gradient(135deg, var(--glow1), var(--glow3), var(--glow2));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.sub{
-  color:var(--muted); font-size: clamp(16px, 1.4vw, 19px);
-  line-height:1.75; max-width:60ch; margin:0 auto 30px;
-}
-.hero-btns{display:flex; gap:14px; flex-wrap:wrap; justify-content:center}
-
-/* ── HERO GRID ── */
-.hero-grid{
-  display:grid; grid-template-columns:1fr 1fr; gap:18px;
-  margin-top:20px;
-}
-.hero-card{
-  background: rgba(11,18,32,.6);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  box-shadow: var(--shadow);
-  padding:22px; position:relative; overflow:hidden;
-  transition: transform .2s, border-color .2s;
-}
-.hero-card:hover{transform:translateY(-3px); border-color:rgba(255,255,255,.15)}
-.hero-card::before{
-  content:""; position:absolute; inset:-1px;
-  background: radial-gradient(500px 180px at 40% 0%, rgba(45,125,255,.18), transparent 60%);
-  pointer-events:none;
-}
-.kpi{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px}
-.kpi .box{
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(255,255,255,.03);
-  border-radius:16px; padding:14px;
-  transition: background .2s;
-}
-.kpi .box:hover{background:rgba(255,255,255,.06)}
-.kpi .box b{display:block; font-size:20px; margin-bottom:2px}
-.kpi .box span{color:var(--muted); font-weight:600; font-size:12px}
-.tagline{
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-  padding:16px 18px; border-radius:16px;
-  border:1px dashed rgba(255,255,255,.12);
-  background:rgba(255,255,255,.02);
-  margin-top:16px;
-}
-.tagline code{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  color:var(--glow3); font-size:13px;
-  background:rgba(0,229,255,.06);
-  padding:6px 12px; border-radius:12px;
-  border:1px solid rgba(0,229,255,.15);
-}
-.meta{display:flex; gap:8px; flex-wrap:wrap}
-.badge{
-  font-size:12px; font-weight:700;
-  color:rgba(234,240,255,.85);
-  border:1px solid rgba(255,255,255,.1);
-  background:rgba(255,255,255,.04);
-  padding:6px 12px; border-radius:999px;
-}
-
-/* ── SECTIONS ── */
-section{padding:60px 0; position:relative; z-index:1}
-.section-label{
-  display:inline-flex; align-items:center; gap:8px;
-  color:var(--glow1); font-weight:800; font-size:13px;
-  text-transform:uppercase; letter-spacing:1.5px;
-  margin-bottom:12px;
-}
-.section-label::before{
-  content:""; width:24px; height:2px;
-  background:linear-gradient(90deg, var(--glow1), var(--glow2));
-  border-radius:2px;
-}
-.section-title{font-size:clamp(26px,3vw,36px); margin-bottom:10px; letter-spacing:-.3px}
-.section-desc{color:var(--muted); margin-bottom:28px; line-height:1.75; max-width:65ch}
-
-/* ── CARDS ── */
-.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-.card{
-  background:rgba(11,18,32,.55);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:24px;
-  box-shadow: 0 12px 40px rgba(0,0,0,.25);
-  transition: all .25s ease;
-  position:relative; overflow:hidden;
-}
-.card::after{
-  content:""; position:absolute; top:0; left:0; right:0; height:2px;
-  background: linear-gradient(90deg, transparent, var(--glow1), var(--glow2), transparent);
-  opacity:0; transition: opacity .3s;
-}
-.card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.18)}
+.btn.primary{border:none;background:linear-gradient(135deg,var(--glow1),var(--glow2));box-shadow:0 16px 48px rgba(45,125,255,.25),inset 0 1px 0 rgba(255,255,255,.15)}
+.btn.primary:hover{filter:brightness(1.1);box-shadow:0 20px 60px rgba(45,125,255,.35)}
+.page-hero{padding:80px 0 40px;position:relative;z-index:1;text-align:center}
+.headline{font-size:clamp(32px,4vw,52px);line-height:1.1;letter-spacing:-1px;margin-bottom:18px}
+.headline .gradient{background:linear-gradient(135deg,var(--glow1),var(--glow3),var(--glow2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub{color:var(--muted);font-size:clamp(16px,1.4vw,18px);line-height:1.75;max-width:60ch;margin:0 auto 30px}
+section{padding:40px 0;position:relative;z-index:1}
+.section-label{display:inline-flex;align-items:center;gap:8px;color:var(--glow1);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
+.section-label::before{content:"";width:24px;height:2px;background:linear-gradient(90deg,var(--glow1),var(--glow2));border-radius:2px}
+.section-title{font-size:clamp(26px,3vw,36px);margin-bottom:10px;letter-spacing:-.3px}
+.section-desc{color:var(--muted);margin-bottom:28px;line-height:1.75;max-width:65ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:rgba(11,18,32,.55);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 12px 40px rgba(0,0,0,.25);transition:all .25s ease;position:relative;overflow:hidden}
+.card::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--glow1),var(--glow2),transparent);opacity:0;transition:opacity .3s}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.18)}
 .card:hover::after{opacity:1}
-.card h3{margin-bottom:10px; font-size:17px}
-.card p{color:var(--muted); line-height:1.75; font-size:14px}
-.icon{
-  width:44px; height:44px; border-radius:14px;
-  display:grid; place-items:center; margin-bottom:14px;
-  background: linear-gradient(135deg, rgba(45,125,255,.15), rgba(124,77,255,.15));
-  border:1px solid rgba(255,255,255,.08);
-  transition: all .2s;
-}
-.card:hover .icon{
-  background: linear-gradient(135deg, rgba(45,125,255,.25), rgba(124,77,255,.25));
-  box-shadow: 0 8px 24px rgba(45,125,255,.2);
-}
-.icon svg{opacity:.9}
-
-/* ── WORK ── */
-.work{display:grid; grid-template-columns:1fr 1fr; gap:16px}
-.work .card{min-height:160px}
-
-/* ── PROCESS ── */
-.process{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
-  counter-reset: step;
-}
-.step{
-  background:rgba(11,18,32,.55);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:28px 24px;
-  position:relative;
-  counter-increment: step;
-  transition: all .25s;
-}
-.step:hover{transform:translateY(-3px); border-color:rgba(255,255,255,.15)}
-.step::before{
-  content: counter(step);
-  display:flex; align-items:center; justify-content:center;
-  width:36px; height:36px; border-radius:12px;
-  background: linear-gradient(135deg, var(--glow1), var(--glow2));
-  font-weight:900; font-size:16px;
-  margin-bottom:14px;
-  box-shadow: 0 8px 24px rgba(45,125,255,.2);
-}
-.step h3{margin-bottom:8px; font-size:16px}
-.step p{color:var(--muted); line-height:1.7; font-size:14px}
-
-/* ── STATS ── */
-.stats{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
-  margin-top:32px;
-}
-.stat{
-  text-align:center;
-  padding:28px 16px;
-  background:rgba(11,18,32,.55);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  transition: all .25s;
-}
-.stat:hover{transform:translateY(-3px); border-color:rgba(255,255,255,.15)}
-.stat-num{
-  font-size:36px; font-weight:900; line-height:1;
-  background: linear-gradient(135deg, var(--glow1), var(--glow3));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text;
-  margin-bottom:6px;
-}
-.stat-label{color:var(--muted); font-size:13px; font-weight:600}
-
-/* ── CTA ── */
-.cta{padding:50px 0 80px}
-.cta-box{
-  background: linear-gradient(135deg, rgba(45,125,255,.14), rgba(124,77,255,.10));
-  border:1px solid rgba(255,255,255,.12);
-  border-radius: calc(var(--radius) + 8px);
-  padding:36px;
-  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.06);
-  display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
-  position:relative; overflow:hidden;
-}
-.cta-box::before{
-  content:""; position:absolute; top:-50%; right:-20%; width:400px; height:400px;
-  background: radial-gradient(circle, rgba(124,77,255,.15), transparent 70%);
-  pointer-events:none;
-}
-.cta-box h2{font-size:24px; margin-bottom:6px}
-.cta-box p{color:var(--muted); line-height:1.7}
-
-.contact-card{
-  margin-top:18px;
-  background:rgba(11,18,32,.55);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:24px;
-}
-.contact-card h3{margin-bottom:8px; font-size:17px}
-.contact-links{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
-.contact-link{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:10px 16px; border-radius:14px;
-  border:1px solid rgba(255,255,255,.1);
-  background:rgba(255,255,255,.04);
-  font-weight:600; font-size:14px;
-  transition: all .2s;
-}
-.contact-link:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); transform:translateY(-1px)}
-
-/* ── FOOTER ── */
-.footer{
-  padding:28px 0 44px;
-  border-top:1px solid var(--line);
-  color:var(--muted); font-size:13px;
-  position:relative; z-index:1;
-}
-.footer-row{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center}
-.smalllinks{display:flex; gap:16px; flex-wrap:wrap}
-.smalllinks a{transition: color .15s}
+.card h3{margin-bottom:10px;font-size:17px}
+.card p{color:var(--muted);line-height:1.75;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+.stat{text-align:center;padding:28px 16px;background:rgba(11,18,32,.55);border:1px solid var(--line);border-radius:var(--radius);transition:all .25s}
+.stat:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.15)}
+.stat-num{font-size:36px;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--glow1),var(--glow3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.stat-label{color:var(--muted);font-size:13px;font-weight:600}
+.cta{padding:40px 0 80px}
+.cta-box{background:linear-gradient(135deg,rgba(45,125,255,.14),rgba(124,77,255,.10));border:1px solid rgba(255,255,255,.12);border-radius:calc(var(--radius) + 8px);padding:36px;box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden}
+.cta-box::before{content:"";position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(124,77,255,.15),transparent 70%);pointer-events:none}
+.cta-box h2{font-size:24px;margin-bottom:6px}
+.cta-box p{color:var(--muted);line-height:1.7}
+.footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;position:relative;z-index:1}
+.footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.smalllinks{display:flex;gap:16px;flex-wrap:wrap}
+.smalllinks a{transition:color .15s}
 .smalllinks a:hover{color:var(--text)}
-
-/* ── SCROLL ANIMATION ── */
-.reveal{
-  opacity:0; transform:translateY(30px);
-  transition: opacity .6s ease, transform .6s ease;
-}
-.reveal.visible{opacity:1; transform:translateY(0)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 .reveal-delay-1{transition-delay:.1s}
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
-
-/* ── LANGUAGE SELECTOR ── */
-.lang-selector {
-  position: relative;
-  cursor: pointer;
-}
-.lang-selector select {
-  background: var(--card);
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 6px 10px;
-  font-size: 13px;
-  cursor: pointer;
-  outline: none;
-  font-weight: 600;
-}
-.lang-selector select:hover {
-  border-color: rgba(255,255,255,.2);
-  background: rgba(255,255,255,.08);
-}
-
-/* ── HAMBURGER ── */
-.hamburger{
-  display:none; flex-direction:column; gap:5px; cursor:pointer;
-  background:none; border:none; padding:8px; border-radius:10px;
-  transition: background .15s;
-}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px;border-radius:10px;transition:background .15s}
 .hamburger:hover{background:rgba(255,255,255,.06)}
-.hamburger span{
-  display:block; width:22px; height:2px;
-  background:var(--text); border-radius:2px;
-  transition: all .25s ease;
-}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .25s ease}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0; transform:scaleX(0)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-.mobile-menu{
-  display:none; position:fixed; top:68px; left:0; right:0; z-index:99;
-  background:rgba(5,7,16,.96); backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--line);
-  padding:16px 24px 24px; flex-direction:column; gap:4px;
-}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(5,7,16,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:16px 24px 24px;flex-direction:column;gap:4px}
 .mobile-menu.open{display:flex}
-.mobile-menu a{
-  padding:12px 14px; border-radius:12px; font-weight:600; font-size:15px;
-  transition: background .15s; color:var(--muted);
-}
-.mobile-menu a:hover{background:rgba(255,255,255,.06); color:var(--text)}
-
-/* ── MOBILE ── */
+.mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:600;font-size:15px;transition:background .15s;color:var(--muted)}
+.mobile-menu a:hover{background:rgba(255,255,255,.06);color:var(--text)}
 @media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr}
-  .work{grid-template-columns:1fr}
-  .process{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
-  .lang-selector{display:none}
   .hamburger{display:flex}
   .nav-cta-desktop{display:none}
-  .hero{padding:60px 0 30px}
-  .hero-logo{width:min(320px, 85vw)}
+  .page-hero{padding:60px 0 30px}
 }
 @media(max-width:480px){
   .stats{grid-template-columns:1fr}
   .cta-box{padding:24px}
 }
-
-.hero-showcase{
-  width:min(900px, 90vw); height:auto; border-radius:20px;
-  margin:40px auto 0; display:block;
-  box-shadow: 0 20px 60px rgba(45,125,255,.2), 0 0 120px rgba(124,77,255,.1);
-  animation: logoPulse 4s ease-in-out infinite;
-  border:1px solid rgba(255,255,255,.08);
-}
-.hero-pattern-bg{
-  position:fixed; inset:0; z-index:0; pointer-events:none;
-  background: url('hero-pattern.jpg') center/cover no-repeat;
-  opacity:0.07;
-  mix-blend-mode:screen;
-}
-
 </style>
 </head>
 <body>
 
-<!-- BG EFFECTS -->
 <div class="bg-glow"></div>
 <div class="bg-grid"></div>
-<div class="hero-pattern-bg"></div>
 <div class="particles" id="particles"></div>
 
-<!-- NAV -->
 <header class="nav">
   <div class="container nav-inner">
-    <a class="brand" href="#top" aria-label="LightOn Plus Lab 홈">
+    <a class="brand" href="index.html" aria-label="LightOn Plus Lab 홈">
       <img src="logo-new.png" alt="LightOn Plus Lab" />
       <div>LightOn Plus Lab<small>AI Apps &amp; Innovation</small></div>
     </a>
-</head>
-<body>
-<div class="bg-glow"></div>
-<div class="bg-grid"></div>
     <nav class="nav-links" aria-label="메뉴">
-      <a href="services.html" data-i18n="nav.services">서비스</a>
+      <a href="services.html">서비스</a>
       <a href="momoi.html">Momoi</a>
-      <a href="products.html" data-i18n="nav.products">앱</a>
-      <a href="/products.html">Products</a>
-      <a href="process.html" data-i18n="nav.process">프로세스</a>
-      <a href="work.html" data-i18n="nav.work">프로젝트</a>
-      <a href="about.html" class="active" data-i18n="nav.about">소개</a>
-      <a href="contact.html" data-i18n="nav.contact">문의</a>
+      <a href="products.html">앱</a>
+      <a href="about.html" class="active">소개</a>
+      <a href="contact.html">문의</a>
     </nav>
-    <div class="lang-selector">
-<main>
-      <select id="languageSelector">
-        <option value="ko">🇰🇷 한국어</option>
-        <option value="en">🇺🇸 English</option>
-        <option value="ja">🇯🇵 日本語</option>
-        <option value="zh">🇨🇳 中文</option>
-      </select>
-    </div>
-    <a class="btn primary nav-cta-desktop" href="#contact" data-i18n="nav.cta">프로젝트 문의</a>
+    <a class="btn primary nav-cta-desktop" href="contact.html">프로젝트 문의</a>
     <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
+
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-  <a href="#services" class="mobile-link" data-i18n="nav.services">서비스</a>
-  <a href="#momoi" class="mobile-link">Momoi</a>
-  <a href="#products" class="mobile-link" data-i18n="nav.products">앱</a>
-  <a href="/products.html" class="mobile-link">Products</a>
-  <a href="#process" class="mobile-link" data-i18n="nav.process">프로세스</a>
-  <a href="#work" class="mobile-link" data-i18n="nav.work">프로젝트</a>
-  <a href="#about" class="mobile-link" data-i18n="nav.about">소개</a>
-  <a href="#contact" class="mobile-link" data-i18n="nav.contact">문의</a>
-  <div class="lang-selector" style="padding: 12px 14px;">
-    <select id="mobileLanguageSelector">
-      <option value="ko">🇰🇷 한국어</option>
-      <option value="en">🇺🇸 English</option>
-      <option value="ja">🇯🇵 日本語</option>
-      <option value="zh">🇨🇳 中文</option>
-    </select>
-  </div>
+  <a href="services.html" class="mobile-link">서비스</a>
+  <a href="momoi.html" class="mobile-link">Momoi</a>
+  <a href="products.html" class="mobile-link">앱</a>
+  <a href="about.html" class="mobile-link">소개</a>
+  <a href="contact.html" class="mobile-link">문의</a>
 </nav>
 
-<main id="top" class="container">
+<main class="container">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="section-label reveal" data-i18n="about.label">소개</div>
-    <h2 class="section-title reveal" data-i18n="about.title">빠른 실행력, 제품 감각</h2>
-    <p class="section-desc reveal" data-i18n="about.desc">
-      "기능 추가"가 아니라 "사용자가 계속 쓰는 흐름"을 만듭니다.
-    </p>
+  <div class="page-hero">
+    <div class="section-label reveal">소개</div>
+    <h1 class="headline reveal">빠른 실행력,<br/><span class="gradient">제품 감각</span></h1>
+    <p class="sub reveal">"기능 추가"가 아니라 "사용자가 계속 쓰는 흐름"을 만듭니다.</p>
+  </div>
+
+  <section>
     <div class="cards">
       <div class="card reveal">
-        <h3 data-i18n="about.card1.title">🎯 원칙</h3>
-        <p data-i18n="about.card1.desc">빠르게 만들기 → 사용자 반응으로 개선 → 운영 가능한 구조로 정리</p>
+        <h3>🎯 원칙</h3>
+        <p>빠르게 만들기 → 사용자 반응으로 개선 → 운영 가능한 구조로 정리</p>
       </div>
       <div class="card reveal reveal-delay-1">
-        <h3 data-i18n="about.card2.title">💡 강점</h3>
-        <p data-i18n="about.card2.desc">AI를 실제 제품에 붙일 때 필요한 UX, 비용, 성능, 운영을 함께 고려합니다.</p>
+        <h3>💡 강점</h3>
+        <p>AI를 실제 제품에 붙일 때 필요한 UX, 비용, 성능, 운영을 함께 고려합니다.</p>
       </div>
       <div class="card reveal reveal-delay-2">
-        <h3 data-i18n="about.card3.title">🔄 협업</h3>
-        <p data-i18n="about.card3.desc">짧은 주기로 공유/피드백 → 빠른 반복. 문서/일정/우선순위를 투명하게 관리합니다.</p>
+        <h3>🔄 협업</h3>
+        <p>짧은 주기로 공유/피드백 → 빠른 반복. 문서/일정/우선순위를 투명하게 관리합니다.</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section id="contact" class="cta">
-</main>
-  <footer class="footer">
-    <div class="footer-row">
-      <div data-i18n="footer.copyright">© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
-      <div class="smalllinks">
-        <a href="#services" data-i18n="footer.services">서비스</a>
-        <a href="#process" data-i18n="footer.process">프로세스</a>
-        <a href="#work" data-i18n="footer.work">프로젝트</a>
-        <a href="#about" data-i18n="footer.about">소개</a>
-        <a href="#contact" data-i18n="footer.contact">문의</a>
-        <a href="/privacy.html" target="_blank" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/terms.html" target="_blank" data-i18n="footer.terms">이용약관</a>
+  <section>
+    <div class="section-label reveal">실적</div>
+    <h2 class="section-title reveal">숫자로 보는 LightOn Plus Lab</h2>
+    <div class="stats">
+      <div class="stat reveal">
+        <div class="stat-num" data-target="2">0</div>
+        <div class="stat-label">주 내 MVP 시작</div>
+      </div>
+      <div class="stat reveal reveal-delay-1">
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-label">% 코드 소유권</div>
+      </div>
+      <div class="stat reveal reveal-delay-2">
+        <div class="stat-num" data-target="24">0</div>
+        <div class="stat-label">시간 내 첫 응답</div>
+      </div>
+      <div class="stat reveal reveal-delay-3">
+        <div class="stat-num" data-target="30">0</div>
+        <div class="stat-label">일 무료 수정 기간</div>
       </div>
     </div>
-    <div style="margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06); text-align:center; font-size:11px; color:#6B7DAA; line-height:1.8;">
+  </section>
+
+  <section>
+    <div class="section-label reveal">대표</div>
+    <h2 class="section-title reveal">박승혁 — 개인 개발 스튜디오</h2>
+    <p class="section-desc reveal">LightOn Plus Lab은 1인 개발 스튜디오입니다. 기획부터 개발, 배포, 운영까지 직접 담당하며, AI를 실제 제품에 연결하는 데 집중합니다.</p>
+    <div class="cards">
+      <div class="card reveal">
+        <h3>🛠 기술 스택</h3>
+        <p>Next.js, React, TypeScript, Python, FastAPI, Node.js, Supabase, Firebase, Google Cloud Run, Vercel</p>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <h3>🤖 AI 경험</h3>
+        <p>GPT-4o, Gemini 2.5 Flash, Claude, Whisper, Vision API, TTS, RAG, 임베딩, 파인튜닝</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <h3>📦 출시 이력</h3>
+        <p>Momoi, 영수증AI, 성경탐험, 노딱AI, Songbit, 수학친구 등 다수 AI 앱 직접 제작 및 운영 중</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-box reveal">
+      <div>
+        <h2>함께 만들고 싶은 프로젝트가 있으신가요?</h2>
+        <p>24시간 내 회신드립니다.</p>
+      </div>
+      <a class="btn primary" href="contact.html">💬 상담/견적 요청</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
+      <div class="smalllinks">
+        <a href="services.html">서비스</a>
+        <a href="momoi.html">Momoi</a>
+        <a href="products.html">앱</a>
+        <a href="about.html">소개</a>
+        <a href="contact.html">문의</a>
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="terms.html">이용약관</a>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:11px;color:#6B7DAA;line-height:1.8;">
       상호: 라이트온 플러스 랩 | 대표: 박승혁 | 사업자등록번호: 229-15-70907<br>
       통신판매업신고: 제 2026-안양동안-0514 호<br>
       주소: 경기도 안양시 동안구 관평로 333, 6동 504호(관양동) | 전화: 070-8098-5734 | 이메일: support@lightonpluslab.com
     </div>
-  </footer>
-
-</main>
+  </div>
+</footer>
 
 <script>
-// Year
 document.getElementById("year").textContent = new Date().getFullYear();
-
-// Hamburger menu
 const hamburger = document.getElementById("hamburger");
 const mobileMenu = document.getElementById("mobileMenu");
 hamburger.addEventListener("click", () => {
@@ -594,1836 +248,29 @@ document.querySelectorAll(".mobile-link").forEach(a => {
     hamburger.setAttribute("aria-expanded", false);
   });
 });
-
-// Particles
 (function(){
   const c = document.getElementById("particles");
   for(let i=0;i<20;i++){
     const p = document.createElement("div");
     p.className = "particle";
     const s = Math.random()*4+2;
-    p.style.cssText = `
-      width:${s}px; height:${s}px;
-      left:${Math.random()*100}%;
-      animation-duration:${Math.random()*15+10}s;
-      animation-delay:${Math.random()*10}s;
-      background: radial-gradient(circle, ${['rgba(45,125,255,.5)','rgba(124,77,255,.5)','rgba(0,229,255,.5)'][i%3]}, transparent 70%);
-    `;
+    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;background:radial-gradient(circle,${['rgba(45,125,255,.5)','rgba(124,77,255,.5)','rgba(0,229,255,.5)'][i%3]},transparent 70%);`;
     c.appendChild(p);
   }
 })();
-
-// Scroll reveal
 const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add("visible"); observer.unobserve(e.target)}
-  });
-}, {threshold:0.1, rootMargin:"0px 0px -40px 0px"});
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}});
+},{threshold:0.1,rootMargin:"0px 0px -40px 0px"});
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-
-// Counter animation
 const counterObs = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(!e.isIntersecting) return;
-    const el = e.target;
-    const target = +el.dataset.target;
-    const duration = 1200;
-    const start = performance.now();
-    function tick(now){
-      const p = Math.min((now-start)/duration, 1);
-      const ease = 1-Math.pow(1-p,3);
-      el.textContent = Math.round(target*ease);
-      if(p<1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-    counterObs.unobserve(el);
+    const el=e.target,target=+el.dataset.target,duration=1200,start=performance.now();
+    function tick(now){const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,3);el.textContent=Math.round(target*ease);if(p<1)requestAnimationFrame(tick);}
+    requestAnimationFrame(tick);counterObs.unobserve(el);
   });
-}, {threshold:0.5});
+},{threshold:0.5});
 document.querySelectorAll(".stat-num").forEach(el=>counterObs.observe(el));
-
-// Multi-language support
-const translations = {
-  ko: {
-    // Navigation
-    'nav.services': '서비스',
-    'nav.receipt-ai': '영수증AI',
-    'nav.process': '프로세스',
-    'nav.work': '프로젝트',
-    'nav.about': '소개',
-    'nav.contact': '문의',
-    'nav.cta': '프로젝트 문의',
-
-    // Hero
-    'hero.pill1': '🤖 AI 기능 탑재',
-    'hero.pill2': '📱 앱 개발',
-    'hero.pill3': '⚡ 빠른 프로토타이핑',
-    'hero.pill4': '🚀 MVP → 런칭',
-    'hero.headline': '아이디어에 <span class="gradient">AI를 더해</span><br/>앱으로 출시합니다.',
-    'hero.subtitle': 'LightOn Plus Lab은 개인 개발 스튜디오입니다.<br/>기획부터 개발, 배포까지 핵심을 빠르게 구현해 <strong>"작동하는 제품"</strong>을 만듭니다.',
-    'hero.cta1': '💬 상담/견적 요청',
-    'hero.cta2': '서비스 보기 →',
-    'hero.card1.title': 'What we build',
-    'hero.card1.badge': 'One-person Studio',
-    'hero.card1.desc': 'AI 기능을 "데모"가 아닌 "제품"으로.<br/>안정적 운영과 확장까지 고려합니다.',
-    'hero.card1.kpi1.title': 'Fast MVP',
-    'hero.card1.kpi1.desc': '2~6주 내 가시화',
-    'hero.card1.kpi2.title': 'AI Ready',
-    'hero.card1.kpi2.desc': 'LLM / 비전 / 음성',
-    'hero.card1.kpi3.title': 'Ship',
-    'hero.card1.kpi3.desc': '배포 / 스토어 등록',
-    'hero.card1.kpi4.title': 'Maintain',
-    'hero.card1.kpi4.desc': '모니터링 / 개선',
-    'hero.card2.title': '기술 스택',
-    'hero.card2.badge1': 'Web / Mobile',
-    'hero.card2.badge2': 'API / Cloud',
-    'hero.card2.badge3': 'LLM / RAG',
-    'hero.card2.badge4': 'Vision / Speech',
-    'hero.card2.slogan.title': '슬로건',
-    'hero.card2.slogan.desc': '당신의 서비스에 AI를 자연스럽게 붙입니다.',
-
-    // Services
-    'services.label': '서비스',
-    'services.title': 'AI를 중심으로 제품을 만듭니다',
-    'services.desc': '"AI 기능"을 중심으로 앱/웹 제품을 만듭니다. 필요하면 데이터 파이프라인과 운영까지 같이 설계합니다.',
-    'services.card1.title': 'AI 기능 탑재',
-    'services.card1.desc': '챗봇, 요약, 검색(RAG), 추천, 자동화 등 제품에 자연스럽게 녹여냅니다.',
-    'services.card2.title': 'API & 배포',
-    'services.card2.desc': '서버/API 설계부터 배포, 모니터링까지. 운영 가능한 형태로 정리합니다.',
-    'services.card3.title': 'MVP 제작',
-    'services.card3.desc': '빠르게 실험 가능한 MVP를 만들고, 검증 후 기능을 확장합니다.',
-
-    // Process
-    'process.label': '프로세스',
-    'process.title': '이렇게 진행됩니다',
-    'process.desc': '짧은 주기로 공유/피드백 → 빠른 반복. 최소 2주부터 결과물을 확인할 수 있습니다.',
-    'process.step1.title': '상담 & 기획',
-    'process.step1.desc': '목표, 핵심 기능, 일정, 예산을 정리합니다. 필요하면 간단한 PoC로 가능성을 먼저 확인합니다.',
-    'process.step2.title': '개발 & 피드백',
-    'process.step2.desc': '1~2주 단위로 빌드를 공유하고 피드백을 반영합니다. 빠른 반복이 핵심입니다.',
-    'process.step3.title': '배포 & 운영',
-    'process.step3.desc': '스토어 등록, 도메인, 모니터링까지 세팅하고 안정적으로 넘겨드립니다.',
-
-    // Stats
-    'stats.stat1': '주 내 MVP 시작',
-    'stats.stat2': '% 코드 소유권',
-    'stats.stat3': '시간 내 첫 응답',
-    'stats.stat4': '일 무료 수정 기간',
-
-    // Momoi
-    'momoi.label': '대표 제품',
-    'momoi.title': 'Momoi — AI 기반 업무 관리',
-    'momoi.desc': 'LightOn Plus Lab이 직접 만들고 운영 중인 프로덕트. 통화 녹음을 올리면 AI가 자동으로 요약하고 할 일을 추출합니다.',
-    'momoi.badge': 'Live',
-    'momoi.card1.desc': '통화 녹음을 올리면 AI가 발신자·요약·할 일을 자동 추출. 업무 메모, 메시지를 한곳에서 관리하는 AI 인박스.',
-    'momoi.card1.kpi1.title': '🎙 통화 요약',
-    'momoi.card1.kpi1.desc': '녹음 업로드 → AI 자동 정리',
-    'momoi.card1.kpi2.title': '📋 AI 분류',
-    'momoi.card1.kpi2.desc': '업무/개인/프로젝트 자동 분류',
-    'momoi.card1.kpi3.title': '🗓 캘린더',
-    'momoi.card1.kpi3.desc': '일정 자동 추출 & 관리',
-    'momoi.card1.kpi4.title': '📲 PWA',
-    'momoi.card1.kpi4.desc': '홈 화면 설치 & 푸시 알림',
-    'momoi.cta1': '🚀 Momoi 사용해보기',
-    'momoi.cta2': '📖 사용 가이드',
-    'momoi.card2.title': '주요 기능',
-    'momoi.card2.feature1': '✅ 통화 녹음 파일 자동 전사 & 핵심 요약',
-    'momoi.card2.feature2': '✅ AI가 발신자·일정·액션아이템 자동 추출',
-    'momoi.card2.feature3': '✅ 업무/개인/프로젝트 스마트 분류',
-    'momoi.card2.feature4': '✅ 37개국 공휴일 포함 캘린더',
-    'momoi.card2.feature5': '✅ 모바일 최적화 PWA (홈 화면 설치 지원)',
-    'momoi.card2.slogan.title': '슬로건',
-    'momoi.card2.slogan.desc': 'AI가 정리하고, 당신은 실행만.',
-
-    // Receipt AI
-    'receiptai.label': 'AI 경비 관리',
-    'receiptai.title': '영수증AI — 사진 한 장으로 경비 자동 관리',
-    'receiptai.desc': '영수증을 촬영하면 AI가 가게명, 금액, 항목을 자동 인식하고 카테고리별로 분류합니다. 월별 지출 리포트와 세금 공제 항목까지.',
-    'receiptai.badge': 'Live',
-    'receiptai.card1.title': '🧾 영수증AI',
-    'receiptai.card1.desc': '영수증 사진을 찍으면 GPT-4o Vision이 모든 정보를 자동 추출. 9개 카테고리 자동 분류, 월별 리포트, 세금 공제 표시까지.',
-    'receiptai.card1.kpi1.title': '📸 AI OCR',
-    'receiptai.card1.kpi1.desc': '사진 촬영 → 자동 인식',
-    'receiptai.card1.kpi2.title': '🏷️ 자동 분류',
-    'receiptai.card1.kpi2.desc': '9개 카테고리 자동 분류',
-    'receiptai.card1.kpi3.title': '📊 지출 리포트',
-    'receiptai.card1.kpi3.desc': '월별 분석 & 전월 비교',
-    'receiptai.card1.kpi4.title': '💰 세금 공제',
-    'receiptai.card1.kpi4.desc': '공제 가능 항목 자동 표시',
-    'receiptai.cta1': '🧾 영수증AI 사용해보기',
-    'receiptai.cta2': '📖 사용 가이드',
-    'receiptai.card2.title': '기술 구성',
-    'receiptai.card2.feature1': '✅ GPT-4o Vision 영수증 자동 인식 (OCR)',
-    'receiptai.card2.feature2': '✅ 식비/교통/의료 등 9개 카테고리 분류',
-    'receiptai.card2.feature3': '✅ 월별 지출 리포트 & 전월 대비 분석',
-    'receiptai.card2.feature4': '✅ 세금 공제 가능 항목 자동 표시',
-    'receiptai.card2.feature5': '✅ 모바일 최적화 PWA (후면 카메라 촬영)',
-    'receiptai.card2.slogan.title': '슬로건',
-    'receiptai.card2.slogan.desc': '찍으면 끝, AI가 정리합니다.',
-
-    // MeongNyang
-    'nav.meongnyang': '멍냥로그',
-    'meongnyang.label': 'AI 펫 다이어리',
-    'meongnyang.title': '멍냥로그 — AI가 써주는 반려동물 일기',
-    'meongnyang.desc': '반려동물 사진 한 장이면 AI가 귀여운 1인칭 일기를 써줍니다. 우리 아이의 하루를 기록하세요.',
-    'meongnyang.badge': 'Live',
-    'meongnyang.card1.title': '🐾 멍냥로그',
-    'meongnyang.card1.desc': '사진을 올리면 AI가 반려동물의 표정과 상황을 분석해 귀여운 1인칭 일기를 자동 생성합니다. 감정 태그와 함께 타임라인으로 기록됩니다.',
-    'meongnyang.card1.kpi1.title': '📸 사진 분석',
-    'meongnyang.card1.kpi1.desc': '표정·상황 자동 인식',
-    'meongnyang.card1.kpi2.title': '✍️ AI 일기',
-    'meongnyang.card1.kpi2.desc': '1인칭 귀여운 문체',
-    'meongnyang.card1.kpi3.title': '😊 감정 태그',
-    'meongnyang.card1.kpi3.desc': '해피·졸림·신남 등',
-    'meongnyang.card1.kpi4.title': '🔒 프라이버시',
-    'meongnyang.card1.kpi4.desc': '기기 내 저장 (IndexedDB)',
-    'meongnyang.cta1': '🐾 멍냥로그 사용해보기',
-    'meongnyang.cta2': '📖 사용 가이드',
-    'meongnyang.card2.title': '기술 구성',
-    'meongnyang.card2.feature1': '✅ Gemini 2.5 Flash Vision으로 사진 분석',
-    'meongnyang.card2.feature2': '✅ 카와이 스타일 AI 일러스트레이션',
-    'meongnyang.card2.feature3': '✅ IndexedDB 로컬 저장 (서버 전송 없음)',
-    'meongnyang.card2.feature4': '✅ PWA 지원 — 홈 화면에 추가 가능',
-    'meongnyang.card2.feature5': '✅ 회원가입 없이 무료 사용',
-    'meongnyang.card2.slogan.title': '슬로건',
-    'meongnyang.card2.slogan.desc': '사진 한 장이면, AI가 일기를 써줘요 🐾',
-
-    // Noddak
-    'nav.noddak': '노딱AI',
-    'noddak.label': 'AI 법률 도우미',
-    'noddak.title': '노딱AI — 주차 딱지 이의신청 자동 작성',
-    'noddak.desc': '주정차 위반 딱지 사진을 찍으면 AI가 도로교통법을 분석하고 이의신청서를 자동으로 작성합니다.',
-    'noddak.badge': 'Live',
-    'noddak.card1.title': '🚗 노딱AI',
-    'noddak.card1.desc': '딱지 사진을 찍으면 AI가 위반 내용을 자동 인식. 도로교통법·질서위반행위규제법 근거로 이의신청서를 즉시 생성합니다.',
-    'noddak.card1.kpi1.title': '📸 사진 분석',
-    'noddak.card1.kpi1.desc': '딱지 촬영 → 자동 인식',
-    'noddak.card1.kpi2.title': '⚖️ 법률 근거',
-    'noddak.card1.kpi2.desc': '도로교통법 원문 인용',
-    'noddak.card1.kpi3.title': '📝 신청서 생성',
-    'noddak.card1.kpi3.desc': '이의신청서 자동 작성',
-    'noddak.card1.kpi4.title': '🆓 무료',
-    'noddak.card1.kpi4.desc': '회원가입 없이 바로 사용',
-    'noddak.cta1': '🚗 노딱AI 사용해보기',
-    'noddak.cta2': '📖 사용 가이드',
-    'noddak.card2.title': '기술 구성',
-    'noddak.card2.feature1': '✅ Gemini 2.5 Flash Vision 딱지 자동 인식',
-    'noddak.card2.feature2': '✅ 도로교통법 제32~35조, 제142조, 제160조 원문 내장',
-    'noddak.card2.feature3': '✅ 질서위반행위규제법 기반 이의신청서 생성',
-    'noddak.card2.feature4': '✅ Google Cloud Run 서울 리전 배포',
-    'noddak.card2.feature5': '✅ 회원가입 없이 무료 사용',
-    'noddak.card2.slogan.title': '슬로건',
-    'noddak.card2.slogan.desc': '딱지? AI가 대신 싸워줍니다.',
-
-    // Products grid
-    'nav.products': '앱',
-    'products.label': '우리가 만든 앱',
-    'products.title': '모두 실제 운영 중인 AI 앱입니다',
-    'products.desc': '각 앱을 클릭하면 바로 사용할 수 있습니다.',
-    'grid.receipt.title': '영수증AI',
-    'grid.receipt.desc': '사진 한 장으로 경비 자동 관리. AI OCR + 9개 카테고리 분류 + 월별 리포트.',
-    'grid.meongnyang.title': '멍냥로그',
-    'grid.meongnyang.desc': '반려동물 사진 → AI가 귀여운 1인칭 일기를 써줍니다. 감정 태그 + 타임라인.',
-    'grid.noddak.title': '노딱AI',
-    'grid.noddak.desc': '주차 딱지 사진 → 도로교통법 분석 → 이의신청서 자동 작성. 무료.',
-    'grid.biblebuddy.title': '성경친구',
-    'grid.biblebuddy.desc': '어린이 성경 학습 — 12개 이야기, 60+ 퀴즈, 컬러링, AI 캐릭터 대화.',
-    'grid.biblesearch.title': '말씀찾기',
-    'grid.biblesearch.desc': '마음을 말하면 AI가 성경 구절을 찾아줍니다. 음성 검색 + 31,088절 전문.',
-    'grid.bibleexplorer.title': '성경탐험',
-    'grid.bibleexplorer.desc': '교회 주일학교용 성경공부 SaaS. 아바타, 인물카드, 레벨, AI 모세, 교사 대시보드.',
-    'grid.songbit.title': 'Songbit — AI 뮤직 스튜디오',
-    'grid.songbit.desc': 'AI가 작사하고 작곡하는 나만의 음악 스튜디오. 장르/분위기 선택만으로 완성된 음악 생성.',
-
-    // Bible Buddy (kept for reference)
-    'nav.bible-buddy': '성경친구',
-    'biblebuddy.label': '어린이 성경',
-    'biblebuddy.title': '성경친구 — 어린이를 위한 인터랙티브 성경 학습',
-    'biblebuddy.desc': '재미있는 퀴즈, 컬러링, AI 대화로 아이들이 성경 이야기를 자연스럽게 배울 수 있는 앱입니다.',
-    'biblebuddy.badge': 'Live',
-    'biblebuddy.card1.title': '📖 성경친구',
-    'biblebuddy.card1.desc': '12개 성경 이야기, 60개 이상의 퀴즈, 30개 암송 구절, 컬러링, AI 캐릭터 대화 — 아이들의 눈높이에 맞춘 성경 학습 앱.',
-    'biblebuddy.card1.kpi1.title': '📚 12개 이야기',
-    'biblebuddy.card1.kpi1.desc': '성경 핵심 스토리',
-    'biblebuddy.card1.kpi2.title': '🧩 60+ 퀴즈',
-    'biblebuddy.card1.kpi2.desc': 'O/X, 선택, 빈칸채우기',
-    'biblebuddy.card1.kpi3.title': '🎨 컬러링',
-    'biblebuddy.card1.kpi3.desc': '성경 장면 색칠하기',
-    'biblebuddy.card1.kpi4.title': '💬 AI 대화',
-    'biblebuddy.card1.kpi4.desc': '성경 캐릭터와 대화',
-    'biblebuddy.cta1': '📖 성경친구 시작하기',
-    'biblebuddy.card2.title': '기술 구성',
-    'biblebuddy.card2.feature1': '✅ 게이미피케이션 — 배지, 포인트, 진행도',
-    'biblebuddy.card2.feature2': '✅ Gemini AI 캐릭터 대화',
-    'biblebuddy.card2.feature3': '✅ 터치 중심 어린이 UX (56px+ 터치타겟)',
-    'biblebuddy.card2.feature4': '✅ 사운드 이펙트 (정답/오답/완료)',
-    'biblebuddy.card2.feature5': '✅ 오프라인 지원 — IndexedDB 저장',
-    'biblebuddy.card2.slogan.title': '슬로건',
-    'biblebuddy.card2.slogan.desc': '하나님의 이야기를, 놀이처럼.',
-
-    // Bible Search
-    'nav.bible-search': '말씀찾기',
-    'biblesearch.label': 'AI 성경 검색',
-    'biblesearch.title': '말씀찾기 — 마음을 말하면 성경 구절을 찾아드려요',
-    'biblesearch.desc': '음성이나 텍스트로 마음을 표현하면 AI가 꼭 맞는 성경 구절을 찾아줍니다. 개역개정 66권 31,088절 전문 내장.',
-    'biblesearch.badge': 'Live',
-    'biblesearch.card1.title': '✝️ 말씀찾기',
-    'biblesearch.card1.desc': '"외롭고 힘들어요"라고 말하면 AI가 위로의 말씀을 찾아줍니다. 직접 구절 검색, 음성 입력, 성경 읽기, 테마별 구절까지.',
-    'biblesearch.card1.kpi1.title': '🎤 음성 검색',
-    'biblesearch.card1.kpi1.desc': '말로 구절 찾기',
-    'biblesearch.card1.kpi2.title': '📖 31,088절',
-    'biblesearch.card1.kpi2.desc': '개역개정 전문 내장',
-    'biblesearch.card1.kpi3.title': '💜 감정 검색',
-    'biblesearch.card1.kpi3.desc': 'AI가 마음에 맞는 구절 추천',
-    'biblesearch.card1.kpi4.title': '🔊 TTS 읽기',
-    'biblesearch.card1.kpi4.desc': '구절 음성 듣기',
-    'biblesearch.cta1': '✝️ 말씀찾기 사용해보기',
-    'biblesearch.card2.title': '기술 구성',
-    'biblesearch.card2.feature1': '✅ Gemini 2.5 Flash 감정 분석 → 구절 매칭',
-    'biblesearch.card2.feature2': '✅ 개역개정 66권 전체 DB (4.4MB JSON)',
-    'biblesearch.card2.feature3': '✅ Web Speech API 음성 인식/합성',
-    'biblesearch.card2.feature4': '✅ Glass morphism + 우주 테마 UI',
-    'biblesearch.card2.feature5': '✅ 10개 테마 × 6구절 + 오늘의 말씀',
-    'biblesearch.card2.slogan.title': '슬로건',
-    'biblesearch.card2.slogan.desc': '마음을 말하면, 말씀이 찾아옵니다.',
-
-    // Work
-    'work.label': '더 많은 가능성',
-    'work.title': '이런 것들도 만들 수 있습니다',
-    'work.desc': 'Momoi 외에도 다양한 AI 제품을 만듭니다. 목표/예산/일정에 맞게 구성합니다.',
-    'work.card1.title': '📄 문서 검색(RAG) 기반 Q&A',
-    'work.card1.desc': '사내/개인 문서를 업로드하고 질문하면 근거 기반 답변을 제공.',
-    'work.card2.title': '📸 이미지/카메라 기반 AI',
-    'work.card2.desc': '카메라 입력을 분석해 분류/검출/가이드 제공 (예: 스캔, 측정, 인식).',
-    'work.card3.title': '🤝 고객 지원 자동화',
-    'work.card3.desc': 'FAQ + 티켓 요약 + 답변 초안 생성으로 CS 속도/품질 개선.',
-    'work.card4.title': '⚡ 업무 자동화 봇',
-    'work.card4.desc': '반복 업무를 자동화하는 챗봇/워크플로우. 텔레그램, 슬랙, 이메일 연동.',
-
-    // About
-    'about.label': '소개',
-    'about.title': '빠른 실행력, 제품 감각',
-    'about.desc': '"기능 추가"가 아니라 "사용자가 계속 쓰는 흐름"을 만듭니다.',
-    'about.card1.title': '🎯 원칙',
-    'about.card1.desc': '빠르게 만들기 → 사용자 반응으로 개선 → 운영 가능한 구조로 정리',
-    'about.card2.title': '💡 강점',
-    'about.card2.desc': 'AI를 실제 제품에 붙일 때 필요한 UX, 비용, 성능, 운영을 함께 고려합니다.',
-    'about.card3.title': '🔄 협업',
-    'about.card3.desc': '짧은 주기로 공유/피드백 → 빠른 반복. 문서/일정/우선순위를 투명하게 관리합니다.',
-
-    // Contact
-    'contact.title': '프로젝트가 있으신가요?',
-    'contact.desc': '문의 템플릿을 복사해서 이메일이나 DM으로 보내주세요. 24시간 내 회신드립니다.',
-    'contact.copy_btn': '📋 문의 템플릿 복사',
-    'contact.top_btn': '↑ 맨 위로',
-    'contact.card.title': '연락처',
-    'contact.card.desc': '편하신 채널로 연락주세요.',
-
-    // Footer
-    'footer.copyright': '© <span id="year"></span> LightOn Plus Lab. All rights reserved.',
-    'footer.services': '서비스',
-    'footer.process': '프로세스',
-    'footer.work': '프로젝트',
-    'footer.about': '소개',
-    'footer.contact': '문의',
-    'footer.privacy': '개인정보처리방침',
-    'footer.terms': '이용약관'
-  },
-  en: {
-    // Navigation
-    'nav.services': 'Services',
-    'nav.receipt-ai': 'ReceiptAI',
-    'nav.process': 'Process',
-    'nav.work': 'Projects',
-    'nav.about': 'About',
-    'nav.contact': 'Contact',
-    'nav.cta': 'Inquiry',
-
-    // Hero
-    'hero.pill1': '🤖 AI-Powered',
-    'hero.pill2': '📱 App Development',
-    'hero.pill3': '⚡ Rapid Prototyping',
-    'hero.pill4': '🚀 MVP → Launch',
-    'hero.headline': '<span class="gradient">AI-Powered Ideas,</span><br/>Launched as Apps.',
-    'hero.subtitle': 'LightOn Plus Lab is an indie development studio.<br/>From planning to development and deployment, we rapidly implement the core features to create <strong>"working products"</strong>.',
-    'hero.cta1': '💬 Get Quote',
-    'hero.cta2': 'View Services →',
-    'hero.card1.title': 'What we build',
-    'hero.card1.badge': 'One-person Studio',
-    'hero.card1.desc': 'AI features as "products", not "demos".<br/>We consider stable operations and scalability.',
-    'hero.card1.kpi1.title': 'Fast MVP',
-    'hero.card1.kpi1.desc': 'Visible in 2-6 weeks',
-    'hero.card1.kpi2.title': 'AI Ready',
-    'hero.card1.kpi2.desc': 'LLM / Vision / Speech',
-    'hero.card1.kpi3.title': 'Ship',
-    'hero.card1.kpi3.desc': 'Deploy / Store Release',
-    'hero.card1.kpi4.title': 'Maintain',
-    'hero.card1.kpi4.desc': 'Monitoring / Improvements',
-    'hero.card2.title': 'Tech Stack',
-    'hero.card2.badge1': 'Web / Mobile',
-    'hero.card2.badge2': 'API / Cloud',
-    'hero.card2.badge3': 'LLM / RAG',
-    'hero.card2.badge4': 'Vision / Speech',
-    'hero.card2.slogan.title': 'Slogan',
-    'hero.card2.slogan.desc': 'We seamlessly integrate AI into your services.',
-
-    // Services
-    'services.label': 'Services',
-    'services.title': 'We build products centered around AI',
-    'services.desc': 'We create app/web products centered on "AI features". If needed, we also design data pipelines and operations together.',
-    'services.card1.title': 'AI Integration',
-    'services.card1.desc': 'Chatbots, summarization, search (RAG), recommendations, automation - seamlessly integrated into products.',
-    'services.card2.title': 'API & Deployment',
-    'services.card2.desc': 'From server/API design to deployment and monitoring. We organize it into an operational format.',
-    'services.card3.title': 'MVP Development',
-    'services.card3.desc': 'We build rapidly testable MVPs and expand features after validation.',
-
-    // Process
-    'process.label': 'Process',
-    'process.title': 'How we work',
-    'process.desc': 'Short cycles of sharing/feedback → rapid iteration. You can see results from a minimum of 2 weeks.',
-    'process.step1.title': 'Consultation & Planning',
-    'process.step1.desc': 'We organize goals, core features, timeline, and budget. If needed, we first confirm feasibility with a simple PoC.',
-    'process.step2.title': 'Development & Feedback',
-    'process.step2.desc': 'We share builds every 1-2 weeks and incorporate feedback. Rapid iteration is key.',
-    'process.step3.title': 'Deployment & Operations',
-    'process.step3.desc': 'We set up store registration, domains, monitoring and hand it over stably.',
-
-    // Stats
-    'stats.stat1': 'weeks to MVP start',
-    'stats.stat2': '% code ownership',
-    'stats.stat3': 'hour first response',
-    'stats.stat4': 'days free revision',
-
-    // Momoi
-    'momoi.label': 'Featured Product',
-    'momoi.title': 'Momoi — AI-powered Task Management',
-    'momoi.desc': 'A product built and operated directly by LightOn Plus Lab. Upload call recordings and AI automatically summarizes and extracts tasks.',
-    'momoi.badge': 'Live',
-    'momoi.card1.desc': 'Upload call recordings and AI automatically extracts caller info, summaries, and tasks. An AI inbox that manages work memos and messages in one place.',
-    'momoi.card1.kpi1.title': '🎙 Call Summary',
-    'momoi.card1.kpi1.desc': 'Upload recording → AI auto-organizes',
-    'momoi.card1.kpi2.title': '📋 AI Classification',
-    'momoi.card1.kpi2.desc': 'Auto-categorize work/personal/project',
-    'momoi.card1.kpi3.title': '🗓 Calendar',
-    'momoi.card1.kpi3.desc': 'Auto-extract & manage schedules',
-    'momoi.card1.kpi4.title': '📲 PWA',
-    'momoi.card1.kpi4.desc': 'Home screen install & push notifications',
-    'momoi.cta1': '🚀 Try Momoi',
-    'momoi.cta2': '📖 User Guide',
-    'momoi.card2.title': 'Technical Architecture',
-    'momoi.card2.feature1': '✅ Auto-transcription & core summarization of call recordings',
-    'momoi.card2.feature2': '✅ AI auto-extracts caller, schedules, action items',
-    'momoi.card2.feature3': '✅ Smart categorization of work/personal/project',
-    'momoi.card2.feature4': '✅ Calendar with holidays from 37 countries',
-    'momoi.card2.feature5': '✅ Mobile-optimized PWA (home screen installation)',
-    'momoi.card2.slogan.title': 'Slogan',
-    'momoi.card2.slogan.desc': 'AI organizes, you just execute.',
-
-    // Receipt AI
-    'receiptai.label': 'AI Expense Management',
-    'receiptai.title': 'Receipt AI — Auto expense management with one photo',
-    'receiptai.desc': 'Take a photo of receipts and AI automatically recognizes store names, amounts, and items, categorizing them. Monthly expense reports and tax deduction items included.',
-    'receiptai.badge': 'Live',
-    'receiptai.card1.title': '🧾 Receipt AI',
-    'receiptai.card1.desc': 'Take a photo of receipts and GPT-4o Vision automatically extracts all information. 9-category auto-classification, monthly reports, tax deduction indicators.',
-    'receiptai.card1.kpi1.title': '📸 AI OCR',
-    'receiptai.card1.kpi1.desc': 'Photo capture → Auto recognition',
-    'receiptai.card1.kpi2.title': '🏷️ Auto Classification',
-    'receiptai.card1.kpi2.desc': '9-category auto-classification',
-    'receiptai.card1.kpi3.title': '📊 Expense Reports',
-    'receiptai.card1.kpi3.desc': 'Monthly analysis & comparison',
-    'receiptai.card1.kpi4.title': '💰 Tax Deductions',
-    'receiptai.card1.kpi4.desc': 'Auto-mark deductible items',
-    'receiptai.cta1': '🧾 Try Receipt AI',
-    'receiptai.cta2': '📖 User Guide',
-    'receiptai.card2.title': 'Technical Architecture',
-    'receiptai.card2.feature1': '✅ GPT-4o Vision automatic receipt recognition (OCR)',
-    'receiptai.card2.feature2': '✅ 9-category classification: food/transport/medical etc.',
-    'receiptai.card2.feature3': '✅ Monthly expense reports & month-over-month analysis',
-    'receiptai.card2.feature4': '✅ Auto-display tax-deductible items',
-    'receiptai.card2.feature5': '✅ Mobile-optimized PWA (rear camera capture)',
-    'receiptai.card2.slogan.title': 'Slogan',
-    'receiptai.card2.slogan.desc': 'Snap and done, AI organizes it.',
-
-    // MeongNyang
-    'nav.meongnyang': 'MeongNyang',
-    'meongnyang.label': 'AI Pet Diary',
-    'meongnyang.title': 'MeongNyang Log — AI-Written Pet Diary',
-    'meongnyang.desc': 'Just upload a photo of your pet and AI writes a cute first-person diary entry. Record your pet\'s daily moments.',
-    'meongnyang.badge': 'Live',
-    'meongnyang.card1.title': '🐾 MeongNyang Log',
-    'meongnyang.card1.desc': 'Upload a pet photo and AI analyzes facial expressions and situations to generate an adorable first-person diary. Saved with mood tags in a timeline.',
-    'meongnyang.card1.kpi1.title': '📸 Photo Analysis',
-    'meongnyang.card1.kpi1.desc': 'Auto-detect expressions',
-    'meongnyang.card1.kpi2.title': '✍️ AI Diary',
-    'meongnyang.card1.kpi2.desc': 'Cute first-person writing',
-    'meongnyang.card1.kpi3.title': '😊 Mood Tags',
-    'meongnyang.card1.kpi3.desc': 'Happy, sleepy, excited...',
-    'meongnyang.card1.kpi4.title': '🔒 Privacy',
-    'meongnyang.card1.kpi4.desc': 'Stored on device (IndexedDB)',
-    'meongnyang.cta1': '🐾 Try MeongNyang Log',
-    'meongnyang.cta2': '📖 User Guide',
-    'meongnyang.card2.title': 'Tech Stack',
-    'meongnyang.card2.feature1': '✅ Gemini 2.5 Flash Vision photo analysis',
-    'meongnyang.card2.feature2': '✅ Kawaii-style AI illustrations',
-    'meongnyang.card2.feature3': '✅ IndexedDB local storage (no server upload)',
-    'meongnyang.card2.feature4': '✅ PWA support — add to home screen',
-    'meongnyang.card2.feature5': '✅ Free, no sign-up required',
-    'meongnyang.card2.slogan.title': 'Slogan',
-    'meongnyang.card2.slogan.desc': 'One photo, AI writes the diary 🐾',
-
-    // Noddak
-    'nav.noddak': 'NoddakAI',
-    'noddak.label': 'AI Legal Assistant',
-    'noddak.title': 'NoddakAI — Auto Parking Ticket Appeal',
-    'noddak.desc': 'Take a photo of your parking ticket and AI analyzes traffic law to automatically generate an appeal letter.',
-    'noddak.badge': 'Live',
-    'noddak.card1.title': '🚗 NoddakAI',
-    'noddak.card1.desc': 'Snap a ticket photo and AI auto-recognizes violation details. Generates appeal letters with Road Traffic Act citations.',
-    'noddak.card1.kpi1.title': '📸 Photo Analysis',
-    'noddak.card1.kpi1.desc': 'Capture ticket → Auto recognition',
-    'noddak.card1.kpi2.title': '⚖️ Legal Basis',
-    'noddak.card1.kpi2.desc': 'Road Traffic Act citations',
-    'noddak.card1.kpi3.title': '📝 Appeal Letter',
-    'noddak.card1.kpi3.desc': 'Auto-generated appeal',
-    'noddak.card1.kpi4.title': '🆓 Free',
-    'noddak.card1.kpi4.desc': 'No signup required',
-    'noddak.cta1': '🚗 Try NoddakAI',
-    'noddak.cta2': '📖 User Guide',
-    'noddak.card2.title': 'Technical Architecture',
-    'noddak.card2.feature1': '✅ Gemini 2.5 Flash Vision ticket recognition',
-    'noddak.card2.feature2': '✅ Road Traffic Act Articles 32-35, 142, 160 embedded',
-    'noddak.card2.feature3': '✅ Appeal letter with legal citations',
-    'noddak.card2.feature4': '✅ Google Cloud Run Seoul deployment',
-    'noddak.card2.feature5': '✅ Free, no signup required',
-    'noddak.card2.slogan.title': 'Slogan',
-    'noddak.card2.slogan.desc': 'Got a ticket? AI fights for you.',
-
-    // Products grid
-    'nav.products': 'Apps',
-    'products.label': 'Our Apps',
-    'products.title': 'All live AI apps, built and running',
-    'products.desc': 'Click any app to try it now.',
-    'grid.receipt.title': 'ReceiptAI',
-    'grid.receipt.desc': 'Snap a receipt → AI extracts everything. 9 categories, monthly reports, tax deductions.',
-    'grid.meongnyang.title': 'MeongNyang Log',
-    'grid.meongnyang.desc': 'Pet photo → AI writes a cute first-person diary. Emotion tags + timeline.',
-    'grid.noddak.title': 'NoddakAI',
-    'grid.noddak.desc': 'Parking ticket photo → traffic law analysis → auto-generate appeal. Free.',
-    'grid.biblebuddy.title': 'Bible Buddy',
-    'grid.biblebuddy.desc': 'Kids Bible learning — 12 stories, 60+ quizzes, coloring, AI character chat.',
-    'grid.biblesearch.title': 'Bible Search',
-    'grid.biblesearch.desc': 'Share your heart, AI finds the right Bible verse. Voice search + 31,088 verses.',
-    'grid.bibleexplorer.title': 'Bible Explorer',
-    'grid.bibleexplorer.desc': 'Sunday school SaaS. Avatars, character cards, quizzes, memorization, AI Moses chat, reading plans.',
-    'grid.songbit.title': 'Songbit — AI Music Studio',
-    'grid.songbit.desc': 'AI composes lyrics and music for your personal music studio. Create complete songs with just genre/mood selection.',
-
-    // Bible Buddy (kept for reference)
-    'nav.bible-buddy': 'Bible Buddy',
-    'biblebuddy.label': 'Kids Bible',
-    'biblebuddy.title': 'Bible Buddy — Interactive Bible Learning for Kids',
-    'biblebuddy.desc': 'Fun quizzes, coloring, and AI chat help children naturally learn Bible stories.',
-    'biblebuddy.badge': 'Live',
-    'biblebuddy.card1.title': '📖 Bible Buddy',
-    'biblebuddy.card1.desc': '12 Bible stories, 60+ quizzes, 30 memory verses, coloring, AI character chat — Bible learning designed for children.',
-    'biblebuddy.card1.kpi1.title': '📚 12 Stories',
-    'biblebuddy.card1.kpi1.desc': 'Core Bible stories',
-    'biblebuddy.card1.kpi2.title': '🧩 60+ Quizzes',
-    'biblebuddy.card1.kpi2.desc': 'True/False, Multiple choice',
-    'biblebuddy.card1.kpi3.title': '🎨 Coloring',
-    'biblebuddy.card1.kpi3.desc': 'Bible scene coloring',
-    'biblebuddy.card1.kpi4.title': '💬 AI Chat',
-    'biblebuddy.card1.kpi4.desc': 'Talk with Bible characters',
-    'biblebuddy.cta1': '📖 Try Bible Buddy',
-    'biblebuddy.card2.title': 'Tech Stack',
-    'biblebuddy.card2.feature1': '✅ Gamification — Badges, points, progress',
-    'biblebuddy.card2.feature2': '✅ Gemini AI character conversations',
-    'biblebuddy.card2.feature3': '✅ Touch-first kids UX (56px+ targets)',
-    'biblebuddy.card2.feature4': '✅ Sound effects (correct/wrong/complete)',
-    'biblebuddy.card2.feature5': '✅ Offline support — IndexedDB storage',
-    'biblebuddy.card2.slogan.title': 'Slogan',
-    'biblebuddy.card2.slogan.desc': "God's stories, like play.",
-
-    // Bible Search
-    'nav.bible-search': 'Bible Search',
-    'biblesearch.label': 'AI Bible Search',
-    'biblesearch.title': 'Bible Search — Share your heart, find the right verse',
-    'biblesearch.desc': 'Express your feelings by voice or text, and AI finds the perfect Bible verse. Full Korean Bible (66 books, 31,088 verses) built-in.',
-    'biblesearch.badge': 'Live',
-    'biblesearch.card1.title': '✝️ Bible Search',
-    'biblesearch.card1.desc': 'Say "I feel lonely" and AI finds comforting verses. Direct verse lookup, voice input, Bible reading, themed verses and more.',
-    'biblesearch.card1.kpi1.title': '🎤 Voice Search',
-    'biblesearch.card1.kpi1.desc': 'Find verses by speaking',
-    'biblesearch.card1.kpi2.title': '📖 31,088 Verses',
-    'biblesearch.card1.kpi2.desc': 'Full Korean Bible built-in',
-    'biblesearch.card1.kpi3.title': '💜 Emotion Search',
-    'biblesearch.card1.kpi3.desc': 'AI matches your feelings',
-    'biblesearch.card1.kpi4.title': '🔊 TTS Reading',
-    'biblesearch.card1.kpi4.desc': 'Listen to verses aloud',
-    'biblesearch.cta1': '✝️ Try Bible Search',
-    'biblesearch.card2.title': 'Tech Stack',
-    'biblesearch.card2.feature1': '✅ Gemini 2.5 Flash emotion analysis → verse matching',
-    'biblesearch.card2.feature2': '✅ Full Korean Bible DB (4.4MB JSON)',
-    'biblesearch.card2.feature3': '✅ Web Speech API recognition/synthesis',
-    'biblesearch.card2.feature4': '✅ Glass morphism + cosmic theme UI',
-    'biblesearch.card2.feature5': '✅ 10 themes × 6 verses + daily verse',
-    'biblesearch.card2.slogan.title': 'Slogan',
-    'biblesearch.card2.slogan.desc': 'Share your heart, Scripture finds you.',
-
-    // Work
-    'work.label': 'More Possibilities',
-    'work.title': 'We can also build these types of products',
-    'work.desc': 'Beyond Momoi, we create various AI products. Configured to match your goals/budget/timeline.',
-    'work.card1.title': '📄 Document Search (RAG) Q&A',
-    'work.card1.desc': 'Upload internal/personal documents and get evidence-based answers to questions.',
-    'work.card2.title': '📸 Image/Camera-based AI',
-    'work.card2.desc': 'Analyze camera input for classification/detection/guidance (e.g., scanning, measuring, recognition).',
-    'work.card3.title': '🤝 Customer Support Automation',
-    'work.card3.desc': 'FAQ + ticket summarization + draft response generation to improve CS speed/quality.',
-    'work.card4.title': '⚡ Work Automation Bots',
-    'work.card4.desc': 'Chatbots/workflows that automate repetitive tasks. Integrate with Telegram, Slack, email.',
-
-    // About
-    'about.label': 'About',
-    'about.title': 'Fast execution, product sense',
-    'about.desc': 'We create "user flows that keep people engaged", not just "feature additions".',
-    'about.card1.title': '🎯 Principles',
-    'about.card1.desc': 'Build quickly → improve with user feedback → organize into operational structure',
-    'about.card2.title': '💡 Strengths',
-    'about.card2.desc': 'When integrating AI into real products, we consider UX, cost, performance, and operations together.',
-    'about.card3.title': '🔄 Collaboration',
-    'about.card3.desc': 'Short cycles of sharing/feedback → rapid iteration. We transparently manage docs/schedule/priorities.',
-
-    // Contact
-    'contact.title': 'Have a project in mind?',
-    'contact.desc': 'Copy the inquiry template and send it via email or DM. We\'ll respond within 24 hours.',
-    'contact.copy_btn': '📋 Copy Inquiry Template',
-    'contact.top_btn': '↑ Back to Top',
-    'contact.card.title': 'Contact',
-    'contact.card.desc': 'Reach out through your preferred channel.',
-
-    // Footer
-    'footer.copyright': '© <span id="year"></span> LightOn Plus Lab. All rights reserved.',
-    'footer.services': 'Services',
-    'footer.process': 'Process',
-    'footer.work': 'Projects',
-    'footer.about': 'About',
-    'footer.contact': 'Contact',
-    'footer.privacy': 'Privacy Policy',
-    'footer.terms': 'Terms of Service'
-  },
-  ja: {
-    // Navigation
-    'nav.services': 'サービス',
-    'nav.receipt-ai': 'レシートAI',
-    'nav.process': 'プロセス',
-    'nav.work': 'プロジェクト',
-    'nav.about': '概要',
-    'nav.contact': '問合せ',
-    'nav.cta': '相談する',
-
-    // Hero
-    'hero.pill1': '🤖 AI機能搭載',
-    'hero.pill2': '📱 アプリ開発',
-    'hero.pill3': '⚡ 高速プロトタイピング',
-    'hero.pill4': '🚀 MVP → ローンチ',
-    'hero.headline': '<span class="gradient">AIを加えて、</span><br/>アプリで届ける。',
-    'hero.subtitle': 'LightOn Plus Labは個人開発スタジオです。<br/>企画から開発、デプロイまで、コアを迅速に実装して<strong>「動作する製品」</strong>を作ります。',
-    'hero.cta1': '💬 相談・見積もり依頼',
-    'hero.cta2': 'サービス詳細 →',
-    'hero.card1.title': 'What we build',
-    'hero.card1.badge': 'One-person Studio',
-    'hero.card1.desc': 'AI機能を「デモ」ではなく「製品」として。<br/>安定運用と拡張性も考慮します。',
-    'hero.card1.kpi1.title': 'Fast MVP',
-    'hero.card1.kpi1.desc': '2〜6週間で可視化',
-    'hero.card1.kpi2.title': 'AI Ready',
-    'hero.card1.kpi2.desc': 'LLM / ビジョン / 音声',
-    'hero.card1.kpi3.title': 'Ship',
-    'hero.card1.kpi3.desc': 'デプロイ / ストア公開',
-    'hero.card1.kpi4.title': 'Maintain',
-    'hero.card1.kpi4.desc': 'モニタリング / 改善',
-    'hero.card2.title': '技術スタック',
-    'hero.card2.badge1': 'Web / Mobile',
-    'hero.card2.badge2': 'API / Cloud',
-    'hero.card2.badge3': 'LLM / RAG',
-    'hero.card2.badge4': 'Vision / Speech',
-    'hero.card2.slogan.title': 'スローガン',
-    'hero.card2.slogan.desc': 'あなたのサービスにAIを自然に組み込みます。',
-
-    // Services
-    'services.label': 'サービス',
-    'services.title': 'AIを中心とした製品を作ります',
-    'services.desc': '「AI機能」を中心としたアプリ・Web製品を作ります。必要に応じてデータパイプラインと運用も一緒に設計します。',
-    'services.card1.title': 'AI機能搭載',
-    'services.card1.desc': 'チャットボット、要約、検索（RAG）、推薦、自動化など、製品に自然に組み込みます。',
-    'services.card2.title': 'API & デプロイ',
-    'services.card2.desc': 'サーバー・API設計からデプロイ、モニタリングまで。運用可能な形で整理します。',
-    'services.card3.title': 'MVP制作',
-    'services.card3.desc': '迅速に実験可能なMVPを作成し、検証後に機能を拡張します。',
-
-    // Process
-    'process.label': 'プロセス',
-    'process.title': 'このように進めます',
-    'process.desc': '短い周期で共有・フィードバック → 高速反復。最短2週間から成果物を確認できます。',
-    'process.step1.title': '相談 & 企画',
-    'process.step1.desc': '目標、コア機能、スケジュール、予算を整理します。必要に応じて簡単なPoCで可能性を先に確認します。',
-    'process.step2.title': '開発 & フィードバック',
-    'process.step2.desc': '1〜2週間単位でビルドを共有し、フィードバックを反映します。高速反復が鍵です。',
-    'process.step3.title': 'デプロイ & 運用',
-    'process.step3.desc': 'ストア登録、ドメイン、モニタリングまでセットアップし、安定的にお渡しします。',
-
-    // Stats
-    'stats.stat1': '週間でMVP開始',
-    'stats.stat2': '% コード所有権',
-    'stats.stat3': '時間以内に初回回答',
-    'stats.stat4': '日間無料修正期間',
-
-    // Momoi
-    'momoi.label': '代表製品',
-    'momoi.title': 'Momoi — AI基盤業務管理',
-    'momoi.desc': 'LightOn Plus Labが直接制作・運営中のプロダクト。通話録音をアップロードするとAIが自動で要約しタスクを抽出します。',
-    'momoi.badge': 'Live',
-    'momoi.card1.desc': '通話録音をアップロードするとAIが発信者・要約・タスクを自動抽出。業務メモ、メッセージを一箇所で管理するAIインボックス。',
-    'momoi.card1.kpi1.title': '🎙 通話要約',
-    'momoi.card1.kpi1.desc': '録音アップロード → AI自動整理',
-    'momoi.card1.kpi2.title': '📋 AI分類',
-    'momoi.card1.kpi2.desc': '業務/個人/プロジェクト自動分類',
-    'momoi.card1.kpi3.title': '🗓 カレンダー',
-    'momoi.card1.kpi3.desc': 'スケジュール自動抽出 & 管理',
-    'momoi.card1.kpi4.title': '📲 PWA',
-    'momoi.card1.kpi4.desc': 'ホーム画面インストール & プッシュ通知',
-    'momoi.cta1': '🚀 Momoiを試す',
-    'momoi.cta2': '📖 使用ガイド',
-    'momoi.card2.title': '主な機能',
-    'momoi.card2.feature1': '✅ 通話録音ファイル自動転写 & 重要ポイント要約',
-    'momoi.card2.feature2': '✅ AIが発信者・スケジュール・アクションアイテムを自動抽出',
-    'momoi.card2.feature3': '✅ 業務/個人/プロジェクトスマート分類',
-    'momoi.card2.feature4': '✅ 37ヶ国祝日対応カレンダー',
-    'momoi.card2.feature5': '✅ モバイル最適化PWA（ホーム画面インストール対応）',
-    'momoi.card2.slogan.title': 'スローガン',
-    'momoi.card2.slogan.desc': 'AIが整理し、あなたは実行するだけ。',
-
-    // Receipt AI
-    'receiptai.label': 'AI経費管理',
-    'receiptai.title': 'レシートAI — 写真一枚で経費自動管理',
-    'receiptai.desc': 'レシートを撮影するとAIが店名、金額、項目を自動認識し、カテゴリ別に分類します。月別支出レポートと税務控除項目まで。',
-    'receiptai.badge': 'Live',
-    'receiptai.card1.title': '🧾 レシートAI',
-    'receiptai.card1.desc': 'レシート写真を撮るとGPT-4o Visionがすべての情報を自動抽出。9カテゴリ自動分類、月別レポート、税務控除表示まで。',
-    'receiptai.card1.kpi1.title': '📸 AI OCR',
-    'receiptai.card1.kpi1.desc': '写真撮影 → 自動認識',
-    'receiptai.card1.kpi2.title': '🏷️ 自動分類',
-    'receiptai.card1.kpi2.desc': '9カテゴリ自動分類',
-    'receiptai.card1.kpi3.title': '📊 支出レポート',
-    'receiptai.card1.kpi3.desc': '月別分析 & 前月比較',
-    'receiptai.card1.kpi4.title': '💰 税務控除',
-    'receiptai.card1.kpi4.desc': '控除可能項目自動表示',
-    'receiptai.cta1': '🧾 レシートAIを試す',
-    'receiptai.cta2': '📖 使用ガイド',
-    'receiptai.card2.title': '技術構成',
-    'receiptai.card2.feature1': '✅ GPT-4o Visionレシート自動認識（OCR）',
-    'receiptai.card2.feature2': '✅ 食費/交通/医療など9カテゴリ分類',
-    'receiptai.card2.feature3': '✅ 月別支出レポート & 前月対比分析',
-    'receiptai.card2.feature4': '✅ 税務控除可能項目自動表示',
-    'receiptai.card2.feature5': '✅ モバイル最適化PWA（背面カメラ撮影）',
-    'receiptai.card2.slogan.title': 'スローガン',
-    'receiptai.card2.slogan.desc': '撮って終わり、AIが整理します。',
-
-
-    // MeongNyang
-    'nav.meongnyang': 'メンニャンログ',
-    'meongnyang.label': 'AIペット日記',
-    'meongnyang.title': 'メンニャンログ — AIが書くペット日記',
-    'meongnyang.desc': 'ペットの写真1枚でAIがかわいい一人称日記を書きます。',
-    'meongnyang.badge': 'Live',
-    'meongnyang.card1.title': '🐾 メンニャンログ',
-    'meongnyang.card1.desc': '写真をアップするとAIが表情と状況を分析し、かわいい一人称日記を自動生成。',
-    'meongnyang.card1.kpi1.title': '📸 写真分析',
-    'meongnyang.card1.kpi1.desc': '表情・状況を自動認識',
-    'meongnyang.card1.kpi2.title': '✍️ AI日記',
-    'meongnyang.card1.kpi2.desc': 'かわいい一人称文体',
-    'meongnyang.card1.kpi3.title': '😊 感情タグ',
-    'meongnyang.card1.kpi3.desc': 'ハッピー・眠い・興奮',
-    'meongnyang.card1.kpi4.title': '🔒 プライバシー',
-    'meongnyang.card1.kpi4.desc': '端末内保存 (IndexedDB)',
-    'meongnyang.cta1': '🐾 メンニャンログを使う',
-    'meongnyang.cta2': '📖 使い方ガイド',
-    'meongnyang.card2.title': '技術構成',
-    'meongnyang.card2.feature1': '✅ Gemini 2.5 Flash Vision写真分析',
-    'meongnyang.card2.feature2': '✅ カワイイスタイルAIイラスト',
-    'meongnyang.card2.feature3': '✅ IndexedDBローカル保存',
-    'meongnyang.card2.feature4': '✅ PWA対応',
-    'meongnyang.card2.feature5': '✅ 無料・会員登録不要',
-    'meongnyang.card2.slogan.title': 'スローガン',
-    'meongnyang.card2.slogan.desc': '写真1枚で、AIが日記を書きます 🐾',
-
-    // Noddak
-    'nav.noddak': 'NoddakAI',
-    'noddak.label': 'AI法律アシスタント',
-    'noddak.title': 'NoddakAI — 駐車違反切符の異議申立書自動作成',
-    'noddak.desc': '駐車違反切符の写真を撮ると、AIが道路交通法を分析し異議申立書を自動作成します。',
-    'noddak.badge': 'Live',
-    'noddak.card1.title': '🚗 NoddakAI',
-    'noddak.card1.desc': '切符の写真を撮るとAIが違反内容を自動認識。道路交通法の根拠で異議申立書を即時生成。',
-    'noddak.card1.kpi1.title': '📸 写真分析',
-    'noddak.card1.kpi1.desc': '切符撮影 → 自動認識',
-    'noddak.card1.kpi2.title': '⚖️ 法的根拠',
-    'noddak.card1.kpi2.desc': '道路交通法原文引用',
-    'noddak.card1.kpi3.title': '📝 申立書生成',
-    'noddak.card1.kpi3.desc': '異議申立書自動作成',
-    'noddak.card1.kpi4.title': '🆓 無料',
-    'noddak.card1.kpi4.desc': '会員登録不要',
-    'noddak.cta1': '🚗 NoddakAIを試す',
-    'noddak.cta2': '📖 使用ガイド',
-    'noddak.card2.title': '技術構成',
-    'noddak.card2.feature1': '✅ Gemini 2.5 Flash Vision切符自動認識',
-    'noddak.card2.feature2': '✅ 道路交通法第32~35条、第142条、第160条原文内蔵',
-    'noddak.card2.feature3': '✅ 法的根拠に基づく異議申立書生成',
-    'noddak.card2.feature4': '✅ Google Cloud Runソウルリージョン',
-    'noddak.card2.feature5': '✅ 会員登録不要、無料使用',
-    'noddak.card2.slogan.title': 'スローガン',
-    'noddak.card2.slogan.desc': '切符？AIが代わりに戦います。',
-
-    'nav.products': 'アプリ',
-    'products.label': '私たちが作ったアプリ',
-    'products.title': 'すべて実際に運営中のAIアプリです',
-    'products.desc': 'アプリをクリックすると使えます。',
-    'grid.receipt.title': 'レシートAI',
-    'grid.receipt.desc': 'レシート撮影 → AI自動認識。9カテゴリ分類 + 月次レポート。',
-    'grid.meongnyang.title': 'ワンニャンログ',
-    'grid.meongnyang.desc': 'ペット写真 → AIが一人称日記を作成。感情タグ + タイムライン。',
-    'grid.noddak.title': 'ノッダクAI',
-    'grid.noddak.desc': '駐車違反切符 → 交通法分析 → 異議申立書自動作成。無料。',
-    'grid.biblebuddy.title': '聖書バディ',
-    'grid.biblebuddy.desc': '子供向け聖書学習 — 12の物語、60+クイズ、ぬりえ、AI対話。',
-    'grid.biblesearch.title': '御言葉検索',
-    'grid.biblesearch.desc': '心を伝えるとAIが聖書の言葉を見つけます。音声検索 + 31,088節。',
-    'grid.bibleexplorer.title': '聖書探検',
-    'grid.bibleexplorer.desc': '教会学校向けSaaS。アバター、人物カード、クイズ、暗唱、AIモーセ対話、読書プラン。',
-    'grid.songbit.title': 'Songbit — AIミュージックスタジオ',
-    'grid.songbit.desc': 'AIが作詞作曲する音楽スタジオ。ジャンル・ムード選択だけで完成した音楽を生成。',
-    'nav.bible-buddy': '聖書バディ',
-    'biblebuddy.label': '子供向け聖書',
-    'biblebuddy.title': '聖書バディ — 子供向けインタラクティブ聖書学習',
-    'biblebuddy.desc': '楽しいクイズ、ぬりえ、AI対話で子供たちが聖書の物語を自然に学べるアプリです。',
-    'biblebuddy.badge': 'Live',
-    'biblebuddy.card1.title': '📖 聖書バディ',
-    'biblebuddy.card1.desc': '12の聖書物語、60以上のクイズ、30の暗唱聖句、ぬりえ、AIキャラクター対話 — 子供の目線に合わせた聖書学習。',
-    'biblebuddy.card1.kpi1.title': '📚 12の物語',
-    'biblebuddy.card1.kpi1.desc': '聖書の核心ストーリー',
-    'biblebuddy.card1.kpi2.title': '🧩 60+クイズ',
-    'biblebuddy.card1.kpi2.desc': '○×、選択、穴埋め',
-    'biblebuddy.card1.kpi3.title': '🎨 ぬりえ',
-    'biblebuddy.card1.kpi3.desc': '聖書の場面を塗る',
-    'biblebuddy.card1.kpi4.title': '💬 AI対話',
-    'biblebuddy.card1.kpi4.desc': '聖書キャラクターと会話',
-    'biblebuddy.cta1': '📖 聖書バディを始める',
-    'biblebuddy.card2.title': '技術構成',
-    'biblebuddy.card2.feature1': '✅ ゲーミフィケーション — バッジ、ポイント、進捗',
-    'biblebuddy.card2.feature2': '✅ Gemini AIキャラクター対話',
-    'biblebuddy.card2.feature3': '✅ タッチ中心の子供UX (56px+タッチターゲット)',
-    'biblebuddy.card2.feature4': '✅ サウンドエフェクト (正解/不正解/完了)',
-    'biblebuddy.card2.feature5': '✅ オフライン対応 — IndexedDB保存',
-    'biblebuddy.card2.slogan.title': 'スローガン',
-    'biblebuddy.card2.slogan.desc': '神様の物語を、遊びのように。',
-
-    // Bible Search
-    'nav.bible-search': '御言葉検索',
-    'biblesearch.label': 'AI聖書検索',
-    'biblesearch.title': '御言葉検索 — 心を伝えると聖書の言葉を見つけます',
-    'biblesearch.desc': '音声やテキストで気持ちを表現すると、AIがぴったりの聖書の言葉を見つけます。',
-    'biblesearch.badge': 'Live',
-    'biblesearch.card1.title': '✝️ 御言葉検索',
-    'biblesearch.card1.desc': '「寂しくて辛い」と言えばAIが慰めの御言葉を見つけます。直接検索、音声入力、聖書閲覧も。',
-    'biblesearch.card1.kpi1.title': '🎤 音声検索',
-    'biblesearch.card1.kpi1.desc': '声で聖句を探す',
-    'biblesearch.card1.kpi2.title': '📖 31,088節',
-    'biblesearch.card1.kpi2.desc': '韓国語聖書全文内蔵',
-    'biblesearch.card1.kpi3.title': '💜 感情検索',
-    'biblesearch.card1.kpi3.desc': 'AIが気持ちに合う聖句を推薦',
-    'biblesearch.card1.kpi4.title': '🔊 TTS読み上げ',
-    'biblesearch.card1.kpi4.desc': '聖句を音声で聴く',
-    'biblesearch.cta1': '✝️ 御言葉検索を使う',
-    'biblesearch.card2.title': '技術構成',
-    'biblesearch.card2.feature1': '✅ Gemini 2.5 Flash感情分析 → 聖句マッチング',
-    'biblesearch.card2.feature2': '✅ 韓国語聖書全巻DB (4.4MB JSON)',
-    'biblesearch.card2.feature3': '✅ Web Speech API音声認識/合成',
-    'biblesearch.card2.feature4': '✅ Glass morphism + 宇宙テーマUI',
-    'biblesearch.card2.feature5': '✅ 10テーマ × 6聖句 + 今日の御言葉',
-    'biblesearch.card2.slogan.title': 'スローガン',
-    'biblesearch.card2.slogan.desc': '心を伝えれば、御言葉が見つかります。',
-
-    // Work
-    'work.label': 'より多くの可能性',
-    'work.title': 'こんなものも作れます',
-    'work.desc': 'Momoi以外にも様々なAI製品を作ります。目標・予算・スケジュールに合わせて構成します。',
-    'work.card1.title': '📄 文書検索（RAG）ベースQ&A',
-    'work.card1.desc': '社内・個人文書をアップロードし、質問すると根拠ベースの回答を提供。',
-    'work.card2.title': '📸 画像・カメラベースAI',
-    'work.card2.desc': 'カメラ入力を分析して分類・検出・ガイド提供（例：スキャン、測定、認識）。',
-    'work.card3.title': '🤝 顧客サポート自動化',
-    'work.card3.desc': 'FAQ + チケット要約 + 回答下書き生成でCS速度・品質向上。',
-    'work.card4.title': '⚡ 業務自動化ボット',
-    'work.card4.desc': '反復業務を自動化するチャットボット・ワークフロー。Telegram、Slack、メール連携。',
-
-    // About
-    'about.label': '会社概要',
-    'about.title': '高速実行力、製品感覚',
-    'about.desc': '「機能追加」ではなく「ユーザーが継続利用するフロー」を作ります。',
-    'about.card1.title': '🎯 原則',
-    'about.card1.desc': '高速構築 → ユーザー反応で改善 → 運用可能な構造に整理',
-    'about.card2.title': '💡 強み',
-    'about.card2.desc': 'AIを実製品に組み込む際に必要なUX、コスト、性能、運用を総合的に考慮します。',
-    'about.card3.title': '🔄 協業',
-    'about.card3.desc': '短周期で共有・フィードバック → 高速反復。文書・スケジュール・優先順位を透明に管理します。',
-
-    // Contact
-    'contact.title': 'プロジェクトはありますか？',
-    'contact.desc': '問い合わせテンプレートをコピーしてメールまたはDMでお送りください。24時間以内に返信いたします。',
-    'contact.copy_btn': '📋 問い合わせテンプレートをコピー',
-    'contact.top_btn': '↑ トップへ',
-    'contact.card.title': '連絡先',
-    'contact.card.desc': 'お好みのチャンネルでご連絡ください。',
-
-    // Footer
-    'footer.copyright': '© <span id="year"></span> LightOn Plus Lab. All rights reserved.',
-    'footer.services': 'サービス',
-    'footer.process': 'プロセス',
-    'footer.work': 'プロジェクト',
-    'footer.about': '会社概要',
-    'footer.contact': 'お問い合わせ',
-    'footer.privacy': 'プライバシーポリシー',
-    'footer.terms': '利用規約'
-  },
-  zh: {
-    // Navigation
-    'nav.services': '服务',
-    'nav.receipt-ai': '发票AI',
-    'nav.process': '流程',
-    'nav.work': '项目',
-    'nav.about': '关于',
-    'nav.contact': '联系',
-    'nav.cta': '项目咨询',
-
-    // Hero
-    'hero.pill1': '🤖 AI功能集成',
-    'hero.pill2': '📱 应用开发',
-    'hero.pill3': '⚡ 快速原型',
-    'hero.pill4': '🚀 MVP → 上线',
-    'hero.headline': '为您的想法<span class="gradient">注入AI</span><br/>并打造成应用',
-    'hero.subtitle': 'LightOn Plus Lab是一家独立开发工作室。<br/>从策划到开发、部署，我们快速实现核心功能，打造<strong>"可运行的产品"</strong>。',
-    'hero.cta1': '💬 咨询报价',
-    'hero.cta2': '查看服务 →',
-    'hero.card1.title': 'What we build',
-    'hero.card1.badge': 'One-person Studio',
-    'hero.card1.desc': 'AI功能不是"演示"而是"产品"。<br/>我们考虑稳定运营和扩展性。',
-    'hero.card1.kpi1.title': 'Fast MVP',
-    'hero.card1.kpi1.desc': '2-6周内可见',
-    'hero.card1.kpi2.title': 'AI Ready',
-    'hero.card1.kpi2.desc': 'LLM / 视觉 / 语音',
-    'hero.card1.kpi3.title': 'Ship',
-    'hero.card1.kpi3.desc': '部署 / 应用商店上架',
-    'hero.card1.kpi4.title': 'Maintain',
-    'hero.card1.kpi4.desc': '监控 / 改进',
-    'hero.card2.title': '技术栈',
-    'hero.card2.badge1': 'Web / Mobile',
-    'hero.card2.badge2': 'API / Cloud',
-    'hero.card2.badge3': 'LLM / RAG',
-    'hero.card2.badge4': 'Vision / Speech',
-    'hero.card2.slogan.title': '口号',
-    'hero.card2.slogan.desc': '我们将AI自然地融入您的服务中。',
-
-    // Services
-    'services.label': '服务',
-    'services.title': '我们围绕AI构建产品',
-    'services.desc': '我们以"AI功能"为核心创建应用/网页产品。如有需要，还会一起设计数据管道和运营。',
-    'services.card1.title': 'AI功能集成',
-    'services.card1.desc': '聊天机器人、摘要、搜索（RAG）、推荐、自动化等，自然融入产品中。',
-    'services.card2.title': 'API & 部署',
-    'services.card2.desc': '从服务器/API设计到部署、监控。整理成可运营的形式。',
-    'services.card3.title': 'MVP制作',
-    'services.card3.desc': '构建可快速测试的MVP，验证后扩展功能。',
-
-    // Process
-    'process.label': '流程',
-    'process.title': '我们这样工作',
-    'process.desc': '短周期分享/反馈 → 快速迭代。最少2周就能看到成果。',
-    'process.step1.title': '咨询 & 规划',
-    'process.step1.desc': '整理目标、核心功能、时间表和预算。如有需要，先用简单的PoC确认可行性。',
-    'process.step2.title': '开发 & 反馈',
-    'process.step2.desc': '每1-2周分享构建并采纳反馈。快速迭代是关键。',
-    'process.step3.title': '部署 & 运营',
-    'process.step3.desc': '设置应用商店注册、域名、监控，稳定交付。',
-
-    // Stats
-    'stats.stat1': '周内启动MVP',
-    'stats.stat2': '% 代码所有权',
-    'stats.stat3': '小时内首次回复',
-    'stats.stat4': '天免费修改期',
-
-    // Momoi
-    'momoi.label': '代表产品',
-    'momoi.title': 'Momoi — AI驱动的任务管理',
-    'momoi.desc': 'LightOn Plus Lab直接构建和运营的产品。上传通话录音，AI自动总结并提取任务。',
-    'momoi.badge': 'Live',
-    'momoi.card1.desc': '上传通话录音，AI自动提取来电者、摘要、任务。一个集中管理工作备忘录和消息的AI收件箱。',
-    'momoi.card1.kpi1.title': '🎙 通话摘要',
-    'momoi.card1.kpi1.desc': '录音上传 → AI自动整理',
-    'momoi.card1.kpi2.title': '📋 AI分类',
-    'momoi.card1.kpi2.desc': '工作/个人/项目自动分类',
-    'momoi.card1.kpi3.title': '🗓 日历',
-    'momoi.card1.kpi3.desc': '自动提取和管理日程',
-    'momoi.card1.kpi4.title': '📲 PWA',
-    'momoi.card1.kpi4.desc': '主屏安装 & 推送通知',
-    'momoi.cta1': '🚀 试用Momoi',
-    'momoi.cta2': '📖 使用指南',
-    'momoi.card2.title': '主要功能',
-    'momoi.card2.feature1': '✅ 通话录音文件自动转录和核心摘要',
-    'momoi.card2.feature2': '✅ AI自动提取来电者、日程、行动项目',
-    'momoi.card2.feature3': '✅ 工作/个人/项目智能分类',
-    'momoi.card2.feature4': '✅ 包含37个国家节假日的日历',
-    'momoi.card2.feature5': '✅ 移动优化PWA（支持主屏安装）',
-    'momoi.card2.slogan.title': '口号',
-    'momoi.card2.slogan.desc': 'AI整理，您只需执行。',
-
-    // Receipt AI
-    'receiptai.label': 'AI费用管理',
-    'receiptai.title': '发票AI — 一张照片自动管理费用',
-    'receiptai.desc': '拍摄发票照片，AI自动识别商家名称、金额、项目并按类别分类。包括月度支出报告和税务抵扣项目。',
-    'receiptai.badge': 'Live',
-    'receiptai.card1.title': '🧾 发票AI',
-    'receiptai.card1.desc': '拍摄发票照片，GPT-4o Vision自动提取所有信息。9类自动分类、月度报告、税务抵扣显示。',
-    'receiptai.card1.kpi1.title': '📸 AI OCR',
-    'receiptai.card1.kpi1.desc': '拍照 → 自动识别',
-    'receiptai.card1.kpi2.title': '🏷️ 自动分类',
-    'receiptai.card1.kpi2.desc': '9类自动分类',
-    'receiptai.card1.kpi3.title': '📊 支出报告',
-    'receiptai.card1.kpi3.desc': '月度分析和对比',
-    'receiptai.card1.kpi4.title': '💰 税务抵扣',
-    'receiptai.card1.kpi4.desc': '自动标示可抵扣项目',
-    'receiptai.cta1': '🧾 试用发票AI',
-    'receiptai.cta2': '📖 使用指南',
-    'receiptai.card2.title': '技术架构',
-    'receiptai.card2.feature1': '✅ GPT-4o Vision发票自动识别（OCR）',
-    'receiptai.card2.feature2': '✅ 餐饮/交通/医疗等9类分类',
-    'receiptai.card2.feature3': '✅ 月度支出报告和环比分析',
-    'receiptai.card2.feature4': '✅ 税务抵扣项目自动显示',
-    'receiptai.card2.feature5': '✅ 移动优化PWA（后置摄像头拍摄）',
-    'receiptai.card2.slogan.title': '口号',
-    'receiptai.card2.slogan.desc': '拍照即可，AI来整理。',
-
-
-    // MeongNyang
-    'nav.meongnyang': '萝善日记',
-    'meongnyang.label': 'AI宠物日记',
-    'meongnyang.title': '萝善日记 — AI为宠物写日记',
-    'meongnyang.desc': '只需一张宠物照片，AI就能写出可爱的第一人称日记。',
-    'meongnyang.badge': 'Live',
-    'meongnyang.card1.title': '🐾 萝善日记',
-    'meongnyang.card1.desc': '上传照片后AI分析宠物表情和场景，自动生成可爱的第一人称日记。',
-    'meongnyang.card1.kpi1.title': '📸 照片分析',
-    'meongnyang.card1.kpi1.desc': '自动识别表情·场景',
-    'meongnyang.card1.kpi2.title': '✍️ AI日记',
-    'meongnyang.card1.kpi2.desc': '可爱第一人称文体',
-    'meongnyang.card1.kpi3.title': '😊 情绪标签',
-    'meongnyang.card1.kpi3.desc': '开心·困倦·兴奋',
-    'meongnyang.card1.kpi4.title': '🔒 隐私保护',
-    'meongnyang.card1.kpi4.desc': '本地存储 (IndexedDB)',
-    'meongnyang.cta1': '🐾 使用萝善日记',
-    'meongnyang.cta2': '📖 使用指南',
-    'meongnyang.card2.title': '技术构成',
-    'meongnyang.card2.feature1': '✅ Gemini 2.5 Flash Vision照片分析',
-    'meongnyang.card2.feature2': '✅ 可爱风格AI插画',
-    'meongnyang.card2.feature3': '✅ IndexedDB本地存储',
-    'meongnyang.card2.feature4': '✅ PWA支持',
-    'meongnyang.card2.feature5': '✅ 免费无需注册',
-    'meongnyang.card2.slogan.title': '标语',
-    'meongnyang.card2.slogan.desc': '一张照片，AI写日记 🐾',
-
-    // Noddak
-    'nav.noddak': 'NoddakAI',
-    'noddak.label': 'AI法律助手',
-    'noddak.title': 'NoddakAI — 停车罚单异议申请自动生成',
-    'noddak.desc': '拍摄停车罚单照片，AI分析交通法并自动生成异议申请书。',
-    'noddak.badge': 'Live',
-    'noddak.card1.title': '🚗 NoddakAI',
-    'noddak.card1.desc': '拍摄罚单照片，AI自动识别违规内容。基于道路交通法生成异议申请书。',
-    'noddak.card1.kpi1.title': '📸 照片分析',
-    'noddak.card1.kpi1.desc': '罚单拍照 → 自动识别',
-    'noddak.card1.kpi2.title': '⚖️ 法律依据',
-    'noddak.card1.kpi2.desc': '道路交通法原文引用',
-    'noddak.card1.kpi3.title': '📝 申请书生成',
-    'noddak.card1.kpi3.desc': '异议申请书自动生成',
-    'noddak.card1.kpi4.title': '🆓 免费',
-    'noddak.card1.kpi4.desc': '无需注册',
-    'noddak.cta1': '🚗 试用NoddakAI',
-    'noddak.cta2': '📖 使用指南',
-    'noddak.card2.title': '技术架构',
-    'noddak.card2.feature1': '✅ Gemini 2.5 Flash Vision罚单自动识别',
-    'noddak.card2.feature2': '✅ 道路交通法第32~35条、第142条、第160条原文内置',
-    'noddak.card2.feature3': '✅ 基于法律依据的异议申请书生成',
-    'noddak.card2.feature4': '✅ Google Cloud Run首尔区域部署',
-    'noddak.card2.feature5': '✅ 无需注册，免费使用',
-    'noddak.card2.slogan.title': '口号',
-    'noddak.card2.slogan.desc': '罚单？AI替你抗争。',
-
-    'nav.products': '应用',
-    'products.label': '我们构建的应用',
-    'products.title': '全部为实际运营中的AI应用',
-    'products.desc': '点击任意应用即可使用。',
-    'grid.receipt.title': '收据AI',
-    'grid.receipt.desc': '拍照收据 → AI自动识别。9大分类 + 月度报告。',
-    'grid.meongnyang.title': '汪喵日记',
-    'grid.meongnyang.desc': '宠物照片 → AI生成可爱第一人称日记。情感标签 + 时间线。',
-    'grid.noddak.title': '罚单AI',
-    'grid.noddak.desc': '停车罚单照片 → 交通法分析 → 自动生成申诉书。免费。',
-    'grid.biblebuddy.title': '圣经伙伴',
-    'grid.biblebuddy.desc': '儿童圣经学习 — 12个故事、60+测验、涂色、AI角色对话。',
-    'grid.biblesearch.title': '经文搜索',
-    'grid.biblesearch.desc': '说出心情，AI找到圣经经文。语音搜索 + 31,088节。',
-    'grid.bibleexplorer.title': '圣经探险',
-    'grid.bibleexplorer.desc': '教会主日学校SaaS。头像、人物卡、关卡、AI摩西、教师仪表板。',
-    'grid.songbit.title': 'Songbit — AI音乐工作室',
-    'grid.songbit.desc': 'AI作词作曲的个人音乐工作室。仅通过风格/情绪选择即可生成完整音乐。',
-    'nav.bible-buddy': '圣经伙伴',
-    'biblebuddy.label': '儿童圣经',
-    'biblebuddy.title': '圣经伙伴 — 儿童互动圣经学习',
-    'biblebuddy.desc': '有趣的测验、涂色和AI对话，让孩子们自然地学习圣经故事。',
-    'biblebuddy.badge': 'Live',
-    'biblebuddy.card1.title': '📖 圣经伙伴',
-    'biblebuddy.card1.desc': '12个圣经故事、60多个测验、30个背诵经文、涂色、AI角色对话 — 适合儿童的圣经学习。',
-    'biblebuddy.card1.kpi1.title': '📚 12个故事',
-    'biblebuddy.card1.kpi1.desc': '圣经核心故事',
-    'biblebuddy.card1.kpi2.title': '🧩 60+测验',
-    'biblebuddy.card1.kpi2.desc': '判断、选择、填空',
-    'biblebuddy.card1.kpi3.title': '🎨 涂色',
-    'biblebuddy.card1.kpi3.desc': '圣经场景涂色',
-    'biblebuddy.card1.kpi4.title': '💬 AI对话',
-    'biblebuddy.card1.kpi4.desc': '与圣经人物对话',
-    'biblebuddy.cta1': '📖 开始使用圣经伙伴',
-    'biblebuddy.card2.title': '技术架构',
-    'biblebuddy.card2.feature1': '✅ 游戏化 — 徽章、积分、进度',
-    'biblebuddy.card2.feature2': '✅ Gemini AI角色对话',
-    'biblebuddy.card2.feature3': '✅ 触控儿童UX (56px+触控目标)',
-    'biblebuddy.card2.feature4': '✅ 音效 (正确/错误/完成)',
-    'biblebuddy.card2.feature5': '✅ 离线支持 — IndexedDB存储',
-    'biblebuddy.card2.slogan.title': '口号',
-    'biblebuddy.card2.slogan.desc': '上帝的故事，像游戏一样。',
-
-    // Bible Search
-    'nav.bible-search': '经文搜索',
-    'biblesearch.label': 'AI圣经搜索',
-    'biblesearch.title': '经文搜索 — 说出心情，找到经文',
-    'biblesearch.desc': '用语音或文字表达心情，AI会找到最合适的圣经经文。内置韩语圣经全文31,088节。',
-    'biblesearch.badge': 'Live',
-    'biblesearch.card1.title': '✝️ 经文搜索',
-    'biblesearch.card1.desc': '说"我很孤独"，AI就会找到安慰的经文。直接搜索、语音输入、圣经阅读、主题经文一应俱全。',
-    'biblesearch.card1.kpi1.title': '🎤 语音搜索',
-    'biblesearch.card1.kpi1.desc': '用声音查找经文',
-    'biblesearch.card1.kpi2.title': '📖 31,088节',
-    'biblesearch.card1.kpi2.desc': '韩语圣经全文内置',
-    'biblesearch.card1.kpi3.title': '💜 情感搜索',
-    'biblesearch.card1.kpi3.desc': 'AI推荐匹配心情的经文',
-    'biblesearch.card1.kpi4.title': '🔊 TTS朗读',
-    'biblesearch.card1.kpi4.desc': '听经文朗读',
-    'biblesearch.cta1': '✝️ 使用经文搜索',
-    'biblesearch.card2.title': '技术架构',
-    'biblesearch.card2.feature1': '✅ Gemini 2.5 Flash情感分析 → 经文匹配',
-    'biblesearch.card2.feature2': '✅ 韩语圣经全卷DB (4.4MB JSON)',
-    'biblesearch.card2.feature3': '✅ Web Speech API语音识别/合成',
-    'biblesearch.card2.feature4': '✅ Glass morphism + 宇宙主题UI',
-    'biblesearch.card2.feature5': '✅ 10主题 × 6经文 + 每日经文',
-    'biblesearch.card2.slogan.title': '口号',
-    'biblesearch.card2.slogan.desc': '说出心情，经文自来。',
-
-    // Work
-    'work.label': '更多可能性',
-    'work.title': '我们还能构建这些产品',
-    'work.desc': '除了Momoi，我们还能创建各种AI产品。根据您的目标/预算/时间表进行配置。',
-    'work.card1.title': '📄 文档搜索（RAG）问答',
-    'work.card1.desc': '上传内部/个人文档，提问时提供基于证据的答案。',
-    'work.card2.title': '📸 图像/摄像头AI',
-    'work.card2.desc': '分析摄像头输入进行分类/检测/指导（如：扫描、测量、识别）。',
-    'work.card3.title': '🤝 客户支持自动化',
-    'work.card3.desc': 'FAQ + 工单摘要 + 回复草稿生成，提升客服速度和质量。',
-    'work.card4.title': '⚡ 工作自动化机器人',
-    'work.card4.desc': '自动化重复工作的聊天机器人/工作流。集成Telegram、Slack、邮件。',
-
-    // About
-    'about.label': '关于',
-    'about.title': '快速执行，产品直觉',
-    'about.desc': '我们创建"让用户持续使用的流程"，而不仅仅是"功能添加"。',
-    'about.card1.title': '🎯 原则',
-    'about.card1.desc': '快速构建 → 用户反馈改进 → 整理为可运营结构',
-    'about.card2.title': '💡 优势',
-    'about.card2.desc': '将AI集成到实际产品时，我们综合考虑UX、成本、性能和运营。',
-    'about.card3.title': '🔄 协作',
-    'about.card3.desc': '短周期分享/反馈 → 快速迭代。透明管理文档/时间表/优先级。',
-
-    // Contact
-    'contact.title': '有项目想法？',
-    'contact.desc': '复制咨询模板，通过邮件或私信发送给我们。24小时内回复。',
-    'contact.copy_btn': '📋 复制咨询模板',
-    'contact.top_btn': '↑ 回到顶部',
-    'contact.card.title': '联系方式',
-    'contact.card.desc': '通过您喜欢的渠道联系我们。',
-
-    // Footer
-    'footer.copyright': '© <span id="year"></span> LightOn Plus Lab. All rights reserved.',
-    'footer.services': '服务',
-    'footer.process': '流程',
-    'footer.work': '项目',
-    'footer.about': '关于',
-    'footer.contact': '联系',
-    'footer.privacy': '隐私政策',
-    'footer.terms': '服务条款'
-  }
-};
-
-// Contact templates by language
-const contactTemplates = {
-  ko: `안녕하세요, LightOn Plus Lab에 프로젝트 문의드립니다.
-
-[1] 무엇을 만들고 싶나요?
-- 예: AI 기능이 들어간 앱/웹 서비스, 자동화, 문서검색(RAG), 챗봇, 이미지/음성 기능 등
-
-[2] 핵심 기능(우선순위 1~3개)
-- 1)
-- 2)
-- 3)
-
-[3] 대상 사용자 / 사용 시나리오
-- 예: 누구(고객)가 어떤 상황에서 어떻게 쓰나요?
-
-[4] 일정
-- 시작 희망일:
-- 1차 MVP 희망일:
-
-[5] 예산 범위(선택)
-- 예: ○○만원 ~ ○○만원
-
-[6] 참고 링크/자료(선택)
-- 기획서/메모/레퍼런스/유사 서비스 링크
-
-연락처:
-- 이름:
-- 이메일/메신저:
-`,
-  en: `Hello, I'm inquiring about a project with LightOn Plus Lab.
-
-[1] What would you like to build?
-- e.g. AI-powered app/web service, automation, document search (RAG), chatbot, image/voice features, etc.
-
-[2] Core features (top 1-3 priorities)
-- 1)
-- 2)
-- 3)
-
-[3] Target users / Use scenarios
-- e.g. Who (customers) will use this in what situations and how?
-
-[4] Timeline
-- Preferred start date:
-- Target MVP date:
-
-[5] Budget range (optional)
-- e.g. $X,XXX ~ $X,XXX
-
-[6] Reference links/materials (optional)
-- Planning docs/notes/references/similar services
-
-Contact:
-- Name:
-- Email/Messenger:
-`,
-  ja: `こんにちは、LightOn Plus Labにプロジェクトについてお問い合わせいたします。
-
-[1] 何を作りたいですか？
-- 例：AI機能付きアプリ/Webサービス、自動化、文書検索（RAG）、チャットボット、画像/音声機能など
-
-[2] コア機能（優先順位1〜3）
-- 1)
-- 2)
-- 3)
-
-[3] 対象ユーザー / 使用シナリオ
-- 例：誰が（顧客）どのような状況でどのように使いますか？
-
-[4] スケジュール
-- 開始希望日：
-- 第1段階MVP希望日：
-
-[5] 予算範囲（任意）
-- 例：○○万円〜○○万円
-
-[6] 参考リンク/資料（任意）
-- 企画書/メモ/参考資料/類似サービスリンク
-
-連絡先：
-- 名前：
-- メール/メッセンジャー：
-`,
-  zh: `您好，我想就项目咨询LightOn Plus Lab。
-
-[1] 您想构建什么？
-- 例如：AI功能的应用/网页服务、自动化、文档搜索（RAG）、聊天机器人、图像/语音功能等
-
-[2] 核心功能（优先级1-3项）
-- 1)
-- 2)
-- 3)
-
-[3] 目标用户 / 使用场景
-- 例如：谁（客户）在什么情况下如何使用？
-
-[4] 时间表
-- 希望开始日期：
-- 第一阶段MVP目标日期：
-
-[5] 预算范围（可选）
-- 例如：￥X,XXX ~ ￥X,XXX
-
-[6] 参考链接/资料（可选）
-- 策划书/备忘录/参考资料/类似服务链接
-
-联系方式：
-- 姓名：
-- 邮箱/即时通讯：
-`
-};
-
-// Language switching functionality
-let currentLang = localStorage.getItem('preferredLanguage') || 'ko';
-
-function translatePage(lang) {
-  const elements = document.querySelectorAll('[data-i18n]');
-  elements.forEach(element => {
-    const key = element.getAttribute('data-i18n');
-    if (translations[lang] && translations[lang][key]) {
-      element.innerHTML = translations[lang][key];
-    }
-  });
-
-  // Update HTML lang attribute
-  document.documentElement.lang = lang;
-  
-  // Update meta description
-  const metaDesc = {
-    ko: 'AI 기능이 들어간 앱을 만드는 개인 개발 스튜디오, LightOn Plus Lab',
-    en: 'Indie development studio creating AI-powered apps, LightOn Plus Lab',
-    ja: 'AI機能搭載アプリを制作する個人開発スタジオ、LightOn Plus Lab',
-    zh: '制作AI功能应用的独立开发工作室，LightOn Plus Lab'
-  };
-  document.querySelector('meta[name="description"]').content = metaDesc[lang];
-
-  // Update page title
-  const titles = {
-    ko: 'LightOn Plus Lab — AI Apps & Innovation',
-    en: 'LightOn Plus Lab — AI Apps & Innovation',
-    ja: 'LightOn Plus Lab — AI Apps & Innovation',
-    zh: 'LightOn Plus Lab — AI Apps & Innovation'
-  };
-  document.title = titles[lang];
-}
-
-function setupLanguageSelector() {
-  const desktopSelector = document.getElementById('languageSelector');
-  const mobileSelector = document.getElementById('mobileLanguageSelector');
-  
-  // Set initial values
-  desktopSelector.value = currentLang;
-  mobileSelector.value = currentLang;
-  
-  // Sync selectors
-  function syncSelectors(sourceSelector, targetSelector) {
-    sourceSelector.addEventListener('change', (e) => {
-      const lang = e.target.value;
-      targetSelector.value = lang;
-      currentLang = lang;
-      localStorage.setItem('preferredLanguage', lang);
-      translatePage(lang);
-    });
-  }
-  
-  syncSelectors(desktopSelector, mobileSelector);
-  syncSelectors(mobileSelector, desktopSelector);
-}
-
-// Initialize translations
-document.addEventListener('DOMContentLoaded', () => {
-  setupLanguageSelector();
-  translatePage(currentLang);
-});
-
-// Copy template (updated for multi-language)
-const template = contactTemplates[currentLang] || contactTemplates['ko'];
-
-document.getElementById("copyBtn").addEventListener("click", async()=>{
-  try{
-    const currentTemplate = contactTemplates[currentLang] || contactTemplates['ko'];
-    await navigator.clipboard.writeText(currentTemplate);
-    const btn = document.getElementById("copyBtn");
-    const old = btn.textContent;
-    
-    const successMessages = {
-      ko: "✅ 복사 완료!",
-      en: "✅ Copied!",
-      ja: "✅ コピー完了！",
-      zh: "✅ 复制成功！"
-    };
-    
-    btn.textContent = successMessages[currentLang] || successMessages['ko'];
-    setTimeout(()=>btn.textContent = old, 1500);
-  }catch(e){
-    const errorMessages = {
-      ko: "복사 실패: 브라우저 권한을 확인해주세요.",
-      en: "Copy failed: Please check browser permissions.",
-      ja: "コピー失敗：ブラウザの権限を確認してください。",
-      zh: "复制失败：请检查浏览器权限。"
-    };
-    alert(errorMessages[currentLang] || errorMessages['ko']);
-  }
-});
 </script>
-
-<!-- AI Chat Widget -->
-<div id="chatWidget">
-  <div id="chatBubble">💬</div>
-  <div id="chatPanel">
-    <div id="chatHeader">
-      <span>💬 LightOn Plus Lab AI 도우미</span>
-      <button id="chatClose">✕</button>
-    </div>
-    <div id="chatMessages">
-      <div class="message ai">
-        <div class="bubble">안녕하세요! 👋 LightOn Plus Lab AI 도우미입니다. 궁금한 점을 물어보세요!</div>
-      </div>
-    </div>
-    <div id="chatTyping" class="typing-indicator">
-      <span></span><span></span><span></span>
-    </div>
-    <div id="chatInput">
-      <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." maxlength="500">
-      <button id="sendButton">📤</button>
-    </div>
-  </div>
-</div>
-
-<style>
-/* Chat Widget Styles */
-#chatWidget {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 10000;
-  font-family: inherit;
-}
-
-#chatBubble {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--glow1), var(--glow2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(45,125,255,0.3);
-  transition: all 0.3s ease;
-  animation: pulse 2s infinite;
-}
-
-#chatBubble:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 32px rgba(45,125,255,0.4);
-}
-
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 8px 24px rgba(45,125,255,0.3); }
-  50% { box-shadow: 0 8px 24px rgba(45,125,255,0.5), 0 0 0 8px rgba(45,125,255,0.1); }
-}
-
-#chatPanel {
-  position: absolute;
-  bottom: 80px;
-  right: 0;
-  width: 350px;
-  height: 500px;
-  background: rgba(11,18,32,0.95);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  backdrop-filter: blur(20px);
-  display: none;
-  flex-direction: column;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.3);
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-#chatHeader {
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 700;
-  color: var(--text);
-}
-
-#chatClose {
-  background: none;
-  border: none;
-  color: var(--muted);
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: all 0.2s;
-}
-
-#chatClose:hover {
-  background: rgba(255,255,255,0.1);
-  color: var(--text);
-}
-
-#chatMessages {
-  flex: 1;
-  padding: 16px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.message {
-  display: flex;
-  max-width: 80%;
-}
-
-.message.user {
-  align-self: flex-end;
-}
-
-.message.ai {
-  align-self: flex-start;
-}
-
-.bubble {
-  padding: 12px 16px;
-  border-radius: 16px;
-  font-size: 14px;
-  line-height: 1.4;
-  word-wrap: break-word;
-}
-
-.message.user .bubble {
-  background: linear-gradient(135deg, var(--glow1), var(--glow2));
-  color: white;
-}
-
-.message.ai .bubble {
-  background: rgba(255,255,255,0.1);
-  color: var(--text);
-  border: 1px solid var(--line);
-}
-
-.typing-indicator {
-  display: none;
-  padding: 12px 16px;
-  margin-bottom: 8px;
-}
-
-.typing-indicator span {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--muted);
-  margin: 0 2px;
-  animation: typing 1.4s infinite ease-in-out;
-}
-
-.typing-indicator span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.typing-indicator span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes typing {
-  0%, 80%, 100% {
-    transform: scale(0);
-    opacity: 0.5;
-  }
-  40% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-#chatInput {
-  padding: 16px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  gap: 8px;
-}
-
-#messageInput {
-  flex: 1;
-  padding: 12px 16px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: rgba(255,255,255,0.05);
-  color: var(--text);
-  font-size: 14px;
-  outline: none;
-  transition: all 0.2s;
-}
-
-#messageInput:focus {
-  border-color: var(--glow1);
-  box-shadow: 0 0 0 2px rgba(45,125,255,0.2);
-}
-
-#messageInput::placeholder {
-  color: var(--muted);
-}
-
-#sendButton {
-  padding: 12px 16px;
-  background: linear-gradient(135deg, var(--glow1), var(--glow2));
-  border: none;
-  border-radius: 24px;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.2s;
-  min-width: 48px;
-}
-
-#sendButton:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
-}
-
-#sendButton:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* Mobile responsive */
-@media (max-width: 480px) {
-  #chatWidget {
-    bottom: 16px;
-    right: 50%;
-    transform: translateX(50%);
-  }
-  #chatPanel {
-    width: calc(100vw - 32px);
-    height: calc(100vh - 120px);
-    bottom: 70px;
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  #chatBubble {
-    width: 52px;
-    height: 52px;
-    font-size: 20px;
-  }
-}
-
-/* Scrollbar for chat messages */
-#chatMessages::-webkit-scrollbar {
-  width: 4px;
-}
-
-#chatMessages::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-}
-
-#chatMessages::-webkit-scrollbar-thumb {
-  background: var(--muted);
-  border-radius: 2px;
-}
-</style>
-
-<script>
-// Chat Widget Functionality
-class ChatWidget {
-  constructor() {
-    this.isOpen = false;
-    this.messages = [];
-    this.messageCount = 0;
-    this.maxMessages = 50;
-    this.apiUrl = 'https://momoi.lightonpluslab.com/api/chat-support';
-    
-    this.init();
-  }
-
-  init() {
-    this.chatBubble = document.getElementById('chatBubble');
-    this.chatPanel = document.getElementById('chatPanel');
-    this.chatClose = document.getElementById('chatClose');
-    this.messageInput = document.getElementById('messageInput');
-    this.sendButton = document.getElementById('sendButton');
-    this.messagesContainer = document.getElementById('chatMessages');
-    this.typingIndicator = document.getElementById('chatTyping');
-    
-    this.setupEventListeners();
-  }
-
-  setupEventListeners() {
-    this.chatBubble.addEventListener('click', () => this.toggleChat());
-    this.chatClose.addEventListener('click', () => this.closeChat());
-    this.sendButton.addEventListener('click', () => this.sendMessage());
-    
-    this.messageInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        this.sendMessage();
-      }
-    });
-
-    this.messageInput.addEventListener('input', (e) => {
-      this.sendButton.disabled = !e.target.value.trim();
-    });
-
-    // Close on click outside
-    document.addEventListener('click', (e) => {
-      if (this.isOpen && !document.getElementById('chatWidget').contains(e.target)) {
-        this.closeChat();
-      }
-    });
-  }
-
-  toggleChat() {
-    if (this.isOpen) {
-      this.closeChat();
-    } else {
-      this.openChat();
-    }
-  }
-
-  openChat() {
-    this.isOpen = true;
-    this.chatPanel.style.display = 'flex';
-    this.chatBubble.style.transform = 'scale(0.9)';
-    this.messageInput.focus();
-    this.scrollToBottom();
-  }
-
-  closeChat() {
-    this.isOpen = false;
-    this.chatPanel.style.display = 'none';
-    this.chatBubble.style.transform = 'scale(1)';
-  }
-
-  async sendMessage() {
-    const text = this.messageInput.value.trim();
-    if (!text || this.messageCount >= this.maxMessages) return;
-
-    // Add user message
-    this.addMessage(text, 'user');
-    this.messageInput.value = '';
-    this.sendButton.disabled = true;
-    this.messageCount++;
-
-    // Show typing indicator
-    this.showTyping();
-    this.scrollToBottom();
-
-    try {
-      const response = await fetch(this.apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: text,
-          history: this.messages.slice(-10) // Last 10 messages for context
-        })
-      });
-
-      const data = await response.json();
-      
-      this.hideTyping();
-
-      if (response.ok && data.reply) {
-        this.addMessage(data.reply, 'ai');
-      } else {
-        throw new Error(data.error || '응답을 받을 수 없습니다.');
-      }
-    } catch (error) {
-      console.error('Chat error:', error);
-      this.hideTyping();
-      this.addMessage('죄송합니다. 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 'ai');
-    }
-
-    this.scrollToBottom();
-  }
-
-  addMessage(content, role) {
-    // Store in history
-    this.messages.push({ role: role === 'user' ? 'user' : 'assistant', content });
-    
-    // Create message element
-    const messageEl = document.createElement('div');
-    messageEl.className = `message ${role}`;
-    messageEl.innerHTML = `<div class="bubble">${this.escapeHtml(content)}</div>`;
-    
-    this.messagesContainer.appendChild(messageEl);
-    
-    // Limit message display
-    const messageElements = this.messagesContainer.querySelectorAll('.message');
-    if (messageElements.length > 20) {
-      messageElements[0].remove();
-    }
-  }
-
-  showTyping() {
-    this.typingIndicator.style.display = 'block';
-  }
-
-  hideTyping() {
-    this.typingIndicator.style.display = 'none';
-  }
-
-  scrollToBottom() {
-    setTimeout(() => {
-      this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
-    }, 100);
-  }
-
-  escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-}
-
-// Initialize chat widget when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  new ChatWidget();
-});
-</script>
-
-</body>
-</html>
 </body>
 </html>
