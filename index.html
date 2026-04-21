@@ -25,20 +25,21 @@
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:center}
 .hero-col-left{display:flex;flex-direction:column;align-items:flex-start;max-width:620px}
 .hero-title{
-  margin:24px 0 24px;
-  font-size:clamp(44px,6.4vw,88px);
+  margin:24px 0 28px;
+  font-size:clamp(42px,6vw,80px);
   font-weight:800;
-  letter-spacing:-.035em;
-  line-height:1;
+  letter-spacing:-.01em;
+  line-height:1.18;
+  word-break:keep-all;
 }
 .hero-title .line{display:block}
 .hero-title em{
   font-style:normal;
   background:linear-gradient(135deg,var(--cyan) 0%,var(--purple) 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  padding:0 .05em;
+  letter-spacing:-.02em;
 }
-.hero-sub{color:var(--text-2);font-size:clamp(15px,1.18vw,18px);line-height:1.7;max-width:46ch;margin-bottom:32px}
+.hero-sub{color:var(--text-2);font-size:clamp(15px,1.18vw,18px);line-height:1.72;max-width:46ch;margin-bottom:32px;word-break:keep-all}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 
 .brain-wrap{
@@ -692,6 +693,52 @@
   var sparks = new THREE.Points(sparkGeo, sparkMat);
   group.add(sparks);
 
+  // Edge pulses — bright dots travel along random icosphere edges like synapses
+  var edgePositions = edges.attributes.position.array; // pairs of vertices (a,b)
+  var edgePairCount = edgePositions.length / 6;
+  var pulseCount = 14;
+  var pulsePositions = new Float32Array(pulseCount * 3);
+  var pulseData = [];
+  for(var k=0; k<pulseCount; k++){
+    pulseData.push({
+      edge: Math.floor(Math.random()*edgePairCount),
+      t: Math.random(),
+      speed: 0.35 + Math.random()*0.6,
+    });
+  }
+  var pulseGeo = new THREE.BufferGeometry();
+  pulseGeo.setAttribute('position', new THREE.BufferAttribute(pulsePositions, 3));
+  var pulseMat = new THREE.PointsMaterial({
+    color: 0xE0F7FF,
+    size: 0.11,
+    transparent: true,
+    opacity: 0.95,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    sizeAttenuation: true,
+  });
+  var pulses = new THREE.Points(pulseGeo, pulseMat);
+  group.add(pulses);
+
+  function updatePulses(dt){
+    for(var k=0; k<pulseCount; k++){
+      var p = pulseData[k];
+      p.t += dt * p.speed;
+      if(p.t >= 1){
+        p.t = 0;
+        p.edge = Math.floor(Math.random()*edgePairCount);
+        p.speed = 0.35 + Math.random()*0.6;
+      }
+      var ei = p.edge * 6;
+      var ax = edgePositions[ei],   ay = edgePositions[ei+1], az = edgePositions[ei+2];
+      var bx = edgePositions[ei+3], by = edgePositions[ei+4], bz = edgePositions[ei+5];
+      pulsePositions[k*3+0] = ax + (bx-ax)*p.t;
+      pulsePositions[k*3+1] = ay + (by-ay)*p.t;
+      pulsePositions[k*3+2] = az + (bz-az)*p.t;
+    }
+    pulseGeo.attributes.position.needsUpdate = true;
+  }
+
   function updateHalo(t){
     for(var i=0; i<haloCount; i++){
       var h = haloData[i];
@@ -718,8 +765,11 @@
   canvas.addEventListener('mouseleave', function(){ tmx = 0; tmy = 0; });
 
   var clock = new THREE.Clock();
+  var last = 0;
   function animate(){
     var t = clock.getElapsedTime();
+    var dt = Math.min(0.05, t - last);
+    last = t;
     mx += (tmx - mx) * 0.04;
     my += (tmy - my) * 0.04;
     group.rotation.y = t * (reduce ? 0 : 0.08) + mx;
@@ -729,7 +779,7 @@
     innerCore.rotation.x = t * (reduce ? 0 : 0.09);
     // Sparkle field slow drift
     sparks.rotation.y = t * (reduce ? 0 : 0.02);
-    if(!reduce) updateHalo(t);
+    if(!reduce){ updateHalo(t); updatePulses(dt); }
     renderer.render(scene, camera);
     if(!reduce) requestAnimationFrame(animate);
   }
