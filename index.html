@@ -3,416 +3,1112 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI Apps & Innovation — LightOn Plus Lab</title>
-<meta name="description" content="AI 기능이 들어간 앱을 만드는 개인 개발 스튜디오, LightOn Plus Lab" />
-<meta property="og:title" content="LightOn Plus Lab" />
-<meta property="og:description" content="AI Apps &amp; Innovation — 아이디어에 AI를 더합니다." />
+<title>LightOn Plus Lab — AI Apps & Innovation Studio</title>
+<meta name="description" content="LightOn Plus Lab은 AI를 실제 제품으로 만드는 1인 스튜디오입니다. 기획부터 배포·운영까지 2~6주 내 MVP를 가시화합니다." />
+<meta property="og:title" content="LightOn Plus Lab — AI Apps & Innovation Studio" />
+<meta property="og:description" content="아이디어를 제품으로. AI를 자연스럽게 붙인 앱을 만드는 1인 스튜디오." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://lightonpluslab.com/" />
+<meta name="theme-color" content="#F4EFE4" />
 <link rel="icon" href="logo-new.png" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
 <style>
-:root{--bg:#050710;--card:#0B1220;--text:#EAF0FF;--muted:#8B9BC0;--line:rgba(255,255,255,.08);--glow1:#2D7DFF;--glow2:#7C4DFF;--glow3:#00E5FF;--shadow:0 24px 80px rgba(0,0,0,.5);--radius:22px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.container{max-width:1140px;margin:0 auto;padding:0 24px}
-.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 600px at 15% 10%,rgba(45,125,255,.14),transparent 60%),radial-gradient(900px 600px at 85% 20%,rgba(124,77,255,.12),transparent 60%),radial-gradient(900px 600px at 50% 90%,rgba(0,229,255,.08),transparent 60%)}
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);background-size:60px 60px}
-.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(45,125,255,.6),transparent 70%);animation:floatParticle linear infinite;opacity:0}
-@keyframes floatParticle{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px) scale(1);opacity:0}}
-.nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);background:rgba(5,7,16,.65);border-bottom:1px solid var(--line);transition:background .3s}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
-.brand img{width:140px;height:auto;border-radius:10px;object-fit:contain;background:#fff;padding:4px 8px;filter:drop-shadow(0 4px 12px rgba(45,125,255,.3))}
-.brand small{display:block;font-weight:600;color:var(--muted);letter-spacing:0;margin-top:2px;font-size:12px}
-.nav-links{display:flex;gap:2px;align-items:center;color:var(--muted);font-weight:600;font-size:13px;white-space:nowrap}
-.nav-links a{padding:6px 10px;border-radius:10px;transition:all .15s}
-.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.06);color:var(--text)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 20px;border-radius:14px;white-space:nowrap;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text);font-weight:700;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:all .2s ease;cursor:pointer;position:relative;overflow:hidden}
-.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent);opacity:0;transition:opacity .2s}
-.btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.2)}
-.btn:hover::before{opacity:1}
-.btn.primary{border:none;background:linear-gradient(135deg,var(--glow1),var(--glow2));box-shadow:0 16px 48px rgba(45,125,255,.25),inset 0 1px 0 rgba(255,255,255,.15)}
-.btn.primary:hover{filter:brightness(1.1);box-shadow:0 20px 60px rgba(45,125,255,.35)}
-.hero{padding:90px 0 50px;position:relative;z-index:1}
-.hero-top{text-align:center;margin-bottom:50px}
-.hero-logo{width:min(480px,90vw);height:auto;object-fit:contain;border-radius:24px;background:#fff;padding:16px 24px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 20px 60px rgba(45,125,255,.3),0 0 120px rgba(45,125,255,.15),0 0 120px rgba(124,77,255,.1);margin-bottom:32px;animation:logoPulse 4s ease-in-out infinite}
-@keyframes logoPulse{0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 20px 60px rgba(45,125,255,.3),0 0 120px rgba(45,125,255,.15),0 0 120px rgba(124,77,255,.1)}50%{box-shadow:0 0 0 1px rgba(255,255,255,.15),0 24px 80px rgba(45,125,255,.45),0 0 160px rgba(45,125,255,.2),0 0 160px rgba(124,77,255,.15)}}
-.pillrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
-.pill{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);padding:8px 14px;border-radius:999px;color:rgba(234,240,255,.85);font-weight:700;font-size:13px;backdrop-filter:blur(4px)}
-.headline{font-size:clamp(38px,5vw,64px);line-height:1.08;letter-spacing:-1px;margin-bottom:18px}
-.headline .gradient{background:linear-gradient(135deg,var(--glow1),var(--glow3),var(--glow2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.sub{color:var(--muted);font-size:clamp(16px,1.4vw,19px);line-height:1.75;max-width:60ch;margin:0 auto 30px}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
-.hero-card{background:rgba(11,18,32,.6);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s}
-.hero-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.15)}
-.hero-card::before{content:"";position:absolute;inset:-1px;background:radial-gradient(500px 180px at 40% 0%,rgba(45,125,255,.18),transparent 60%);pointer-events:none}
-.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.kpi .box{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);border-radius:16px;padding:14px;transition:background .2s}
-.kpi .box:hover{background:rgba(255,255,255,.06)}
-.kpi .box b{display:block;font-size:20px;margin-bottom:2px}
-.kpi .box span{color:var(--muted);font-weight:600;font-size:12px}
-.tagline{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-radius:16px;border:1px dashed rgba(255,255,255,.12);background:rgba(255,255,255,.02);margin-top:16px}
-.tagline code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;color:var(--glow3);font-size:13px;background:rgba(0,229,255,.06);padding:6px 12px;border-radius:12px;border:1px solid rgba(0,229,255,.15)}
-.meta{display:flex;gap:8px;flex-wrap:wrap}
-.badge{font-size:12px;font-weight:700;color:rgba(234,240,255,.85);border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);padding:6px 12px;border-radius:999px}
-section{padding:60px 0;position:relative;z-index:1}
-.section-label{display:inline-flex;align-items:center;gap:8px;color:var(--glow1);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
-.section-label::before{content:"";width:24px;height:2px;background:linear-gradient(90deg,var(--glow1),var(--glow2));border-radius:2px}
-.section-title{font-size:clamp(26px,3vw,36px);margin-bottom:10px;letter-spacing:-.3px}
-.section-desc{color:var(--muted);margin-bottom:28px;line-height:1.75;max-width:65ch}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{background:rgba(11,18,32,.55);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 12px 40px rgba(0,0,0,.25);transition:all .25s ease;position:relative;overflow:hidden}
-.card::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--glow1),var(--glow2),transparent);opacity:0;transition:opacity .3s}
-.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.18)}
-.card:hover::after{opacity:1}
-.card h3{margin-bottom:10px;font-size:17px}
-a.card:hover h3{color:var(--glow1)}
-.card p{color:var(--muted);line-height:1.75;font-size:14px}
-.icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px;background:linear-gradient(135deg,rgba(45,125,255,.15),rgba(124,77,255,.15));border:1px solid rgba(255,255,255,.08);transition:all .2s}
-.card:hover .icon{background:linear-gradient(135deg,rgba(45,125,255,.25),rgba(124,77,255,.25));box-shadow:0 8px 24px rgba(45,125,255,.2)}
-.icon svg{opacity:.9}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
-.stat{text-align:center;padding:28px 16px;background:rgba(11,18,32,.55);border:1px solid var(--line);border-radius:var(--radius);transition:all .25s}
-.stat:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.15)}
-.stat-num{font-size:36px;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--glow1),var(--glow3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
-.stat-label{color:var(--muted);font-size:13px;font-weight:600}
-.cta{padding:50px 0 80px}
-.cta-box{background:linear-gradient(135deg,rgba(45,125,255,.14),rgba(124,77,255,.10));border:1px solid rgba(255,255,255,.12);border-radius:calc(var(--radius) + 8px);padding:36px;box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden}
-.cta-box::before{content:"";position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(124,77,255,.15),transparent 70%);pointer-events:none}
-.cta-box h2{font-size:24px;margin-bottom:6px}
-.cta-box p{color:var(--muted);line-height:1.7}
-.contact-card{margin-top:18px;background:rgba(11,18,32,.55);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
-.contact-card h3{margin-bottom:8px;font-size:17px}
-.contact-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-.contact-link{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);font-weight:600;font-size:14px;transition:all .2s}
-.contact-link:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);transform:translateY(-1px)}
-.footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;position:relative;z-index:1}
-.footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
-.smalllinks{display:flex;gap:16px;flex-wrap:wrap}
-.smalllinks a{transition:color .15s}
-.smalllinks a:hover{color:var(--text)}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px;border-radius:10px;transition:background .15s}
-.hamburger:hover{background:rgba(255,255,255,.06)}
-.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .25s ease}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(5,7,16,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:16px 24px 24px;flex-direction:column;gap:4px}
-.mobile-menu.open{display:flex}
-.mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:600;font-size:15px;transition:background .15s;color:var(--muted)}
-.mobile-menu a:hover{background:rgba(255,255,255,.06);color:var(--text)}
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr 1fr}
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .nav-cta-desktop{display:none}
-  .hero{padding:60px 0 30px}
-  .hero-logo{width:min(320px,85vw)}
+/* ===========================================================
+   Design tokens — warm paper / ink / burnt sienna accent
+   =========================================================== */
+:root{
+  --paper:#F4EFE4;
+  --paper-deep:#EDE5D3;
+  --ink:#15120E;
+  --ink-soft:#2E2A24;
+  --stone:#6E675D;
+  --stone-soft:#9B948A;
+  --rule:rgba(21,18,14,.10);
+  --rule-strong:rgba(21,18,14,.22);
+  --accent:#B94A2A;
+  --accent-deep:#8A3119;
+  --cream:#E8D8BF;
+  --shadow-sm:0 1px 2px rgba(21,18,14,.06);
+  --shadow-md:0 8px 32px -12px rgba(21,18,14,.18);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+
+  --f-display:"Fraunces","Apple SD Gothic Neo","Noto Serif KR",ui-serif,Georgia,serif;
+  --f-sans:"Satoshi","Pretendard","Apple SD Gothic Neo","Noto Sans KR",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
-@media(max-width:480px){
-  .stats{grid-template-columns:1fr}
-  .cta-box{padding:24px}
+
+/* ===========================================================
+   Reset & base
+   =========================================================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--f-sans);
+  font-feature-settings:"ss01","ss02","cv01","cv11";
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font:inherit;border:0;background:0;cursor:pointer}
+::selection{background:var(--accent);color:var(--paper)}
+
+/* Subtle paper grain — adds warmth without looking like a template pattern */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;z-index:1;
+  opacity:.45;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2' seed='5'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.06 0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ===========================================================
+   Layout
+   =========================================================== */
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+@media(max-width:640px){.wrap{padding:0 20px}}
+
+.rule{height:1px;background:var(--rule);border:0;margin:0}
+.rule-strong{background:var(--rule-strong)}
+
+/* ===========================================================
+   Typography
+   =========================================================== */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--stone);
+  font-variant-numeric:tabular-nums;
+}
+.eyebrow .num{
+  font-family:var(--f-mono);
+  font-size:11px;letter-spacing:0;
+  color:var(--accent);
+}
+.eyebrow::after{
+  content:"";flex:1;height:1px;background:var(--rule);min-width:40px;
+}
+h1,h2,h3,h4{
+  font-family:var(--f-display);
+  font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 0;
+  font-weight:400;
+  letter-spacing:-.02em;
+  line-height:.98;
+  color:var(--ink);
+}
+.display{
+  font-family:var(--f-display);
+  font-weight:350;
+  font-variation-settings:"opsz" 144,"SOFT" 40,"WONK" 1;
+  letter-spacing:-.035em;
+  line-height:.92;
+}
+.display em{
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+  color:var(--accent-deep);
+}
+.lead{font-size:clamp(17px,1.35vw,20px);line-height:1.6;color:var(--stone);max-width:56ch}
+.small{font-size:13px;line-height:1.55;color:var(--stone)}
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.02em;color:var(--stone)}
+
+/* ===========================================================
+   Navigation
+   =========================================================== */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,239,228,.82);
+  backdrop-filter:saturate(1.2) blur(18px);
+  -webkit-backdrop-filter:saturate(1.2) blur(18px);
+  border-bottom:1px solid var(--rule);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 0;gap:24px;
+}
+.brand{display:flex;align-items:baseline;gap:12px;text-decoration:none}
+.brand-mark{
+  font-family:var(--f-display);
+  font-weight:500;font-size:20px;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 24;
+  color:var(--ink);
+}
+.brand-mark em{font-style:italic;color:var(--accent-deep);font-variation-settings:"opsz" 24,"SOFT" 100;font-weight:400}
+.brand-suffix{
+  font-family:var(--f-mono);
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--stone-soft);
+}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{
+  position:relative;
+  padding:8px 14px;border-radius:999px;
+  font-size:14px;font-weight:500;color:var(--ink-soft);
+  transition:color .2s var(--ease),background .2s var(--ease);
+}
+.nav-links a:hover{background:rgba(21,18,14,.06);color:var(--ink)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 18px;border-radius:999px;
+  font-size:13px;font-weight:600;
+  background:var(--ink);color:var(--paper);
+  transition:background .2s var(--ease),transform .2s var(--ease);
+}
+.nav-cta:hover{background:var(--accent-deep);transform:translateY(-1px)}
+.nav-cta .arrow{width:14px;height:14px;stroke-width:1.75}
+
+.hamburger{
+  display:none;width:40px;height:40px;border-radius:999px;
+  align-items:center;justify-content:center;
+  background:transparent;border:1px solid var(--rule-strong);
+  transition:background .15s var(--ease);
+}
+.hamburger:hover{background:rgba(21,18,14,.04)}
+.hamburger svg{width:18px;height:18px;stroke:var(--ink)}
+
+.mobile-menu{
+  position:fixed;top:64px;left:0;right:0;z-index:49;
+  background:var(--paper);border-bottom:1px solid var(--rule);
+  display:none;flex-direction:column;padding:16px 32px 28px;
+  transform-origin:top;
+}
+.mobile-menu.open{display:flex;animation:slideDown .3s var(--ease-out)}
+.mobile-menu a{
+  padding:14px 4px;font-size:17px;font-weight:500;
+  border-bottom:1px solid var(--rule);
+  color:var(--ink);
+}
+.mobile-menu a:last-of-type{border-bottom:0}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===========================================================
+   Hero — editorial + WebGL canvas panel
+   =========================================================== */
+.hero{
+  position:relative;
+  padding:88px 0 96px;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:48px;
+  align-items:end;
+}
+.hero-title{
+  font-size:clamp(56px,9vw,148px);
+  margin-bottom:24px;
+}
+.hero-title .line{display:block}
+.hero-sub{
+  margin-top:36px;
+  max-width:46ch;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 22px;border-radius:999px;
+  font-size:14px;font-weight:600;letter-spacing:.01em;
+  transition:transform .2s var(--ease),background .2s var(--ease),color .2s var(--ease);
+}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--rule-strong);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-2px)}
+.btn .arrow{width:15px;height:15px;stroke-width:1.75;transition:transform .2s var(--ease)}
+.btn:hover .arrow{transform:translateX(3px)}
+
+.hero-canvas-wrap{
+  position:relative;aspect-ratio:4/5;
+  border-radius:4px;
+  overflow:hidden;
+  background:var(--ink);
+  box-shadow:var(--shadow-md);
+}
+#hero-canvas{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  display:block;
+}
+.hero-canvas-label{
+  position:absolute;left:20px;right:20px;bottom:20px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;
+  color:rgba(244,239,228,.72);text-transform:uppercase;
+  mix-blend-mode:difference;
+  pointer-events:none;
+}
+.hero-canvas-label .dot{
+  display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--accent);margin-right:6px;
+  animation:pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+.hero-meta{
+  margin-top:88px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:32px;
+  padding-top:32px;border-top:1px solid var(--rule);
+}
+.hero-meta-item .k{
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;
+  color:var(--stone-soft);text-transform:uppercase;margin-bottom:8px;
+}
+.hero-meta-item .v{
+  font-family:var(--f-display);font-size:20px;font-weight:400;
+  letter-spacing:-.01em;color:var(--ink);line-height:1.15;
+}
+.hero-meta-item .v em{font-style:italic;color:var(--accent-deep);font-variation-settings:"opsz" 24,"SOFT" 100}
+
+/* ===========================================================
+   Sections (shared)
+   =========================================================== */
+section{padding:104px 0;position:relative}
+.section-header{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);
+  gap:48px;align-items:end;
+  margin-bottom:72px;
+}
+.section-title{
+  font-size:clamp(40px,5.5vw,84px);
+  letter-spacing:-.03em;line-height:.96;
+}
+.section-title em{font-style:italic;color:var(--accent-deep)}
+
+/* ===========================================================
+   Services — editorial numbered list
+   =========================================================== */
+.services-list{border-top:1px solid var(--rule-strong)}
+.service-row{
+  display:grid;
+  grid-template-columns:80px minmax(0,1fr) minmax(0,1.4fr) 64px;
+  gap:32px;align-items:start;
+  padding:48px 0;
+  border-bottom:1px solid var(--rule);
+  transition:padding .4s var(--ease-out);
+}
+.service-row:hover{padding-left:16px}
+.service-num{
+  font-family:var(--f-mono);font-size:12px;
+  color:var(--accent);letter-spacing:.1em;
+  padding-top:10px;
+}
+.service-head{
+  font-family:var(--f-display);
+  font-size:clamp(26px,2.8vw,38px);
+  font-weight:400;line-height:1.05;
+  letter-spacing:-.02em;
+}
+.service-head em{font-style:italic;color:var(--accent-deep)}
+.service-desc{color:var(--stone);line-height:1.7;font-size:16px;max-width:50ch}
+.service-arrow{
+  display:inline-flex;align-items:center;justify-content:flex-end;
+  color:var(--stone-soft);
+  transition:color .2s var(--ease),transform .2s var(--ease);
+  padding-top:14px;
+}
+.service-row:hover .service-arrow{color:var(--accent);transform:translateX(6px)}
+.service-arrow svg{width:22px;height:22px;stroke-width:1.5}
+
+/* ===========================================================
+   Apps — editorial grid, hairlines (no rounded cards)
+   =========================================================== */
+.apps-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--rule-strong);
+  border-left:1px solid var(--rule-strong);
+}
+.app{
+  position:relative;
+  padding:40px 32px 36px;
+  border-right:1px solid var(--rule-strong);
+  border-bottom:1px solid var(--rule-strong);
+  background:var(--paper);
+  transition:background .3s var(--ease-out);
+  min-height:260px;
+  display:flex;flex-direction:column;
+}
+.app:hover{background:var(--paper-deep)}
+.app[aria-disabled="true"]{opacity:.56;pointer-events:none}
+.app-tag{
+  position:absolute;top:28px;right:28px;
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--stone-soft);
+}
+.app-tag.soon{color:var(--accent)}
+.app-name{
+  font-family:var(--f-display);
+  font-size:28px;font-weight:400;
+  letter-spacing:-.02em;line-height:1.1;
+  margin-bottom:14px;
+  max-width:12ch;
+}
+.app-name em{font-style:italic;color:var(--accent-deep);font-variation-settings:"opsz" 48,"SOFT" 100}
+.app-desc{
+  font-size:14.5px;line-height:1.65;color:var(--stone);
+  margin-top:auto;padding-top:20px;max-width:36ch;
+}
+.app-arrow{
+  position:absolute;bottom:32px;right:28px;
+  width:34px;height:34px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  background:transparent;border:1px solid var(--rule-strong);
+  color:var(--ink-soft);
+  transition:all .25s var(--ease);
+}
+.app:hover .app-arrow{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.app-arrow svg{width:14px;height:14px;stroke-width:1.8;transition:transform .2s var(--ease)}
+.app:hover .app-arrow svg{transform:translate(2px,-2px)}
+
+.apps-more{text-align:center;margin-top:48px}
+
+/* ===========================================================
+   Stats — editorial numerals
+   =========================================================== */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:48px;
+  padding-top:56px;border-top:1px solid var(--rule-strong);
+}
+.stat{position:relative}
+.stat-num{
+  font-family:var(--f-display);
+  font-size:clamp(64px,8vw,120px);
+  font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
+  font-weight:300;line-height:.9;letter-spacing:-.05em;
+  color:var(--ink);
+  font-variant-numeric:tabular-nums;
+  margin-bottom:20px;
+}
+.stat-num .suffix{
+  font-size:.3em;vertical-align:.85em;margin-left:4px;
+  color:var(--accent-deep);font-style:italic;font-variation-settings:"opsz" 48,"SOFT" 100;
+}
+.stat-label{
+  font-size:14px;color:var(--stone);line-height:1.55;max-width:22ch;
+}
+
+/* ===========================================================
+   Manifesto / philosophy block
+   =========================================================== */
+.manifesto{
+  padding:120px 0;
+  background:var(--paper-deep);
+  margin:0 -100vw;padding-left:100vw;padding-right:100vw;
+}
+.manifesto-inner{
+  max-width:900px;margin:0 auto;padding:0 32px;
+  text-align:center;
+}
+.manifesto-quote{
+  font-family:var(--f-display);
+  font-variation-settings:"opsz" 144,"SOFT" 60,"WONK" 1;
+  font-weight:350;
+  font-size:clamp(28px,4vw,56px);
+  line-height:1.1;letter-spacing:-.025em;
+  color:var(--ink);
+}
+.manifesto-quote em{font-style:italic;color:var(--accent-deep);font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1}
+.manifesto-cite{
+  margin-top:40px;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--stone);
+}
+
+/* ===========================================================
+   Contact / CTA
+   =========================================================== */
+.contact{padding:112px 0 96px}
+.contact-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+  gap:80px;align-items:end;
+  padding-top:56px;border-top:1px solid var(--rule-strong);
+}
+.contact-head{
+  font-family:var(--f-display);
+  font-size:clamp(48px,6.5vw,96px);
+  font-weight:350;line-height:.98;letter-spacing:-.03em;
+  color:var(--ink);
+  margin-bottom:32px;
+}
+.contact-head em{font-style:italic;color:var(--accent-deep);font-variation-settings:"opsz" 144,"SOFT" 100}
+.contact-note{color:var(--stone);line-height:1.65;font-size:16px;max-width:44ch}
+.contact-channels{display:flex;flex-direction:column;gap:2px}
+.contact-row{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:22px 4px;
+  border-top:1px solid var(--rule);
+  color:var(--ink);font-size:16px;
+  transition:padding .3s var(--ease-out),color .2s var(--ease);
+}
+.contact-row:first-of-type{border-top:1px solid var(--rule-strong)}
+.contact-row:last-of-type{border-bottom:1px solid var(--rule-strong)}
+.contact-row:hover{padding-left:16px;color:var(--accent-deep)}
+.contact-k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+.contact-v{font-family:var(--f-display);font-size:20px;font-weight:400;letter-spacing:-.01em}
+
+/* ===========================================================
+   Footer
+   =========================================================== */
+.footer{
+  background:var(--ink);color:rgba(244,239,228,.72);
+  padding:72px 0 40px;
+  font-size:13px;
+}
+.footer-top{
+  display:grid;grid-template-columns:minmax(0,1.2fr) repeat(3,minmax(0,1fr));
+  gap:48px;margin-bottom:64px;
+}
+.footer-brand{
+  font-family:var(--f-display);font-size:32px;font-weight:400;
+  letter-spacing:-.02em;color:var(--paper);
+  line-height:1.05;
+  font-variation-settings:"opsz" 48,"SOFT" 30;
+}
+.footer-brand em{font-style:italic;color:var(--cream);font-variation-settings:"opsz" 48,"SOFT" 100}
+.footer-brand-sub{
+  margin-top:10px;font-family:var(--f-mono);
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(244,239,228,.5);
+}
+.footer-col h5{
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(244,239,228,.5);
+  margin-bottom:16px;font-weight:500;
+}
+.footer-col a{
+  display:block;padding:4px 0;color:rgba(244,239,228,.8);
+  transition:color .2s var(--ease);font-size:14px;
+}
+.footer-col a:hover{color:var(--cream)}
+
+.footer-legal{
+  padding-top:32px;border-top:1px solid rgba(244,239,228,.12);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-size:12px;color:rgba(244,239,228,.48);line-height:1.7;
+}
+.footer-biz{font-size:11px;color:rgba(244,239,228,.45);line-height:1.9}
+
+/* ===========================================================
+   Reveal on scroll
+   =========================================================== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.08s}
+.reveal-d2{transition-delay:.16s}
+.reveal-d3{transition-delay:.24s}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+
+/* ===========================================================
+   Responsive
+   =========================================================== */
+@media(max-width:960px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:inline-flex}
+  .hero{padding:56px 0 72px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-canvas-wrap{aspect-ratio:5/4;max-height:520px}
+  .hero-meta{grid-template-columns:repeat(2,1fr);gap:24px}
+  .section-header{grid-template-columns:1fr;gap:24px;margin-bottom:48px}
+  .services-list .service-row{
+    grid-template-columns:48px 1fr;
+    grid-template-areas:"num head" ". desc" ". arrow";
+    gap:16px;padding:32px 0;
+  }
+  .service-num{grid-area:num;padding-top:6px}
+  .service-head{grid-area:head}
+  .service-desc{grid-area:desc}
+  .service-arrow{grid-area:arrow;justify-content:flex-start;padding-top:8px}
+  .apps-grid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr;gap:40px 32px}
+  .contact-grid{grid-template-columns:1fr;gap:48px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  section{padding:72px 0}
+  .manifesto{padding:88px 0}
+}
+@media(max-width:560px){
+  .apps-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr;gap:48px}
+  .footer-top{grid-template-columns:1fr}
+  .hero-canvas-wrap{aspect-ratio:1/1}
+  .app{min-height:220px;padding:32px 24px 32px}
 }
 </style>
 </head>
 <body>
 
-<div class="bg-glow"></div>
-<div class="bg-grid"></div>
-<div class="particles" id="particles"></div>
-
+<!-- ===========================================================
+     Navigation
+     =========================================================== -->
 <header class="nav">
-  <div class="container nav-inner">
-    <a class="brand" href="index.html" aria-label="LightOn Plus Lab 홈">
-      <img src="logo-new.png" alt="LightOn Plus Lab" />
-      <div>LightOn Plus Lab<small>AI Apps &amp; Innovation</small></div>
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="LightOn Plus Lab 홈">
+      <span class="brand-mark">LightOn<em>+</em>Lab</span>
+      <span class="brand-suffix">Est · 2026</span>
     </a>
     <nav class="nav-links" aria-label="메뉴">
-      <a href="services.html">서비스</a>
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
       <a href="momoi.html">Momoi</a>
-      <a href="products.html">앱</a>
-      <a href="about.html">소개</a>
-      <a href="contact.html">문의</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn primary nav-cta-desktop" href="contact.html">프로젝트 문의</a>
+    <a class="nav-cta" href="contact.html">
+      Start a project
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
     <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span><span></span><span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
     </button>
   </div>
 </header>
-
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-  <a href="services.html" class="mobile-link">서비스</a>
-  <a href="momoi.html" class="mobile-link">Momoi</a>
-  <a href="products.html" class="mobile-link">앱</a>
-  <a href="about.html" class="mobile-link">소개</a>
-  <a href="contact.html" class="mobile-link">문의</a>
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--accent-deep);font-style:italic;font-family:var(--f-display);font-size:19px">Start a project →</a>
 </nav>
 
-<main id="top" class="container">
+<main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-top">
-      <div class="pillrow">
-        <span class="pill">🤖 AI 기능 탑재</span>
-        <span class="pill">📱 앱 개발</span>
-        <span class="pill">⚡ 빠른 프로토타이핑</span>
-        <span class="pill">🚀 MVP → 런칭</span>
-      </div>
-      <h1 class="headline reveal">아이디어에 <span class="gradient">AI를 더해</span><br/>앱으로 출시합니다.</h1>
-      <p class="sub reveal">LightOn Plus Lab은 개인 개발 스튜디오입니다.<br/>기획부터 개발, 배포까지 핵심을 빠르게 구현해 <strong>"작동하는 제품"</strong>을 만듭니다.</p>
-      <div class="hero-btns reveal">
-        <a class="btn primary" href="contact.html">💬 상담/견적 요청</a>
-        <a class="btn" href="services.html">서비스 보기 →</a>
-      </div>
-    </div>
+<!-- ===========================================================
+     HERO
+     =========================================================== -->
+<section class="hero">
+  <div class="wrap">
     <div class="hero-grid">
-      <div class="hero-card reveal">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px">
-          <div style="font-weight:900;font-size:17px;">What we build</div>
-          <span class="badge">One-person Studio</span>
+      <div>
+        <div class="eyebrow reveal">
+          <span class="num">01</span>
+          <span>Independent AI App Studio</span>
         </div>
-        <p style="color:var(--muted);line-height:1.75;margin-bottom:16px;">AI 기능을 "데모"가 아닌 "제품"으로.<br/>안정적 운영과 확장까지 고려합니다.</p>
-        <div class="kpi">
-          <div class="box"><b>Fast MVP</b><span>2~6주 내 가시화</span></div>
-          <div class="box"><b>AI Ready</b><span>LLM / 비전 / 음성</span></div>
-          <div class="box"><b>Ship</b><span>배포 / 스토어 등록</span></div>
-          <div class="box"><b>Maintain</b><span>모니터링 / 개선</span></div>
+        <h1 class="display hero-title reveal reveal-d1" style="margin-top:28px">
+          <span class="line">아이디어를,</span>
+          <span class="line"><em>작동하는</em> 제품으로.</span>
+        </h1>
+        <p class="lead hero-sub reveal reveal-d2">
+          LightOn Plus Lab은 AI를 <em style="font-style:italic;color:var(--accent-deep)">데모</em>가 아닌 <em style="font-style:italic;color:var(--accent-deep)">제품</em>으로 만드는 1인 스튜디오입니다. 기획부터 배포, 운영까지 — 2~6주 안에 돌아가는 것을 만들고, 이후를 같이 설계합니다.
+        </p>
+        <div class="hero-actions reveal reveal-d3">
+          <a class="btn btn-primary" href="contact.html">
+            프로젝트 상담
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#work">
+            작업 보기
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
       </div>
-      <div class="hero-card reveal reveal-delay-1">
-        <div style="font-weight:900;font-size:17px;margin-bottom:12px;">기술 스택</div>
-        <div class="meta" style="margin-bottom:16px;">
-          <span class="badge">Web / Mobile</span>
-          <span class="badge">API / Cloud</span>
-          <span class="badge">LLM / RAG</span>
-          <span class="badge">Vision / Speech</span>
-        </div>
-        <div class="tagline">
-          <div>
-            <div style="font-weight:800;font-size:14px">슬로건</div>
-            <div style="color:var(--muted);margin-top:4px;font-size:13px">당신의 서비스에 AI를 자연스럽게 붙입니다.</div>
-          </div>
-          <code>AI × App</code>
+      <div class="hero-canvas-wrap reveal reveal-d2">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-canvas-label">
+          <span><span class="dot"></span>Rendering — live</span>
+          <span>AI × Product · 2026</span>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- SERVICES PREVIEW -->
-  <section id="services">
-    <div class="section-label reveal">서비스</div>
-    <h2 class="section-title reveal">AI를 중심으로 제품을 만듭니다</h2>
-    <p class="section-desc reveal">"AI 기능"을 중심으로 앱/웹 제품을 만듭니다. 필요하면 데이터 파이프라인과 운영까지 같이 설계합니다.</p>
-    <div class="cards">
-      <div class="card reveal">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M7 7h10v10H7z" stroke="currentColor" stroke-width="2" opacity=".9"/>
-            <path d="M4 12h3M17 12h3M12 4v3M12 17v3" stroke="currentColor" stroke-width="2" opacity=".7"/>
-          </svg>
-        </div>
-        <h3>AI 기능 탑재</h3>
-        <p>챗봇, 요약, 검색(RAG), 추천, 자동화 등 제품에 자연스럽게 녹여냅니다.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item reveal">
+        <div class="k">Timeframe</div>
+        <div class="v"><em>2~6</em> 주 MVP</div>
       </div>
-      <div class="card reveal reveal-delay-1">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" opacity=".7"/>
-            <path d="M7 17h10a4 4 0 0 0 0-8 5 5 0 0 0-10 1 3 3 0 0 0 0 7Z" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </div>
-        <h3>API &amp; 배포</h3>
-        <p>서버/API 설계부터 배포, 모니터링까지. 운영 가능한 형태로 정리합니다.</p>
+      <div class="hero-meta-item reveal reveal-d1">
+        <div class="k">Ownership</div>
+        <div class="v"><em>100%</em> 코드 소유</div>
       </div>
-      <div class="card reveal reveal-delay-2">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3>MVP 제작</h3>
-        <p>빠르게 실험 가능한 MVP를 만들고, 검증 후 기능을 확장합니다.</p>
+      <div class="hero-meta-item reveal reveal-d2">
+        <div class="k">Response</div>
+        <div class="v"><em>24</em> 시간 내 회신</div>
+      </div>
+      <div class="hero-meta-item reveal reveal-d3">
+        <div class="k">Warranty</div>
+        <div class="v"><em>30</em> 일 무료 수정</div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:28px;">
-      <a class="btn" href="services.html">서비스 전체 보기 →</a>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PRODUCTS SHOWCASE -->
-  <section id="apps">
-    <div class="section-label reveal">앱</div>
-    <h2 class="section-title reveal">AI를 활용한 제품들</h2>
-    <p class="section-desc reveal">성경 검색, 수학 학습, 한글 공부, 음악 작곡부터 계약서 분석까지 — 일상·비즈니스를 위한 AI 앱을 직접 만들어 운영합니다.</p>
-    <div class="cards" style="grid-template-columns:repeat(3,1fr);">
-      <a class="card reveal" href="https://ai-lecture-note-693521645262.asia-northeast3.run.app" target="_blank">
-        <h3>📝 AI 강의노트</h3>
-        <p>강의 녹음만으로 AI가 핵심을 정리하고 타임라인 노트를 만들어드립니다.</p>
-      </a>
-      <a class="card reveal reveal-delay-1" href="https://bible-search-693521645262.asia-northeast3.run.app" target="_blank">
-        <h3>📖 말씀찾기</h3>
-        <p>음성/텍스트로 성경 구절을 검색하고, 감정별로 구절을 탐색하며 성경읽기 계획을 세웁니다.</p>
-      </a>
-      <a class="card reveal reveal-delay-2" href="https://math-app-693521645262.asia-northeast3.run.app" target="_blank">
-        <h3>🔢 수학친구</h3>
-        <p>초등학생용 수학 학습 도우미. 단계별 풀이와 함께 개념을 자연스럽게 익힙니다.</p>
-      </a>
-      <a class="card reveal" href="https://hangul-app.vercel.app" target="_blank">
-        <h3>🇰🇷 한글이랑놀자</h3>
-        <p>어린이 한글 학습 앱. 공룡/로봇 테마로 음성+터치 방식으로 재미있게 배웁니다.</p>
-      </a>
-      <a class="card reveal reveal-delay-1" href="https://songbit.lightonpluslab.com" target="_blank">
-        <h3>🎵 SongBit</h3>
-        <p>마크다운 가사를 입력하면 AI가 멜로디와 반주를 붙여 곡을 만들어드립니다.</p>
-      </a>
-      <a class="card reveal reveal-delay-2" href="https://momoi.lightonpluslab.com" target="_blank">
-        <h3>🗓 Momoi</h3>
-        <p>통화 녹음 → AI가 요약·할 일·일정 자동 추출. AI 인박스 + 캘린더.</p>
-      </a>
-      <a class="card reveal" style="opacity:0.6;pointer-events:none;" href="#" target="_blank">
-        <h3>📋 AI 계약분석</h3>
-        <p>노동계약, NDA 등 고용 계약서를 AI가 분석하고 리스크 포인트를 찾아줍니다.</p>
-        <span style="display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:#F59E0B;background:rgba(245,158,11,.15);padding:3px 10px;border-radius:99px;">출시예정</span>
-      </a>
-      <a class="card reveal reveal-delay-1" href="https://meongnyang.lightonpluslab.com" target="_blank">
-        <h3>🐾 명낭로그</h3>
-        <p>AI 기반 반려동물 일기 앱. 사진 + 기분 기록, 건강 히스토리, 감정 분석.</p>
-      </a>
-      <a class="card reveal reveal-delay-2" href="https://noddak.lightonpluslab.com" target="_blank">
-        <h3>🚗 노닥</h3>
-        <p>사진 한 장으로 주정차 위반 여부를 AI가 즉시 판단. 신고 가이드 + 법적 근거 제공.</p>
-      </a>
-      <a class="card reveal" style="opacity:0.6;pointer-events:none;" href="#" target="_blank">
-        <h3>⚡ Vibe Studio</h3>
-        <p>AI 프롬프트를 저장, 관리, 버전 추적. 팀과 공유하고 최적의 결과를 반복합니다.</p>
-        <span style="display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:#EC4899;background:rgba(236,72,153,.15);padding:3px 10px;border-radius:99px;">출시예정</span>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:28px;">
-      <a class="btn" href="products.html">앱 전체 보기 →</a>
-    </div>
-  </section>
+<!-- ===========================================================
+     MANIFESTO
+     =========================================================== -->
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <p class="manifesto-quote reveal">
+      <em>"AI 기능"</em>은 더 이상 특이점이 아닙니다. <br>
+      이제 중요한 건, 그 AI가 <em>매일 작동하는</em> 제품으로 살아남는가 입니다.
+    </p>
+    <div class="manifesto-cite reveal reveal-d1">— Studio Note 01</div>
+  </div>
+</section>
 
-  <!-- STATS -->
-  <section>
-    <div class="section-label reveal">실적</div>
-    <h2 class="section-title reveal">숫자로 보는 LightOn Plus Lab</h2>
+<!-- ===========================================================
+     SERVICES
+     =========================================================== -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="reveal">
+        <div class="eyebrow"><span class="num">02</span><span>Services</span></div>
+      </div>
+      <h2 class="section-title reveal reveal-d1">
+        AI를 <em>자연스럽게</em> 붙인<br>제품을 만듭니다.
+      </h2>
+    </div>
+
+    <div class="services-list">
+      <a class="service-row reveal" href="services.html#ai">
+        <div class="service-num">/01</div>
+        <div class="service-head">AI <em>기능 탑재</em></div>
+        <div class="service-desc">챗봇, 요약, 검색(RAG), 추천, 음성, 비전 — LLM과 주변 모델을 제품에 자연스럽게 녹여냅니다. 데모가 아닌, 매일 쓰이는 기능으로.</div>
+        <div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+      <a class="service-row reveal reveal-d1" href="services.html#api">
+        <div class="service-num">/02</div>
+        <div class="service-head">API · <em>배포 · 운영</em></div>
+        <div class="service-desc">서버와 API 설계부터 클라우드 배포, 모니터링, 비용 최적화까지 — 팀 없이도 <em>운영 가능한 형태</em>로 정리해 드립니다.</div>
+        <div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+      <a class="service-row reveal reveal-d2" href="services.html#mvp">
+        <div class="service-num">/03</div>
+        <div class="service-head"><em>MVP</em> 빠른 제작</div>
+        <div class="service-desc">검증해야 할 가설을 가장 빠르게 실험할 수 있는 형태로 만들고, 결과가 나오면 기능을 확장하거나 방향을 빠르게 전환합니다.</div>
+        <div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================================
+     WORK / APPS
+     =========================================================== -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="reveal">
+        <div class="eyebrow"><span class="num">03</span><span>Selected work</span></div>
+      </div>
+      <h2 class="section-title reveal reveal-d1">
+        일상과 비즈니스를 위한<br><em>살아있는</em> AI 앱.
+      </h2>
+    </div>
+
+    <div class="apps-grid">
+      <a class="app reveal" href="https://ai-lecture-note-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener">
+        <span class="app-tag">Live</span>
+        <div class="app-name">AI <em>강의노트</em></div>
+        <div class="app-desc">강의 녹음을 업로드하면 AI가 핵심을 요약하고 타임라인 기반 노트를 자동 생성합니다.</div>
+        <span class="app-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="app reveal reveal-d1" href="https://bible-search-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener">
+        <span class="app-tag">Live</span>
+        <div class="app-name"><em>말씀</em>찾기</div>
+        <div class="app-desc">음성·텍스트로 성경 구절을 검색하고, 감정별 탐색과 읽기 계획까지. 조용한 AI 동반자.</div>
+        <span class="app-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="app reveal reveal-d2" href="https://math-app-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener">
+        <span class="app-tag">Live</span>
+        <div class="app-name">수학<em>친구</em></div>
+        <div class="app-desc">초등학생용 수학 도우미. 단계별 풀이와 개념 연결로 혼자서도 이해하게 합니다.</div>
+        <span class="app-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="app reveal" href="https://hangul-app.vercel.app" target="_blank" rel="noopener">
+        <span class="app-tag">Live</span>
+        <div class="app-name"><em>한글</em>이랑 놀자</div>
+        <div class="app-desc">공룡·로봇 테마의 어린이 한글 학습. 음성과 터치로 놀이처럼 배우는 앱.</div>
+        <span class="app-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="app reveal reveal-d1" href="https://songbit.lightonpluslab.com" target="_blank" rel="noopener">
+        <span class="app-tag">Live</span>
+        <div class="app-name">Song<em>Bit</em></div>
+        <div class="app-desc">마크다운 가사를 입력하면 AI가 멜로디·반주를 붙여 완성된 곡을 만들어드립니다.</div>
+        <span class="app-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="app reveal reveal-d2" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener">
+        <span class="app-tag">Live</span>
+        <div class="app-name"><em>Momoi</em></div>
+        <div class="app-desc">통화 녹음에서 요약·할 일·일정을 자동 추출하는 AI 인박스 &amp; 캘린더.</div>
+        <span class="app-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="app reveal" href="https://meongnyang.lightonpluslab.com" target="_blank" rel="noopener">
+        <span class="app-tag">Live</span>
+        <div class="app-name"><em>명낭</em>로그</div>
+        <div class="app-desc">반려동물을 위한 AI 일기. 사진·기분·건강 히스토리를 감정 분석과 함께 기록합니다.</div>
+        <span class="app-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="app reveal reveal-d1" href="https://noddak.lightonpluslab.com" target="_blank" rel="noopener">
+        <span class="app-tag">Live</span>
+        <div class="app-name"><em>노닥</em></div>
+        <div class="app-desc">사진 한 장으로 주정차 위반 여부를 AI가 판단. 신고 가이드와 법적 근거까지.</div>
+        <span class="app-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="app reveal reveal-d2" href="#" aria-disabled="true">
+        <span class="app-tag soon">Coming soon</span>
+        <div class="app-name">AI <em>계약분석</em></div>
+        <div class="app-desc">노동계약·NDA를 AI가 검토하고 독소 조항·리스크 포인트를 짚어드립니다.</div>
+      </a>
+    </div>
+
+    <div class="apps-more">
+      <a class="btn btn-ghost" href="products.html">
+        전체 작업 보기
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================================
+     STATS
+     =========================================================== -->
+<section id="numbers">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="reveal">
+        <div class="eyebrow"><span class="num">04</span><span>By the numbers</span></div>
+      </div>
+      <h2 class="section-title reveal reveal-d1">
+        약속을 <em>숫자로</em> 표현합니다.
+      </h2>
+    </div>
+
     <div class="stats">
       <div class="stat reveal">
-        <div class="stat-num" data-target="2">0</div>
-        <div class="stat-label">주 내 MVP 시작</div>
+        <div class="stat-num" data-target="2"><span class="counter">0</span><span class="suffix">주</span></div>
+        <div class="stat-label">MVP 시작까지</div>
       </div>
-      <div class="stat reveal reveal-delay-1">
-        <div class="stat-num" data-target="100">0</div>
-        <div class="stat-label">% 코드 소유권</div>
+      <div class="stat reveal reveal-d1">
+        <div class="stat-num" data-target="100"><span class="counter">0</span><span class="suffix">%</span></div>
+        <div class="stat-label">코드 소유권 — 전부 고객의 것</div>
       </div>
-      <div class="stat reveal reveal-delay-2">
-        <div class="stat-num" data-target="24">0</div>
-        <div class="stat-label">시간 내 첫 응답</div>
+      <div class="stat reveal reveal-d2">
+        <div class="stat-num" data-target="24"><span class="counter">0</span><span class="suffix">h</span></div>
+        <div class="stat-label">문의에 대한 첫 회신</div>
       </div>
-      <div class="stat reveal reveal-delay-3">
-        <div class="stat-num" data-target="30">0</div>
-        <div class="stat-label">일 무료 수정 기간</div>
+      <div class="stat reveal reveal-d3">
+        <div class="stat-num" data-target="30"><span class="counter">0</span><span class="suffix">일</span></div>
+        <div class="stat-label">무료 수정 / 사후 지원 기간</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA -->
-  <section class="cta">
-    <div class="cta-box reveal">
+<!-- ===========================================================
+     CONTACT
+     =========================================================== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="margin-bottom:28px"><span class="num">05</span><span>Start a project</span></div>
+    <div class="contact-grid">
       <div>
-        <h2>프로젝트가 있으신가요?</h2>
-        <p>문의 주시면 24시간 내 회신드립니다.</p>
+        <h2 class="contact-head reveal">
+          만들고 싶은 <em>무언가</em>가<br>있으신가요?
+        </h2>
+        <p class="contact-note reveal reveal-d1">
+          아이디어 단계든, 이미 돌아가는 서비스에 AI를 붙이고 싶으신 단계든 괜찮습니다. 24시간 안에 회신드리며, 첫 상담은 무료입니다.
+        </p>
       </div>
-      <a class="btn primary" href="contact.html">💬 상담/견적 요청</a>
-    </div>
-    <div class="contact-card reveal">
-      <h3>연락처</h3>
-      <p style="color:var(--muted);font-size:14px">편하신 채널로 연락주세요.</p>
-      <div class="contact-links">
-        <a class="contact-link" href="mailto:support@lightonpluslab.com">✉️ support@lightonpluslab.com</a>
-        <a class="contact-link" href="https://open.kakao.com/o/lightonpluslab" target="_blank">💬 카카오톡 오픈채팅</a>
+      <div class="contact-channels">
+        <a class="contact-row reveal" href="mailto:support@lightonpluslab.com">
+          <span class="contact-k">Email</span>
+          <span class="contact-v">support@lightonpluslab.com</span>
+        </a>
+        <a class="contact-row reveal reveal-d1" href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">
+          <span class="contact-k">KakaoTalk</span>
+          <span class="contact-v">오픈채팅 바로가기</span>
+        </a>
+        <a class="contact-row reveal reveal-d2" href="contact.html">
+          <span class="contact-k">Project form</span>
+          <span class="contact-v">상담 요청서 작성</span>
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
+<!-- ===========================================================
+     Footer
+     =========================================================== -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
-      <div class="smalllinks">
-        <a href="services.html">서비스</a>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">LightOn<em>+</em>Lab</div>
+        <div class="footer-brand-sub">AI Apps · Product Studio · Anyang, KR</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
         <a href="momoi.html">Momoi</a>
-        <a href="products.html">앱</a>
-        <a href="about.html">소개</a>
-        <a href="contact.html">문의</a>
-        <a href="privacy.html">개인정보처리방침</a>
-        <a href="terms.html">이용약관</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">Products</a>
+        <a href="#work">Selected</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="tel:07080985734">070‑8098‑5734</a>
       </div>
     </div>
-    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:11px;color:#6B7DAA;line-height:1.8;">
-      상호: 라이트온 플러스 랩 | 대표: 박승혁 | 사업자등록번호: 229-15-70907<br>
-      통신판매업신고: 제 2026-안양동안-0514 호<br>
-      주소: 경기도 안양시 동안구 관평로 333, 6동 504호(관양동) | 전화: 070-8098-5734 | 이메일: support@lightonpluslab.com
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. &nbsp;·&nbsp; <a href="privacy.html" style="color:inherit;border-bottom:1px solid rgba(244,239,228,.2)">개인정보처리방침</a> &nbsp;·&nbsp; <a href="terms.html" style="color:inherit;border-bottom:1px solid rgba(244,239,228,.2)">이용약관</a></div>
+      <div class="footer-biz">
+        상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229‑15‑70907<br>
+        통신판매업신고: 제 2026‑안양동안‑0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호
+      </div>
     </div>
   </div>
 </footer>
 
+<!-- ===========================================================
+     Scripts: WebGL hero + scroll reveal + counters + mobile
+     =========================================================== -->
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
-const hamburger = document.getElementById("hamburger");
-const mobileMenu = document.getElementById("mobileMenu");
-hamburger.addEventListener("click", () => {
-  const open = mobileMenu.classList.toggle("open");
-  hamburger.classList.toggle("open", open);
-  hamburger.setAttribute("aria-expanded", open);
-});
-document.querySelectorAll(".mobile-link").forEach(a => {
-  a.addEventListener("click", () => {
-    mobileMenu.classList.remove("open");
-    hamburger.classList.remove("open");
-    hamburger.setAttribute("aria-expanded", false);
-  });
-});
+/* Mobile menu */
 (function(){
-  const c = document.getElementById("particles");
-  for(let i=0;i<20;i++){
-    const p = document.createElement("div");
-    p.className = "particle";
-    const s = Math.random()*4+2;
-    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;background:radial-gradient(circle,${['rgba(45,125,255,.5)','rgba(124,77,255,.5)','rgba(0,229,255,.5)'][i%3]},transparent 70%);`;
-    c.appendChild(p);
-  }
-})();
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}});
-},{threshold:0.1,rootMargin:"0px 0px -40px 0px"});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-const counterObs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting) return;
-    const el=e.target,target=+el.dataset.target,duration=1200,start=performance.now();
-    function tick(now){const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,3);el.textContent=Math.round(target*ease);if(p<1)requestAnimationFrame(tick);}
-    requestAnimationFrame(tick);counterObs.unobserve(el);
+  const btn=document.getElementById('hamburger');
+  const menu=document.getElementById('mobileMenu');
+  if(!btn||!menu) return;
+  btn.addEventListener('click',()=>{
+    const open=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open);
   });
-},{threshold:0.5});
-document.querySelectorAll(".stat-num").forEach(el=>counterObs.observe(el));
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    menu.classList.remove('open');btn.setAttribute('aria-expanded','false');
+  }));
+})();
+
+/* Year */
+document.getElementById('year').textContent=new Date().getFullYear();
+
+/* Reveal on scroll */
+(function(){
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));return;
+  }
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    });
+  },{threshold:.12,rootMargin:'0px 0px -10% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+
+/* Animated counters */
+(function(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const parent=e.target;
+      const counter=parent.querySelector('.counter');
+      const target=+parent.dataset.target;
+      const duration=1400;
+      const start=performance.now();
+      function tick(now){
+        const p=Math.min((now-start)/duration,1);
+        const ease=1-Math.pow(1-p,3);
+        counter.textContent=Math.round(target*ease);
+        if(p<1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      io.unobserve(parent);
+    });
+  },{threshold:.4});
+  document.querySelectorAll('.stat-num').forEach(n=>io.observe(n));
+})();
+
+/* ===========================================================
+   Hero WebGL — flowing warm noise field with mouse parallax
+   Fragment shader: layered 2D simplex-ish value noise, warm palette
+   =========================================================== */
+(function(){
+  const canvas=document.getElementById('hero-canvas');
+  if(!canvas) return;
+  const gl=canvas.getContext('webgl',{antialias:false,alpha:false,premultipliedAlpha:false});
+  if(!gl){
+    canvas.style.background='linear-gradient(135deg,#2E2014,#5A2F1A 45%,#8A3F1E)';
+    return;
+  }
+
+  const vsSrc=`
+    attribute vec2 a;
+    void main(){ gl_Position=vec4(a,0.0,1.0); }
+  `;
+  const fsSrc=`
+    precision highp float;
+    uniform vec2 u_res;
+    uniform float u_t;
+    uniform vec2 u_m;
+
+    // Hash & value noise
+    float hash(vec2 p){ p=fract(p*vec2(123.34,456.21)); p+=dot(p,p+45.32); return fract(p.x*p.y); }
+    float noise(vec2 p){
+      vec2 i=floor(p); vec2 f=fract(p);
+      float a=hash(i);
+      float b=hash(i+vec2(1.,0.));
+      float c=hash(i+vec2(0.,1.));
+      float d=hash(i+vec2(1.,1.));
+      vec2 u=f*f*(3.-2.*f);
+      return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
+    }
+    float fbm(vec2 p){
+      float v=0.; float a=.5;
+      for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.05; a*=.52; }
+      return v;
+    }
+
+    void main(){
+      vec2 uv=gl_FragCoord.xy/u_res.xy;
+      vec2 p=uv;
+      p.x*=u_res.x/u_res.y;
+
+      // Mouse influence (very subtle)
+      vec2 m=u_m*0.8;
+      p+=m*.04;
+
+      // Domain warp (makes it feel 3D / fluid)
+      float t=u_t*.08;
+      vec2 q=vec2(
+        fbm(p*1.4 + vec2(0., t)),
+        fbm(p*1.4 + vec2(5.2,-t*.7))
+      );
+      vec2 r=vec2(
+        fbm(p*1.8 + q*2.5 + vec2(1.7,9.2) + t),
+        fbm(p*1.8 + q*2.5 + vec2(8.3,2.8) - t*.9)
+      );
+      float n=fbm(p*2.0 + r*3.0);
+
+      // Warm paper-studio palette: deep espresso → rust → warm cream glow
+      vec3 c1=vec3(0.078,0.059,0.043);   // espresso
+      vec3 c2=vec3(0.255,0.098,0.051);   // rust shadow
+      vec3 c3=vec3(0.725,0.286,0.161);   // burnt sienna
+      vec3 c4=vec3(0.933,0.820,0.682);   // warm cream
+      vec3 c5=vec3(0.965,0.925,0.878);   // paper
+
+      vec3 col=mix(c1,c2, smoothstep(.15,.55, n));
+      col=mix(col,c3, smoothstep(.45,.72, n+r.x*.15));
+      col=mix(col,c4, smoothstep(.68,.88, n+r.y*.2));
+      col=mix(col,c5, smoothstep(.86,.98, n));
+
+      // Subtle vignette
+      float d=length((uv-.5)*vec2(1.2,1.));
+      col*=1.0 - smoothstep(.55,1.1, d)*.35;
+
+      // Gentle grain to avoid banding
+      float g=(hash(gl_FragCoord.xy + vec2(u_t))*2.-1.)*.012;
+      col+=g;
+
+      gl_FragColor=vec4(col,1.0);
+    }
+  `;
+
+  function compile(type,src){
+    const s=gl.createShader(type);
+    gl.shaderSource(s,src);gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){
+      console.warn('shader error',gl.getShaderInfoLog(s));gl.deleteShader(s);return null;
+    }
+    return s;
+  }
+  const vs=compile(gl.VERTEX_SHADER,vsSrc);
+  const fs=compile(gl.FRAGMENT_SHADER,fsSrc);
+  if(!vs||!fs){canvas.style.background='linear-gradient(135deg,#2E2014,#8A3F1E)';return;}
+  const prog=gl.createProgram();
+  gl.attachShader(prog,vs);gl.attachShader(prog,fs);gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){
+    canvas.style.background='linear-gradient(135deg,#2E2014,#8A3F1E)';return;
+  }
+  gl.useProgram(prog);
+
+  const buf=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(prog,'a');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+
+  const uRes=gl.getUniformLocation(prog,'u_res');
+  const uT=gl.getUniformLocation(prog,'u_t');
+  const uM=gl.getUniformLocation(prog,'u_m');
+
+  let mx=0,my=0,tmx=0,tmy=0;
+  const rect=()=>canvas.getBoundingClientRect();
+  window.addEventListener('mousemove',e=>{
+    const r=rect();
+    tmx=((e.clientX-r.left)/r.width-.5)*2;
+    tmy=((e.clientY-r.top)/r.height-.5)*2;
+    tmx=Math.max(-1.5,Math.min(1.5,tmx));
+    tmy=Math.max(-1.5,Math.min(1.5,tmy));
+  },{passive:true});
+
+  function resize(){
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    const w=canvas.clientWidth*dpr;
+    const h=canvas.clientHeight*dpr;
+    if(canvas.width!==w||canvas.height!==h){
+      canvas.width=w;canvas.height=h;gl.viewport(0,0,w,h);
+    }
+  }
+  const ro=new ResizeObserver(resize);ro.observe(canvas);
+  resize();
+
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const t0=performance.now();
+  let last=t0;
+  function frame(now){
+    // Throttle to ~40fps on slower devices
+    if(now-last<22){requestAnimationFrame(frame);return;}
+    last=now;
+    // ease mouse
+    mx+=(tmx-mx)*.05; my+=(tmy-my)*.05;
+    const t=reduce? 5.0 : (now-t0)*0.001;
+    gl.uniform2f(uRes,canvas.width,canvas.height);
+    gl.uniform1f(uT,t);
+    gl.uniform2f(uM,mx,-my);
+    gl.drawArrays(gl.TRIANGLES,0,6);
+    if(!reduce) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // Pause when off-screen to save GPU
+  const pauseObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !reduce) requestAnimationFrame(frame);
+    });
+  },{threshold:0});
+  pauseObs.observe(canvas);
+})();
 </script>
 </body>
 </html>
