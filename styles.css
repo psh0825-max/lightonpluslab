@@ -130,18 +130,24 @@ h1,h2,h3,h4{color:var(--text);letter-spacing:-.02em;line-height:1.12;font-weight
   display:flex;align-items:center;justify-content:space-between;
   padding:14px 0;gap:24px;
 }
-.brand{display:flex;align-items:center;gap:10px}
-.brand-logo{
-  width:28px;height:28px;border-radius:8px;
-  background:linear-gradient(135deg,var(--mint),var(--cyan));
-  display:grid;place-items:center;
-  box-shadow:0 0 24px var(--mint-glow),inset 0 1px 0 rgba(255,255,255,.2);
+.brand{display:flex;align-items:center;gap:12px}
+.brand-img{
+  width:36px;height:36px;border-radius:10px;
+  background:#fff;padding:5px;
+  object-fit:contain;
+  box-shadow:0 0 0 1px var(--panel-border),0 6px 20px rgba(45,212,191,.15);
+  transition:box-shadow .2s var(--ease);
 }
-.brand-logo svg{width:16px;height:16px;stroke:var(--bg-deep);stroke-width:2.5}
+.brand:hover .brand-img{box-shadow:0 0 0 1px var(--panel-border-hover),0 8px 24px rgba(45,212,191,.3)}
+.brand-text{display:flex;flex-direction:column;gap:2px;line-height:1}
 .brand-name{
-  font-weight:700;font-size:15px;letter-spacing:-.015em;color:var(--text);
+  font-weight:700;font-size:14.5px;letter-spacing:-.01em;color:var(--text);
 }
-.brand-name .plus{color:var(--mint);font-weight:800}
+.brand-name .plus{color:var(--mint);font-weight:800;margin:0 1px}
+.brand-sub{
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-4);font-weight:500;
+}
 
 .nav-links{display:flex;align-items:center;gap:2px}
 .nav-links a{
