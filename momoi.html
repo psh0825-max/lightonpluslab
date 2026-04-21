@@ -4,237 +4,219 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Momoi — AI 기반 업무 관리 — LightOn Plus Lab</title>
-<meta name="description" content="통화 녹음을 올리면 AI가 자동으로 요약하고 할 일을 추출합니다. LightOn Plus Lab의 대표 프로덕트 Momoi." />
-<meta property="og:title" content="Momoi — AI 기반 업무 관리" />
+<meta name="description" content="Momoi — 통화 녹음을 올리면 AI가 자동으로 요약·할 일·일정을 추출하는 AI 인박스 + 캘린더." />
+<meta property="og:title" content="Momoi — LightOn Plus Lab" />
 <meta property="og:type" content="website" />
+<meta name="theme-color" content="#050814" />
 <link rel="icon" href="logo-new.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
 <style>
-:root{--bg:#050710;--card:#0B1220;--text:#EAF0FF;--muted:#8B9BC0;--line:rgba(255,255,255,.08);--glow1:#2D7DFF;--glow2:#7C4DFF;--glow3:#00E5FF;--shadow:0 24px 80px rgba(0,0,0,.5);--radius:22px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.container{max-width:1140px;margin:0 auto;padding:0 24px}
-.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 600px at 15% 10%,rgba(45,125,255,.14),transparent 60%),radial-gradient(900px 600px at 85% 20%,rgba(124,77,255,.12),transparent 60%),radial-gradient(900px 600px at 50% 90%,rgba(0,229,255,.08),transparent 60%)}
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);background-size:60px 60px}
-.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(45,125,255,.6),transparent 70%);animation:floatParticle linear infinite;opacity:0}
-@keyframes floatParticle{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px) scale(1);opacity:0}}
-.nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);background:rgba(5,7,16,.65);border-bottom:1px solid var(--line);transition:background .3s}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
-.brand img{width:140px;height:auto;border-radius:10px;object-fit:contain;background:#fff;padding:4px 8px;filter:drop-shadow(0 4px 12px rgba(45,125,255,.3))}
-.brand small{display:block;font-weight:600;color:var(--muted);letter-spacing:0;margin-top:2px;font-size:12px}
-.nav-links{display:flex;gap:2px;align-items:center;color:var(--muted);font-weight:600;font-size:13px;white-space:nowrap}
-.nav-links a{padding:6px 10px;border-radius:10px;transition:all .15s}
-.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.06);color:var(--text)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 20px;border-radius:14px;white-space:nowrap;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text);font-weight:700;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:all .2s ease;cursor:pointer;position:relative;overflow:hidden}
-.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent);opacity:0;transition:opacity .2s}
-.btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.2)}
-.btn:hover::before{opacity:1}
-.btn.primary{border:none;background:linear-gradient(135deg,var(--glow1),var(--glow2));box-shadow:0 16px 48px rgba(45,125,255,.25),inset 0 1px 0 rgba(255,255,255,.15)}
-.btn.primary:hover{filter:brightness(1.1);box-shadow:0 20px 60px rgba(45,125,255,.35)}
-.page-hero{padding:80px 0 20px;position:relative;z-index:1;text-align:center}
-.headline{font-size:clamp(32px,4vw,52px);line-height:1.1;letter-spacing:-1px;margin-bottom:18px}
-.headline .gradient{background:linear-gradient(135deg,var(--glow1),var(--glow3),var(--glow2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.sub{color:var(--muted);font-size:clamp(16px,1.4vw,18px);line-height:1.75;max-width:60ch;margin:0 auto 30px}
-section{padding:40px 0;position:relative;z-index:1}
-.section-label{display:inline-flex;align-items:center;gap:8px;color:var(--glow1);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
-.section-label::before{content:"";width:24px;height:2px;background:linear-gradient(90deg,var(--glow1),var(--glow2));border-radius:2px}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
-.hero-card{background:rgba(11,18,32,.6);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s}
-.hero-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.15)}
-.hero-card::before{content:"";position:absolute;inset:-1px;background:radial-gradient(500px 180px at 40% 0%,rgba(45,125,255,.18),transparent 60%);pointer-events:none}
-.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.kpi .box{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);border-radius:16px;padding:14px;transition:background .2s}
-.kpi .box:hover{background:rgba(255,255,255,.06)}
-.kpi .box b{display:block;font-size:20px;margin-bottom:2px}
-.kpi .box span{color:var(--muted);font-weight:600;font-size:12px}
-.tagline{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-radius:16px;border:1px dashed rgba(255,255,255,.12);background:rgba(255,255,255,.02);margin-top:16px}
-.tagline code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;color:var(--glow3);font-size:13px;background:rgba(0,229,255,.06);padding:6px 12px;border-radius:12px;border:1px solid rgba(0,229,255,.15)}
-.badge{font-size:12px;font-weight:700;color:rgba(234,240,255,.85);border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);padding:6px 12px;border-radius:999px}
-.cta{padding:40px 0 80px}
-.cta-box{background:linear-gradient(135deg,rgba(45,125,255,.14),rgba(124,77,255,.10));border:1px solid rgba(255,255,255,.12);border-radius:calc(var(--radius) + 8px);padding:36px;box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden}
-.cta-box::before{content:"";position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(124,77,255,.15),transparent 70%);pointer-events:none}
-.cta-box h2{font-size:24px;margin-bottom:6px}
-.cta-box p{color:var(--muted);line-height:1.7}
-.footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;position:relative;z-index:1}
-.footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
-.smalllinks{display:flex;gap:16px;flex-wrap:wrap}
-.smalllinks a{transition:color .15s}
-.smalllinks a:hover{color:var(--text)}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px;border-radius:10px;transition:background .15s}
-.hamburger:hover{background:rgba(255,255,255,.06)}
-.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .25s ease}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(5,7,16,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:16px 24px 24px;flex-direction:column;gap:4px}
-.mobile-menu.open{display:flex}
-.mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:600;font-size:15px;transition:background .15s;color:var(--muted)}
-.mobile-menu a:hover{background:rgba(255,255,255,.06);color:var(--text)}
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .nav-cta-desktop{display:none}
-  .page-hero{padding:60px 0 20px}
+.page-hero{padding:72px 0 40px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(38px,5vw,68px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:20px}
+.page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-hero p{color:var(--text-3);max-width:52ch;margin:0 auto;font-size:16px;line-height:1.7}
+
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1040px;margin:48px auto 0}
+.detail-card{
+  padding:32px;border-radius:18px;
+  background:var(--panel);border:1px solid var(--panel-border);
+  transition:background .25s,border-color .25s;
 }
-@media(max-width:480px){.cta-box{padding:24px}}
+.detail-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover)}
+.detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.detail-title{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.badge-live{
+  font-family:var(--f-mono);font-size:10px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 10px;border-radius:6px;
+  background:rgba(45,212,191,.12);color:var(--mint);
+  border:1px solid rgba(45,212,191,.28);
+}
+.detail-desc{color:var(--text-3);line-height:1.7;font-size:14px;margin-bottom:20px}
+.kpi-inner{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.kpi-inner .cell{
+  padding:14px;border-radius:10px;
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--panel-border);
+}
+.kpi-inner .cell b{display:block;font-size:13px;font-weight:600;margin-bottom:2px;color:var(--text)}
+.kpi-inner .cell span{font-size:12px;color:var(--text-3);line-height:1.55}
+.feat-list{margin-bottom:20px}
+.feat-list div{
+  padding:10px 0;color:var(--text-2);font-size:14px;line-height:1.6;
+  border-bottom:1px solid var(--panel-border);
+  display:flex;align-items:flex-start;gap:10px;
+}
+.feat-list div:last-child{border-bottom:0}
+.feat-list .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--mint);
+  box-shadow:0 0 8px var(--mint);margin-top:8px;flex-shrink:0;
+}
+.tag{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 16px;border-radius:10px;
+  border:1px dashed var(--panel-border);
+  background:rgba(255,255,255,.02);
+}
+.tag-k{font-size:12px;font-weight:600;color:var(--text)}
+.tag-v{font-size:12px;color:var(--text-3);margin-top:2px}
+.tag code{font-family:var(--f-mono);color:var(--mint);font-size:12px;padding:4px 10px;background:rgba(45,212,191,.08);border-radius:6px;border:1px solid rgba(45,212,191,.2)}
+
+.act-row{display:flex;gap:10px;flex-wrap:wrap}
+
+@media(max-width:900px){.detail-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<div class="bg-glow"></div>
-<div class="bg-grid"></div>
-<div class="particles" id="particles"></div>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="page-glow" aria-hidden="true"></div>
 
 <header class="nav">
-  <div class="container nav-inner">
-    <a class="brand" href="index.html" aria-label="LightOn Plus Lab 홈">
-      <img src="logo-new.png" alt="LightOn Plus Lab" />
-      <div>LightOn Plus Lab<small>AI Apps &amp; Innovation</small></div>
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+      <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
     </a>
-    <nav class="nav-links" aria-label="메뉴">
-      <a href="services.html">서비스</a>
-      <a href="momoi.html" class="active">Momoi</a>
-      <a href="products.html">앱</a>
-      <a href="about.html">소개</a>
-      <a href="contact.html">문의</a>
+    <nav class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
+      <a href="momoi.html">Momoi</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn primary nav-cta-desktop" href="contact.html">프로젝트 문의</a>
-    <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <a class="nav-cta" href="contact.html">Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
     </button>
   </div>
 </header>
-
-<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-  <a href="services.html" class="mobile-link">서비스</a>
-  <a href="momoi.html" class="mobile-link">Momoi</a>
-  <a href="products.html" class="mobile-link">앱</a>
-  <a href="about.html" class="mobile-link">소개</a>
-  <a href="contact.html" class="mobile-link">문의</a>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
-<main class="container">
+<main>
 
-  <div class="page-hero">
-    <div class="section-label reveal">대표 제품</div>
-    <h1 class="headline reveal">Momoi —<br/><span class="gradient">AI 기반 업무 관리</span></h1>
-    <p class="sub reveal">LightOn Plus Lab이 직접 만들고 운영 중인 프로덕트.<br/>통화 녹음을 올리면 AI가 자동으로 요약하고 할 일을 추출합니다.</p>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Flagship Product</span>
+    <h1 class="reveal reveal-d1">Momoi — <em>AI 업무 관리</em></h1>
+    <p class="reveal reveal-d2">LightOn Plus Lab이 직접 만들고 운영 중인 프로덕트. 통화 녹음을 올리면 AI가 자동으로 요약하고 할 일·일정을 추출합니다.</p>
+    <div class="act-row reveal reveal-d3" style="justify-content:center;margin-top:32px">
+      <a class="btn btn-primary" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener">
+        Momoi 사용해보기
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="https://momoi.lightonpluslab.com/guide" target="_blank" rel="noopener">사용 가이드</a>
+    </div>
   </div>
+</section>
 
-  <section>
-    <div class="hero-grid">
-      <div class="hero-card reveal">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px">
-          <div style="font-weight:900;font-size:17px;">🗓 Momoi</div>
-          <span class="badge" style="background:linear-gradient(135deg,var(--glow1),var(--glow2));border:none;">Live</span>
+<section>
+  <div class="wrap">
+    <div class="detail-grid">
+      <div class="detail-card reveal">
+        <div class="detail-head">
+          <div class="detail-title">Momoi</div>
+          <span class="badge-live">Live</span>
         </div>
-        <p style="color:var(--muted);line-height:1.75;margin-bottom:16px;">
-          통화 녹음을 올리면 AI가 발신자·요약·할 일을 자동 추출. 업무 메모, 메시지를 한곳에서 관리하는 AI 인박스.
-        </p>
-        <div class="kpi">
-          <div class="box"><b>🎙 통화 요약</b><span>녹음 업로드 → AI 자동 정리</span></div>
-          <div class="box"><b>📋 AI 분류</b><span>업무/개인/프로젝트 자동 분류</span></div>
-          <div class="box"><b>🗓 캘린더</b><span>일정 자동 추출 &amp; 관리</span></div>
-          <div class="box"><b>📲 PWA</b><span>홈 화면 설치 &amp; 푸시 알림</span></div>
-        </div>
-        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn primary" href="https://momoi.lightonpluslab.com" target="_blank">🚀 Momoi 사용해보기</a>
-          <a class="btn" href="https://momoi.lightonpluslab.com/guide" target="_blank">📖 사용 가이드</a>
+        <div class="detail-desc">통화 녹음을 올리면 AI가 발신자·요약·할 일을 자동 추출합니다. 업무 메모와 메시지를 한곳에서 관리하는 AI 인박스.</div>
+        <div class="kpi-inner">
+          <div class="cell"><b>통화 요약</b><span>녹음 업로드 → AI 자동 정리</span></div>
+          <div class="cell"><b>AI 분류</b><span>업무·개인·프로젝트 자동 분류</span></div>
+          <div class="cell"><b>캘린더</b><span>일정 자동 추출 &amp; 관리</span></div>
+          <div class="cell"><b>PWA</b><span>홈 화면 설치 &amp; 푸시</span></div>
         </div>
       </div>
-      <div class="hero-card reveal reveal-delay-1">
-        <div style="font-weight:900;font-size:17px;margin-bottom:12px;">주요 기능</div>
-        <div style="color:var(--muted);line-height:1.75;font-size:14px;margin-bottom:16px;">
-          <p style="margin-bottom:8px;">✅ 통화 녹음 파일 자동 전사 &amp; 핵심 요약</p>
-          <p style="margin-bottom:8px;">✅ AI가 발신자·일정·액션아이템 자동 추출</p>
-          <p style="margin-bottom:8px;">✅ 업무/개인/프로젝트 스마트 분류</p>
-          <p style="margin-bottom:8px;">✅ 37개국 공휴일 포함 캘린더</p>
-          <p>✅ 모바일 최적화 PWA (홈 화면 설치 지원)</p>
+      <div class="detail-card reveal reveal-d1">
+        <div class="detail-head">
+          <div class="detail-title">주요 기능</div>
         </div>
-        <div class="tagline">
+        <div class="feat-list">
+          <div><span class="dot"></span>통화 녹음 파일 자동 전사 &amp; 핵심 요약</div>
+          <div><span class="dot"></span>AI가 발신자·일정·액션 아이템 자동 추출</div>
+          <div><span class="dot"></span>업무·개인·프로젝트 스마트 분류</div>
+          <div><span class="dot"></span>37개국 공휴일 포함 캘린더</div>
+          <div><span class="dot"></span>모바일 최적화 PWA (홈 화면 설치)</div>
+        </div>
+        <div class="tag">
           <div>
-            <div style="font-weight:800;font-size:14px">슬로건</div>
-            <div style="color:var(--muted);margin-top:4px;font-size:13px">AI가 정리하고, 당신은 실행만.</div>
+            <div class="tag-k">슬로건</div>
+            <div class="tag-v">AI가 정리하고, 당신은 실행만.</div>
           </div>
           <code>momoi</code>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta">
-    <div class="cta-box reveal">
-      <div>
-        <h2>Momoi와 비슷한 제품이 필요하신가요?</h2>
-        <p>AI 기반 업무 관리 앱을 커스텀 제작해드립니다.</p>
-      </div>
-      <a class="btn primary" href="contact.html">💬 상담 요청</a>
+<section>
+  <div class="wrap">
+    <div class="cta-block reveal">
+      <h2>Momoi와 비슷한 제품이 필요하신가요?</h2>
+      <p>AI 기반 업무 관리 앱을 커스텀 제작해드립니다. 24시간 내 회신.</p>
+      <a class="btn btn-primary" href="contact.html">
+        상담 요청
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
-      <div class="smalllinks">
-        <a href="services.html">서비스</a>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+            <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
         <a href="momoi.html">Momoi</a>
-        <a href="products.html">앱</a>
-        <a href="about.html">소개</a>
-        <a href="contact.html">문의</a>
-        <a href="privacy.html">개인정보처리방침</a>
-        <a href="terms.html">이용약관</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">Products</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="tel:07080985734">070-8098-5734</a>
       </div>
     </div>
-    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:11px;color:#6B7DAA;line-height:1.8;">
-      상호: 라이트온 플러스 랩 | 대표: 박승혁 | 사업자등록번호: 229-15-70907<br>
-      통신판매업신고: 제 2026-안양동안-0514 호<br>
-      주소: 경기도 안양시 동안구 관평로 333, 6동 504호(관양동) | 전화: 070-8098-5734 | 이메일: support@lightonpluslab.com
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
     </div>
   </div>
 </footer>
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-const hamburger = document.getElementById("hamburger");
-const mobileMenu = document.getElementById("mobileMenu");
-hamburger.addEventListener("click", () => {
-  const open = mobileMenu.classList.toggle("open");
-  hamburger.classList.toggle("open", open);
-  hamburger.setAttribute("aria-expanded", open);
-});
-document.querySelectorAll(".mobile-link").forEach(a => {
-  a.addEventListener("click", () => {
-    mobileMenu.classList.remove("open");
-    hamburger.classList.remove("open");
-    hamburger.setAttribute("aria-expanded", false);
-  });
-});
-(function(){
-  const c = document.getElementById("particles");
-  for(let i=0;i<20;i++){
-    const p = document.createElement("div");
-    p.className = "particle";
-    const s = Math.random()*4+2;
-    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;background:radial-gradient(circle,${['rgba(45,125,255,.5)','rgba(124,77,255,.5)','rgba(0,229,255,.5)'][i%3]},transparent 70%);`;
-    c.appendChild(p);
-  }
-})();
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}});
-},{threshold:0.1,rootMargin:"0px 0px -40px 0px"});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-</script>
+<script src="app.js"></script>
 </body>
 </html>

@@ -4,397 +4,307 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>앱 목록 — LightOn Plus Lab | AI 앱 모음</title>
-<meta name="description" content="LightOn Plus Lab이 만든 AI 앱 목록. 출시 중 · 출시 예정 앱을 한눈에 확인하세요. SongBit, Momoi, AI 강의노트, 말씀찾기, 수학친구, 한글이랑놀자, FocusGuard 등." />
+<meta name="description" content="LightOn Plus Lab이 만든 AI 앱 전체 목록. 생산성·교육·가족·크리에이티브·업무·생활 카테고리별로 살펴보세요." />
 <meta property="og:title" content="앱 목록 — LightOn Plus Lab" />
-<meta property="og:description" content="LightOn Plus Lab의 모든 AI 앱을 확인하세요. 생산성, 교육, 성경, 키즈, 멀티미디어 앱과 출시 예정 앱을 모두 살펴볼 수 있습니다." />
 <meta property="og:type" content="website" />
+<meta name="theme-color" content="#050814" />
 <link rel="icon" href="logo-new.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
 <style>
-:root{--bg:#050710;--card:#0B1220;--text:#EAF0FF;--muted:#8B9BC0;--line:rgba(255,255,255,.08);--glow1:#2D7DFF;--glow2:#7C4DFF;--glow3:#00E5FF;--shadow:0 24px 80px rgba(0,0,0,.5);--radius:22px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.container{max-width:1140px;margin:0 auto;padding:0 24px}
-.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 600px at 15% 10%,rgba(45,125,255,.14),transparent 60%),radial-gradient(900px 600px at 85% 20%,rgba(124,77,255,.12),transparent 60%),radial-gradient(900px 600px at 50% 90%,rgba(0,229,255,.08),transparent 60%)}
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);background-size:60px 60px}
-.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(45,125,255,.6),transparent 70%);animation:floatParticle linear infinite;opacity:0}
-@keyframes floatParticle{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px) scale(1);opacity:0}}
-.nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);background:rgba(5,7,16,.65);border-bottom:1px solid var(--line);transition:background .3s}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
-.brand img{width:140px;height:auto;border-radius:10px;object-fit:contain;background:#fff;padding:4px 8px;filter:drop-shadow(0 4px 12px rgba(45,125,255,.3))}
-.brand small{display:block;font-weight:600;color:var(--muted);letter-spacing:0;margin-top:2px;font-size:12px}
-.nav-links{display:flex;gap:2px;align-items:center;color:var(--muted);font-weight:600;font-size:13px;white-space:nowrap}
-.nav-links a{padding:6px 10px;border-radius:10px;transition:all .15s}
-.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.06);color:var(--text)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 20px;border-radius:14px;white-space:nowrap;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text);font-weight:700;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:all .2s ease;cursor:pointer;position:relative;overflow:hidden}
-.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent);opacity:0;transition:opacity .2s}
-.btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.2)}
-.btn:hover::before{opacity:1}
-.btn.primary{border:none;background:linear-gradient(135deg,var(--glow1),var(--glow2));box-shadow:0 16px 48px rgba(45,125,255,.25),inset 0 1px 0 rgba(255,255,255,.15)}
-.btn.primary:hover{filter:brightness(1.1);box-shadow:0 20px 60px rgba(45,125,255,.35)}
-.page-hero{padding:80px 0 40px;position:relative;z-index:1;text-align:center}
-.headline{font-size:clamp(32px,4vw,52px);line-height:1.1;letter-spacing:-1px;margin-bottom:18px}
-.headline .gradient{background:linear-gradient(135deg,var(--glow1),var(--glow3),var(--glow2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.sub{color:var(--muted);font-size:clamp(16px,1.4vw,18px);line-height:1.75;max-width:60ch;margin:0 auto 30px}
-.section-label{display:inline-flex;align-items:center;gap:8px;color:var(--glow1);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
-.section-label::before{content:"";width:24px;height:2px;background:linear-gradient(90deg,var(--glow1),var(--glow2));border-radius:2px}
-.badge{font-size:12px;font-weight:700;color:rgba(234,240,255,.85);border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);padding:6px 12px;border-radius:999px}
-.hero-card{background:rgba(11,18,32,.6);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s,border-color .2s}
-.hero-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(45,125,255,.15);border-color:rgba(255,255,255,.15)}
-.cat-section{position:relative;z-index:1;margin-bottom:48px}
-.cat-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
-.footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;position:relative;z-index:1}
-.footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
-.smalllinks{display:flex;gap:16px;flex-wrap:wrap}
-.smalllinks a{transition:color .15s}
-.smalllinks a:hover{color:var(--text)}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px;border-radius:10px;transition:background .15s}
-.hamburger:hover{background:rgba(255,255,255,.06)}
-.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .25s ease}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(5,7,16,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:16px 24px 24px;flex-direction:column;gap:4px}
-.mobile-menu.open{display:flex}
-.mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:600;font-size:15px;transition:background .15s;color:var(--muted)}
-.mobile-menu a:hover{background:rgba(255,255,255,.06);color:var(--text)}
-@media(max-width:900px){
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .nav-cta-desktop{display:none}
-  .page-hero{padding:60px 0 30px}
-  .cat-grid{grid-template-columns:1fr}
+.page-hero{padding:72px 0 40px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(38px,5vw,64px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:20px}
+.page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-hero p{color:var(--text-3);max-width:52ch;margin:0 auto;font-size:16px;line-height:1.7}
+
+.cat-block{margin-bottom:72px}
+.cat-head{
+  display:flex;align-items:center;gap:14px;
+  padding:0 4px 24px;
+  margin-bottom:24px;
+  border-bottom:1px solid var(--panel-border);
 }
+.cat-ico{
+  width:40px;height:40px;border-radius:10px;
+  display:grid;place-items:center;
+  flex-shrink:0;
+}
+.cat-ico svg{width:18px;height:18px;stroke-width:1.8}
+.cat-ico.mint{background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.3);color:var(--mint)}
+.cat-ico.purple{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);color:var(--purple)}
+.cat-ico.pink{background:rgba(244,114,182,.12);border:1px solid rgba(244,114,182,.3);color:var(--pink)}
+.cat-ico.amber{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:var(--amber)}
+.cat-ico.cyan{background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.3);color:var(--cyan)}
+.cat-title{font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--text)}
+.cat-count{font-family:var(--f-mono);font-size:11px;color:var(--text-4);margin-left:auto}
+
+.app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.app-item{
+  position:relative;display:block;
+  padding:26px;
+  border-radius:16px;
+  background:var(--panel);
+  border:1px solid var(--panel-border);
+  transition:background .25s,border-color .25s,transform .25s;
+  min-height:180px;
+}
+.app-item:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.app-item[aria-disabled="true"]{opacity:.55;pointer-events:none}
+.app-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.app-mark{
+  font-family:var(--f-mono);font-size:10px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;
+}
+.app-mark.live{background:rgba(45,212,191,.12);color:var(--mint);border:1px solid rgba(45,212,191,.28)}
+.app-mark.soon{background:rgba(167,139,250,.12);color:var(--purple);border:1px solid rgba(167,139,250,.28)}
+.app-mark.free{background:rgba(34,211,238,.12);color:var(--cyan);border:1px solid rgba(34,211,238,.28)}
+.app-mark.paid{background:rgba(244,114,182,.12);color:var(--pink);border:1px solid rgba(244,114,182,.28)}
+.app-name{font-size:16px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.app-desc{font-size:13px;color:var(--text-3);line-height:1.65;margin-bottom:10px}
+.app-price{font-family:var(--f-mono);font-size:11px;color:var(--text-4);line-height:1.6}
+
+@media(max-width:960px){.app-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.app-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<div class="bg-glow"></div>
-<div class="bg-grid"></div>
-<div class="particles" id="particles"></div>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="page-glow" aria-hidden="true"></div>
 
 <header class="nav">
-  <div class="container nav-inner">
-    <a class="brand" href="index.html" aria-label="LightOn Plus Lab 홈">
-      <img src="logo-new.png" alt="LightOn Plus Lab" />
-      <div>LightOn Plus Lab<small>AI Apps &amp; Innovation</small></div>
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+      <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
     </a>
-    <nav class="nav-links" aria-label="메뉴">
-      <a href="services.html">서비스</a>
+    <nav class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
       <a href="momoi.html">Momoi</a>
-      <a href="products.html" class="active">앱</a>
-      <a href="about.html">소개</a>
-      <a href="contact.html">문의</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn primary nav-cta-desktop" href="contact.html">프로젝트 문의</a>
-    <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <a class="nav-cta" href="contact.html">Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
     </button>
   </div>
 </header>
-
-<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-  <a href="services.html" class="mobile-link">서비스</a>
-  <a href="momoi.html" class="mobile-link">Momoi</a>
-  <a href="products.html" class="mobile-link">앱</a>
-  <a href="about.html" class="mobile-link">소개</a>
-  <a href="contact.html" class="mobile-link">문의</a>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
-<main class="container">
+<main>
 
-  <div class="page-hero">
-    <div class="section-label reveal">우리가 만든 앱</div>
-    <h1 class="headline reveal">AI 앱을<br/><span class="gradient">카테고리별로 살펴보세요</span></h1>
-    <p class="sub reveal">각 앱을 클릭하면 바로 사용할 수 있습니다.</p>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Work</span>
+    <h1 class="reveal reveal-d1">AI 앱을 <em>카테고리</em>별로</h1>
+    <p class="reveal reveal-d2">각 앱을 클릭하면 바로 사용할 수 있습니다. 새로운 앱은 계속 추가됩니다.</p>
   </div>
+</section>
 
-  <!-- AI 생산성 -->
-  <div class="cat-section">
-    <div class="cat-header">
-      <span style="font-size:24px;">⚡</span>
-      <h2 style="font-size:20px;font-weight:800;">AI 생산성</h2>
+<section>
+  <div class="wrap">
+
+    <!-- 업무 관리 -->
+    <div class="cat-block">
+      <div class="cat-head reveal">
+        <div class="cat-ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="15" rx="2" stroke-width="1.8"/><path d="M8 3v4M16 3v4M3 10h18" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="cat-title">업무 관리</div>
+        <div class="cat-count">01 APP</div>
+      </div>
+      <div class="app-grid">
+        <a class="app-item reveal" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener">
+          <div class="app-row"><div class="app-name">Momoi — AI 업무 관리</div><span class="app-mark live">Live</span></div>
+          <div class="app-desc">통화 녹음 → AI가 요약·할 일·일정 자동 추출. AI 인박스 + 캘린더 + PWA.</div>
+        </a>
+      </div>
     </div>
-    <div class="cat-grid">
 
-      <a href="https://ai-contract-analyzer-693521645262.asia-northeast3.run.app" target="_blank" class="hero-card reveal" style="display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(234,179,8,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">📋</div>
-            <span class="badge" style="background:linear-gradient(135deg,#F59E0B,#EAB308);border:none;">출시예정</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">AI 계약분석</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:12px;">계약서 업로드 → AI 법률 전문가가 독소조항, 위험요소, 수정사항 분석.</p>
-          <div style="font-size:12px;color:var(--muted);">무료 3회 → 베이직 ₩4,900 → 프로 ₩9,900</div>
-        </div>
-      </a>
-
-      <a href="https://receipt.lightonpluslab.com" target="_blank" class="hero-card reveal" style="display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,150,105,.15),rgba(13,148,136,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">🧾</div>
-            <span class="badge" style="background:linear-gradient(135deg,#059669,#0d9488);border:none;">출시예정</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">영수증AI</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:12px;">사진 한 장으로 경비 자동 관리. AI OCR + 9개 카테고리 분류 + 월별 리포트.</p>
-          <div style="font-size:12px;color:var(--muted);">무료 5회 → 베이직 ₩3,900 → 프로 ₩7,900</div>
-        </div>
-      </a>
-
-      <a href="#" target="_blank" class="hero-card reveal" style="display:block;opacity:0.7;pointer-events:none;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,77,255,.15),rgba(99,102,241,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">🎯</div>
-            <span class="badge" style="background:linear-gradient(135deg,#7C3AED,#6366F1);border:none;">출시예정</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">FocusGuard</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;">집중력 관리 앱. 딥워크 타이머 + 장애물 차단 + 집중 리포트.</p>
-        </div>
-      </a>
-
-      <a href="#" target="_blank" class="hero-card reveal" style="display:block;opacity:0.7;pointer-events:none;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(236,72,153,.15),rgba(244,114,114,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">⚡</div>
-            <span class="badge" style="background:linear-gradient(135deg,#EC4899,#F43F5E);border:none;">출시예정</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">Vibe Studio</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;">AI 프롬프트 저장, 관리, 버전 추적. 팀과 프롬프트를 공유하고 최적의 결과를 반복.</p>
-        </div>
-      </a>
-
+    <!-- AI 생산성 -->
+    <div class="cat-block">
+      <div class="cat-head reveal">
+        <div class="cat-ico amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/></svg></div>
+        <div class="cat-title">AI 생산성</div>
+        <div class="cat-count">04 APPS</div>
+      </div>
+      <div class="app-grid">
+        <a class="app-item reveal" href="https://ai-contract-analyzer-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener">
+          <div class="app-row"><div class="app-name">AI 계약분석</div><span class="app-mark soon">Soon</span></div>
+          <div class="app-desc">계약서 업로드 → AI 법률 전문가가 독소조항·위험요소·수정사항을 분석합니다.</div>
+          <div class="app-price">무료 3회 · 베이직 ₩4,900 · 프로 ₩9,900</div>
+        </a>
+        <a class="app-item reveal reveal-d1" href="https://receipt.lightonpluslab.com" target="_blank" rel="noopener">
+          <div class="app-row"><div class="app-name">영수증 AI</div><span class="app-mark soon">Soon</span></div>
+          <div class="app-desc">사진 한 장으로 경비 자동 관리. AI OCR + 9개 카테고리 분류 + 월별 리포트.</div>
+          <div class="app-price">무료 5회 · 베이직 ₩3,900 · 프로 ₩7,900</div>
+        </a>
+        <a class="app-item reveal reveal-d2" href="#" aria-disabled="true">
+          <div class="app-row"><div class="app-name">FocusGuard</div><span class="app-mark soon">Soon</span></div>
+          <div class="app-desc">집중력 관리 앱. 딥워크 타이머 + 장애물 차단 + 집중 리포트.</div>
+        </a>
+        <a class="app-item reveal reveal-d3" href="#" aria-disabled="true">
+          <div class="app-row"><div class="app-name">Vibe Studio</div><span class="app-mark soon">Soon</span></div>
+          <div class="app-desc">AI 프롬프트 저장·관리·버전 추적. 팀과 공유하고 최적의 결과를 반복합니다.</div>
+        </a>
+      </div>
     </div>
+
+    <!-- 교육 & 성장 -->
+    <div class="cat-block">
+      <div class="cat-head reveal">
+        <div class="cat-ico cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10l-10-5L2 10l10 5 10-5z" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 12v5a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-5" stroke-width="1.6"/></svg></div>
+        <div class="cat-title">교육 &amp; 성장</div>
+        <div class="cat-count">03 APPS</div>
+      </div>
+      <div class="app-grid">
+        <a class="app-item reveal" href="https://math-app-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener">
+          <div class="app-row"><div class="app-name">수학친구</div><span class="app-mark free">Free</span></div>
+          <div class="app-desc">AI 수학 과외 선생님. 초등~수능까지 단계별 문제풀이 + 사진 촬영 해설.</div>
+        </a>
+        <a class="app-item reveal reveal-d1" href="https://bible-search-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener">
+          <div class="app-row"><div class="app-name">말씀찾기</div><span class="app-mark free">Free</span></div>
+          <div class="app-desc">마음을 말하면 AI가 성경 구절을 찾아줍니다. 음성 검색 + 31,088절 전문.</div>
+        </a>
+        <a class="app-item reveal reveal-d2" href="https://ai-lecture-note-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener">
+          <div class="app-row"><div class="app-name">AI 강의노트</div><span class="app-mark free">Free</span></div>
+          <div class="app-desc">강의 녹음 → AI가 핵심만 정리 + 타임라인 노트. 과목별 정리.</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 키즈 & 가족 -->
+    <div class="cat-block">
+      <div class="cat-head reveal">
+        <div class="cat-ico pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4" stroke-width="1.6"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <div class="cat-title">키즈 &amp; 가족</div>
+        <div class="cat-count">01 APP</div>
+      </div>
+      <div class="app-grid">
+        <a class="app-item reveal" href="https://hangul-app.vercel.app" target="_blank" rel="noopener">
+          <div class="app-row"><div class="app-name">한글이랑 놀자</div><span class="app-mark free">Free</span></div>
+          <div class="app-desc">어린이 한글 학습 앱. 공룡·로봇 테마, 음성+터치, GPT 대화 지원.</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 멀티미디어 -->
+    <div class="cat-block">
+      <div class="cat-head reveal">
+        <div class="cat-ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 17V6l12-3v11M9 17a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM21 14a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <div class="cat-title">멀티미디어 &amp; 크리에이티브</div>
+        <div class="cat-count">01 APP</div>
+      </div>
+      <div class="app-grid">
+        <a class="app-item reveal" href="https://songbit.lightonpluslab.com" target="_blank" rel="noopener">
+          <div class="app-row"><div class="app-name">SongBit — AI 뮤직 스튜디오</div><span class="app-mark paid">Paid</span></div>
+          <div class="app-desc">AI가 작사하고 작곡하는 나만의 음악 스튜디오. 장르·분위기 선택으로 완성된 음악 생성.</div>
+          <div class="app-price">충전식 · ₩5,000 (11곡) · ₩10,000 (22곡) · ₩30,000 (70곡)</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 생활 & 반려동물 -->
+    <div class="cat-block">
+      <div class="cat-head reveal">
+        <div class="cat-ico amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 18c-4 0-6-3-6-6 0-1.5 1-3 2-3.5 1 1 2 2 2 4 0-1 1-3 2-4 1-1 3 1 3 3.5 0 3-2 6-3 6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="6" r="1.5"/><circle cx="17" cy="6" r="1.5"/><circle cx="5" cy="11" r="1.5"/><circle cx="19" cy="11" r="1.5"/></svg></div>
+        <div class="cat-title">생활 &amp; 반려동물</div>
+        <div class="cat-count">01 APP</div>
+      </div>
+      <div class="app-grid">
+        <a class="app-item reveal" href="https://meongnyang.lightonpluslab.com" target="_blank" rel="noopener">
+          <div class="app-row"><div class="app-name">명낭로그 — 반려동물 일기</div><span class="app-mark live">Live</span></div>
+          <div class="app-desc">AI 기반 반려동물 일기. 사진 + 기분 기록, 건강 히스토리, 감정 분석.</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 스마트 시티 & 생활정보 -->
+    <div class="cat-block">
+      <div class="cat-head reveal">
+        <div class="cat-ico mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 17h14M6 13l1-6h10l1 6M6 13v4M18 13v4M8 17v2M16 17v2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="cat-title">스마트 시티 &amp; 생활정보</div>
+        <div class="cat-count">01 APP</div>
+      </div>
+      <div class="app-grid">
+        <a class="app-item reveal" href="https://noddak.lightonpluslab.com" target="_blank" rel="noopener">
+          <div class="app-row"><div class="app-name">노닥 — 주정차 위반 AI</div><span class="app-mark live">Live</span></div>
+          <div class="app-desc">사진 한 장으로 주정차 위반 여부를 AI가 즉시 판단. 신고 가이드 + 법적 근거 제공.</div>
+        </a>
+      </div>
+    </div>
+
   </div>
+</section>
 
-  <!-- 교육 & 성장 -->
-  <div class="cat-section">
-    <div class="cat-header">
-      <span style="font-size:24px;">🎓</span>
-      <h2 style="font-size:20px;font-weight:800;">교육 &amp; 성장</h2>
-    </div>
-    <div class="cat-grid">
-
-      <a href="https://math-app-693521645262.asia-northeast3.run.app" target="_blank" class="hero-card reveal" style="display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(5,150,105,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">🧮</div>
-            <span class="badge" style="background:linear-gradient(135deg,#10B981,#059669);border:none;">무료</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">수학친구</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;">AI 수학 과외 선생님. 초등~수능까지 단계별 문제풀이 + 사진 촬영 해설.</p>
-        </div>
-      </a>
-
-      <a href="https://bible-search-693521645262.asia-northeast3.run.app" target="_blank" class="hero-card reveal" style="display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(167,139,250,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">✝️</div>
-            <span class="badge" style="background:linear-gradient(135deg,#7C3AED,#A78BFA);border:none;">무료</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">말씀찾기</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;">마음을 말하면 AI가 성경 구절을 찾아줍니다. 음성 검색 + 31,088절 전문.</p>
-        </div>
-      </a>
-
-      <a href="https://ai-lecture-note-693521645262.asia-northeast3.run.app" target="_blank" class="hero-card reveal" style="display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(99,102,241,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">📝</div>
-            <span class="badge" style="background:linear-gradient(135deg,#3B82F6,#6366F1);border:none;">무료</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">AI 강의노트</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;">강의 녹음 → AI가 핵심만 정리 + 타임라인 노트. 과목별 정리.</p>
-        </div>
-      </a>
-
-    </div>
-  </div>
-
-
-
-  <!-- 키즈 & 가족 -->
-  <div class="cat-section">
-    <div class="cat-header">
-      <span style="font-size:24px;">👨‍👩‍👧</span>
-      <h2 style="font-size:20px;font-weight:800;">키즈 &amp; 가족</h2>
-    </div>
-    <div class="cat-grid">
-
-      <a href="https://hangul-app.vercel.app" target="_blank" class="hero-card reveal" style="display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(236,72,153,.15),rgba(244,114,114,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">🇰🇷</div>
-            <span class="badge" style="background:linear-gradient(135deg,#EC4899,#F43F5E);border:none;">무료</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">한글이랑놀자</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;">어린이 한글 학습 앱. 공룡/로봇 테마, 음성+터치, GPT 대화.</p>
-        </div>
-      </a>
-
-      
-
-    </div>
-  </div>
-
-  <!-- 멀티미디어 & 크리에이티브 -->
-  <div class="cat-section">
-    <div class="cat-header">
-      <span style="font-size:24px;">🎵</span>
-      <h2 style="font-size:20px;font-weight:800;">멀티미디어 &amp; 크리에이티브</h2>
-    </div>
-    <div class="cat-grid">
-
-      <a href="https://songbit.lightonpluslab.com" target="_blank" class="hero-card reveal" style="display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(236,72,153,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">🎵</div>
-            <span class="badge" style="background:linear-gradient(135deg,#8B5CF6,#EC4899);border:none;">유료</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">Songbit — AI 뮤직 스튜디오</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:12px;">AI가 작사하고 작곡하는 나만의 음악 스튜디오. 장르/분위기 선택만으로 완성된 음악 생성.</p>
-          <div style="font-size:12px;color:var(--muted);">충전식: ₩5,000(11곡) / ₩10,000(22곡) / ₩30,000(70곡)</div>
-        </div>
-      </a>
-
-    </div>
-  </div>
-
-  <!-- 업무 관리 -->
-  <div class="cat-section">
-    <div class="cat-header">
-      <span style="font-size:24px;">🗓</span>
-      <h2 style="font-size:20px;font-weight:800;">업무 관리</h2>
-    </div>
-    <div class="cat-grid">
-
-      <a href="https://momoi.lightonpluslab.com" target="_blank" class="hero-card reveal" style="display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(45,125,255,.15),rgba(124,77,255,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">🗓</div>
-            <span class="badge" style="background:linear-gradient(135deg,#2D7DFF,#7C4DFF);border:none;">Live</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">Momoi — AI 업무 관리</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;">통화 녹음 → AI가 요약·할 일·일정 자동 추출. AI 인박스 + 캘린더 + PWA.</p>
-        </div>
-      </a>
-
-    </div>
-  </div>
-
-  <!-- 생활 & 반려동물 -->
-  <div class="cat-section">
-    <div class="cat-header">
-      <span style="font-size:24px;">🐾</span>
-      <h2 style="font-size:20px;font-weight:800;">생활 &amp; 반려동물</h2>
-    </div>
-    <div class="cat-grid">
-      <a href="https://meongnyang.lightonpluslab.com" target="_blank" class="hero-card reveal" style="display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(251,146,60,.15),rgba(249,115,22,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">🐾</div>
-            <span class="badge" style="background:linear-gradient(135deg,#FB923C,#F97316);border:none;">Live</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">명낭로그 — 반려동물 일기</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;">AI 기반 반려동물 일기 앱. 사진 + 기분 기록, 건강 히스토리, 감정 분석.</p>
-        </div>
+<section>
+  <div class="wrap">
+    <div class="cta-block reveal">
+      <h2>비슷한 앱을 만들고 싶으신가요?</h2>
+      <p>아이디어가 있으신 분들은 24시간 내 회신드립니다. 첫 상담은 무료.</p>
+      <a class="btn btn-primary" href="contact.html">
+        상담 요청
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
   </div>
-
-  <!-- 스마트 시티 & 생활정보 -->
-  <div class="cat-section">
-    <div class="cat-header">
-      <span style="font-size:24px;">🚗</span>
-      <h2 style="font-size:20px;font-weight:800;">스마트 시티 &amp; 생활정보</h2>
-    </div>
-    <div class="cat-grid">
-      <a href="https://noddak.lightonpluslab.com" target="_blank" class="hero-card reveal" style="display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(139,92,246,.08));border-radius:var(--radius);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:32px;">🚗</div>
-            <span class="badge" style="background:linear-gradient(135deg,#6366F1,#8B5CF6);border:none;">Live</span>
-          </div>
-          <div style="font-weight:900;font-size:18px;margin-bottom:6px;">노닥 — 주정차 위반 AI</div>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7;">사진 한 장으로 주정차 위반 여부를 AI가 즉시 판단. 신고 가이드 + 법적 근거 제공.</p>
-        </div>
-      </a>
-    </div>
-  </div>
+</section>
 
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
-      <div class="smalllinks">
-        <a href="services.html">서비스</a>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+            <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
         <a href="momoi.html">Momoi</a>
-        <a href="products.html">앱</a>
-        <a href="about.html">소개</a>
-        <a href="contact.html">문의</a>
-        <a href="privacy.html">개인정보처리방침</a>
-        <a href="terms.html">이용약관</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">Products</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="tel:07080985734">070-8098-5734</a>
       </div>
     </div>
-    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:11px;color:#6B7DAA;line-height:1.8;">
-      상호: 라이트온 플러스 랩 | 대표: 박승혁 | 사업자등록번호: 229-15-70907<br>
-      통신판매업신고: 제 2026-안양동안-0514 호<br>
-      주소: 경기도 안양시 동안구 관평로 333, 6동 504호(관양동) | 전화: 070-8098-5734 | 이메일: support@lightonpluslab.com
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
     </div>
   </div>
 </footer>
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-const hamburger = document.getElementById("hamburger");
-const mobileMenu = document.getElementById("mobileMenu");
-hamburger.addEventListener("click", () => {
-  const open = mobileMenu.classList.toggle("open");
-  hamburger.classList.toggle("open", open);
-  hamburger.setAttribute("aria-expanded", open);
-});
-document.querySelectorAll(".mobile-link").forEach(a => {
-  a.addEventListener("click", () => {
-    mobileMenu.classList.remove("open");
-    hamburger.classList.remove("open");
-    hamburger.setAttribute("aria-expanded", false);
-  });
-});
-(function(){
-  const c = document.getElementById("particles");
-  for(let i=0;i<20;i++){
-    const p = document.createElement("div");
-    p.className = "particle";
-    const s = Math.random()*4+2;
-    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;background:radial-gradient(circle,${['rgba(45,125,255,.5)','rgba(124,77,255,.5)','rgba(0,229,255,.5)'][i%3]},transparent 70%);`;
-    c.appendChild(p);
-  }
-})();
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}});
-},{threshold:0.1,rootMargin:"0px 0px -40px 0px"});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-</script>
+<script src="app.js"></script>
 </body>
 </html>

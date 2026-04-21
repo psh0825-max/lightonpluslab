@@ -4,98 +4,176 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>이용약관 — LightOn Plus Lab</title>
+<meta name="description" content="LightOn Plus Lab 이용약관" />
+<meta name="theme-color" content="#050814" />
 <link rel="icon" href="logo-new.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 <style>
-:root { --bg:#050710; --text:#EAF0FF; --muted:#8B9BC0; }
-* { box-sizing:border-box; margin:0; padding:0; }
-body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  background: var(--bg); color: var(--text);
-  line-height: 1.8; -webkit-font-smoothing: antialiased;
-}
-.container { max-width: 720px; margin: 0 auto; padding: 60px 24px; }
-h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; }
-.date { color: var(--muted); font-size: 14px; margin-bottom: 40px; }
-h2 { font-size: 18px; font-weight: 700; margin: 32px 0 12px; color: #A78BFA; }
-p, li { font-size: 15px; color: var(--muted); margin-bottom: 8px; }
-ul { padding-left: 20px; }
-a { color: #A78BFA; text-decoration: none; }
-a:hover { text-decoration: underline; }
-.back { display: inline-block; margin-bottom: 24px; font-size: 14px; }
-strong { color: var(--text); }
+.doc{max-width:780px;margin:0 auto;padding:64px 32px 96px}
+.doc .back{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);padding:8px 14px;border-radius:999px;border:1px solid var(--panel-border);transition:color .2s,background .2s,border-color .2s;margin-bottom:40px}
+.doc .back:hover{color:var(--text);background:var(--panel);border-color:var(--panel-border-hover)}
+.doc h1{font-size:clamp(32px,4vw,44px);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin-bottom:12px}
+.doc .date{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4);margin-bottom:40px}
+.doc p{color:var(--text-2);line-height:1.78;font-size:15px;margin-bottom:14px}
+.doc h2{font-size:17px;font-weight:600;color:var(--text);letter-spacing:-.01em;margin:40px 0 14px;padding-top:20px;border-top:1px solid var(--panel-border);display:flex;align-items:baseline;gap:10px}
+.doc h2::before{content:attr(data-n);font-family:var(--f-mono);font-size:11px;font-weight:500;color:var(--mint);letter-spacing:.1em}
+.doc ul{list-style:none;padding:0;margin-bottom:14px}
+.doc li{color:var(--text-2);line-height:1.75;font-size:15px;padding:6px 0 6px 18px;position:relative}
+.doc li::before{content:"";position:absolute;left:0;top:15px;width:6px;height:1px;background:var(--mint)}
+.doc strong{color:var(--text);font-weight:600}
+.doc a{color:var(--mint);transition:color .2s}
+.doc a:hover{color:var(--cyan)}
+.doc-first{padding-top:8px;border-top:0}
 </style>
 </head>
 <body>
-<div class="container">
-<a href="/" class="back">← LightOn Plus Lab</a>
-<h1>이용약관</h1>
-<p class="date">시행일: 2026년 3월 16일 | 최종 수정: 2026년 3월 16일</p>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="page-glow" aria-hidden="true"></div>
 
-<h2>1. 서비스 소개</h2>
-<p>LightOn Plus Lab(이하 "회사")은 AI 기반 소프트웨어 서비스를 제공합니다. 본 약관은 회사가 운영하는 모든 서비스에 적용됩니다.</p>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+      <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
+    </a>
+    <nav class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
+      <a href="momoi.html">Momoi</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
-<h2>2. 적용 서비스</h2>
-<ul>
-<li><strong>Songbit</strong> — AI 뮤직 스튜디오 (크레딧 기반 유료)</li>
-<li><strong>momoi</strong> — AI 업무 관리 (무료/Pro 플랜)</li>
-<li><strong>수학친구</strong> — AI 수학 튜터 (무료)</li>
-<li><strong>성경탐험</strong> — 성경 학습 (무료)</li>
-<li>기타 회사 운영 서비스</li>
-</ul>
+<main>
+<article class="doc">
+  <a class="back" href="/">← Back to LightOn Plus Lab</a>
+  <h1>이용약관</h1>
+  <div class="date">시행일 2026·03·16 · 최종 수정 2026·03·16</div>
 
-<h2>3. 결제 및 환불</h2>
-<p>유료 서비스의 결제는 PG사(결제 대행사)를 통해 처리됩니다.</p>
-<ul>
-<li>판매 가격은 각 서비스 내에 표시된 금액을 따릅니다</li>
-<li>디지털 콘텐츠의 특성상, 사용한 크레딧/서비스는 환불이 불가합니다</li>
-<li>미사용 크레딧은 결제 후 7일 이내 환불 요청 시 전액 환불됩니다</li>
-<li>부분 사용 시 사용분을 차감한 잔여분이 환불됩니다</li>
-<li>환불 문의: <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a></li>
-</ul>
+  <h2 data-n="01" class="doc-first">서비스 소개</h2>
+  <p>LightOn Plus Lab(이하 "회사")은 AI 기반 소프트웨어 서비스를 제공합니다. 본 약관은 회사가 운영하는 모든 서비스에 적용됩니다.</p>
 
-<h2>4. 사용자 의무</h2>
-<ul>
-<li>서비스를 불법적인 목적으로 사용하지 않을 것</li>
-<li>다른 사용자의 계정에 무단 접근하지 않을 것</li>
-<li>서비스의 정상 운영을 방해하지 않을 것</li>
-<li>자동화된 도구로 과도한 요청을 보내지 않을 것</li>
-</ul>
+  <h2 data-n="02">적용 서비스</h2>
+  <ul>
+    <li><strong>SongBit</strong> — AI 뮤직 스튜디오 (크레딧 기반 유료)</li>
+    <li><strong>Momoi</strong> — AI 업무 관리 (무료/Pro 플랜)</li>
+    <li><strong>수학친구</strong> — AI 수학 튜터 (무료)</li>
+    <li><strong>말씀찾기</strong> — 성경 검색 (무료)</li>
+    <li>기타 회사 운영 서비스</li>
+  </ul>
 
-<h2>5. 지적 재산권</h2>
-<p>서비스의 소프트웨어, 디자인, 로고, 콘텐츠에 대한 모든 지적 재산권은 회사에 있습니다. 사용자가 생성한 콘텐츠(음악, 텍스트 등)의 소유권은 사용자에게 있습니다.</p>
+  <h2 data-n="03">결제 및 환불</h2>
+  <p>유료 서비스의 결제는 PG사(결제 대행사)를 통해 처리됩니다.</p>
+  <ul>
+    <li>판매 가격은 각 서비스 내에 표시된 금액을 따릅니다.</li>
+    <li>디지털 콘텐츠의 특성상, 사용한 크레딧·서비스는 환불이 불가합니다.</li>
+    <li>미사용 크레딧은 결제 후 7일 이내 환불 요청 시 전액 환불됩니다.</li>
+    <li>부분 사용 시 사용분을 차감한 잔여분이 환불됩니다.</li>
+    <li>환불 문의: <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a></li>
+  </ul>
 
-<h2>6. 서비스 제공 및 변경</h2>
-<ul>
-<li>서비스는 "있는 그대로(as-is)" 제공됩니다</li>
-<li>서비스 내용, 기능, 가격은 사전 공지 후 변경될 수 있습니다</li>
-<li>긴급한 보안/기술 문제 시 사전 공지 없이 일시 중단될 수 있습니다</li>
-</ul>
+  <h2 data-n="04">사용자 의무</h2>
+  <ul>
+    <li>서비스를 불법적인 목적으로 사용하지 않을 것</li>
+    <li>다른 사용자의 계정에 무단 접근하지 않을 것</li>
+    <li>서비스의 정상 운영을 방해하지 않을 것</li>
+    <li>자동화된 도구로 과도한 요청을 보내지 않을 것</li>
+  </ul>
 
-<h2>7. 책임 제한</h2>
-<p>회사는 다음에 대해 책임을 지지 않습니다:</p>
-<ul>
-<li>AI 생성 결과의 정확성 (참고용이며, 중요한 결정에는 직접 확인 필요)</li>
-<li>제3자 서비스 장애로 인한 서비스 중단</li>
-<li>사용자 과실로 인한 데이터 손실</li>
-</ul>
+  <h2 data-n="05">지적 재산권</h2>
+  <p>서비스의 소프트웨어·디자인·로고·콘텐츠에 대한 모든 지적 재산권은 회사에 있습니다. 사용자가 생성한 콘텐츠(음악·텍스트 등)의 소유권은 사용자에게 있습니다.</p>
 
-<h2>8. 계정 해지</h2>
-<p>사용자는 언제든 계정 삭제를 요청할 수 있습니다. 이용약관을 위반한 경우 사전 경고 후 계정이 정지될 수 있습니다.</p>
+  <h2 data-n="06">서비스 제공 및 변경</h2>
+  <ul>
+    <li>서비스는 "있는 그대로(as-is)" 제공됩니다.</li>
+    <li>서비스 내용·기능·가격은 사전 공지 후 변경될 수 있습니다.</li>
+    <li>긴급한 보안·기술 문제 시 사전 공지 없이 일시 중단될 수 있습니다.</li>
+  </ul>
 
-<h2>9. 사업자 정보</h2>
-<ul>
-<li><strong>상호</strong>: 라이트온 플러스 랩</li>
-<li><strong>대표</strong>: 박승혁</li>
-<li><strong>사업자등록번호</strong>: 229-15-70907</li>
-<li><strong>통신판매업신고</strong>: 제 2026-안양동안-0514 호</li>
-<li><strong>주소</strong>: 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)</li>
-<li><strong>전화</strong>: 070-8098-5734</li>
-<li><strong>이메일</strong>: <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a></li>
-</ul>
+  <h2 data-n="07">책임 제한</h2>
+  <p>회사는 다음에 대해 책임을 지지 않습니다.</p>
+  <ul>
+    <li>AI 생성 결과의 정확성 (참고용이며, 중요한 결정에는 직접 확인 필요)</li>
+    <li>제3자 서비스 장애로 인한 서비스 중단</li>
+    <li>사용자 과실로 인한 데이터 손실</li>
+  </ul>
 
-<h2>10. 준거법</h2>
-<p>본 약관은 대한민국 법률에 따라 해석되며, 분쟁 발생 시 서울중앙지방법원을 관할 법원으로 합니다.</p>
+  <h2 data-n="08">계정 해지</h2>
+  <p>사용자는 언제든 계정 삭제를 요청할 수 있습니다. 이용약관을 위반한 경우 사전 경고 후 계정이 정지될 수 있습니다.</p>
 
-</div>
+  <h2 data-n="09">사업자 정보</h2>
+  <ul>
+    <li><strong>상호</strong> — 라이트온 플러스 랩</li>
+    <li><strong>대표</strong> — 박승혁</li>
+    <li><strong>사업자등록번호</strong> — 229-15-70907</li>
+    <li><strong>통신판매업신고</strong> — 제 2026-안양동안-0514 호</li>
+    <li><strong>주소</strong> — 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)</li>
+    <li><strong>전화</strong> — 070-8098-5734</li>
+    <li><strong>이메일</strong> — <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a></li>
+  </ul>
+
+  <h2 data-n="10">준거법</h2>
+  <p>본 약관은 대한민국 법률에 따라 해석되며, 분쟁 발생 시 서울중앙지방법원을 관할 법원으로 합니다.</p>
+</article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+            <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="momoi.html">Momoi</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">Products</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>

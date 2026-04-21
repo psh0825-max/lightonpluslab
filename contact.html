@@ -4,189 +4,186 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>연락처 — LightOn Plus Lab</title>
-<meta name="description" content="LightOn Plus Lab에 문의하세요. 24시간 내 회신드립니다." />
+<meta name="description" content="LightOn Plus Lab에 프로젝트를 문의하세요. 24시간 내 회신드립니다." />
 <meta property="og:title" content="연락처 — LightOn Plus Lab" />
-<meta property="og:description" content="LightOn Plus Lab에 문의하세요. 24시간 내 회신드립니다." />
 <meta property="og:type" content="website" />
+<meta name="theme-color" content="#050814" />
 <link rel="icon" href="logo-new.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
 <style>
-:root{--bg:#050710;--card:#0B1220;--text:#EAF0FF;--muted:#8B9BC0;--line:rgba(255,255,255,.08);--glow1:#2D7DFF;--glow2:#7C4DFF;--glow3:#00E5FF;--shadow:0 24px 80px rgba(0,0,0,.5);--radius:22px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.container{max-width:1140px;margin:0 auto;padding:0 24px}
-.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 600px at 15% 10%,rgba(45,125,255,.14),transparent 60%),radial-gradient(900px 600px at 85% 20%,rgba(124,77,255,.12),transparent 60%),radial-gradient(900px 600px at 50% 90%,rgba(0,229,255,.08),transparent 60%)}
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);background-size:60px 60px}
-.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(45,125,255,.6),transparent 70%);animation:floatParticle linear infinite;opacity:0}
-@keyframes floatParticle{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px) scale(1);opacity:0}}
-.nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);background:rgba(5,7,16,.65);border-bottom:1px solid var(--line);transition:background .3s}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
-.brand img{width:140px;height:auto;border-radius:10px;object-fit:contain;background:#fff;padding:4px 8px;filter:drop-shadow(0 4px 12px rgba(45,125,255,.3))}
-.brand small{display:block;font-weight:600;color:var(--muted);letter-spacing:0;margin-top:2px;font-size:12px}
-.nav-links{display:flex;gap:2px;align-items:center;color:var(--muted);font-weight:600;font-size:13px;white-space:nowrap}
-.nav-links a{padding:6px 10px;border-radius:10px;transition:all .15s}
-.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.06);color:var(--text)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 20px;border-radius:14px;white-space:nowrap;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text);font-weight:700;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:all .2s ease;cursor:pointer;position:relative;overflow:hidden}
-.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent);opacity:0;transition:opacity .2s}
-.btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.2)}
-.btn:hover::before{opacity:1}
-.btn.primary{border:none;background:linear-gradient(135deg,var(--glow1),var(--glow2));box-shadow:0 16px 48px rgba(45,125,255,.25),inset 0 1px 0 rgba(255,255,255,.15)}
-.btn.primary:hover{filter:brightness(1.1);box-shadow:0 20px 60px rgba(45,125,255,.35)}
-.cta{padding:50px 0 80px}
-.cta-box{background:linear-gradient(135deg,rgba(45,125,255,.14),rgba(124,77,255,.10));border:1px solid rgba(255,255,255,.12);border-radius:calc(var(--radius) + 8px);padding:36px;box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden}
-.cta-box::before{content:"";position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(124,77,255,.15),transparent 70%);pointer-events:none}
-.cta-box h2{font-size:24px;margin-bottom:6px}
-.cta-box p{color:var(--muted);line-height:1.7}
-.contact-card{margin-top:18px;background:rgba(11,18,32,.55);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
-.contact-card h3{margin-bottom:8px;font-size:17px}
-.contact-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-.contact-link{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);font-weight:600;font-size:14px;transition:all .2s}
-.contact-link:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);transform:translateY(-1px)}
-.footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;position:relative;z-index:1}
-.footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
-.smalllinks{display:flex;gap:16px;flex-wrap:wrap}
-.smalllinks a{transition:color .15s}
-.smalllinks a:hover{color:var(--text)}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px;border-radius:10px;transition:background .15s}
-.hamburger:hover{background:rgba(255,255,255,.06)}
-.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .25s ease}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(5,7,16,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:16px 24px 24px;flex-direction:column;gap:4px}
-.mobile-menu.open{display:flex}
-.mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:600;font-size:15px;transition:background .15s;color:var(--muted)}
-.mobile-menu a:hover{background:rgba(255,255,255,.06);color:var(--text)}
-@media(max-width:900px){
-  .cta-box{flex-direction:column;text-align:center}
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .nav-cta-desktop{display:none}
+.page-hero{padding:72px 0 40px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(42px,5.5vw,76px);font-weight:700;letter-spacing:-.03em;line-height:1.06;margin-bottom:20px}
+.page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-hero p{color:var(--text-3);max-width:50ch;margin:0 auto;font-size:16px;line-height:1.7}
+
+.ch-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  max-width:880px;margin:56px auto 0;
 }
-@media(max-width:480px){
-  .cta-box{padding:24px}
+.ch-card{
+  padding:32px 28px;border-radius:18px;
+  background:var(--panel);border:1px solid var(--panel-border);
+  transition:background .25s,border-color .25s,transform .25s;
+  text-align:left;
+  display:block;
 }
+.ch-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.ch-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.ch-k{font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}
+.ch-icon{width:36px;height:36px;border-radius:10px;display:grid;place-items:center}
+.ch-icon svg{width:18px;height:18px;stroke-width:1.8}
+.ch-card.mint .ch-icon{background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.3);color:var(--mint)}
+.ch-card.purple .ch-icon{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);color:var(--purple)}
+.ch-card.pink .ch-icon{background:rgba(244,114,182,.12);border:1px solid rgba(244,114,182,.3);color:var(--pink)}
+.ch-card.amber .ch-icon{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:var(--amber)}
+.ch-v{font-size:20px;font-weight:600;letter-spacing:-.015em;margin-bottom:8px;color:var(--text)}
+.ch-card.mint .ch-v{color:var(--mint)}
+.ch-n{font-size:13.5px;color:var(--text-3);line-height:1.6}
+
+.hours{
+  margin-top:32px;padding:20px 24px;
+  border-radius:12px;background:var(--panel);
+  border:1px dashed var(--panel-border);
+  text-align:center;font-size:13px;color:var(--text-3);
+  max-width:640px;margin-left:auto;margin-right:auto;
+}
+
+@media(max-width:640px){.ch-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="bg-glow"></div>
-<div class="bg-grid"></div>
-<div class="particles" id="particles"></div>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="page-glow" aria-hidden="true"></div>
 
 <header class="nav">
-  <div class="container nav-inner">
-    <a class="brand" href="index.html" aria-label="LightOn Plus Lab 홈">
-      <img src="logo-new.png" alt="LightOn Plus Lab" />
-      <div>LightOn Plus Lab<small>AI Apps &amp; Innovation</small></div>
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+      <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
     </a>
-    <nav class="nav-links" aria-label="메뉴">
-      <a href="services.html">서비스</a>
+    <nav class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
       <a href="momoi.html">Momoi</a>
-      <a href="products.html">앱</a>
-      <a href="about.html">소개</a>
-      <a href="contact.html" class="active">문의</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn primary nav-cta-desktop" href="contact.html">프로젝트 문의</a>
-    <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <a class="nav-cta" href="#channels">Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
     </button>
   </div>
 </header>
-
-<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-  <a href="services.html" class="mobile-link">서비스</a>
-  <a href="momoi.html" class="mobile-link">Momoi</a>
-  <a href="products.html" class="mobile-link">앱</a>
-  <a href="about.html" class="mobile-link">소개</a>
-  <a href="contact.html" class="mobile-link">문의</a>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
 </nav>
 
-<main id="top" class="container">
-  <section class="cta">
-    <div class="cta-box reveal">
-      <div>
-        <h2>프로젝트가 있으신가요?</h2>
-        <p>24시간 내 친절하게 회신드립니다. 편하신 채널로 연락주세요.</p>
-      </div>
-      <a class="btn primary" href="mailto:support@lightonpluslab.com">✉️ 이메일 보내기</a>
+<main>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Contact</span>
+    <h1 class="reveal reveal-d1">프로젝트가 <em>있으신가요</em>?</h1>
+    <p class="reveal reveal-d2">아이디어 단계든, 돌아가는 서비스에 AI를 붙이고 싶으신 단계든 괜찮습니다. 24시간 안에 친절하게 회신드립니다.</p>
+  </div>
+</section>
+
+<section id="channels">
+  <div class="wrap">
+    <div class="ch-grid">
+      <a class="ch-card mint reveal" href="mailto:support@lightonpluslab.com">
+        <div class="ch-row">
+          <span class="ch-k">Primary · Email</span>
+          <span class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.8"/><path d="M3 7l9 6 9-6" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="ch-v">support@lightonpluslab.com</div>
+        <div class="ch-n">가장 빠릅니다. 프로젝트 요청서·견적 문의도 이메일로 받습니다.</div>
+      </a>
+      <a class="ch-card purple reveal reveal-d1" href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">
+        <div class="ch-row">
+          <span class="ch-k">Chat · KakaoTalk</span>
+          <span class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 4c-5 0-9 3.2-9 7.2 0 2.4 1.5 4.6 3.9 6L6 21l4-2.2c.7.1 1.4.2 2 .2 5 0 9-3.2 9-7.2S17 4 12 4z" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="ch-v">오픈채팅 바로가기</div>
+        <div class="ch-n">빠른 질문·가벼운 상담은 카카오 오픈채팅으로.</div>
+      </a>
+      <a class="ch-card pink reveal reveal-d2" href="tel:07080985734">
+        <div class="ch-row">
+          <span class="ch-k">Phone</span>
+          <span class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1A19.5 19.5 0 0 1 5 12.8 19.8 19.8 0 0 1 1.9 4.1 2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.9.6 2.8a2 2 0 0 1-.5 2.1L7.5 10a16 16 0 0 0 6.5 6.5l1.4-1.4a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.8.6A2 2 0 0 1 22 16.9z" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="ch-v">070-8098-5734</div>
+        <div class="ch-n">평일 10:00~18:00. 부재 시 메시지 남겨주시면 회신.</div>
+      </a>
+      <a class="ch-card amber reveal reveal-d3" href="#">
+        <div class="ch-row">
+          <span class="ch-k">Location</span>
+          <span class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s-8-7.5-8-13a8 8 0 0 1 16 0c0 5.5-8 13-8 13z" stroke-width="1.6"/><circle cx="12" cy="9" r="3" stroke-width="1.6"/></svg></span>
+        </div>
+        <div class="ch-v">경기도 안양시</div>
+        <div class="ch-n">동안구 관평로 333, 6동 504호 · 원격 미팅 기본.</div>
+      </a>
     </div>
-    <div class="contact-card reveal">
-      <h3>연락처</h3>
-      <p style="color:var(--muted);font-size:14px">이메일로 편하게 연락주세요. 보통 당일 atau следующий 근무일内に답변드립니다.</p>
-      <div class="contact-links">
-        <a class="contact-link" href="mailto:support@lightonpluslab.com">
-          ✉️ support@lightonpluslab.com
-        </a>
-        <a class="contact-link" href="https://open.kakao.com/o/lightonpluslab" target="_blank">
-          💬 카카오톡 오픈채팅
-        </a>
-      </div>
+
+    <div class="hours reveal">
+      평일 10:00–18:00 기준 24시간 내 회신 · 주말·공휴일은 다음 근무일에 회신
     </div>
-  </section>
+  </div>
+</section>
+
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
-      <div class="smalllinks">
-        <a href="services.html">서비스</a>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+            <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
         <a href="momoi.html">Momoi</a>
-        <a href="products.html">앱</a>
-        <a href="about.html">소개</a>
-        <a href="contact.html">문의</a>
-        <a href="privacy.html">개인정보처리방침</a>
-        <a href="terms.html">이용약관</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">Products</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="tel:07080985734">070-8098-5734</a>
       </div>
     </div>
-    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:12px;color:#8899BB;line-height:1.8;">
-      상호: 라이트온 플러스 랩 | 대표: 박승혁 | 사업자등록번호: 229-15-70907<br>
-      통신판매업신고: 제 2026-안양동안-0514 호<br>
-      주소: 경기도 안양시 동안구 관평로 333, 6동 504호(관양동) | 전화: 070-8098-5734 | 이메일: support@lightonpluslab.com
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
     </div>
   </div>
 </footer>
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-const hamburger = document.getElementById("hamburger");
-const mobileMenu = document.getElementById("mobileMenu");
-hamburger.addEventListener("click", () => {
-  const open = mobileMenu.classList.toggle("open");
-  hamburger.classList.toggle("open", open);
-  hamburger.setAttribute("aria-expanded", open);
-});
-document.querySelectorAll(".mobile-link").forEach(a => {
-  a.addEventListener("click", () => {
-    mobileMenu.classList.remove("open");
-    hamburger.classList.remove("open");
-    hamburger.setAttribute("aria-expanded", false);
-  });
-});
-(function(){
-  const c = document.getElementById("particles");
-  for(let i=0;i<20;i++){
-    const p = document.createElement("div");
-    p.className = "particle";
-    const s = Math.random()*4+2;
-    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;background:radial-gradient(circle,${['rgba(45,125,255,.5)','rgba(124,77,255,.5)','rgba(0,229,255,.5)'][i%3]},transparent 70%);`;
-    c.appendChild(p);
-  }
-})();
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}});
-},{threshold:0.1,rootMargin:"0px 0px -40px 0px"});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-</script>
+<script src="app.js"></script>
 </body>
 </html>

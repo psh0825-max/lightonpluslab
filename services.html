@@ -4,285 +4,245 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>서비스 — LightOn Plus Lab</title>
-<meta name="description" content="LightOn Plus Lab의 AI 앱 개발 서비스 — AI 기능 탑재, API & 배포, MVP 제작" />
+<meta name="description" content="LightOn Plus Lab의 AI 앱 개발 서비스 — AI 기능 탑재, API & 배포, MVP 제작, 자동화" />
 <meta property="og:title" content="서비스 — LightOn Plus Lab" />
 <meta property="og:type" content="website" />
+<meta name="theme-color" content="#050814" />
 <link rel="icon" href="logo-new.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
 <style>
-:root{--bg:#050710;--card:#0B1220;--text:#EAF0FF;--muted:#8B9BC0;--line:rgba(255,255,255,.08);--glow1:#2D7DFF;--glow2:#7C4DFF;--glow3:#00E5FF;--shadow:0 24px 80px rgba(0,0,0,.5);--radius:22px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.container{max-width:1140px;margin:0 auto;padding:0 24px}
-.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 600px at 15% 10%,rgba(45,125,255,.14),transparent 60%),radial-gradient(900px 600px at 85% 20%,rgba(124,77,255,.12),transparent 60%),radial-gradient(900px 600px at 50% 90%,rgba(0,229,255,.08),transparent 60%)}
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);background-size:60px 60px}
-.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(45,125,255,.6),transparent 70%);animation:floatParticle linear infinite;opacity:0}
-@keyframes floatParticle{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px) scale(1);opacity:0}}
-.nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);background:rgba(5,7,16,.65);border-bottom:1px solid var(--line);transition:background .3s}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
-.brand img{width:140px;height:auto;border-radius:10px;object-fit:contain;background:#fff;padding:4px 8px;filter:drop-shadow(0 4px 12px rgba(45,125,255,.3))}
-.brand small{display:block;font-weight:600;color:var(--muted);letter-spacing:0;margin-top:2px;font-size:12px}
-.nav-links{display:flex;gap:2px;align-items:center;color:var(--muted);font-weight:600;font-size:13px;white-space:nowrap}
-.nav-links a{padding:6px 10px;border-radius:10px;transition:all .15s}
-.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.06);color:var(--text)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 20px;border-radius:14px;white-space:nowrap;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text);font-weight:700;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:all .2s ease;cursor:pointer;position:relative;overflow:hidden}
-.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent);opacity:0;transition:opacity .2s}
-.btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.2)}
-.btn:hover::before{opacity:1}
-.btn.primary{border:none;background:linear-gradient(135deg,var(--glow1),var(--glow2));box-shadow:0 16px 48px rgba(45,125,255,.25),inset 0 1px 0 rgba(255,255,255,.15)}
-.btn.primary:hover{filter:brightness(1.1);box-shadow:0 20px 60px rgba(45,125,255,.35)}
-.page-hero{padding:80px 0 40px;position:relative;z-index:1;text-align:center}
-section{padding:60px 0;position:relative;z-index:1}
-.section-label{display:inline-flex;align-items:center;gap:8px;color:var(--glow1);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
-.section-label::before{content:"";width:24px;height:2px;background:linear-gradient(90deg,var(--glow1),var(--glow2));border-radius:2px}
-.section-title{font-size:clamp(26px,3vw,36px);margin-bottom:10px;letter-spacing:-.3px}
-.section-desc{color:var(--muted);margin-bottom:28px;line-height:1.75;max-width:65ch}
-.headline{font-size:clamp(32px,4vw,52px);line-height:1.1;letter-spacing:-1px;margin-bottom:18px}
-.headline .gradient{background:linear-gradient(135deg,var(--glow1),var(--glow3),var(--glow2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.sub{color:var(--muted);font-size:clamp(16px,1.4vw,18px);line-height:1.75;max-width:60ch;margin:0 auto 30px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{background:rgba(11,18,32,.55);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 12px 40px rgba(0,0,0,.25);transition:all .25s ease;position:relative;overflow:hidden}
-.card::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--glow1),var(--glow2),transparent);opacity:0;transition:opacity .3s}
-.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.18)}
-.card:hover::after{opacity:1}
-.card h3{margin-bottom:10px;font-size:17px}
-.card p{color:var(--muted);line-height:1.75;font-size:14px}
-.icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px;background:linear-gradient(135deg,rgba(45,125,255,.15),rgba(124,77,255,.15));border:1px solid rgba(255,255,255,.08);transition:all .2s}
-.card:hover .icon{background:linear-gradient(135deg,rgba(45,125,255,.25),rgba(124,77,255,.25));box-shadow:0 8px 24px rgba(45,125,255,.2)}
-.icon svg{opacity:.9}
-.process{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:step}
-.step{background:rgba(11,18,32,.55);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;position:relative;counter-increment:step;transition:all .25s}
-.step:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.15)}
-.step::before{content:counter(step);display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--glow1),var(--glow2));font-weight:900;font-size:16px;margin-bottom:14px;box-shadow:0 8px 24px rgba(45,125,255,.2)}
-.step h3{margin-bottom:8px;font-size:16px}
-.step p{color:var(--muted);line-height:1.7;font-size:14px}
-.work{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.work .card{min-height:160px}
-.cta{padding:50px 0 80px}
-.cta-box{background:linear-gradient(135deg,rgba(45,125,255,.14),rgba(124,77,255,.10));border:1px solid rgba(255,255,255,.12);border-radius:calc(var(--radius) + 8px);padding:36px;box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden}
-.cta-box::before{content:"";position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(124,77,255,.15),transparent 70%);pointer-events:none}
-.cta-box h2{font-size:24px;margin-bottom:6px}
-.cta-box p{color:var(--muted);line-height:1.7}
-.footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;position:relative;z-index:1}
-.footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
-.smalllinks{display:flex;gap:16px;flex-wrap:wrap}
-.smalllinks a{transition:color .15s}
-.smalllinks a:hover{color:var(--text)}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px;border-radius:10px;transition:background .15s}
-.hamburger:hover{background:rgba(255,255,255,.06)}
-.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .25s ease}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(5,7,16,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:16px 24px 24px;flex-direction:column;gap:4px}
-.mobile-menu.open{display:flex}
-.mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:600;font-size:15px;transition:background .15s;color:var(--muted)}
-.mobile-menu a:hover{background:rgba(255,255,255,.06);color:var(--text)}
-@media(max-width:900px){
-  .cards{grid-template-columns:1fr}
-  .process{grid-template-columns:1fr}
-  .work{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .nav-cta-desktop{display:none}
-  .page-hero{padding:60px 0 30px}
+.page-hero{padding:72px 0 40px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(38px,5vw,64px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:20px}
+.page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-hero p{color:var(--text-3);max-width:56ch;margin:0 auto;font-size:16px;line-height:1.7}
+
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.svc-card{padding:30px;border-radius:18px;background:var(--panel);border:1px solid var(--panel-border);transition:background .25s,border-color .25s,transform .25s}
+.svc-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.svc-title{font-size:18px;font-weight:600;margin-bottom:10px;letter-spacing:-.01em}
+.svc-desc{font-size:14px;color:var(--text-3);line-height:1.7}
+
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{
+  padding:28px;border-radius:16px;
+  background:var(--panel);border:1px solid var(--panel-border);
+  transition:background .25s,border-color .25s,transform .25s;
+  position:relative;
 }
-@media(max-width:480px){.cta-box{padding:24px}}
+.step:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.step-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,var(--purple),#7C5CFF);
+  color:#fff;font-weight:700;font-size:15px;
+  margin-bottom:16px;
+  box-shadow:0 8px 24px var(--purple-glow);
+}
+.step-title{font-size:17px;font-weight:600;margin-bottom:8px;letter-spacing:-.01em}
+.step-desc{font-size:14px;color:var(--text-3);line-height:1.7}
+
+.poss-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.poss{padding:26px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);transition:background .25s,border-color .25s,transform .25s;display:flex;gap:16px;align-items:flex-start}
+.poss:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-2px)}
+.poss .ibadge{margin:0;width:40px;height:40px;flex:0 0 40px;border-radius:10px}
+.poss-body{flex:1;min-width:0}
+.poss-t{font-size:15px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em}
+.poss-d{font-size:13.5px;color:var(--text-3);line-height:1.65}
+
+@media(max-width:960px){
+  .svc-grid,.process-grid,.poss-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-
-<div class="bg-glow"></div>
-<div class="bg-grid"></div>
-<div class="particles" id="particles"></div>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="page-glow" aria-hidden="true"></div>
 
 <header class="nav">
-  <div class="container nav-inner">
-    <a class="brand" href="index.html" aria-label="LightOn Plus Lab 홈">
-      <img src="logo-new.png" alt="LightOn Plus Lab" />
-      <div>LightOn Plus Lab<small>AI Apps &amp; Innovation</small></div>
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+      <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
     </a>
-    <nav class="nav-links" aria-label="메뉴">
-      <a href="services.html" class="active">서비스</a>
+    <nav class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
       <a href="momoi.html">Momoi</a>
-      <a href="products.html">앱</a>
-      <a href="about.html">소개</a>
-      <a href="contact.html">문의</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn primary nav-cta-desktop" href="contact.html">프로젝트 문의</a>
-    <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <a class="nav-cta" href="contact.html">Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
     </button>
   </div>
 </header>
-
-<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-  <a href="services.html" class="mobile-link">서비스</a>
-  <a href="momoi.html" class="mobile-link">Momoi</a>
-  <a href="products.html" class="mobile-link">앱</a>
-  <a href="about.html" class="mobile-link">소개</a>
-  <a href="contact.html" class="mobile-link">문의</a>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
-<main class="container">
+<main>
 
-  <div class="page-hero">
-    <div class="section-label reveal">서비스</div>
-    <h1 class="headline reveal">AI를 중심으로<br/><span class="gradient">제품을 만듭니다</span></h1>
-    <p class="sub reveal">"AI 기능"을 중심으로 앱/웹 제품을 만듭니다.<br/>필요하면 데이터 파이프라인과 운영까지 같이 설계합니다.</p>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Services</span>
+    <h1 class="reveal reveal-d1">AI를 중심으로 <em>제품</em>을 만듭니다</h1>
+    <p class="reveal reveal-d2">"AI 기능"을 중심으로 앱·웹 제품을 만듭니다. 필요하면 데이터 파이프라인과 운영까지 같이 설계합니다.</p>
   </div>
+</section>
 
-  <section>
-    <div class="cards">
-      <div class="card reveal">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M7 7h10v10H7z" stroke="currentColor" stroke-width="2" opacity=".9"/>
-            <path d="M4 12h3M17 12h3M12 4v3M12 17v3" stroke="currentColor" stroke-width="2" opacity=".7"/>
-          </svg>
-        </div>
-        <h3>AI 기능 탑재</h3>
-        <p>챗봇, 요약, 검색(RAG), 추천, 자동화 등 제품에 자연스럽게 녹여냅니다. LLM, 비전, 음성 등 필요한 AI 기술을 선별해 연동합니다.</p>
+<section>
+  <div class="wrap">
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="ibadge mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="5" width="14" height="14" rx="2" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke-width="1.8"/></svg></div>
+        <div class="svc-title">AI 기능 탑재</div>
+        <div class="svc-desc">챗봇·요약·검색(RAG)·추천·자동화를 제품에 자연스럽게 녹여냅니다. LLM·비전·음성 중 필요한 AI 기술을 선별해 연동합니다.</div>
       </div>
-      <div class="card reveal reveal-delay-1">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" opacity=".7"/>
-            <path d="M7 17h10a4 4 0 0 0 0-8 5 5 0 0 0-10 1 3 3 0 0 0 0 7Z" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </div>
-        <h3>API &amp; 배포</h3>
-        <p>서버/API 설계부터 배포, 모니터링까지. Cloud Run, Vercel, Supabase 등 운영 가능한 형태로 정리합니다.</p>
+      <div class="svc-card reveal reveal-d1">
+        <div class="ibadge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 7l9 4 9-4M12 11v10" stroke-width="1.2"/></svg></div>
+        <div class="svc-title">API &amp; 배포</div>
+        <div class="svc-desc">서버·API 설계부터 클라우드 배포, 모니터링, 비용 최적화까지. Cloud Run · Vercel · Supabase 등 운영 가능한 형태로 정리합니다.</div>
       </div>
-      <div class="card reveal reveal-delay-2">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3>MVP 제작</h3>
-        <p>빠르게 실험 가능한 MVP를 만들고, 검증 후 기능을 확장합니다. 최소 2주부터 결과물을 확인할 수 있습니다.</p>
+      <div class="svc-card reveal reveal-d2">
+        <div class="ibadge purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/></svg></div>
+        <div class="svc-title">MVP 제작</div>
+        <div class="svc-desc">빠르게 실험 가능한 MVP를 만들고, 검증 후 기능을 확장합니다. 최소 2주부터 실제 동작하는 결과물을 확인할 수 있습니다.</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <div class="section-label reveal">프로세스</div>
-    <h2 class="section-title reveal">이렇게 진행됩니다</h2>
-    <p class="section-desc reveal">짧은 주기로 공유/피드백 → 빠른 반복. 최소 2주부터 결과물을 확인할 수 있습니다.</p>
-    <div class="process">
+<section>
+  <div class="wrap">
+    <div class="eyebrow purple reveal" style="display:block;text-align:center;margin:0 auto 16px;width:fit-content">Process</div>
+    <h2 class="section-title reveal reveal-d1">이렇게 진행됩니다</h2>
+    <p class="section-desc reveal reveal-d2">짧은 주기로 공유·피드백 → 빠른 반복. 2주차부터 실물 프로토타입을 확인할 수 있습니다.</p>
+    <div class="process-grid" style="margin-top:48px">
       <div class="step reveal">
-        <h3>상담 &amp; 기획</h3>
-        <p>목표, 핵심 기능, 일정, 예산을 정리합니다. 필요하면 간단한 PoC로 가능성을 먼저 확인합니다.</p>
+        <div class="step-num">01</div>
+        <div class="step-title">상담 &amp; 기획</div>
+        <div class="step-desc">목표·핵심 기능·일정·예산을 정리합니다. 필요하면 간단한 PoC로 가능성을 먼저 확인합니다.</div>
       </div>
-      <div class="step reveal reveal-delay-1">
-        <h3>개발 &amp; 피드백</h3>
-        <p>1~2주 단위로 빌드를 공유하고 피드백을 반영합니다. 빠른 반복이 핵심입니다.</p>
+      <div class="step reveal reveal-d1">
+        <div class="step-num">02</div>
+        <div class="step-title">개발 &amp; 피드백</div>
+        <div class="step-desc">1~2주 단위로 빌드를 공유하고 피드백을 반영합니다. 빠른 반복이 핵심입니다.</div>
       </div>
-      <div class="step reveal reveal-delay-2">
-        <h3>배포 &amp; 운영</h3>
-        <p>스토어 등록, 도메인, 모니터링까지 세팅하고 안정적으로 넘겨드립니다.</p>
+      <div class="step reveal reveal-d2">
+        <div class="step-num">03</div>
+        <div class="step-title">배포 &amp; 운영</div>
+        <div class="step-desc">스토어 등록·도메인·모니터링까지 세팅하고 안정적으로 인계드립니다.</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <div class="section-label reveal">이런 것도 만듭니다</div>
-    <h2 class="section-title reveal">다양한 AI 제품 가능성</h2>
-    <p class="section-desc reveal">목표/예산/일정에 맞게 구성합니다.</p>
-    <div class="work">
-      <div class="card reveal">
-        <h3>📄 문서 검색(RAG) 기반 Q&amp;A</h3>
-        <p>사내/개인 문서를 업로드하고 질문하면 근거 기반 답변을 제공합니다.</p>
+<section>
+  <div class="wrap">
+    <div class="eyebrow pink reveal" style="display:block;text-align:center;margin:0 auto 16px;width:fit-content">Possibilities</div>
+    <h2 class="section-title reveal reveal-d1">이런 것도 만듭니다</h2>
+    <p class="section-desc reveal reveal-d2">목표·예산·일정에 맞게 조합합니다.</p>
+    <div class="poss-grid" style="margin-top:48px">
+      <div class="poss reveal">
+        <div class="ibadge mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM14 2v6h6M8 13h8M8 17h8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="poss-body">
+          <div class="poss-t">문서 검색(RAG) 기반 Q&amp;A</div>
+          <div class="poss-d">사내·개인 문서를 업로드하고 질문하면 근거 기반 답변을 제공합니다.</div>
+        </div>
       </div>
-      <div class="card reveal reveal-delay-1">
-        <h3>📸 이미지/카메라 기반 AI</h3>
-        <p>카메라 입력을 분석해 분류/검출/가이드 제공 (예: 스캔, 측정, 인식).</p>
+      <div class="poss reveal reveal-d1">
+        <div class="ibadge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2 7a2 2 0 0 1 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7z" stroke-width="1.6"/><circle cx="12" cy="13" r="4" stroke-width="1.6"/></svg></div>
+        <div class="poss-body">
+          <div class="poss-t">이미지·카메라 기반 AI</div>
+          <div class="poss-d">카메라 입력을 분석해 분류·검출·가이드를 제공합니다. (스캔·측정·인식)</div>
+        </div>
       </div>
-      <div class="card reveal">
-        <h3>🤝 고객 지원 자동화</h3>
-        <p>FAQ + 티켓 요약 + 답변 초안 생성으로 CS 속도/품질을 개선합니다.</p>
+      <div class="poss reveal reveal-d2">
+        <div class="ibadge purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <div class="poss-body">
+          <div class="poss-t">고객 지원 자동화</div>
+          <div class="poss-d">FAQ + 티켓 요약 + 답변 초안 생성으로 CS 속도와 품질을 개선합니다.</div>
+        </div>
       </div>
-      <div class="card reveal reveal-delay-1">
-        <h3>⚡ 업무 자동화 봇</h3>
-        <p>반복 업무를 자동화하는 챗봇/워크플로우. 텔레그램, 슬랙, 이메일 연동.</p>
+      <div class="poss reveal reveal-d3">
+        <div class="ibadge amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/></svg></div>
+        <div class="poss-body">
+          <div class="poss-t">업무 자동화 봇</div>
+          <div class="poss-d">반복 업무를 자동화하는 챗봇·워크플로우. 텔레그램·슬랙·이메일 연동.</div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta">
-    <div class="cta-box reveal">
-      <div>
-        <h2>프로젝트 문의</h2>
-        <p>24시간 내 회신드립니다.</p>
-      </div>
-      <a class="btn primary" href="contact.html">💬 상담/견적 요청</a>
+<section>
+  <div class="wrap">
+    <div class="cta-block reveal">
+      <h2>프로젝트 문의</h2>
+      <p>24시간 내 회신드립니다. 첫 상담은 무료입니다.</p>
+      <a class="btn btn-primary" href="contact.html">
+        상담 요청
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved.</div>
-      <div class="smalllinks">
-        <a href="services.html">서비스</a>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+            <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
         <a href="momoi.html">Momoi</a>
-        <a href="products.html">앱</a>
-        <a href="about.html">소개</a>
-        <a href="contact.html">문의</a>
-        <a href="privacy.html">개인정보처리방침</a>
-        <a href="terms.html">이용약관</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">Products</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="tel:07080985734">070-8098-5734</a>
       </div>
     </div>
-    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:11px;color:#6B7DAA;line-height:1.8;">
-      상호: 라이트온 플러스 랩 | 대표: 박승혁 | 사업자등록번호: 229-15-70907<br>
-      통신판매업신고: 제 2026-안양동안-0514 호<br>
-      주소: 경기도 안양시 동안구 관평로 333, 6동 504호(관양동) | 전화: 070-8098-5734 | 이메일: support@lightonpluslab.com
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
     </div>
   </div>
 </footer>
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-const hamburger = document.getElementById("hamburger");
-const mobileMenu = document.getElementById("mobileMenu");
-hamburger.addEventListener("click", () => {
-  const open = mobileMenu.classList.toggle("open");
-  hamburger.classList.toggle("open", open);
-  hamburger.setAttribute("aria-expanded", open);
-});
-document.querySelectorAll(".mobile-link").forEach(a => {
-  a.addEventListener("click", () => {
-    mobileMenu.classList.remove("open");
-    hamburger.classList.remove("open");
-    hamburger.setAttribute("aria-expanded", false);
-  });
-});
-(function(){
-  const c = document.getElementById("particles");
-  for(let i=0;i<20;i++){
-    const p = document.createElement("div");
-    p.className = "particle";
-    const s = Math.random()*4+2;
-    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;background:radial-gradient(circle,${['rgba(45,125,255,.5)','rgba(124,77,255,.5)','rgba(0,229,255,.5)'][i%3]},transparent 70%);`;
-    c.appendChild(p);
-  }
-})();
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}});
-},{threshold:0.1,rootMargin:"0px 0px -40px 0px"});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-</script>
+<script src="app.js"></script>
 </body>
 </html>

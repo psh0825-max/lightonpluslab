@@ -4,87 +4,193 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>개인정보 처리방침 — LightOn Plus Lab</title>
+<meta name="description" content="LightOn Plus Lab 개인정보 처리방침" />
+<meta name="theme-color" content="#050814" />
 <link rel="icon" href="logo-new.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 <style>
-:root { --bg:#050710; --text:#EAF0FF; --muted:#8B9BC0; --line:rgba(255,255,255,.08); }
-* { box-sizing:border-box; margin:0; padding:0; }
-body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  background: var(--bg); color: var(--text);
-  line-height: 1.8; -webkit-font-smoothing: antialiased;
+.doc{max-width:780px;margin:0 auto;padding:64px 32px 96px}
+.doc .back{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-3);
+  padding:8px 14px;border-radius:999px;
+  border:1px solid var(--panel-border);
+  transition:color .2s,background .2s,border-color .2s;
+  margin-bottom:40px;
 }
-.container { max-width: 720px; margin: 0 auto; padding: 60px 24px; }
-h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; }
-.date { color: var(--muted); font-size: 14px; margin-bottom: 40px; }
-h2 { font-size: 18px; font-weight: 700; margin: 32px 0 12px; color: #A78BFA; }
-p, li { font-size: 15px; color: var(--muted); margin-bottom: 8px; }
-ul { padding-left: 20px; }
-a { color: #A78BFA; text-decoration: none; }
-a:hover { text-decoration: underline; }
-.back { display: inline-block; margin-bottom: 24px; font-size: 14px; }
-strong { color: var(--text); }
+.doc .back:hover{color:var(--text);background:var(--panel);border-color:var(--panel-border-hover)}
+.doc h1{
+  font-size:clamp(32px,4vw,44px);font-weight:700;letter-spacing:-.025em;
+  line-height:1.1;margin-bottom:12px;
+}
+.doc .date{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-4);margin-bottom:40px;
+}
+.doc p{color:var(--text-2);line-height:1.78;font-size:15px;margin-bottom:14px}
+.doc h2{
+  font-size:17px;font-weight:600;color:var(--text);letter-spacing:-.01em;
+  margin:40px 0 14px;padding-top:20px;border-top:1px solid var(--panel-border);
+  display:flex;align-items:baseline;gap:10px;
+}
+.doc h2::before{
+  content:attr(data-n);
+  font-family:var(--f-mono);font-size:11px;font-weight:500;
+  color:var(--mint);letter-spacing:.1em;
+}
+.doc ul{list-style:none;padding:0;margin-bottom:14px}
+.doc li{
+  color:var(--text-2);line-height:1.75;font-size:15px;
+  padding:6px 0 6px 18px;position:relative;
+}
+.doc li::before{
+  content:"";position:absolute;left:0;top:15px;
+  width:6px;height:1px;background:var(--mint);
+}
+.doc strong{color:var(--text);font-weight:600}
+.doc a{color:var(--mint);transition:color .2s}
+.doc a:hover{color:var(--cyan)}
+.doc-first{padding-top:8px;border-top:0}
 </style>
 </head>
 <body>
-<div class="container">
-<a href="/" class="back">← LightOn Plus Lab</a>
-<h1>개인정보 처리방침</h1>
-<p class="date">시행일: 2026년 3월 16일 | 최종 수정: 2026년 3월 16일</p>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="page-glow" aria-hidden="true"></div>
 
-<p>LightOn Plus Lab(이하 "회사")은 이용자의 개인정보를 소중히 여기며, 「개인정보 보호법」 등 관련 법령을 준수합니다. 본 방침은 회사가 운영하는 모든 서비스에 적용됩니다.</p>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+      <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
+    </a>
+    <nav class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
+      <a href="momoi.html">Momoi</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
-<h2>1. 수집하는 개인정보</h2>
-<p>회사는 서비스 제공을 위해 다음 정보를 수집합니다:</p>
-<ul>
-<li><strong>Google 계정 정보:</strong> 이메일 주소, 이름 (로그인 시)</li>
-<li><strong>서비스 이용 데이터:</strong> 사용자가 직접 입력한 텍스트, 음성 파일, 이미지 등</li>
-<li><strong>결제 정보:</strong> 결제 시 PG사를 통해 처리되며, 회사는 카드번호 등 민감정보를 직접 저장하지 않습니다</li>
-</ul>
+<main>
+<article class="doc">
+  <a class="back" href="/">← Back to LightOn Plus Lab</a>
+  <h1>개인정보 처리방침</h1>
+  <div class="date">시행일 2026·03·16 · 최종 수정 2026·03·16</div>
 
-<h2>2. 개인정보 이용 목적</h2>
-<ul>
-<li>서비스 제공 및 기능 운영</li>
-<li>사용자 인증 및 계정 관리</li>
-<li>AI 기반 콘텐츠 생성 및 처리</li>
-<li>결제 처리 및 이용 내역 관리</li>
-<li>서비스 개선 및 오류 대응</li>
-</ul>
+  <p>LightOn Plus Lab(이하 "회사")은 이용자의 개인정보를 소중히 여기며, 「개인정보 보호법」 등 관련 법령을 준수합니다. 본 방침은 회사가 운영하는 모든 서비스에 공통 적용됩니다.</p>
 
-<h2>3. 개인정보 보관 및 파기</h2>
-<ul>
-<li>계정 삭제 시 모든 데이터가 즉시 삭제됩니다</li>
-<li>업로드된 파일은 처리 후 즉시 삭제됩니다</li>
-<li>결제 기록은 관련 법령에 따라 5년간 보관 후 파기됩니다</li>
-</ul>
+  <h2 data-n="01" class="doc-first">수집하는 개인정보</h2>
+  <p>회사는 서비스 제공을 위해 다음 정보를 수집합니다.</p>
+  <ul>
+    <li><strong>Google 계정 정보</strong> — 이메일 주소·이름 (로그인 시)</li>
+    <li><strong>서비스 이용 데이터</strong> — 사용자가 직접 입력한 텍스트·음성 파일·이미지</li>
+    <li><strong>결제 정보</strong> — 결제 시 PG사를 통해 처리되며, 회사는 카드번호 등 민감정보를 직접 저장하지 않습니다.</li>
+  </ul>
 
-<h2>4. 제3자 제공</h2>
-<p>회사는 이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만, 서비스 운영에 필요한 경우 다음 외부 서비스를 이용합니다:</p>
-<ul>
-<li><strong>Google Cloud Platform:</strong> 서버 호스팅 및 AI 처리</li>
-<li><strong>PG사 (결제 대행):</strong> 안전한 결제 처리</li>
-</ul>
-<p>이 경우에도 최소한의 정보만 전달되며, 서비스 제공 목적으로만 사용됩니다.</p>
+  <h2 data-n="02">개인정보 이용 목적</h2>
+  <ul>
+    <li>서비스 제공 및 기능 운영</li>
+    <li>사용자 인증 및 계정 관리</li>
+    <li>AI 기반 콘텐츠 생성 및 처리</li>
+    <li>결제 처리 및 이용 내역 관리</li>
+    <li>서비스 개선 및 오류 대응</li>
+  </ul>
 
-<h2>5. 이용자의 권리</h2>
-<ul>
-<li>언제든지 계정을 삭제하고 데이터 삭제를 요청할 수 있습니다</li>
-<li>서비스 연동(캘린더 등)은 설정에서 해제할 수 있습니다</li>
-<li>개인정보 관련 문의는 아래 연락처로 보내주세요</li>
-</ul>
+  <h2 data-n="03">개인정보 보관 및 파기</h2>
+  <ul>
+    <li>계정 삭제 시 모든 데이터가 즉시 삭제됩니다.</li>
+    <li>업로드된 파일은 처리 후 즉시 삭제됩니다.</li>
+    <li>결제 기록은 관련 법령에 따라 5년간 보관 후 파기됩니다.</li>
+  </ul>
 
-<h2>6. 적용 서비스</h2>
-<p>본 방침은 LightOn Plus Lab이 운영하는 다음 서비스에 공통 적용됩니다:</p>
-<ul>
-<li>Songbit (AI 뮤직 스튜디오)</li>
-<li>momoi (AI 업무 관리)</li>
-<li>수학친구 (AI 수학 튜터)</li>
-<li>성경탐험 (성경 학습)</li>
-<li>기타 LightOn Plus Lab 운영 서비스</li>
-</ul>
+  <h2 data-n="04">제3자 제공</h2>
+  <p>회사는 이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만, 서비스 운영에 필요한 경우 다음 외부 서비스를 이용합니다.</p>
+  <ul>
+    <li><strong>Google Cloud Platform</strong> — 서버 호스팅 및 AI 처리</li>
+    <li><strong>PG사 (결제 대행)</strong> — 안전한 결제 처리</li>
+  </ul>
+  <p>이 경우에도 최소한의 정보만 전달되며, 서비스 제공 목적으로만 사용됩니다.</p>
 
-<h2>7. 연락처</h2>
-<p>개인정보 관련 문의: <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a> | 전화: 070-8098-5734</p>
+  <h2 data-n="05">이용자의 권리</h2>
+  <ul>
+    <li>언제든지 계정을 삭제하고 데이터 삭제를 요청할 수 있습니다.</li>
+    <li>서비스 연동(캘린더 등)은 설정에서 해제할 수 있습니다.</li>
+    <li>개인정보 관련 문의는 아래 연락처로 보내주세요.</li>
+  </ul>
 
-</div>
+  <h2 data-n="06">적용 서비스</h2>
+  <p>본 방침은 LightOn Plus Lab이 운영하는 다음 서비스에 공통 적용됩니다.</p>
+  <ul>
+    <li>SongBit (AI 뮤직 스튜디오)</li>
+    <li>Momoi (AI 업무 관리)</li>
+    <li>수학친구 (AI 수학 튜터)</li>
+    <li>말씀찾기 (성경 검색)</li>
+    <li>기타 LightOn Plus Lab 운영 서비스</li>
+  </ul>
+
+  <h2 data-n="07">연락처</h2>
+  <p>개인정보 관련 문의: <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a> · 전화 070-8098-5734</p>
+</article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+            <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="momoi.html">Momoi</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">Products</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>
