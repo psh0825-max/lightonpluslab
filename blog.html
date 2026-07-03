@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>블로그 — LightOn Plus Lab</title>
+<meta name="description" content="LightOn Plus Lab 블로그 — 앱 개발 노트, 제품 가이드, 1인 스튜디오 운영기" />
+<meta property="og:title" content="블로그 — LightOn Plus Lab" />
+<meta property="og:type" content="article" />
+<meta name="theme-color" content="#050814" />
+<link rel="icon" href="logo-new.png" />
+<link rel="canonical" href="https://lightonpluslab.com/blog.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<style>
+.page-hero{padding:72px 0 24px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px}
+.page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-hero p{color:var(--text-3);max-width:56ch;margin:0 auto;font-size:15px;line-height:1.7}
+.article-meta{color:var(--text-3);font-size:13px;margin-top:14px}
+.prose{max-width:720px;margin:0 auto;padding:8px 0 72px;font-size:15.5px;line-height:1.85;color:var(--text-2,#cdd5e1)}
+.prose h2{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:44px 0 14px;color:var(--text-1,#eef2f8)}
+.prose h3{font-size:17px;font-weight:600;margin:30px 0 10px;color:var(--text-1,#eef2f8)}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0 0 18px;padding-left:22px}
+.prose li{margin:6px 0}
+.prose strong{color:var(--text-1,#eef2f8)}
+.prose table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14px}
+.prose th,.prose td{border:1px solid var(--panel-border,#232b3d);padding:9px 12px;text-align:left;vertical-align:top}
+.prose th{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}
+.prose .tip{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}
+.prose a{color:var(--cyan,#5eead4)}
+.back-link{display:inline-block;margin:28px 0 0;font-size:14px;color:var(--cyan,#5eead4);text-decoration:none}
+.post-list{max-width:760px;margin:0 auto;padding:8px 0 72px;display:grid;gap:14px}
+.post-card{display:block;padding:24px 26px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);text-decoration:none;transition:background .25s,border-color .25s,transform .25s}
+.post-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.post-card h2{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;color:var(--text-1,#eef2f8)}
+.post-card p{font-size:14px;color:var(--text-3);line-height:1.7;margin:0 0 10px}
+.post-card .pc-meta{font-size:12.5px;color:var(--text-3);opacity:.8}
+</style>
+</head>
+<body>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="page-glow" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+    <nav class="nav-links" aria-label="메뉴">
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
+      <a href="blog.html">Blog</a>
+      <a href="momoi.html">Momoi</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">
+      Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="blog.html">Blog</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Blog</span>
+    <h1 class="reveal">만들며 배운 것을 <em>기록</em>합니다</h1>
+    <p class="reveal">앱 개발 노트, 제품 사용 가이드, 1인 스튜디오 운영기. 직접 만들고 운영하며 검증된 내용만 씁니다.</p>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="post-list">
+<a class="post-card" href="blog-paper-coupon-management.html">
+  <h2>종이 쿠폰과 도장판, 스마트폰 하나로 관리하는 현실적인 방법</h2>
+  <p>지갑 속에서 사라지는 종이 쿠폰·도장판·회수권을 잃어버리지 않고 관리하는 세 가지 방법을 비교하고, 만료일 관리 요령을 정리했습니다.</p>
+  <div class="pc-meta">Guide · 2026-06-25</div>
+</a>
+<a class="post-card" href="blog-twa-play-store.html">
+  <h2>웹앱을 구글 플레이에 올리기 — TWA 출시 실전 기록</h2>
+  <p>PWA를 TWA로 감싸 Google Play에 출시하며 실제로 겪은 절차와 함정들 — assetlinks, AAB 서명, target API, 비공개 테스트 요건까지.</p>
+  <div class="pc-meta">Dev Note · 2026-07-03</div>
+</a>
+<a class="post-card" href="blog-local-first-apps.html">
+  <h2>서버 없는 앱, '로컬 퍼스트'의 장점과 정직한 한계</h2>
+  <p>회원가입도 서버도 없는 로컬 퍼스트 앱은 무엇이 좋고 무엇을 포기하는가. IndexedDB 기반 앱을 만들며 정리한 설계 기준.</p>
+  <div class="pc-meta">Product · 2026-06-18</div>
+</a>
+<a class="post-card" href="blog-two-week-mvp.html">
+  <h2>1인 스튜디오가 2주 만에 MVP를 출시하는 프로세스</h2>
+  <p>Brief → Prototype → Launch → Improve. LightOn Plus Lab이 실제로 쓰는 4단계 MVP 프로세스와 단계별 산출물, 그리고 중단 기준.</p>
+  <div class="pc-meta">Studio · 2026-06-10</div>
+</a>
+<a class="post-card" href="blog-momoi-call-summary.html">
+  <h2>통화가 끝나면 요약이 남는다 — 모모아이(momoi) 활용 가이드</h2>
+  <p>AI 통화 요약 앱 모모아이를 잘 쓰는 법. 어떤 통화에 효과적인지, 요약 품질을 높이는 팁, 그리고 프라이버시 원칙.</p>
+  <div class="pc-meta">Product · 2026-06-05</div>
+</a>
+<a class="post-card" href="blog-pwa-vs-native.html">
+  <h2>PWA냐 네이티브냐 — 1인 개발 관점의 선택 기준</h2>
+  <p>혼자 만들고 혼자 운영하는 앱이라면 어떤 스택을 골라야 할까. PWA와 네이티브(Flutter 포함)를 유지비 관점에서 비교합니다.</p>
+  <div class="pc-meta">Dev Note · 2026-05-28</div>
+</a>
+<a class="post-card" href="blog-notification-ux.html">
+  <h2>알림은 몇 번이 적당한가 — 만료 임박 알림을 설계하며 배운 것</h2>
+  <p>쿠폰 만료 알림을 D-7/D-3/D-1 세 번으로 정한 이유. 유용함과 성가심 사이에서 알림 UX를 설계하는 원칙들.</p>
+  <div class="pc-meta">Design · 2026-05-20</div>
+</a>
+<a class="post-card" href="blog-ai-assisted-development.html">
+  <h2>AI 코딩 도구로 실제 제품 만들기 — 속도는 얻고 품질은 지키는 법</h2>
+  <p>LLM 코딩 도구를 실제 제품 개발에 쓰면서 정한 규칙들. 어디까지 맡기고, 무엇은 사람이 쥐고 있어야 하는가.</p>
+  <div class="pc-meta">Dev Note · 2026-05-12</div>
+</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="momoi.html">Momoi</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">Products</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>서버 없는 앱, '로컬 퍼스트'의 장점과 정직한 한계 — LightOn Plus Lab</title>
+<meta name="description" content="회원가입도 서버도 없는 로컬 퍼스트 앱은 무엇이 좋고 무엇을 포기하는가. IndexedDB 기반 앱을 만들며 정리한 설계 기준." />
+<meta property="og:title" content="서버 없는 앱, '로컬 퍼스트'의 장점과 정직한 한계 — LightOn Plus Lab" />
+<meta property="og:type" content="article" />
+<meta name="theme-color" content="#050814" />
+<link rel="icon" href="logo-new.png" />
+<link rel="canonical" href="https://lightonpluslab.com/blog-local-first-apps.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<style>
+.page-hero{padding:72px 0 24px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px}
+.page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-hero p{color:var(--text-3);max-width:56ch;margin:0 auto;font-size:15px;line-height:1.7}
+.article-meta{color:var(--text-3);font-size:13px;margin-top:14px}
+.prose{max-width:720px;margin:0 auto;padding:8px 0 72px;font-size:15.5px;line-height:1.85;color:var(--text-2,#cdd5e1)}
+.prose h2{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:44px 0 14px;color:var(--text-1,#eef2f8)}
+.prose h3{font-size:17px;font-weight:600;margin:30px 0 10px;color:var(--text-1,#eef2f8)}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0 0 18px;padding-left:22px}
+.prose li{margin:6px 0}
+.prose strong{color:var(--text-1,#eef2f8)}
+.prose table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14px}
+.prose th,.prose td{border:1px solid var(--panel-border,#232b3d);padding:9px 12px;text-align:left;vertical-align:top}
+.prose th{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}
+.prose .tip{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}
+.prose a{color:var(--cyan,#5eead4)}
+.back-link{display:inline-block;margin:28px 0 0;font-size:14px;color:var(--cyan,#5eead4);text-decoration:none}
+.post-list{max-width:760px;margin:0 auto;padding:8px 0 72px;display:grid;gap:14px}
+.post-card{display:block;padding:24px 26px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);text-decoration:none;transition:background .25s,border-color .25s,transform .25s}
+.post-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.post-card h2{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;color:var(--text-1,#eef2f8)}
+.post-card p{font-size:14px;color:var(--text-3);line-height:1.7;margin:0 0 10px}
+.post-card .pc-meta{font-size:12.5px;color:var(--text-3);opacity:.8}
+</style>
+</head>
+<body>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="page-glow" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+    <nav class="nav-links" aria-label="메뉴">
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
+      <a href="blog.html">Blog</a>
+      <a href="momoi.html">Momoi</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">
+      Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="blog.html">Blog</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Product</span>
+    <h1 class="reveal">서버 없는 앱, '로컬 퍼스트'의 장점과 정직한 한계</h1>
+    <div class="article-meta">2026-06-18 · LightOn Plus Lab</div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <article class="prose">
+
+<p>저희가 만드는 개인용 도구 앱들은 대부분 서버가 없습니다. 회원가입도 없고, 사용자가 입력한 데이터는 전부 사용자 기기 안(브라우저의 IndexedDB나 앱의 로컬 저장소)에만 저장됩니다. 이런 구조를 <strong>로컬 퍼스트(local-first)</strong>라고 부릅니다. 쿠폰북을 이 구조로 만들며 정리한, 로컬 퍼스트의 실질적인 장점과 정직한 한계를 공유합니다.</p>
+<h2>장점 1: 개인정보 문제가 구조적으로 사라진다</h2>
+<p>서버가 없으면 유출될 서버도 없습니다. 사용자가 어떤 가게에 다니는지, 얼마짜리 회수권을 쓰는지는 꽤 사적인 정보인데, 이 정보가 개발자에게조차 전송되지 않습니다. 개인정보처리방침이 짧고 명확해지고, 사용자에게 "우리는 당신의 데이터를 볼 수 없습니다"라고 사실대로 말할 수 있습니다. 신뢰를 마케팅이 아니라 구조로 증명하는 방식입니다.</p>
+<h2>장점 2: 오프라인에서 그냥 동작한다</h2>
+<p>데이터가 기기에 있으니 네트워크가 없어도 앱이 완전하게 동작합니다. 지하 주차장에서도, 비행기에서도 도장 개수는 확인됩니다. 서버 왕복이 없으니 반응 속도도 일관되게 빠릅니다.</p>
+<h2>장점 3: 운영 비용이 0에 수렴한다</h2>
+<p>1인 스튜디오에게 중요한 부분입니다. 서버 비용, DB 백업, 보안 패치, 장애 대응이 없습니다. 무료 앱을 오래 유지하려면 유지비가 0이어야 하고, 로컬 퍼스트는 그것을 가능하게 합니다. 사용자가 10만 명이 되어도 서버비는 그대로 0원입니다.</p>
+<h2>한계 1: 기기를 바꾸면 데이터가 따라가지 않는다</h2>
+<p>가장 큰 트레이드오프입니다. 데이터가 기기에만 있으므로, 폰을 바꾸거나 브라우저 데이터를 삭제하면 기록이 사라질 수 있습니다. 완화 장치는 두 가지입니다. 첫째, <strong>수동 백업/복원</strong> — 쿠폰북은 JSON 파일로 내보내고 새 기기에서 불러올 수 있게 했습니다. 둘째, <strong>영속 저장소 요청</strong> — 브라우저에 "이 데이터는 지우지 말라"고 요청하는 Persistent Storage API를 사용합니다. 그래도 클라우드 동기화만큼 매끄럽지는 않습니다. 이 부분은 숨기지 말고 앱 안에서 먼저 안내해야 한다고 생각합니다. 쿠폰북이 첫 쿠폰 등록 직후에 백업을 권하는 이유입니다.</p>
+<h2>한계 2: 여러 기기 동시 사용이 안 된다</h2>
+<p>폰과 태블릿에서 같은 데이터를 보려면 동기화 서버가 필요합니다. 로컬 퍼스트로 시작한 앱이 성장하면 결국 "선택적 동기화"를 요구받는데, 이때는 종단간 암호화 동기화 같은 절충안을 검토하게 됩니다. 처음부터 모든 것을 만들기보다, 사용자가 실제로 요구할 때 추가하는 편이 낫습니다.</p>
+<h2>어떤 앱에 로컬 퍼스트가 맞는가</h2>
+<ul>
+<li><strong>맞는 경우</strong> — 개인 기록·관리 도구(쿠폰, 가계부, 습관, 메모), 데이터가 사적이고 협업이 필요 없는 앱.</li>
+<li><strong>맞지 않는 경우</strong> — 여러 사람이 같은 데이터를 보는 앱(팀 협업, 커뮤니티), 기기 간 실시간 동기화가 핵심 가치인 앱.</li>
+</ul>
+<p>로컬 퍼스트는 "서버를 만들 돈이 없어서"가 아니라, 개인 도구라는 제품 성격에 가장 정직한 구조라서 선택하는 것입니다. 대신 데이터 소실 리스크를 사용자에게 투명하게 알리고 백업 수단을 제공하는 것까지가 설계의 일부입니다.</p>
+
+    <a class="back-link" href="blog.html">← 블로그 목록으로</a>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="momoi.html">Momoi</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">Products</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

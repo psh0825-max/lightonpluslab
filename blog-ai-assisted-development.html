@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI 코딩 도구로 실제 제품 만들기 — 속도는 얻고 품질은 지키는 법 — LightOn Plus Lab</title>
+<meta name="description" content="LLM 코딩 도구를 실제 제품 개발에 쓰면서 정한 규칙들. 어디까지 맡기고, 무엇은 사람이 쥐고 있어야 하는가." />
+<meta property="og:title" content="AI 코딩 도구로 실제 제품 만들기 — 속도는 얻고 품질은 지키는 법 — LightOn Plus Lab" />
+<meta property="og:type" content="article" />
+<meta name="theme-color" content="#050814" />
+<link rel="icon" href="logo-new.png" />
+<link rel="canonical" href="https://lightonpluslab.com/blog-ai-assisted-development.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<style>
+.page-hero{padding:72px 0 24px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px}
+.page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-hero p{color:var(--text-3);max-width:56ch;margin:0 auto;font-size:15px;line-height:1.7}
+.article-meta{color:var(--text-3);font-size:13px;margin-top:14px}
+.prose{max-width:720px;margin:0 auto;padding:8px 0 72px;font-size:15.5px;line-height:1.85;color:var(--text-2,#cdd5e1)}
+.prose h2{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:44px 0 14px;color:var(--text-1,#eef2f8)}
+.prose h3{font-size:17px;font-weight:600;margin:30px 0 10px;color:var(--text-1,#eef2f8)}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0 0 18px;padding-left:22px}
+.prose li{margin:6px 0}
+.prose strong{color:var(--text-1,#eef2f8)}
+.prose table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14px}
+.prose th,.prose td{border:1px solid var(--panel-border,#232b3d);padding:9px 12px;text-align:left;vertical-align:top}
+.prose th{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}
+.prose .tip{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}
+.prose a{color:var(--cyan,#5eead4)}
+.back-link{display:inline-block;margin:28px 0 0;font-size:14px;color:var(--cyan,#5eead4);text-decoration:none}
+.post-list{max-width:760px;margin:0 auto;padding:8px 0 72px;display:grid;gap:14px}
+.post-card{display:block;padding:24px 26px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);text-decoration:none;transition:background .25s,border-color .25s,transform .25s}
+.post-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.post-card h2{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;color:var(--text-1,#eef2f8)}
+.post-card p{font-size:14px;color:var(--text-3);line-height:1.7;margin:0 0 10px}
+.post-card .pc-meta{font-size:12.5px;color:var(--text-3);opacity:.8}
+</style>
+</head>
+<body>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="page-glow" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+    <nav class="nav-links" aria-label="메뉴">
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
+      <a href="blog.html">Blog</a>
+      <a href="momoi.html">Momoi</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">
+      Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="blog.html">Blog</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Dev Note</span>
+    <h1 class="reveal">AI 코딩 도구로 실제 제품 만들기 — 속도는 얻고 품질은 지키는 법</h1>
+    <div class="article-meta">2026-05-12 · LightOn Plus Lab</div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <article class="prose">
+
+<p>LightOn Plus Lab의 제품들은 AI 코딩 도구를 적극적으로 활용해 만들어집니다. 2주 MVP 프로세스가 가능한 이유의 절반은 AI입니다. 하지만 "AI가 다 짜줬다"는 코드로 제품을 운영해 보면, 속도의 대가로 품질 부채가 쌓이는 지점이 분명히 보입니다. 실제 제품 몇 개를 AI와 함께 만들고 운영하며 정한 규칙들입니다.</p>
+<h2>사람이 쥐고 있어야 하는 것</h2>
+<h3>1. 데이터 구조와 아키텍처 결정</h3>
+<p>저장 스키마, 상태 관리 방식, 모듈 경계 같은 구조적 결정은 사람이 먼저 내리고 AI에게는 그 안에서 구현을 맡깁니다. 구조가 잘못된 채 쌓인 코드는 AI로도 빠르게 못 고칩니다. 쿠폰북은 core/data/domain/services/ui/views의 계층 규칙을 문서로 먼저 정해 두고, AI에게 코드를 요청할 때마다 이 규칙을 함께 줬습니다. 결과물의 일관성이 완전히 달라집니다.</p>
+<h3>2. 요구사항의 경계</h3>
+<p>AI는 요청을 넘어서 "친절하게" 기능을 더하는 경향이 있습니다. MVP에서는 이것이 독입니다. "하지 않을 것 목록"을 프롬프트에 명시하는 것이 코드 리뷰 시간을 가장 크게 줄였습니다.</p>
+<h2>AI에게 맡기면 압도적으로 빠른 것</h2>
+<ul>
+<li><strong>보일러플레이트와 반복 패턴</strong> — CRUD, 폼 검증, 설정 화면 같은 정형 코드.</li>
+<li><strong>테스트 코드 초안</strong> — 요구사항을 주면 경계값·에러 케이스를 사람보다 꼼꼼하게 나열합니다. 단, 통과 기준은 사람이 검토해야 합니다.</li>
+<li><strong>플랫폼 지식이 필요한 작업</strong> — 스토어 정책, 매니페스트 설정, 브라우저 API의 호환성 처리처럼 문서를 뒤져야 하는 일.</li>
+<li><strong>일관된 리팩터링</strong> — 규칙을 정해주면 수십 개 파일에 동일한 변경을 지치지 않고 적용합니다.</li>
+</ul>
+<h2>품질을 지키는 두 개의 안전망</h2>
+<h3>안전망 1: 요구사항 기반 테스트</h3>
+<p>AI가 짠 코드는 AI가 짠 테스트가 아니라 <strong>요구사항에서 도출한 테스트</strong>로 검증합니다. "구현을 보고 만든 테스트"는 구현의 버그까지 통과시키기 때문입니다. 쿠폰북은 도메인 로직(잔여 계산, 만료 판정, 정렬)에 단위 테스트를 두고, 화면 흐름은 스모크 E2E 하나로 지킵니다. 1인 프로젝트에서 유지 가능한 최소한이면서, AI에게 대담한 변경을 시킬 수 있는 근거가 됩니다.</p>
+<h3>안전망 2: 배포 전 실기기 확인</h3>
+<p>AI는 코드가 돌아가는지는 확인해 줘도 <strong>제품이 말이 되는지</strong>는 모릅니다. 배포 전에 실제 폰에서 핵심 시나리오를 한 번 걷는 것은 사람의 일로 남겨뒀습니다. 이 10분이 사용자 신뢰를 지키는 마지막 관문입니다.</p>
+<h2>정리</h2>
+<p>AI 코딩 도구는 "개발자를 대체하는 것"이 아니라 <strong>1인 스튜디오에게 팀의 손을 빌려주는 것</strong>에 가깝습니다. 구조와 경계와 검증 기준을 사람이 쥐고 있는 한, 속도는 몇 배가 되고 품질은 지켜집니다. 반대로 그 세 가지를 놓으면, 빠르게 만든 만큼 빠르게 무너집니다.</p>
+
+    <a class="back-link" href="blog.html">← 블로그 목록으로</a>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="momoi.html">Momoi</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">Products</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
