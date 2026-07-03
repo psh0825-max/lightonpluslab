@@ -35,6 +35,10 @@
 .prose th{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}
 .prose .tip{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}
 .prose a{color:var(--cyan,#5eead4)}
+.prose img,.post-hero img{max-width:100%;height:auto;border-radius:16px;display:block;margin:0 auto}
+.post-hero{margin:18px 0 26px}
+.post-hero img{width:min(560px,100%)}
+
 .back-link{display:inline-block;margin:28px 0 0;font-size:14px;color:var(--cyan,#5eead4);text-decoration:none}
 .post-list{max-width:760px;margin:0 auto;padding:8px 0 72px;display:grid;gap:14px}
 .post-card{display:block;padding:24px 26px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);text-decoration:none;transition:background .25s,border-color .25s,transform .25s}
@@ -93,6 +97,7 @@
 <section>
   <div class="wrap">
     <article class="prose">
+<figure class="post-hero"><img src="img/onb-bell.webp" alt="만료 알림 일러스트" width="840" height="627" loading="lazy"></figure>
 
 <p>알림은 앱이 사용자에게 먼저 말을 걸 수 있는 거의 유일한 수단이면서, 앱 삭제의 가장 큰 원인이기도 합니다. 쿠폰북의 만료 임박 알림을 설계하면서 "언제, 몇 번, 어떤 말로 알릴 것인가"를 정해야 했습니다. 그 과정에서 정리된 원칙들을 공유합니다.</p>
 <h2>왜 D-7 / D-3 / D-1 세 번인가</h2>
