@@ -255,6 +255,25 @@
 }
 .proj:hover .proj-arrow{opacity:1;transform:translate(0,0);color:var(--mint)}
 .proj-arrow svg{width:14px;height:14px;stroke-width:2}
+.proj-media{
+  position:relative;
+  margin:-24px -26px 20px;
+  border-radius:12px 12px 0 0;
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:#070b18;
+  border-bottom:1px solid var(--panel-border);
+}
+.proj-media video{
+  width:100%;height:100%;object-fit:cover;display:block;
+  opacity:.9;
+  transition:transform .6s var(--ease),opacity .3s var(--ease);
+}
+.proj:hover .proj-media video{transform:scale(1.045);opacity:1}
+.proj-media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,8,20,0) 55%,rgba(5,8,20,.45) 100%);
+}
 
 @media(max-width:960px){
   .hero{min-height:auto;padding:52px 0 64px}
@@ -564,6 +583,11 @@
 
     <div class="proj-grid">
       <a class="proj reveal" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--purple)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-momoi.jpg" data-ambient>
+            <source src="img/proj-momoi.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag" style="background:rgba(167,139,250,.12);color:var(--purple);border-color:rgba(167,139,250,.28)">Flagship</span>
           <span>2026</span>
@@ -578,6 +602,11 @@
         <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <a class="proj reveal reveal-d1" href="https://ai-lecture-note-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener" style="--proj-accent-text:var(--cyan)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-lecture.jpg" data-ambient>
+            <source src="img/proj-lecture.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag" style="background:rgba(34,211,238,.12);color:var(--cyan);border-color:rgba(34,211,238,.28)">Live</span>
           <span>2026</span>
@@ -586,12 +615,17 @@
           <span class="proj-mark">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 2v6h6M8 13h8M8 17h8" stroke-width="1.6" stroke-linecap="round"/></svg>
           </span>
-          <div class="proj-name">AI 강의노트</div>
+          <div class="proj-name">라이트온 AI 노트</div>
         </div>
-        <div class="proj-desc">강의 녹음을 업로드하면 AI가 핵심을 요약하고 타임라인 기반 노트를 자동 생성합니다.</div>
+        <div class="proj-desc">강의를 녹음하면 AI가 전사 후 요약·핵심 포인트·용어사전까지 정리 — 노트에 대한 질문에도 답합니다. Google Play 테스트 중.</div>
         <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <a class="proj reveal reveal-d2" href="https://songbit.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--pink)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-songbit.jpg" data-ambient>
+            <source src="img/proj-songbit.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag" style="background:rgba(244,114,182,.12);color:var(--pink);border-color:rgba(244,114,182,.28)">Paid</span>
           <span>2026</span>
@@ -602,10 +636,15 @@
           </span>
           <div class="proj-name">SongBit</div>
         </div>
-        <div class="proj-desc">마크다운 가사를 입력하면 AI가 멜로디·반주를 붙여 완성된 곡을 만들어드립니다.</div>
+        <div class="proj-desc">장르·분위기만 고르면 AI가 작사부터 보컬 곡까지 2~3분 만에 완성 — 악보·뮤직비디오 생성까지 지원합니다.</div>
         <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <a class="proj reveal reveal-d3" href="https://bible-search-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener" style="--proj-accent-text:var(--mint)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-bible.jpg" data-ambient>
+            <source src="img/proj-bible.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag">Free</span>
           <span>2026</span>
@@ -620,6 +659,11 @@
         <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <a class="proj reveal" href="https://coupon.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--cyan)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-coupon.jpg" data-ambient>
+            <source src="img/proj-coupon.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag" style="background:rgba(34,211,238,.12);color:var(--cyan);border-color:rgba(34,211,238,.28)">Live</span>
           <span>2026</span>
@@ -630,10 +674,15 @@
           </span>
           <div class="proj-name">쿠폰북</div>
         </div>
-        <div class="proj-desc">종이 쿠폰·기프티콘을 사진 한 장으로 등록하고 유효기간 알림까지 받는 내 쿠폰 지갑.</div>
+        <div class="proj-desc">카페 도장판부터 금액권까지 한곳에 — 만료 D-7·3·1 알림과 매장 근처 도착 알림을 주는 완전 로컬 쿠폰 지갑.</div>
         <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <a class="proj reveal reveal-d1" href="https://receipt.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--amber)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-receipt.jpg" data-ambient>
+            <source src="img/proj-receipt.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag" style="background:rgba(245,158,11,.12);color:var(--amber);border-color:rgba(245,158,11,.28)">Live</span>
           <span>2026</span>

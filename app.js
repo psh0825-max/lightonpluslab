@@ -86,6 +86,22 @@
     els.forEach(function(el){ io.observe(el); });
   })();
 
+  /* -------- Ambient card videos -------- */
+  (function(){
+    var vids = document.querySelectorAll('video[data-ambient]');
+    if(!vids.length) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // poster only
+    if(!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var v = e.target;
+        if(e.isIntersecting){ v.play().catch(function(){}); }
+        else { v.pause(); }
+      });
+    }, { threshold: 0.25 });
+    vids.forEach(function(v){ io.observe(v); });
+  })();
+
   /* -------- Constellation starfield -------- */
   (function(){
     var canvas = document.getElementById('starfield');

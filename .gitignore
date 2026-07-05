@@ -1,0 +1,6 @@
+# local tooling
+.claude/
+.next/
+
+# raw generated assets (compressed copies live in img/)
+store-assets/video/
