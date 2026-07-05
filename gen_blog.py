@@ -11,6 +11,10 @@ HEAD = """<!doctype html>
 <meta name="description" content="{desc}" />
 <meta property="og:title" content="{title} — LightOn Plus Lab" />
 <meta property="og:type" content="article" />
+<meta property="og:description" content="{desc}" />
+<meta property="og:url" content="https://lightonpluslab.com/{slug}.html" />
+<meta property="og:image" content="{ogimg}" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="theme-color" content="#050814" />
 <link rel="icon" href="logo-new.png" />
 <link rel="canonical" href="https://lightonpluslab.com/{slug}.html" />
@@ -146,6 +150,8 @@ ARTICLES = [
 "eyebrow": "Guide",
 "title": "종이 쿠폰과 도장판, 스마트폰 하나로 관리하는 현실적인 방법",
 "desc": "지갑 속에서 사라지는 종이 쿠폰·도장판·회수권을 잃어버리지 않고 관리하는 세 가지 방법을 비교하고, 만료일 관리 요령을 정리했습니다.",
+"img": "img/onb-wallet.webp",
+"img_alt": "스마트폰 지갑 속 쿠폰 일러스트",
 "body": """
 <p>카페 도장판, 마사지 회수권, 미용실 쿠폰, 세차장 선불권. 대부분 지갑이나 서랍 어딘가에 있지만, 정작 그 가게 앞에 서면 "몇 개 모았더라?"가 기억나지 않습니다. 소상공인 매장의 적립 수단은 여전히 종이가 압도적으로 많고, 종이는 잃어버리기 쉽고 만료일을 알려주지 않습니다. 이 글은 종이 적립 수단을 디지털로 옮겨 관리하는 세 가지 방법을 비교하고, 실제로 오래 유지되는 관리 습관을 정리한 것입니다.</p>
 <h2>방법 1: 사진첩에 찍어두기</h2>
@@ -174,6 +180,8 @@ ARTICLES = [
 "eyebrow": "Dev Note",
 "title": "웹앱을 구글 플레이에 올리기 — TWA 출시 실전 기록",
 "desc": "PWA를 TWA로 감싸 Google Play에 출시하며 실제로 겪은 절차와 함정들 — assetlinks, AAB 서명, target API, 비공개 테스트 요건까지.",
+"img": "img/couponbook-banner.webp",
+"img_alt": "쿠폰북 구글 플레이 배너",
 "body": """
 <p>웹으로 만든 앱을 구글 플레이에 올리는 표준 방법은 TWA(Trusted Web Activity)입니다. 크롬이 주소창 없이 전체 화면으로 웹앱을 렌더링하고, 스토어에는 얇은 안드로이드 래퍼만 올라갑니다. 저희 쿠폰북을 실제로 TWA로 패키징해 Play Console에 제출하기까지의 과정을, 문서에는 잘 안 나오는 함정 위주로 기록합니다.</p>
 <h2>전제: PWA 요건 갖추기</h2>
@@ -204,6 +212,8 @@ ARTICLES = [
 "eyebrow": "Product",
 "title": "서버 없는 앱, '로컬 퍼스트'의 장점과 정직한 한계",
 "desc": "회원가입도 서버도 없는 로컬 퍼스트 앱은 무엇이 좋고 무엇을 포기하는가. IndexedDB 기반 앱을 만들며 정리한 설계 기준.",
+"img": "img/empty-ticket.webp",
+"img_alt": "로컬에 저장되는 티켓 일러스트",
 "body": """
 <p>저희가 만드는 개인용 도구 앱들은 대부분 서버가 없습니다. 회원가입도 없고, 사용자가 입력한 데이터는 전부 사용자 기기 안(브라우저의 IndexedDB나 앱의 로컬 저장소)에만 저장됩니다. 이런 구조를 <strong>로컬 퍼스트(local-first)</strong>라고 부릅니다. 쿠폰북을 이 구조로 만들며 정리한, 로컬 퍼스트의 실질적인 장점과 정직한 한계를 공유합니다.</p>
 <h2>장점 1: 개인정보 문제가 구조적으로 사라진다</h2>
@@ -230,6 +240,8 @@ ARTICLES = [
 "eyebrow": "Studio",
 "title": "1인 스튜디오가 2주 만에 MVP를 출시하는 프로세스",
 "desc": "Brief → Prototype → Launch → Improve. LightOn Plus Lab이 실제로 쓰는 4단계 MVP 프로세스와 단계별 산출물, 그리고 중단 기준.",
+"img": "img/onb-stamps.webp",
+"img_alt": "단계별 진행 일러스트",
 "body": """
 <p>LightOn Plus Lab은 아이디어를 2~6주 안에 검증 가능한 제품으로 만드는 것을 원칙으로 합니다. 빠르게 만드는 것 자체가 목적이 아니라, <strong>시장의 반응을 확인하기 전까지 투입 비용을 최소화</strong>하는 것이 목적입니다. 실제로 쓰는 4단계 프로세스를 단계별 산출물과 함께 공개합니다.</p>
 <h2>1주차 전반: Brief — 문제 정의</h2>
@@ -309,6 +321,8 @@ ARTICLES = [
 "eyebrow": "Design",
 "title": "알림은 몇 번이 적당한가 — 만료 임박 알림을 설계하며 배운 것",
 "desc": "쿠폰 만료 알림을 D-7/D-3/D-1 세 번으로 정한 이유. 유용함과 성가심 사이에서 알림 UX를 설계하는 원칙들.",
+"img": "img/onb-bell.webp",
+"img_alt": "만료 알림 일러스트",
 "body": """
 <p>알림은 앱이 사용자에게 먼저 말을 걸 수 있는 거의 유일한 수단이면서, 앱 삭제의 가장 큰 원인이기도 합니다. 쿠폰북의 만료 임박 알림을 설계하면서 "언제, 몇 번, 어떤 말로 알릴 것인가"를 정해야 했습니다. 그 과정에서 정리된 원칙들을 공유합니다.</p>
 <h2>왜 D-7 / D-3 / D-1 세 번인가</h2>
@@ -335,6 +349,8 @@ ARTICLES = [
 "eyebrow": "Dev Note",
 "title": "AI 코딩 도구로 실제 제품 만들기 — 속도는 얻고 품질은 지키는 법",
 "desc": "LLM 코딩 도구를 실제 제품 개발에 쓰면서 정한 규칙들. 어디까지 맡기고, 무엇은 사람이 쥐고 있어야 하는가.",
+"img": "img/app-home.webp",
+"img_alt": "AI로 만든 쿠폰북 앱 홈 화면",
 "body": """
 <p>LightOn Plus Lab의 제품들은 AI 코딩 도구를 적극적으로 활용해 만들어집니다. 2주 MVP 프로세스가 가능한 이유의 절반은 AI입니다. 하지만 "AI가 다 짜줬다"는 코드로 제품을 운영해 보면, 속도의 대가로 품질 부채가 쌓이는 지점이 분명히 보입니다. 실제 제품 몇 개를 AI와 함께 만들고 운영하며 정한 규칙들입니다.</p>
 <h2>사람이 쥐고 있어야 하는 것</h2>
@@ -360,13 +376,19 @@ ARTICLES = [
 },
 ]
 
+FALLBACK_OGIMG = "https://lightonpluslab.com/hero-apps.jpg"
+
 LIST_HEAD = HEAD.format(
     title="블로그", slug="blog",
-    desc="LightOn Plus Lab 블로그 — 앱 개발 노트, 제품 가이드, 1인 스튜디오 운영기"
+    desc="LightOn Plus Lab 블로그 — 앱 개발 노트, 제품 가이드, 1인 스튜디오 운영기",
+    ogimg=FALLBACK_OGIMG
 )
 
 def article_html(a):
-    head = HEAD.format(title=a["title"], slug=a["slug"], desc=a["desc"])
+    ogimg = f"https://lightonpluslab.com/{a['img']}" if a.get("img") else FALLBACK_OGIMG
+    head = HEAD.format(title=a["title"], slug=a["slug"], desc=a["desc"], ogimg=ogimg)
+    fig = (f'<figure class="post-hero"><img src="{a["img"]}" alt="{a["img_alt"]}" '
+           f'width="840" height="627" loading="lazy"></figure>\n') if a.get("img") else ""
     hero = f"""
 <section class="page-hero">
   <div class="wrap">
@@ -378,7 +400,7 @@ def article_html(a):
 <section>
   <div class="wrap">
     <article class="prose">
-{a["body"]}
+{fig}{a["body"]}
     <a class="back-link" href="blog.html">← 블로그 목록으로</a>
     </article>
   </div>
@@ -420,9 +442,10 @@ for a in ARTICLES:
     print(a["slug"] + ".html")
 
 # sitemap
-pages = ["", "about.html", "services.html", "products.html", "momoi.html", "contact.html",
+pages = ["", "about.html", "services.html", "products.html", "momoi.html",
+         "teams-translator.html", "focusguard.html", "vibe-studio.html", "contact.html",
          "privacy.html", "terms.html", "blog.html"] + [a["slug"] + ".html" for a in ARTICLES]
-today = "2026-07-03"
+today = "2026-07-05"
 urls = "\n".join(
     f"""  <url>
     <loc>https://lightonpluslab.com/{p}</loc>
