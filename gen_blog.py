@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Generate blog pages (list + articles) reusing the site shell.
-import io, datetime
+import io, datetime, json
 
 HEAD = """<!doctype html>
 <html lang="ko">
@@ -18,6 +18,7 @@ HEAD = """<!doctype html>
 <meta name="theme-color" content="#050814" />
 <link rel="icon" href="logo-new.png" />
 <link rel="canonical" href="https://lightonpluslab.com/{slug}.html" />
+<link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -384,9 +385,31 @@ LIST_HEAD = HEAD.format(
     ogimg=FALLBACK_OGIMG
 )
 
+def article_jsonld(a, ogimg):
+    data = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": a["title"],
+        "description": a["desc"],
+        "image": ogimg,
+        "datePublished": a["date"],
+        "dateModified": a["date"],
+        "inLanguage": "ko",
+        "mainEntityOfPage": f"https://lightonpluslab.com/{a['slug']}.html",
+        "author": {"@type": "Organization", "name": "LightOn Plus Lab",
+                   "url": "https://lightonpluslab.com/"},
+        "publisher": {"@type": "Organization", "name": "LightOn Plus Lab",
+                      "logo": {"@type": "ImageObject",
+                               "url": "https://lightonpluslab.com/logo-new.png"}},
+    }
+    return ('<script type="application/ld+json">\n'
+            + json.dumps(data, ensure_ascii=False, indent=1)
+            + "\n</script>\n")
+
 def article_html(a):
     ogimg = f"https://lightonpluslab.com/{a['img']}" if a.get("img") else FALLBACK_OGIMG
     head = HEAD.format(title=a["title"], slug=a["slug"], desc=a["desc"], ogimg=ogimg)
+    head = head.replace("</head>", article_jsonld(a, ogimg) + "</head>", 1)
     fig = (f'<figure class="post-hero"><img src="{a["img"]}" alt="{a["img_alt"]}" '
            f'width="840" height="627" loading="lazy"></figure>\n') if a.get("img") else ""
     hero = f"""
@@ -460,6 +483,36 @@ with io.open("sitemap.xml", "w", encoding="utf-8") as f:
 </urlset>
 """)
 print("sitemap.xml")
+
+# RSS feed
+def _xml_escape(s):
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+def _rfc822(d):
+    return datetime.datetime.strptime(d, "%Y-%m-%d").strftime("%a, %d %b %Y 09:00:00 +0900")
+
+rss_items = "\n".join(
+    f"""  <item>
+    <title>{_xml_escape(a["title"])}</title>
+    <link>https://lightonpluslab.com/{a["slug"]}.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/{a["slug"]}.html</guid>
+    <pubDate>{_rfc822(a["date"])}</pubDate>
+    <description>{_xml_escape(a["desc"])}</description>
+  </item>""" for a in sorted(ARTICLES, key=lambda a: a["date"], reverse=True))
+with io.open("feed.xml", "w", encoding="utf-8") as f:
+    f.write(f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>LightOn Plus Lab Blog</title>
+  <link>https://lightonpluslab.com/blog.html</link>
+  <atom:link href="https://lightonpluslab.com/feed.xml" rel="self" type="application/rss+xml" />
+  <description>앱 개발 노트, 제품 가이드, 1인 스튜디오 운영기</description>
+  <language>ko</language>
+{rss_items}
+</channel>
+</rss>
+""")
+print("feed.xml")
 
 # ads.txt (apex — AdSense site is registered on lightonpluslab.com)
 with io.open("ads.txt", "w", encoding="utf-8") as f:

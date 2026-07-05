@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>페이지를 찾을 수 없습니다 — LightOn Plus Lab</title>
+<meta name="description" content="요청하신 페이지를 찾을 수 없습니다. LightOn Plus Lab 홈으로 이동하거나 전체 앱 목록을 둘러보세요." />
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#050814" />
+<link rel="icon" href="logo-new.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<style>
+.nf-hero{min-height:calc(100vh - 200px);display:grid;place-items:center;text-align:center;padding:72px 0}
+.nf-code{
+  font-family:var(--f-mono);font-size:clamp(80px,16vw,160px);font-weight:600;line-height:1;
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:20px;
+}
+.nf-hero h1{font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+.nf-hero p{color:var(--text-3);font-size:15px;line-height:1.7;max-width:44ch;margin:0 auto 32px}
+.nf-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="page-glow" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="products.html">Work</a>
+      <a href="blog.html">Blog</a>
+      <a href="momoi.html">Momoi</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="products.html">Work</a>
+  <a href="blog.html">Blog</a>
+  <a href="momoi.html">Momoi</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<main>
+<section class="nf-hero">
+  <div class="wrap">
+    <div class="nf-code">404</div>
+    <h1>페이지를 찾을 수 없습니다</h1>
+    <p>주소가 바뀌었거나 삭제된 페이지입니다. 홈으로 돌아가거나 전체 앱 목록에서 원하는 것을 찾아보세요.</p>
+    <div class="nf-actions">
+      <a class="btn btn-primary" href="index.html">
+        홈으로 가기
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="products.html">전체 앱 보기</a>
+      <a class="btn btn-ghost" href="blog.html">블로그</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

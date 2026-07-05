@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>LightOn Plus Lab Blog</title>
+  <link>https://lightonpluslab.com/blog.html</link>
+  <atom:link href="https://lightonpluslab.com/feed.xml" rel="self" type="application/rss+xml" />
+  <description>앱 개발 노트, 제품 가이드, 1인 스튜디오 운영기</description>
+  <language>ko</language>
+  <item>
+    <title>웹앱을 구글 플레이에 올리기 — TWA 출시 실전 기록</title>
+    <link>https://lightonpluslab.com/blog-twa-play-store.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/blog-twa-play-store.html</guid>
+    <pubDate>Fri, 03 Jul 2026 09:00:00 +0900</pubDate>
+    <description>PWA를 TWA로 감싸 Google Play에 출시하며 실제로 겪은 절차와 함정들 — assetlinks, AAB 서명, target API, 비공개 테스트 요건까지.</description>
+  </item>
+  <item>
+    <title>종이 쿠폰과 도장판, 스마트폰 하나로 관리하는 현실적인 방법</title>
+    <link>https://lightonpluslab.com/blog-paper-coupon-management.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/blog-paper-coupon-management.html</guid>
+    <pubDate>Thu, 25 Jun 2026 09:00:00 +0900</pubDate>
+    <description>지갑 속에서 사라지는 종이 쿠폰·도장판·회수권을 잃어버리지 않고 관리하는 세 가지 방법을 비교하고, 만료일 관리 요령을 정리했습니다.</description>
+  </item>
+  <item>
+    <title>서버 없는 앱, '로컬 퍼스트'의 장점과 정직한 한계</title>
+    <link>https://lightonpluslab.com/blog-local-first-apps.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/blog-local-first-apps.html</guid>
+    <pubDate>Thu, 18 Jun 2026 09:00:00 +0900</pubDate>
+    <description>회원가입도 서버도 없는 로컬 퍼스트 앱은 무엇이 좋고 무엇을 포기하는가. IndexedDB 기반 앱을 만들며 정리한 설계 기준.</description>
+  </item>
+  <item>
+    <title>1인 스튜디오가 2주 만에 MVP를 출시하는 프로세스</title>
+    <link>https://lightonpluslab.com/blog-two-week-mvp.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/blog-two-week-mvp.html</guid>
+    <pubDate>Wed, 10 Jun 2026 09:00:00 +0900</pubDate>
+    <description>Brief → Prototype → Launch → Improve. LightOn Plus Lab이 실제로 쓰는 4단계 MVP 프로세스와 단계별 산출물, 그리고 중단 기준.</description>
+  </item>
+  <item>
+    <title>통화가 끝나면 요약이 남는다 — 모모아이(momoi) 활용 가이드</title>
+    <link>https://lightonpluslab.com/blog-momoi-call-summary.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/blog-momoi-call-summary.html</guid>
+    <pubDate>Fri, 05 Jun 2026 09:00:00 +0900</pubDate>
+    <description>AI 통화 요약 앱 모모아이를 잘 쓰는 법. 어떤 통화에 효과적인지, 요약 품질을 높이는 팁, 그리고 프라이버시 원칙.</description>
+  </item>
+  <item>
+    <title>PWA냐 네이티브냐 — 1인 개발 관점의 선택 기준</title>
+    <link>https://lightonpluslab.com/blog-pwa-vs-native.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/blog-pwa-vs-native.html</guid>
+    <pubDate>Thu, 28 May 2026 09:00:00 +0900</pubDate>
+    <description>혼자 만들고 혼자 운영하는 앱이라면 어떤 스택을 골라야 할까. PWA와 네이티브(Flutter 포함)를 유지비 관점에서 비교합니다.</description>
+  </item>
+  <item>
+    <title>알림은 몇 번이 적당한가 — 만료 임박 알림을 설계하며 배운 것</title>
+    <link>https://lightonpluslab.com/blog-notification-ux.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/blog-notification-ux.html</guid>
+    <pubDate>Wed, 20 May 2026 09:00:00 +0900</pubDate>
+    <description>쿠폰 만료 알림을 D-7/D-3/D-1 세 번으로 정한 이유. 유용함과 성가심 사이에서 알림 UX를 설계하는 원칙들.</description>
+  </item>
+  <item>
+    <title>AI 코딩 도구로 실제 제품 만들기 — 속도는 얻고 품질은 지키는 법</title>
+    <link>https://lightonpluslab.com/blog-ai-assisted-development.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/blog-ai-assisted-development.html</guid>
+    <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    <description>LLM 코딩 도구를 실제 제품 개발에 쓰면서 정한 규칙들. 어디까지 맡기고, 무엇은 사람이 쥐고 있어야 하는가.</description>
+  </item>
+</channel>
+</rss>
