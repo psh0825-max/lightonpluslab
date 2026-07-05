@@ -255,6 +255,25 @@
 }
 .proj:hover .proj-arrow{opacity:1;transform:translate(0,0);color:var(--mint)}
 .proj-arrow svg{width:14px;height:14px;stroke-width:2}
+.proj-media{
+  position:relative;
+  margin:-24px -26px 20px;
+  border-radius:12px 12px 0 0;
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:#070b18;
+  border-bottom:1px solid var(--panel-border);
+}
+.proj-media video{
+  width:100%;height:100%;object-fit:cover;display:block;
+  opacity:.9;
+  transition:transform .6s var(--ease),opacity .3s var(--ease);
+}
+.proj:hover .proj-media video{transform:scale(1.045);opacity:1}
+.proj-media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,8,20,0) 55%,rgba(5,8,20,.45) 100%);
+}
 
 @media(max-width:960px){
   .hero{min-height:auto;padding:52px 0 64px}
@@ -564,6 +583,11 @@
 
     <div class="proj-grid">
       <a class="proj reveal" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--purple)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-momoi.jpg" data-ambient>
+            <source src="img/proj-momoi.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag" style="background:rgba(167,139,250,.12);color:var(--purple);border-color:rgba(167,139,250,.28)">Flagship</span>
           <span>2026</span>
@@ -578,6 +602,11 @@
         <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <a class="proj reveal reveal-d1" href="https://ai-lecture-note-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener" style="--proj-accent-text:var(--cyan)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-lecture.jpg" data-ambient>
+            <source src="img/proj-lecture.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag" style="background:rgba(34,211,238,.12);color:var(--cyan);border-color:rgba(34,211,238,.28)">Live</span>
           <span>2026</span>
@@ -592,6 +621,11 @@
         <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <a class="proj reveal reveal-d2" href="https://songbit.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--pink)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-songbit.jpg" data-ambient>
+            <source src="img/proj-songbit.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag" style="background:rgba(244,114,182,.12);color:var(--pink);border-color:rgba(244,114,182,.28)">Paid</span>
           <span>2026</span>
@@ -606,6 +640,11 @@
         <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <a class="proj reveal reveal-d3" href="https://bible-search-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener" style="--proj-accent-text:var(--mint)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-bible.jpg" data-ambient>
+            <source src="img/proj-bible.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag">Free</span>
           <span>2026</span>
@@ -620,6 +659,11 @@
         <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <a class="proj reveal" href="https://coupon.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--cyan)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-coupon.jpg" data-ambient>
+            <source src="img/proj-coupon.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag" style="background:rgba(34,211,238,.12);color:var(--cyan);border-color:rgba(34,211,238,.28)">Live</span>
           <span>2026</span>
@@ -634,6 +678,11 @@
         <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <a class="proj reveal reveal-d1" href="https://receipt.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--amber)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-receipt.jpg" data-ambient>
+            <source src="img/proj-receipt.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="proj-meta">
           <span class="proj-tag" style="background:rgba(245,158,11,.12);color:var(--amber);border-color:rgba(245,158,11,.28)">Live</span>
           <span>2026</span>
