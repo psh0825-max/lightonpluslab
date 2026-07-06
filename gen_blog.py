@@ -466,7 +466,7 @@ for a in ARTICLES:
 
 # sitemap
 pages = ["", "about.html", "services.html", "products.html", "momoi.html",
-         "teams-translator.html", "focusguard.html", "vibe-studio.html", "contact.html",
+         "lighton-ai-note.html", "teams-translator.html", "focusguard.html", "vibe-studio.html", "contact.html",
          "privacy.html", "terms.html", "blog.html"] + [a["slug"] + ".html" for a in ARTICLES]
 today = "2026-07-05"
 urls = "\n".join(
