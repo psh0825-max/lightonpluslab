@@ -68,8 +68,6 @@ input,textarea{font:inherit;color:inherit}
 ::-webkit-scrollbar-thumb{background:rgba(139,149,179,.28);border-radius:8px;border:2px solid var(--bg)}
 ::-webkit-scrollbar-thumb:hover{background:rgba(139,149,179,.45)}
 ::-webkit-scrollbar-track{background:transparent}
-.skip-link{position:fixed;top:-48px;left:16px;z-index:100;padding:10px 16px;border-radius:10px;background:var(--purple);color:#fff;font-size:13px;font-weight:600;transition:top .2s var(--ease)}
-.skip-link:focus-visible{top:12px}
 
 /* -------- 3. Background constellation canvas (all pages) -------- */
 #starfield{
