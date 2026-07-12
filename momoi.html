@@ -16,7 +16,9 @@
 <link rel="icon" href="logo-new.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
 <link rel="stylesheet" href="styles.css" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
@@ -80,6 +82,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7180935400084577" crossorigin="anonymous"></script>
 </head>
 <body>
+<a class="skip-link" href="#main">본문 바로가기</a>
 <canvas id="starfield" aria-hidden="true"></canvas>
 <div class="page-glow" aria-hidden="true"></div>
 
@@ -89,7 +92,7 @@
       <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
             <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="메뉴">
       <a href="services.html">Services</a>
       <a href="products.html">Work</a>
       <a href="blog.html">Blog</a>
@@ -105,7 +108,7 @@
     </button>
   </div>
 </header>
-<nav class="mobile-menu" id="mobileMenu">
+<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
   <a href="services.html">Services</a>
   <a href="products.html">Work</a>
   <a href="blog.html">Blog</a>
@@ -115,7 +118,7 @@
   <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
-<main>
+<main id="main">
 
 <section class="page-hero">
   <div class="wrap">
