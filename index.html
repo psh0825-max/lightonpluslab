@@ -16,7 +16,9 @@
 <link rel="icon" href="logo-new.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
 <link rel="stylesheet" href="styles.css" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
@@ -109,19 +111,6 @@
   background:var(--mint);box-shadow:0 0 12px var(--mint);
   flex:0 0 auto;
 }
-.hero-orbit-copy{
-  justify-self:end;
-  align-self:end;
-  width:min(100%,360px);
-  margin-bottom:18px;
-  padding:18px 0;
-  color:var(--text-3);
-}
-.hero-orbit-copy strong{
-  display:block;margin-bottom:8px;
-  color:var(--text);font-size:14px;font-weight:700;
-}
-.hero-orbit-copy p{font-size:12.5px;line-height:1.65;word-break:keep-all}
 .signal-rail{
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:10px;margin-top:28px;width:min(100%,640px);
@@ -278,7 +267,6 @@
 @media(max-width:960px){
   .hero{min-height:auto;padding:52px 0 64px}
   .hero-grid{grid-template-columns:1fr;gap:24px}
-  .hero-orbit-copy{justify-self:start;width:min(100%,520px);margin:0;padding:6px 0 0}
   .hero-overlay{
     background:
       linear-gradient(180deg,
@@ -297,7 +285,7 @@
 @media(max-width:560px){
   .brain-badge{display:none}
   .hero-title{font-size:clamp(34px,10.2vw,42px);line-height:1.14}
-  .hero-sub,.hero-orbit-copy p{max-width:100%;overflow-wrap:anywhere}
+  .hero-sub{max-width:100%;overflow-wrap:anywhere}
   .hero-actions{width:100%;max-width:calc(100vw - 40px);display:grid;grid-template-columns:1fr}
   .hero-actions .btn{justify-content:center;width:100%}
   .hero-proof{grid-template-columns:1fr;max-width:calc(100vw - 40px)}
@@ -343,6 +331,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">본문 바로가기</a>
 
 <canvas id="starfield" aria-hidden="true"></canvas>
 <div class="page-glow" aria-hidden="true"></div>
@@ -386,7 +375,7 @@
   <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
-<main>
+<main id="main">
 
 <!-- ============================================================
      HERO — full-bleed visual + text overlay
@@ -430,10 +419,6 @@
           <div class="signal-step"><b>03 Launch</b><span>웹·앱 배포와 연동</span></div>
           <div class="signal-step"><b>04 Improve</b><span>데이터 기반 개선</span></div>
         </div>
-      </div>
-      <div class="hero-orbit-copy reveal reveal-d3">
-        <strong>Interactive 3D AI Core</strong>
-        <p>우측의 3D 코어는 프로젝트의 데이터, 모델, 제품 화면이 하나로 연결되는 흐름을 시각화합니다.</p>
       </div>
     </div>
   </div>
@@ -773,15 +758,28 @@
 </footer>
 
 <script src="app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script>
 /* ============================================================
    Hero neural core — wireframe icosphere + orbiting particle halo
-   Abstract tech visual, cyan/purple gradient, slow rotation + parallax
+   three.js is lazy-loaded on idle so it never blocks first paint
    ============================================================ */
 (function(){
   var canvas = document.getElementById('brain-canvas');
-  if(!canvas || typeof THREE === 'undefined') return;
+  if(!canvas) return;
+
+  var loaded = false;
+  function boot(){
+    if(loaded) return; loaded = true;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+    s.onload = initBrain;
+    document.head.appendChild(s);
+  }
+  if('requestIdleCallback' in window){ requestIdleCallback(boot, {timeout:2000}); }
+  else { setTimeout(boot, 300); }
+
+  function initBrain(){
+  if(typeof THREE === 'undefined') return;
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1105,6 +1103,7 @@
     if(!reduce) requestAnimationFrame(animate);
   }
   animate();
+  }
 })();
 </script>
 </body>

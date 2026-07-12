@@ -17,7 +17,7 @@
   --text:#E8ECF4;
   --text-2:#B8C0D4;
   --text-3:#8B95B3;
-  --text-4:#5E687F;
+  --text-4:#6C7690;
 
   /* Accents (the four stitch neon colors) */
   --mint:#2DD4BF;
@@ -32,7 +32,7 @@
   --cyan-glow:rgba(34,211,238,.22);
 
   /* Typography */
-  --f-sans:"Inter","Pretendard","Apple SD Gothic Neo","Noto Sans KR",ui-sans-serif,system-ui,sans-serif;
+  --f-sans:"Pretendard Variable",Pretendard,"Inter","Apple SD Gothic Neo","Noto Sans KR",ui-sans-serif,system-ui,sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 
   /* Motion */
@@ -44,13 +44,14 @@
 
 /* -------- 2. Reset & base -------- */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scrollbar-color:rgba(139,149,179,.35) transparent}
 body{
   font-family:var(--f-sans);
   color:var(--text);
   background:var(--bg);
   line-height:1.55;
   font-weight:400;
+  word-break:keep-all;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   overflow-x:hidden;
@@ -62,6 +63,13 @@ img,svg,canvas{display:block;max-width:100%}
 button{font:inherit;border:0;background:0;cursor:pointer;color:inherit}
 input,textarea{font:inherit;color:inherit}
 ::selection{background:var(--purple);color:#fff}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:rgba(139,149,179,.28);border-radius:8px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:rgba(139,149,179,.45)}
+::-webkit-scrollbar-track{background:transparent}
+.skip-link{position:fixed;top:-48px;left:16px;z-index:100;padding:10px 16px;border-radius:10px;background:var(--purple);color:#fff;font-size:13px;font-weight:600;transition:top .2s var(--ease)}
+.skip-link:focus-visible{top:12px}
 
 /* -------- 3. Background constellation canvas (all pages) -------- */
 #starfield{
