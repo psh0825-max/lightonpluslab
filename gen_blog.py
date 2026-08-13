@@ -453,9 +453,66 @@ cursor = matchIndex + line.length</code></pre>
 <div class="tip"><strong>송빗</strong> — 장르·분위기·키워드만 고르면 AI가 가사부터 보컬 완곡까지 만들어 줍니다. <a href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener">Google Play에서 받기</a></div>
 """
 },
+{
+"slug": "blog-why-summary-is-not-memory",
+"date": "2026-08-13",
+"eyebrow": "Product",
+"title": "강의를 녹음하고 요약해도 왜 안 외워질까",
+"desc": "전사와 요약은 이제 흔한 기능이 됐습니다. 그런데 노트가 깔끔할수록 다시 안 보게 되는 역설이 있습니다. 망각 곡선과 간격 반복이 그 빈틈을 어떻게 메우는지 정리했습니다.",
+"img": "img/proj-lecture.jpg",
+"img_alt": "라이트온 AI 노트 강의 녹음 화면",
+"body": """
+<p>녹음을 넣으면 텍스트가 나오고, 텍스트를 넣으면 요약이 나옵니다. 몇 년 전만 해도 제품의 차별점이던 기능이 지금은 기본기가 됐습니다.</p>
+<p>그런데 이 기능들을 다 갖춘 노트를 쓰면서도, 시험 전날 노트를 펴고 "이걸 내가 들었었나" 싶은 경험은 그대로입니다. 도구는 좋아졌는데 결과가 그만큼 좋아지지 않는 구간이 있습니다. 그 구간이 어디인지, 왜 생기는지 정리해 봤습니다.</p>
+<h2>잘 정리된 노트가 오히려 위험한 이유</h2>
+<p>요약이 암기로 이어지지 않는 데는 두 가지 서로 다른 실패가 겹쳐 있습니다.</p>
+<h3>1. 익숙함을 이해로 착각한다</h3>
+<p>잘 정리된 요약을 읽으면 술술 읽힙니다. 그 매끄러움이 "나는 이걸 안다"는 느낌을 만듭니다. 하지만 읽으면서 드는 그 느낌은 <strong>알아보는 것</strong>이지 <strong>꺼내는 것</strong>이 아닙니다.</p>
+<p>시험장에서 요구되는 건 후자입니다. 백지 상태에서 꺼내야 하는데, 연습한 건 눈앞에 답이 있는 상태에서 고개를 끄덕이는 일이었던 겁니다. 노트가 깔끔할수록 이 착각은 더 강해집니다. 읽기가 편할수록 "다시 볼 필요 없겠다"고 판단하게 되니까요.</p>
+<h3>2. 다시 볼 시점을 아무도 정해주지 않는다</h3>
+<p>배운 직후부터 기억은 빠르게 떨어집니다. 그 감소는 완만하지 않고, 초반이 가장 가파릅니다. 그래서 "언젠가 복습해야지"는 대부분 늦습니다. 이미 상당 부분이 사라진 뒤에 처음부터 다시 배우는 셈이 됩니다.</p>
+<p>여기서 진짜 문제는 의지가 아니라 <strong>스케줄링</strong>입니다. 오늘 무엇을 복습해야 하는지 사람이 매번 판단해야 한다면, 그 판단 비용 때문에 복습 자체를 안 하게 됩니다.</p>
+<h2>인지심리학은 이미 답을 냈다</h2>
+<p>이 두 실패에는 각각 오래 검증된 대응책이 있습니다.</p>
+<p><strong>간격 효과.</strong> 같은 총 학습 시간이라도 하루에 몰아서 하는 것보다 여러 날에 나눠서 하는 쪽이 오래 남습니다. 벼락치기가 시험 당일까지는 버티지만 그 다음 주에 아무것도 안 남는 이유입니다.</p>
+<p><strong>시험 효과.</strong> 다시 읽는 것보다 스스로 꺼내보는 쪽이 훨씬 강하게 남습니다. 꺼내는 행위 자체가 기억을 강화합니다. 그리고 꺼내기에 실패하면 그 순간 "모른다"는 사실이 드러나므로, 앞서 말한 착각도 같이 깨집니다.</p>
+<p><strong>간격 반복(SRS)</strong>은 이 둘을 합친 방식입니다. 스스로 꺼내보게 하되, 그 시점을 잊어버리기 직전으로 배치합니다. 쉽게 맞힌 항목은 간격을 늘리고, 틀린 항목은 다시 자주 보여줍니다.</p>
+<h2>그래서 노트 앱이 할 일이 바뀐다</h2>
+<p>간격 반복은 새로운 개념이 아닙니다. 종이 카드로도, 기존 암기 앱으로도 할 수 있습니다. 그런데도 대부분의 사람이 못 하는 이유는 셋입니다.</p>
+<ul>
+<li><strong>카드 만들기가 귀찮다.</strong> 강의를 듣고, 노트를 정리하고, 그 노트를 다시 카드로 쪼개는 세 번째 단계에서 거의 모두가 멈춥니다.</li>
+<li><strong>오늘 뭘 볼지 정하기가 귀찮다.</strong> 카드가 쌓이면 그 자체가 부담이 됩니다.</li>
+<li><strong>복습을 잊어버린다.</strong> 잊지 않으려고 하는 일인데, 그 일 자체를 잊습니다.</li>
+</ul>
+<p>즉 노트 앱이 "저장 도구"에 머무르면 이 세 지점을 아무도 못 넘습니다. 필요한 건 <strong>복습 스케줄러</strong>입니다. 노트에서 카드가 자동으로 나오고, 오늘 볼 것을 앱이 정하고, 시간이 되면 앱이 먼저 말을 걸어야 합니다.</p>
+<h2>라이트온 AI 노트가 잡은 지점</h2>
+<p>이 판단으로 만든 게 <a href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener">라이트온 AI 노트</a>입니다. 녹음에서 복습까지를 한 앱 안에서 끊기지 않게 이었습니다.</p>
+<ul>
+<li><strong>정확하게 받아적기</strong> — 실시간 전사로 강의를 바로 텍스트로 옮기고, 발표자가 여러 명이면 정밀 모드가 화자를 구분합니다. 한국어·영어·중국어·일본어를 자동 인식합니다.</li>
+<li><strong>이해 단계를 돕기</strong> — 핵심 요약을 만들고, 모르는 대목은 AI 튜터에게 물을 수 있습니다. 외국어 강의는 요약 번역으로 넘깁니다.</li>
+<li><strong>꺼내는 연습으로 넘기기</strong> — 노트에서 플래시카드와 퀴즈를 자동으로 만듭니다. 사람이 카드를 만드는 단계를 없앤 것이 핵심입니다.</li>
+<li><strong>시점은 앱이 관리</strong> — 간격 반복으로 복습 타이밍을 자동 관리하고, 오늘 복습할 카드를 모아 알림으로 알려줍니다.</li>
+<li><strong>노트는 기기에</strong> — 노트는 기기에 암호화 저장되고 클라우드로 동기화하지 않습니다. 광고와 행동 추적도 없습니다. 강의자료(PDF)를 가져오거나 PDF·Word·텍스트로 내보낼 수 있습니다.</li>
+</ul>
+<h2>정직하게, 이 방식이 안 되는 것</h2>
+<p>간격 반복이 만능은 아닙니다. 쓰기 전에 알고 있어야 할 한계가 있습니다.</p>
+<p><strong>사실·용어·정의에 강하고, 긴 논증에는 약합니다.</strong> "이 개념의 정의는?" 같은 항목은 카드로 잘 쪼개집니다. 하지만 "이 이론이 왜 저 이론을 대체했는가"처럼 여러 단계를 이어야 하는 이해는 카드 한 장에 담기지 않습니다. 수학·물리의 풀이 절차도 마찬가지로, 카드보다 직접 풀어보는 편이 낫습니다.</p>
+<p><strong>카드 품질은 원본 강의를 넘지 못합니다.</strong> 자동 생성은 정리 부담을 없애주지만 없는 내용을 만들어내지는 않습니다. 강의에서 흐릿하게 지나간 개념은 카드에서도 흐릿합니다.</p>
+<p><strong>몰아서 하면 효과가 사라집니다.</strong> 간격 효과는 말 그대로 간격에서 나옵니다. 일주일 치 복습 카드를 시험 전날 한 번에 처리하면 벼락치기와 같아집니다. 하루 몇 분씩 꾸준히 하는 사람에게만 의미가 있습니다.</p>
+<h2>정리</h2>
+<p>전사와 요약은 강의를 <strong>기록</strong>하는 문제를 풀었습니다. 하지만 기록은 학습의 시작이지 끝이 아닙니다. 남은 절반 — 꺼내보기와 복습 시점 — 은 사람의 의지에 맡겨져 있었고, 그래서 대부분 실패했습니다.</p>
+<p>노트 앱이 이 절반까지 가져가면, 사용자가 해야 할 일은 "매일 몇 분, 앱이 보여주는 카드에 답하기" 하나로 줄어듭니다. 그 정도면 유지할 수 있습니다.</p>
+<div class="tip"><strong>라이트온 AI 노트</strong> — 녹음·전사·요약부터 플래시카드와 간격 반복 복습까지 한 앱에서 이어집니다. <a href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener">Google Play에서 받기</a></div>
+"""
+},
 ]
 
 FALLBACK_OGIMG = "https://lightonpluslab.com/hero-apps.jpg"
+
+def _newest_first(articles):
+    # Sort by date desc; for same-day posts the one declared later in ARTICLES wins,
+    # so appending a new entry always puts it on top.
+    return [a for _, a in sorted(enumerate(articles), key=lambda t: (t[1]["date"], t[0]), reverse=True)]
 
 LIST_HEAD = HEAD.format(
     title="블로그", slug="blog",
@@ -515,7 +572,7 @@ def list_html():
   <h2>{a["title"]}</h2>
   <p>{a["desc"]}</p>
   <div class="pc-meta">{a["eyebrow"]} · {a["date"]}</div>
-</a>''' for a in ARTICLES)
+</a>''' for a in _newest_first(ARTICLES))
     hero = f"""
 <section class="page-hero">
   <div class="wrap">
@@ -590,7 +647,7 @@ rss_items = "\n".join(
     <guid isPermaLink="true">https://lightonpluslab.com/{a["slug"]}.html</guid>
     <pubDate>{_rfc822(a["date"])}</pubDate>
     <description>{_xml_escape(a["desc"])}</description>
-  </item>""" for a in sorted(ARTICLES, key=lambda a: a["date"], reverse=True))
+  </item>""" for a in _newest_first(ARTICLES))
 with io.open("feed.xml", "w", encoding="utf-8") as f:
     f.write(f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">

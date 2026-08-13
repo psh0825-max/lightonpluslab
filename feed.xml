@@ -7,6 +7,13 @@
   <description>앱 개발 노트, 제품 가이드, 1인 스튜디오 운영기</description>
   <language>ko</language>
   <item>
+    <title>강의를 녹음하고 요약해도 왜 안 외워질까</title>
+    <link>https://lightonpluslab.com/blog-why-summary-is-not-memory.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/blog-why-summary-is-not-memory.html</guid>
+    <pubDate>Thu, 13 Aug 2026 09:00:00 +0900</pubDate>
+    <description>전사와 요약은 이제 흔한 기능이 됐습니다. 그런데 노트가 깔끔할수록 다시 안 보게 되는 역설이 있습니다. 망각 곡선과 간격 반복이 그 빈틈을 어떻게 메우는지 정리했습니다.</description>
+  </item>
+  <item>
     <title>가사 싱크가 최대 16초 밀린 이유 — 세지 말고 대조하라</title>
     <link>https://lightonpluslab.com/blog-lyrics-alignment-drift.html</link>
     <guid isPermaLink="true">https://lightonpluslab.com/blog-lyrics-alignment-drift.html</guid>
