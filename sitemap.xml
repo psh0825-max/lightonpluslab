@@ -37,6 +37,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://lightonpluslab.com/blog.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://lightonpluslab.com/teams-translator.html</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -62,73 +68,73 @@
   </url>
   <url>
     <loc>https://lightonpluslab.com/privacy.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/privacy-en.html</loc>
     <lastmod>2026-08-08</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/terms.html</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/blog.html</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/blog-paper-coupon-management.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/blog-twa-play-store.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/blog-local-first-apps.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/blog-two-week-mvp.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/blog-momoi-call-summary.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/blog-pwa-vs-native.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/blog-notification-ux.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/blog-ai-assisted-development.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lightonpluslab.com/blog-lyrics-alignment-drift.html</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

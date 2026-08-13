@@ -7,6 +7,13 @@
   <description>앱 개발 노트, 제품 가이드, 1인 스튜디오 운영기</description>
   <language>ko</language>
   <item>
+    <title>가사 싱크가 최대 16초 밀린 이유 — 세지 말고 대조하라</title>
+    <link>https://lightonpluslab.com/blog-lyrics-alignment-drift.html</link>
+    <guid isPermaLink="true">https://lightonpluslab.com/blog-lyrics-alignment-drift.html</guid>
+    <pubDate>Thu, 13 Aug 2026 09:00:00 +0900</pubDate>
+    <description>가라오케 가사가 곡 후반으로 갈수록 밀렸고, 한국어 곡에서 유독 심했습니다. 원인은 타임스탬프가 아니라 단어를 세는 방식이었습니다. 비례식 추정을 문자 오프셋 대조로 바꾼 기록.</description>
+  </item>
+  <item>
     <title>웹앱을 구글 플레이에 올리기 — TWA 출시 실전 기록</title>
     <link>https://lightonpluslab.com/blog-twa-play-store.html</link>
     <guid isPermaLink="true">https://lightonpluslab.com/blog-twa-play-store.html</guid>

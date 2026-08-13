@@ -21,7 +21,9 @@ HEAD = """<!doctype html>
 <link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
 <link rel="stylesheet" href="styles.css" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
@@ -44,6 +46,9 @@ HEAD = """<!doctype html>
 .prose th{{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}}
 .prose .tip{{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}}
 .prose a{{color:var(--cyan,#5eead4)}}
+.prose pre{{margin:0 0 18px;padding:16px 18px;border-radius:12px;background:#080d1a;border:1px solid var(--panel-border,#232b3d);overflow-x:auto;font-size:13px;line-height:1.7}}
+.prose pre code{{font-family:var(--f-mono);color:var(--text-2,#cdd5e1);background:none;padding:0;border:0;white-space:pre}}
+.prose code{{font-family:var(--f-mono);font-size:.92em;padding:2px 6px;border-radius:5px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);color:var(--cyan,#5eead4)}}
 .prose img,.post-hero img{{max-width:100%;height:auto;border-radius:16px;display:block;margin:0 auto}}
 .post-hero{{margin:18px 0 26px}}
 .post-hero img{{width:min(560px,100%)}}
@@ -67,10 +72,9 @@ HEAD = """<!doctype html>
             <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
     </a>
     <nav class="nav-links" aria-label="메뉴">
+      <a href="products.html">Apps</a>
       <a href="services.html">Services</a>
-      <a href="products.html">Work</a>
       <a href="blog.html">Blog</a>
-      <a href="momoi.html">Momoi</a>
       <a href="about.html">Studio</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -83,17 +87,16 @@ HEAD = """<!doctype html>
     </button>
   </div>
 </header>
-<nav class="mobile-menu" id="mobileMenu">
+<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
+  <a href="products.html">Apps</a>
   <a href="services.html">Services</a>
-  <a href="products.html">Work</a>
   <a href="blog.html">Blog</a>
-  <a href="momoi.html">Momoi</a>
   <a href="about.html">Studio</a>
   <a href="contact.html">Contact</a>
   <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
-<main>
+<main id="main">
 """
 
 FOOTER = """
@@ -116,11 +119,12 @@ FOOTER = """
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
         <a href="blog.html">Blog</a>
-        <a href="momoi.html">Momoi</a>
       </div>
       <div class="footer-col">
         <h5>Work</h5>
-        <a href="products.html">Products</a>
+        <a href="products.html">전체 앱</a>
+        <a href="momoi.html">모모아이</a>
+        <a href="lighton-ai-note.html">라이트온 AI 노트</a>
         <a href="contact.html">New project</a>
       </div>
       <div class="footer-col">
@@ -375,6 +379,80 @@ ARTICLES = [
 <p>AI 코딩 도구는 "개발자를 대체하는 것"이 아니라 <strong>1인 스튜디오에게 팀의 손을 빌려주는 것</strong>에 가깝습니다. 구조와 경계와 검증 기준을 사람이 쥐고 있는 한, 속도는 몇 배가 되고 품질은 지켜집니다. 반대로 그 세 가지를 놓으면, 빠르게 만든 만큼 빠르게 무너집니다.</p>
 """
 },
+# Raw string preserves the literal backslash-n sequence in the code sample.
+{
+"slug": "blog-lyrics-alignment-drift",
+"date": "2026-08-13",
+"eyebrow": "Dev Note",
+"title": "가사 싱크가 최대 16초 밀린 이유 — 세지 말고 대조하라",
+"desc": "가라오케 가사가 곡 후반으로 갈수록 밀렸고, 한국어 곡에서 유독 심했습니다. 원인은 타임스탬프가 아니라 단어를 세는 방식이었습니다. 비례식 추정을 문자 오프셋 대조로 바꾼 기록.",
+"img": "img/proj-songbit.jpg",
+"img_alt": "송빗 가라오케 가사 화면",
+"body": r"""
+<p><a href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener">송빗</a>은 AI가 만든 곡을 가라오케처럼 한 줄씩 하이라이트하며 보여줍니다. 그런데 곡 앞부분은 잘 맞다가 뒤로 갈수록 가사가 밀리는 문제가 있었습니다. 그리고 이상하게도, <strong>한국어 곡에서만 심했습니다.</strong></p>
+<p>원인은 타임스탬프가 부정확해서가 아니었습니다. 우리가 그 타임스탬프를 가사에 갖다 붙이는 방식이 틀려 있었습니다.</p>
+<h2>실측: 얼마나 어긋났나</h2>
+<p>한 곡씩 줄 단위로 오차를 재봤습니다.</p>
+<table>
+<thead><tr><th>언어</th><th>1초 이상 어긋난 줄</th><th>최대 오차</th></tr></thead>
+<tbody>
+<tr><td>한국어</td><td><strong>40줄 중 24줄 (60%)</strong></td><td><strong>16.71초</strong></td></tr>
+<tr><td>영어</td><td>46줄 중 3줄</td><td>—</td></tr>
+</tbody>
+</table>
+<p>16.71초는 가라오케로서는 완전히 망가진 수준입니다. 그런데 이 표에서 가장 중요한 정보는 최대 오차가 아니라 <strong>언어에 따라 증상이 다르다</strong>는 사실입니다. 타임스탬프 자체가 부정확했다면 언어를 가리지 않아야 합니다. 언어를 탄다는 건 텍스트를 쪼개는 방식에 문제가 있다는 신호입니다.</p>
+<h2>원인 1 — 비례식으로 추정하고 있었다</h2>
+<p>기존 코드는 가사 줄의 시작 시각을 이렇게 구했습니다.</p>
+<pre><code>토큰_인덱스 = (지금까지_누적_단어수 / 전체_단어수) × 전체_토큰수</code></pre>
+<p>"전체의 30% 지점에 있는 단어라면 토큰도 30% 지점에 있겠지"라는 발상입니다. 이 식은 <strong>단어와 토큰이 1:1로 대응한다</strong>는 가정 위에서만 성립합니다.</p>
+<p>그리고 그 가정을 검증하는 코드는 어디에도 없었습니다. 가정이 깨져도 예외가 나지 않고, 그냥 조금씩 어긋난 값이 나옵니다. 곡이 길수록 오차가 커지는 것도 이 때문입니다. 비율로 계산하니 뒤로 갈수록 벌어집니다.</p>
+<h2>원인 2 — 토큰 안에 태그가 섞여 있었다</h2>
+<p>음악 생성 API가 돌려주는 단어별 타임스탬프(<code>alignedWords</code>)를 실제로 열어보면 이렇게 생겼습니다.</p>
+<pre><code>{ word: '[Female ',        startS: 0.957 }
+{ word: 'Vocalist]\n\n\n',   startS: 1.1   }
+{ word: '[Intro]\n하늘을 ',   startS: 1.287 }   ← 섹션 태그 + 첫 가사가 한 토큰
+{ word: '나는 ',             startS: 1.8   }</code></pre>
+<p>두 가지가 눈에 띕니다.</p>
+<p>첫째, <code>word</code>에는 <strong>공백과 개행이 그대로 들어 있습니다.</strong> 깔끔하게 잘린 단어가 아닙니다.</p>
+<p>둘째, <code>[Female Vocalist]</code>나 <code>[Intro]</code> 같은 <strong>보컬·섹션 태그가 토큰에 섞여 있고</strong>, 심지어 태그와 첫 가사 단어가 같은 토큰에 들어옵니다.</p>
+<p>우리 클라이언트는 화면에 표시할 때 이 태그들을 걷어내고 세고 있었습니다. 그래서 <strong>클라이언트는 145단어, API는 147토큰.</strong> 두 개 차이입니다. 그런데 그 두 개가 비례식을 타고 곡 전체에 퍼집니다.</p>
+<p>한국어가 유독 심했던 것도 여기서 설명됩니다. 어절을 쪼개는 방식이 생성 모델의 토크나이저와 더 크게 어긋나서, 단어 수와 토큰 수의 격차가 영어보다 컸습니다.</p>
+<h2>해결 — 세는 걸 그만두고 대조한다</h2>
+<p>돌파구는 토큰 배열을 다시 들여다보다 나왔습니다. <strong>토큰의 <code>word</code>들을 순서대로 그냥 이어붙이면 원본 가사가 그대로 복원됩니다.</strong></p>
+<pre><code>aligned.map(t =&gt; t.word).join('')   // → 원본 가사 전체</code></pre>
+<p>즉 토큰 배열은 별개의 데이터가 아니라 <strong>가사 문자열을 잘라놓은 것</strong>일 뿐입니다. 그렇다면 "이 줄이 몇 번째 단어인가"를 셀 이유가 없습니다. <strong>"이 줄이 문자열의 몇 번째 글자에서 시작하는가"</strong>를 찾으면 됩니다. 문자 오프셋만 알면 토큰은 역산됩니다.</p>
+<p>세는 방식은 앞에서 하나만 어긋나도 뒤가 전부 밀립니다. 대조 방식은 각 줄이 독립적으로 자기 위치를 찾으므로 오차가 누적되지 않습니다.</p>
+<p>구현에서 걸린 지점은 셋이었습니다.</p>
+<h3>1. 공백 정규화와 오프셋 역매핑</h3>
+<p>토큰의 개행·연속 공백을 하나로 접어야 화면의 가사 줄과 문자열 비교가 됩니다. 그런데 접고 나면 원본 위치를 잃어버립니다. 그래서 정규화하면서 <em>정규화된 인덱스 → 원본 인덱스</em> 지도를 같이 만듭니다.</p>
+<pre><code>function normalizeWithOffsets(text: string):
+  { text: string; originalOffsets: number[] }</code></pre>
+<h3>2. 반복되는 후렴</h3>
+<p>후렴이 세 번 나오는 곡에서 그냥 <code>indexOf</code>를 쓰면 세 줄 모두 첫 번째 위치를 가리킵니다. 그래서 이전 매칭이 끝난 지점을 커서로 들고, 그 뒤에서만 찾습니다.</p>
+<pre><code>let matchIndex = normalizedTokens.text.indexOf(line, cursor)
+if (matchIndex &lt; 0) matchIndex = normalizedTokens.text.indexOf(line)  // 폴백
+...
+cursor = matchIndex + line.length</code></pre>
+<h3>3. 오프셋 → 토큰 인덱스</h3>
+<p>토큰별 누적 끝 오프셋 배열을 만들어두고 이진 탐색으로 찾습니다. 그 토큰의 <code>startS</code>가 그 줄의 시작 시각입니다.</p>
+<p>여기에 방어 두 가지를 더 얹었습니다. 타임스탬프가 뒤집혀 오는 경우가 있어 마지막에 <strong>단조 증가로 보정</strong>하고, 매칭에 실패한 줄은 전체를 버리지 않고 <strong>그 줄만 폴백 값을 유지</strong>합니다.</p>
+<h2>결과</h2>
+<table>
+<thead><tr><th></th><th>수정 전</th><th>수정 후</th></tr></thead>
+<tbody>
+<tr><td>한국어</td><td>40줄 중 24줄 오차</td><td><strong>40 / 40 매칭</strong></td></tr>
+<tr><td>영어</td><td>46줄 중 3줄 오차</td><td><strong>46 / 46 매칭</strong></td></tr>
+</tbody>
+</table>
+<p>정렬 로직은 부수 효과 없는 순수 함수로 분리했습니다. 웹은 <code>lib/lyrics-alignment.ts</code>, 앱은 같은 로직을 Dart로 포팅했습니다. 덕분에 <strong>같은 입력에 대해 웹과 앱이 같은 값을 내는지</strong>를 테스트로 확인할 수 있습니다(첫 줄 1.287초로 양쪽 일치).</p>
+<p>테스트는 실제로 문제가 됐던 형태를 그대로 케이스로 만들었습니다 — 태그가 섞인 토큰, 반복 후렴, 역순 타임스탬프, 타임스탬프가 아예 없는 경우.</p>
+<h2>남는 교훈</h2>
+<p><strong>"비례해서 추정"은 숨은 가정이다.</strong> 두 시퀀스의 길이가 같다는 가정이 식 안에 감춰져 있습니다. 이런 코드는 가정이 깨져도 예외를 던지지 않고 조용히 틀린 값을 냅니다. 최소한 두 길이가 다를 때 로그라도 남겼다면 훨씬 일찍 찾았을 겁니다.</p>
+<p><strong>외부 API의 토큰은 내 토크나이저와 다르다.</strong> 당연한 말 같지만, 양쪽 개수를 실제로 찍어보기 전까지는 대체로 같다고 가정하고 짭니다. 이어붙였을 때 원본이 복원되는지부터 확인하면 세는 방식 대신 대조 방식으로 갈 길이 열립니다.</p>
+<p><strong>언어마다 증상이 다르면 텍스트 분할을 의심하라.</strong> 이번 건에서 가장 빨랐던 단서가 "한국어만 심하다"였습니다. 로직이 언어를 탈 이유가 없는데 타고 있다면, 문제는 로직이 아니라 로직에 들어가는 텍스트가 쪼개진 방식입니다.</p>
+<div class="tip"><strong>송빗</strong> — 장르·분위기·키워드만 고르면 AI가 가사부터 보컬 완곡까지 만들어 줍니다. <a href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener">Google Play에서 받기</a></div>
+"""
+},
 ]
 
 FALLBACK_OGIMG = "https://lightonpluslab.com/hero-apps.jpg"
@@ -465,17 +543,31 @@ for a in ARTICLES:
     print(a["slug"] + ".html")
 
 # sitemap
-pages = ["", "about.html", "services.html", "products.html", "momoi.html",
-         "lighton-ai-note.html", "teams-translator.html", "focusguard.html", "vibe-studio.html", "contact.html",
-         "privacy.html", "terms.html", "blog.html"] + [a["slug"] + ".html" for a in ARTICLES]
-today = "2026-07-05"
+PAGE_LASTMOD = {
+    "": "2026-08-13",
+    "about.html": "2026-08-13",
+    "services.html": "2026-08-13",
+    "products.html": "2026-08-13",
+    "momoi.html": "2026-08-13",
+    "lighton-ai-note.html": "2026-08-13",
+    "blog.html": "2026-08-13",
+    "teams-translator.html": "2026-07-05",
+    "focusguard.html": "2026-07-05",
+    "vibe-studio.html": "2026-07-05",
+    "contact.html": "2026-07-05",
+    "privacy.html": "2026-08-08",
+    "privacy-en.html": "2026-08-08",
+    "terms.html": "2026-07-05",
+}
+LEGAL_PAGES = {"privacy.html", "privacy-en.html", "terms.html"}
+entries = list(PAGE_LASTMOD.items()) + [(a["slug"] + ".html", a["date"]) for a in ARTICLES]
 urls = "\n".join(
     f"""  <url>
     <loc>https://lightonpluslab.com/{p}</loc>
-    <lastmod>{today}</lastmod>
+    <lastmod>{lastmod}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>{'1.0' if p == '' else '0.7'}</priority>
-  </url>""" for p in pages)
+    <priority>{'1.0' if p == '' else '0.3' if p in LEGAL_PAGES else '0.7'}</priority>
+  </url>""" for p, lastmod in entries)
 with io.open("sitemap.xml", "w", encoding="utf-8") as f:
     f.write(f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -513,8 +605,3 @@ with io.open("feed.xml", "w", encoding="utf-8") as f:
 </rss>
 """)
 print("feed.xml")
-
-# ads.txt (apex — AdSense site is registered on lightonpluslab.com)
-with io.open("ads.txt", "w", encoding="utf-8") as f:
-    f.write("google.com, pub-7180935400084577, DIRECT, f08c47fec0942fa0\n")
-print("ads.txt")
