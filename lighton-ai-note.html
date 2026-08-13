@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>라이트온 AI 노트 — 강의 녹음 AI 정리 앱 — LightOn Plus Lab</title>
-<meta name="description" content="라이트온 AI 노트 — 강의를 녹음하면 AI가 전사·요약·핵심 포인트·용어사전을 자동 생성하고 노트 기반 Q&A까지. Android 앱, Google Play 출시 준비 중." />
+<title>라이트온 AI 노트 — 강의 녹음 AI 요약·암기 앱 — LightOn Plus Lab</title>
+<meta name="description" content="라이트온 AI 노트 — 강의를 녹음하면 정밀 화자 분리 전사, AI 요약, 플래시카드·퀴즈, 간격반복(SRS) 복습까지. Google Play에서 받으세요." />
 <meta property="og:title" content="라이트온 AI 노트 — LightOn Plus Lab" />
 <meta property="og:type" content="website" />
-<meta property="og:description" content="강의를 녹음하면 AI가 전사·요약·핵심 포인트·용어사전을 자동 생성하고 노트 기반 Q&A까지. Android 앱, Google Play 출시 준비 중." />
+<meta property="og:description" content="라이트온 AI 노트 — 강의를 녹음하면 정밀 화자 분리 전사, AI 요약, 플래시카드·퀴즈, 간격반복(SRS) 복습까지. Google Play에서 받으세요." />
 <meta property="og:url" content="https://lightonpluslab.com/lighton-ai-note.html" />
 <meta property="og:image" content="https://lightonpluslab.com/img/proj-lecture.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -81,6 +81,12 @@
 .act-row{display:flex;gap:10px;flex-wrap:wrap}
 
 @media(max-width:900px){.detail-grid{grid-template-columns:1fr}}
+.badge-live{font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:6px;background:rgba(45,212,191,.12);color:var(--mint);border:1px solid rgba(45,212,191,.28)}
+.grp{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1040px;margin:0 auto}
+.grp-card{padding:28px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);transition:background .25s,border-color .25s}
+.grp-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover)}
+.grp-t{font-size:16px;font-weight:600;margin-bottom:14px}
+@media(max-width:900px){.grp{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -93,14 +99,13 @@
       <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
             <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
     </a>
-    <nav class="nav-links" aria-label="메뉴">
-      <a href="services.html">Services</a>
-      <a href="products.html">Work</a>
-      <a href="blog.html">Blog</a>
-      <a href="momoi.html">Momoi</a>
-      <a href="about.html">Studio</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+<nav class="nav-links" aria-label="메뉴">
+<a href="products.html">Apps</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">Studio</a>
+<a href="contact.html">Contact</a>
+</nav>
     <a class="nav-cta" href="contact.html">Launch Lab
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -110,28 +115,24 @@
   </div>
 </header>
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-  <a href="services.html">Services</a>
-  <a href="products.html">Work</a>
-  <a href="blog.html">Blog</a>
-  <a href="momoi.html">Momoi</a>
-  <a href="about.html">Studio</a>
-  <a href="contact.html">Contact</a>
-  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+<a href="products.html">Apps</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">Studio</a>
+<a href="contact.html">Contact</a>
+<a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
 <main id="main">
 
 <section class="page-hero">
   <div class="wrap">
-    <span class="eyebrow reveal">Google Play 출시 준비 · Android</span>
+    <span class="eyebrow reveal">Google Play 출시 · Android</span>
     <h1 class="reveal reveal-d1">라이트온 <em>AI 노트</em></h1>
-    <p class="reveal reveal-d2">강의는 듣는 데만 집중하세요. 녹음하면 AI가 전사하고 요약·핵심 포인트·용어사전까지 정리합니다. 놓친 내용은 노트에게 직접 물어보세요.</p>
+    <p class="reveal reveal-d2">강의는 듣는 데만 집중하세요. 녹음하면 정밀 모드가 화자까지 구분해 받아적고, AI가 요약·플래시카드·퀴즈를 만들어 간격반복으로 복습시켜 줍니다.</p>
     <div class="act-row reveal reveal-d3" style="justify-content:center;margin-top:32px">
-      <a class="btn btn-primary" href="contact.html">
-        출시 알림 신청
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a class="btn btn-ghost" href="products.html">전체 앱 보기</a>
+      <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play에서 받기</a>
+      <a class="btn-sm" href="products.html">전체 앱 보기</a>
     </div>
   </div>
 </section>
@@ -197,37 +198,51 @@
 
 <section>
   <div class="wrap">
-    <div class="detail-grid">
+    <div style="max-width:1040px;margin:0 auto 20px">
       <div class="detail-card reveal">
         <div class="detail-head">
-          <div class="detail-title">라이트온 AI 노트</div>
-          <span class="badge-soon">Play 테스트 중</span>
+          <div class="detail-title">라이트온 AI 노트: 강의 녹음 암기</div>
+          <span class="badge-live">Google Play</span>
         </div>
-        <div class="detail-desc">Flutter 기반 Android 앱. 녹음과 동시에 음성을 텍스트로 옮기고, 녹음이 끝나면 AI가 강의 전체를 구조화된 노트로 정리합니다. 현재 Google Play 비공개 테스트를 진행 중이며 곧 정식 출시됩니다.</div>
+        <div class="detail-desc">라이트온 AI 노트는 "녹음만 하는 앱"이 아니라 외우게 만드는 앱입니다. 강의·회의를 정확히 받아적고, AI 요약과 간격반복 복습으로 진짜 외우게 하는 노트.</div>
         <div class="kpi-inner">
-          <div class="cell"><b>실시간 전사</b><span>녹음과 동시에 텍스트 변환</span></div>
-          <div class="cell"><b>AI 정리</b><span>요약·핵심 포인트·용어사전</span></div>
-          <div class="cell"><b>노트 Q&amp;A</b><span>노트 내용 기반 AI 답변</span></div>
-          <div class="cell"><b>요약 스타일</b><span>간단 · 상세 · 학술 3종</span></div>
+          <div class="cell"><b>교육</b><span>Google Play 카테고리 · 인앱 구매</span></div>
+          <div class="cell"><b>4개 언어</b><span>한국어·영어·중국어·일본어 자동 인식</span></div>
+          <div class="cell"><b>SRS 복습</b><span>간격 반복 + 오늘의 복습 알림</span></div>
+          <div class="cell"><b>기기 저장</b><span>암호화 저장 · 광고·추적 없음</span></div>
         </div>
       </div>
-      <div class="detail-card reveal reveal-d1">
-        <div class="detail-head">
-          <div class="detail-title">주요 기능</div>
-        </div>
+    </div>
+    <div class="grp">
+      <div class="grp-card reveal">
+        <div class="grp-t">정확한 전사 + 화자 분리</div>
         <div class="feat-list">
-          <div><span class="dot"></span>녹음 중 북마크로 중요한 순간 표시</div>
-          <div><span class="dot"></span>녹음 종료 → AI가 요약·핵심 포인트·챕터 자동 생성</div>
-          <div><span class="dot"></span>강의에 나온 전문 용어를 용어사전으로 정리</div>
-          <div><span class="dot"></span>전사 문장을 누르면 해당 시점부터 오디오 재생</div>
-          <div><span class="dot"></span>"이 노트에게 질문" — 강의 내용 기반 AI Q&amp;A</div>
+          <div><span class="dot"></span>실시간 전사로 강의·회의를 즉시 텍스트로</div>
+          <div><span class="dot"></span>정밀 모드로 발표자가 여러 명이어도 화자를 구분해 받아적습니다</div>
+          <div><span class="dot"></span>한국어·영어·중국어·일본어를 자동 인식합니다</div>
         </div>
-        <div class="tag">
-          <div>
-            <div class="tag-k">현재 상태</div>
-            <div class="tag-v">Google Play 비공개 테스트 진행 중 · 정식 출시 시 이 페이지에 설치 링크 제공</div>
-          </div>
-          <code>android</code>
+      </div>
+      <div class="grp-card reveal reveal-d1">
+        <div class="grp-t">AI가 학습을 도와줍니다</div>
+        <div class="feat-list">
+          <div><span class="dot"></span>핵심 요약과, 모르는 내용을 묻는 AI 튜터</div>
+          <div><span class="dot"></span>노트에서 플래시카드·퀴즈를 자동 생성</div>
+          <div><span class="dot"></span>요약 번역으로 외국어 강의도 손쉽게</div>
+        </div>
+      </div>
+      <div class="grp-card reveal reveal-d2">
+        <div class="grp-t">진짜 복습 — 간격 반복</div>
+        <div class="feat-list">
+          <div><span class="dot"></span>과학적 간격 반복(SRS)으로 복습 타이밍을 자동 관리</div>
+          <div><span class="dot"></span>오늘 복습할 카드를 모아 알림으로 알려줍니다</div>
+        </div>
+      </div>
+      <div class="grp-card reveal reveal-d3">
+        <div class="grp-t">내 데이터는 내 기기에</div>
+        <div class="feat-list">
+          <div><span class="dot"></span>노트는 기기에 암호화 저장(클라우드 동기화 없음)</div>
+          <div><span class="dot"></span>광고·행동 추적 없음</div>
+          <div><span class="dot"></span>강의자료(PDF) 가져오기, PDF·Word·텍스트로 내보내기, 백업 지원</div>
         </div>
       </div>
     </div>
@@ -237,12 +252,9 @@
 <section>
   <div class="wrap">
     <div class="cta-block reveal">
-      <h2>정식 출시 소식을 가장 먼저 받아보세요</h2>
-      <p>이메일을 남겨주시면 Google Play 정식 출시 시 설치 링크를 보내드립니다.</p>
-      <a class="btn btn-primary" href="contact.html">
-        출시 알림 신청
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <h2>지금 Google Play에서 받으세요</h2>
+      <p>강의를 받아적는 데서 끝내지 말고, 라이트온으로 외우세요.</p>
+      <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play에서 받기</a>
     </div>
   </div>
 </section>
@@ -261,18 +273,19 @@
         </div>
         <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
       </div>
-      <div class="footer-col">
-        <h5>Studio</h5>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="blog.html">Blog</a>
-        <a href="momoi.html">Momoi</a>
-      </div>
-      <div class="footer-col">
-        <h5>Work</h5>
-        <a href="products.html">Products</a>
-        <a href="contact.html">New project</a>
-      </div>
+<div class="footer-col">
+<h5>Studio</h5>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+</div>
+<div class="footer-col">
+<h5>Work</h5>
+<a href="products.html">전체 앱</a>
+<a href="momoi.html">모모아이</a>
+<a href="lighton-ai-note.html">라이트온 AI 노트</a>
+<a href="contact.html">New project</a>
+</div>
       <div class="footer-col">
         <h5>Reach out</h5>
         <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>

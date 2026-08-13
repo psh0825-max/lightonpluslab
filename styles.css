@@ -368,3 +368,93 @@ section{padding:88px 0;position:relative}
 /* Language switch on the legal pages (privacy.html / privacy-en.html). */
 .lang-switch{font-size:.9rem;margin:0 0 1rem;opacity:.75}
 .lang-switch strong{opacity:1}
+/* -------- 16. Store app cards (Google Play) — index.html + products.html -------- */
+.store-grid{display:grid;gap:20px}
+.store-card{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:0;overflow:hidden;
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.022));
+  border:1px solid var(--panel-border);
+  transition:border-color .3s var(--ease),background .3s var(--ease),transform .3s var(--ease);
+}
+.store-card:hover{border-color:var(--panel-border-hover);background:var(--panel-hover);transform:translateY(-3px)}
+.store-body{padding:30px 32px 32px;min-width:0}
+.store-head{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.store-icon{
+  width:60px;height:60px;border-radius:15px;flex:0 0 auto;
+  box-shadow:0 0 0 1px rgba(255,255,255,.09),0 10px 26px rgba(0,0,0,.45);
+}
+.store-name{font-size:21px;font-weight:700;line-height:1.25;letter-spacing:0;margin-bottom:6px;word-break:keep-all}
+.store-meta{display:flex;flex-wrap:wrap;gap:6px}
+.store-chip{
+  font-family:var(--f-mono);font-size:10px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;
+  background:rgba(255,255,255,.045);border:1px solid var(--panel-border);
+  color:var(--text-3);
+}
+.store-chip.accent{background:rgba(45,212,191,.12);border-color:rgba(45,212,191,.3);color:var(--mint)}
+.store-chip.new{background:rgba(244,114,182,.12);border-color:rgba(244,114,182,.32);color:var(--pink)}
+.store-one{font-size:14.5px;color:var(--text-2);line-height:1.7;margin-bottom:18px;word-break:keep-all}
+.store-feats{display:grid;gap:0;margin-bottom:22px}
+.store-feats div{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:9px 0;font-size:13.5px;color:var(--text-3);line-height:1.6;
+  border-bottom:1px solid var(--panel-border);word-break:keep-all;
+}
+.store-feats div:last-child{border-bottom:0}
+.store-feats .dot{width:5px;height:5px;border-radius:50%;margin-top:8px;flex:0 0 auto;background:currentColor;opacity:.9}
+.store-acts{display:flex;gap:9px;flex-wrap:wrap}
+.btn-play{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:11px 18px;border-radius:11px;
+  font-size:13.5px;font-weight:600;
+  background:#E8ECF4;color:#0A0F1E;
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+}
+.btn-play:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.5)}
+.btn-play svg{width:15px;height:15px;flex:0 0 auto}
+.btn-sm{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:11px 16px;border-radius:11px;
+  font-size:13px;font-weight:600;
+  border:1px solid var(--panel-border);background:var(--panel);color:var(--text-2);
+  transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease);
+}
+.btn-sm:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);color:var(--text)}
+.store-media{
+  position:relative;overflow:hidden;
+  border-left:1px solid var(--panel-border);
+  background:#070b18;min-height:100%;
+}
+.store-media video,.store-media img{width:100%;height:100%;object-fit:cover;display:block;opacity:.92;transition:transform .6s var(--ease),opacity .3s var(--ease)}
+.store-card:hover .store-media video{transform:scale(1.04);opacity:1}
+.store-media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(5,8,20,.55) 0%,rgba(5,8,20,0) 42%);
+}
+.store-card.alt .store-body{grid-column:2;grid-row:1}
+.store-card.alt .store-media{grid-column:1;grid-row:1;border-left:0;border-right:1px solid var(--panel-border)}
+.store-card.alt .store-media::after{background:linear-gradient(270deg,rgba(5,8,20,.55) 0%,rgba(5,8,20,0) 42%)}
+
+/* Principle strip — small trust cards */
+.prin-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.prin{padding:20px;border-radius:12px;background:var(--panel);border:1px solid var(--panel-border);transition:background .25s,border-color .25s}
+.prin:hover{background:var(--panel-hover);border-color:var(--panel-border-hover)}
+.prin b{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.prin span{font-size:12.5px;color:var(--text-3);line-height:1.6;word-break:keep-all}
+
+@media(max-width:900px){
+  .store-card,.store-card.alt{grid-template-columns:1fr}
+  .store-card .store-body,.store-card.alt .store-body{grid-column:1;grid-row:2;padding:26px 24px 28px}
+  .store-media,.store-card.alt .store-media{grid-column:1;grid-row:1;aspect-ratio:16/9;min-height:0;border:0;border-bottom:1px solid var(--panel-border)}
+  .store-media::after,.store-card.alt .store-media::after{background:linear-gradient(180deg,rgba(5,8,20,0) 55%,rgba(5,8,20,.5) 100%)}
+  .prin-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .store-acts{display:grid;grid-template-columns:1fr}
+  .btn-play,.btn-sm{justify-content:center}
+  .prin-grid{grid-template-columns:1fr}
+}
