@@ -42,6 +42,9 @@
 .prose th{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}
 .prose .tip{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}
 .prose a{color:var(--cyan,#5eead4)}
+.prose pre{margin:0 0 18px;padding:16px 18px;border-radius:12px;background:#080d1a;border:1px solid var(--panel-border,#232b3d);overflow-x:auto;font-size:13px;line-height:1.7}
+.prose pre code{font-family:var(--f-mono);color:var(--text-2,#cdd5e1);background:none;padding:0;border:0;white-space:pre}
+.prose code{font-family:var(--f-mono);font-size:.92em;padding:2px 6px;border-radius:5px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);color:var(--cyan,#5eead4)}
 .prose img,.post-hero img{max-width:100%;height:auto;border-radius:16px;display:block;margin:0 auto}
 .post-hero{margin:18px 0 26px}
 .post-hero img{width:min(560px,100%)}
@@ -64,13 +67,13 @@
       <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
             <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
     </a>
-<nav class="nav-links" aria-label="메뉴">
-<a href="products.html">Apps</a>
-<a href="services.html">Services</a>
-<a href="blog.html">Blog</a>
-<a href="about.html">Studio</a>
-<a href="contact.html">Contact</a>
-</nav>
+    <nav class="nav-links" aria-label="메뉴">
+      <a href="products.html">Apps</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
     <a class="nav-cta" href="contact.html">
       Launch Lab
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -81,12 +84,12 @@
   </div>
 </header>
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-<a href="products.html">Apps</a>
-<a href="services.html">Services</a>
-<a href="blog.html">Blog</a>
-<a href="about.html">Studio</a>
-<a href="contact.html">Contact</a>
-<a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+  <a href="products.html">Apps</a>
+  <a href="services.html">Services</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
 <main id="main">
@@ -141,6 +144,11 @@
   <p>LLM 코딩 도구를 실제 제품 개발에 쓰면서 정한 규칙들. 어디까지 맡기고, 무엇은 사람이 쥐고 있어야 하는가.</p>
   <div class="pc-meta">Dev Note · 2026-05-12</div>
 </a>
+<a class="post-card" href="blog-lyrics-alignment-drift.html">
+  <h2>가사 싱크가 최대 16초 밀린 이유 — 세지 말고 대조하라</h2>
+  <p>가라오케 가사가 곡 후반으로 갈수록 밀렸고, 한국어 곡에서 유독 심했습니다. 원인은 타임스탬프가 아니라 단어를 세는 방식이었습니다. 비례식 추정을 문자 오프셋 대조로 바꾼 기록.</p>
+  <div class="pc-meta">Dev Note · 2026-08-13</div>
+</a>
     </div>
   </div>
 </section>
@@ -159,19 +167,19 @@
         </div>
         <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
       </div>
-<div class="footer-col">
-<h5>Studio</h5>
-<a href="about.html">About</a>
-<a href="services.html">Services</a>
-<a href="blog.html">Blog</a>
-</div>
-<div class="footer-col">
-<h5>Work</h5>
-<a href="products.html">전체 앱</a>
-<a href="momoi.html">모모아이</a>
-<a href="lighton-ai-note.html">라이트온 AI 노트</a>
-<a href="contact.html">New project</a>
-</div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">전체 앱</a>
+        <a href="momoi.html">모모아이</a>
+        <a href="lighton-ai-note.html">라이트온 AI 노트</a>
+        <a href="contact.html">New project</a>
+      </div>
       <div class="footer-col">
         <h5>Reach out</h5>
         <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
