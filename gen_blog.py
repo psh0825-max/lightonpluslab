@@ -508,6 +508,7 @@ cursor = matchIndex + line.length</code></pre>
 ]
 
 FALLBACK_OGIMG = "https://lightonpluslab.com/hero-apps.jpg"
+HOME_CARD_COUNT = 3
 
 def _newest_first(articles):
     # Sort by date desc; for same-day posts the one declared later in ARTICLES wins,
@@ -591,9 +592,46 @@ def list_html():
 """
     return LIST_HEAD + hero + FOOTER
 
+def update_index_cards(path="index.html"):
+    """index.html의 #writing 카드를 ARTICLES에서 다시 만든다.
+
+    index.html은 손으로 쓰는 파일이라 마커 사이만 생성한다.
+    마커가 없으면 조용히 넘어가지 않고 즉시 실패시킨다 — 조용히 건너뛰면
+    홈 카드가 블로그와 다시 어긋나고, 그게 이 코드가 없애려는 버그다.
+    """
+    start = "<!-- writing:start"
+    end = "<!-- writing:end -->"
+    with io.open(path, encoding="utf-8") as f:
+        html = f.read()
+    if start not in html or end not in html:
+        raise SystemExit(
+            f"{path}: writing:start / writing:end 마커를 찾지 못했습니다. "
+            "#writing 섹션의 카드 블록을 두 마커로 감싸주세요."
+        )
+    head, _, rest = html.partition(start)
+    marker_line, _, rest = rest.partition("\n")
+    _, _, tail = rest.partition(end)
+
+    cards = []
+    for i, a in enumerate(_newest_first(ARTICLES)[:HOME_CARD_COUNT]):
+        cls = "post-card reveal" if i == 0 else f"post-card reveal reveal-d{i}"
+        cards.append(
+            f'      <a class="{cls}" href="{a["slug"]}.html">\n'
+            f'        <h3>{a["title"]}</h3>\n'
+            f'        <p>{a["desc"]}</p>\n'
+            f'        <div class="pc-meta">{a["eyebrow"]} · {a["date"]}</div>\n'
+            f'      </a>'
+        )
+
+    block = start + marker_line + "\n" + "\n".join(cards) + "\n      " + end
+    with io.open(path, "w", encoding="utf-8") as f:
+        f.write(head + block + tail)
+    print(path)
+
 with io.open("blog.html", "w", encoding="utf-8") as f:
     f.write(list_html())
 print("blog.html")
+update_index_cards()
 for a in ARTICLES:
     with io.open(a["slug"] + ".html", "w", encoding="utf-8") as f:
         f.write(article_html(a))
