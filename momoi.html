@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Momoi — AI 기반 업무 관리 — LightOn Plus Lab</title>
-<meta name="description" content="Momoi — 통화 녹음을 올리면 AI가 자동으로 요약·할 일·일정을 추출하는 AI 인박스 + 캘린더." />
+<title>모모아이 Momoi — AI 통화 요약·회의록 앱 — LightOn Plus Lab</title>
+<meta name="description" content="모모아이 Momoi — 통화·회의 녹음을 올리면 AI가 전사·요약·할 일·일정을 자동으로 정리합니다. Google Play와 웹에서 사용하세요." />
 <meta property="og:title" content="Momoi — LightOn Plus Lab" />
 <meta property="og:type" content="website" />
-<meta property="og:description" content="Momoi — 통화 녹음을 올리면 AI가 자동으로 요약·할 일·일정을 추출하는 AI 인박스 + 캘린더." />
+<meta property="og:description" content="모모아이 Momoi — 통화·회의 녹음을 올리면 AI가 전사·요약·할 일·일정을 자동으로 정리합니다. Google Play와 웹에서 사용하세요." />
 <meta property="og:url" content="https://lightonpluslab.com/momoi.html" />
 <meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -76,8 +76,12 @@
 .tag code{font-family:var(--f-mono);color:var(--mint);font-size:12px;padding:4px 10px;background:rgba(45,212,191,.08);border-radius:6px;border:1px solid rgba(45,212,191,.2)}
 
 .act-row{display:flex;gap:10px;flex-wrap:wrap}
+.grp{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1040px;margin:0 auto}
+.grp-card{padding:28px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);transition:background .25s,border-color .25s}
+.grp-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover)}
+.grp-t{font-size:16px;font-weight:600;margin-bottom:14px}
 
-@media(max-width:900px){.detail-grid{grid-template-columns:1fr}}
+@media(max-width:900px){.detail-grid{grid-template-columns:1fr}.grp{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -90,14 +94,13 @@
       <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
             <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
     </a>
-    <nav class="nav-links" aria-label="메뉴">
-      <a href="services.html">Services</a>
-      <a href="products.html">Work</a>
-      <a href="blog.html">Blog</a>
-      <a href="momoi.html">Momoi</a>
-      <a href="about.html">Studio</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+<nav class="nav-links" aria-label="메뉴">
+<a href="products.html">Apps</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">Studio</a>
+<a href="contact.html">Contact</a>
+</nav>
     <a class="nav-cta" href="contact.html">Launch Lab
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -107,28 +110,25 @@
   </div>
 </header>
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-  <a href="services.html">Services</a>
-  <a href="products.html">Work</a>
-  <a href="blog.html">Blog</a>
-  <a href="momoi.html">Momoi</a>
-  <a href="about.html">Studio</a>
-  <a href="contact.html">Contact</a>
-  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+<a href="products.html">Apps</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">Studio</a>
+<a href="contact.html">Contact</a>
+<a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
 <main id="main">
 
 <section class="page-hero">
   <div class="wrap">
-    <span class="eyebrow reveal">Flagship Product</span>
+    <span class="eyebrow reveal">Google Play · 생산성</span>
     <h1 class="reveal reveal-d1">Momoi — <em>AI 업무 관리</em></h1>
-    <p class="reveal reveal-d2">LightOn Plus Lab이 직접 만들고 운영 중인 프로덕트. 통화 녹음을 올리면 AI가 자동으로 요약하고 할 일·일정을 추출합니다.</p>
+    <p class="reveal reveal-d2">라이트온 플러스 랩이 직접 만들고 운영하는 프로덕트. 통화·회의 녹음을 올리면 AI가 전사하고 요약·할 일·일정을 자동으로 만들어 줍니다.</p>
     <div class="act-row reveal reveal-d3" style="justify-content:center;margin-top:32px">
-      <a class="btn btn-primary" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener">
-        Momoi 사용해보기
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a class="btn btn-ghost" href="https://momoi.lightonpluslab.com/guide" target="_blank" rel="noopener">사용 가이드</a>
+      <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play에서 받기</a>
+      <a class="btn-sm" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener">웹에서 쓰기</a>
+      <a class="btn-sm" href="https://momoi.lightonpluslab.com/guide" target="_blank" rel="noopener">사용 가이드</a>
     </div>
   </div>
 </section>
@@ -138,15 +138,15 @@
     <div class="detail-grid">
       <div class="detail-card reveal">
         <div class="detail-head">
-          <div class="detail-title">Momoi</div>
+          <div class="detail-title">모모아이 Momoi - AI 통화 요약, 회의록</div>
           <span class="badge-live">Live</span>
         </div>
-        <div class="detail-desc">통화 녹음을 올리면 AI가 발신자·요약·할 일을 자동 추출합니다. 업무 메모와 메시지를 한곳에서 관리하는 AI 인박스.</div>
+        <div class="detail-desc">통화·회의 녹음을 올리면 AI가 전사·요약·액션 아이템까지 자동으로 만듭니다. 통화 속 일정은 캘린더에 자동 등록되고, 스크린샷과 붙여넣은 텍스트도 AI가 분류합니다.</div>
         <div class="kpi-inner">
-          <div class="cell"><b>통화 요약</b><span>녹음 업로드 → AI 자동 정리</span></div>
-          <div class="cell"><b>AI 분류</b><span>업무·개인·프로젝트 자동 분류</span></div>
-          <div class="cell"><b>캘린더</b><span>일정 자동 추출 &amp; 관리</span></div>
-          <div class="cell"><b>PWA</b><span>홈 화면 설치 &amp; 푸시</span></div>
+          <div class="cell"><b>통화 요약</b><span>녹음 업로드 → 전사 → 요약 자동</span></div>
+          <div class="cell"><b>회의 녹음</b><span>앱에서 마이크로 직접 녹음</span></div>
+          <div class="cell"><b>캘린더</b><span>일정 자동 등록 + 리마인더</span></div>
+          <div class="cell"><b>스크린샷 AI</b><span>캡처에서 마감일·우선순위 추출</span></div>
         </div>
       </div>
       <div class="detail-card reveal reveal-d1">
@@ -154,11 +154,11 @@
           <div class="detail-title">주요 기능</div>
         </div>
         <div class="feat-list">
-          <div><span class="dot"></span>통화 녹음 파일 자동 전사 &amp; 핵심 요약</div>
-          <div><span class="dot"></span>AI가 발신자·일정·액션 아이템 자동 추출</div>
-          <div><span class="dot"></span>업무·개인·프로젝트 스마트 분류</div>
-          <div><span class="dot"></span>37개국 공휴일 포함 캘린더</div>
-          <div><span class="dot"></span>모바일 최적화 PWA (홈 화면 설치)</div>
+          <div><span class="dot"></span>녹음 업로드 → AI 전사 → 요약 → 액션 아이템 자동 생성</div>
+          <div><span class="dot"></span>화자별 전사로 누가 무슨 말을 했는지 구분</div>
+          <div><span class="dot"></span>통화 속 일정을 캘린더에 자동 등록 + 리마인더</div>
+          <div><span class="dot"></span>스크린샷·이메일·메시지 텍스트도 AI가 프로젝트·마감일로 분류</div>
+          <div><span class="dot"></span>37개국 공휴일 캘린더 · 다크 모드 · PWA 홈 화면 설치</div>
         </div>
         <div class="tag">
           <div>
@@ -174,9 +174,32 @@
 
 <section>
   <div class="wrap">
+    <div class="section-title reveal">최근 업데이트</div>
+    <div class="section-desc reveal reveal-d1">2026년 8월 12일 릴리스에 반영된 내용입니다.</div>
+    <div class="grp">
+      <div class="grp-card reveal">
+        <div class="grp-t">새로 추가된 기능</div>
+        <div class="feat-list">
+          <div><span class="dot"></span>앱 내에서 마이크로 직접 회의 녹음 — AI가 회의록·할 일·일정까지 정리</div>
+        </div>
+      </div>
+      <div class="grp-card reveal">
+        <div class="grp-t">개선된 점</div>
+        <div class="feat-list">
+          <div><span class="dot"></span>큰 녹음 파일도 끊김 없이 업로드되도록 저장소 개선</div>
+          <div><span class="dot"></span>통화 요약에서 본인과 상대방을 정확히 구분</div>
+          <div><span class="dot"></span>짧은 녹음에서 빈 요약이 생성되던 문제 수정</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <div class="cta-block reveal">
-      <h2>Momoi와 비슷한 제품이 필요하신가요?</h2>
-      <p>AI 기반 업무 관리 앱을 커스텀 제작해드립니다. 24시간 내 회신.</p>
+      <h2>모모아이 같은 제품이 필요하신가요?</h2>
+      <p>AI 기반 업무 관리 앱을 커스텀 제작해 드립니다. 24시간 내 회신드립니다.</p>
       <a class="btn btn-primary" href="contact.html">
         상담 요청
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -199,18 +222,19 @@
         </div>
         <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
       </div>
-      <div class="footer-col">
-        <h5>Studio</h5>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="blog.html">Blog</a>
-        <a href="momoi.html">Momoi</a>
-      </div>
-      <div class="footer-col">
-        <h5>Work</h5>
-        <a href="products.html">Products</a>
-        <a href="contact.html">New project</a>
-      </div>
+<div class="footer-col">
+<h5>Studio</h5>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+</div>
+<div class="footer-col">
+<h5>Work</h5>
+<a href="products.html">전체 앱</a>
+<a href="momoi.html">모모아이</a>
+<a href="lighton-ai-note.html">라이트온 AI 노트</a>
+<a href="contact.html">New project</a>
+</div>
       <div class="footer-col">
         <h5>Reach out</h5>
         <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>

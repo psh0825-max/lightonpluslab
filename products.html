@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>앱 목록 — LightOn Plus Lab | AI 앱 모음</title>
-<meta name="description" content="LightOn Plus Lab이 만든 AI 앱 전체 목록. 생산성·교육·가족·크리에이티브·업무·생활 카테고리별로 살펴보세요." />
+<title>앱 목록 — LightOn Plus Lab | Google Play 앱 & 웹 앱</title>
+<meta name="description" content="LightOn Plus Lab이 만든 앱 전체 목록. Google Play 출시 앱 3종과 웹에서 바로 쓰는 AI 앱들을 카테고리별로 살펴보세요." />
 <meta property="og:title" content="앱 목록 — LightOn Plus Lab" />
 <meta property="og:type" content="website" />
-<meta property="og:description" content="LightOn Plus Lab이 만든 AI 앱 전체 목록. 생산성·교육·가족·크리에이티브·업무·생활 카테고리별로 살펴보세요." />
+<meta property="og:description" content="LightOn Plus Lab이 만든 앱 전체 목록. Google Play 출시 앱 3종과 웹에서 바로 쓰는 AI 앱들을 카테고리별로 살펴보세요." />
 <meta property="og:url" content="https://lightonpluslab.com/products.html" />
 <meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -69,12 +69,16 @@
   padding:3px 8px;border-radius:5px;
 }
 .app-mark.live{background:rgba(45,212,191,.12);color:var(--mint);border:1px solid rgba(45,212,191,.28)}
+.app-mark.play{background:rgba(45,212,191,.14);color:var(--mint);border:1px solid rgba(45,212,191,.34)}
 .app-mark.soon{background:rgba(167,139,250,.12);color:var(--purple);border:1px solid rgba(167,139,250,.28)}
 .app-mark.free{background:rgba(34,211,238,.12);color:var(--cyan);border:1px solid rgba(34,211,238,.28)}
 .app-mark.paid{background:rgba(244,114,182,.12);color:var(--pink);border:1px solid rgba(244,114,182,.28)}
 .app-name{font-size:16px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
 .app-desc{font-size:13px;color:var(--text-3);line-height:1.65;margin-bottom:10px}
 .app-price{font-family:var(--f-mono);font-size:11px;color:var(--text-4);line-height:1.6}
+.app-icon{width:40px;height:40px;border-radius:10px;flex:0 0 auto;box-shadow:0 0 0 1px rgba(255,255,255,.09)}
+.app-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.app-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 
 @media(max-width:960px){.app-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.app-grid{grid-template-columns:1fr}}
@@ -90,14 +94,13 @@
       <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
             <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
     </a>
-    <nav class="nav-links" aria-label="메뉴">
-      <a href="services.html">Services</a>
-      <a href="products.html">Work</a>
-      <a href="blog.html">Blog</a>
-      <a href="momoi.html">Momoi</a>
-      <a href="about.html">Studio</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+<nav class="nav-links" aria-label="메뉴">
+<a href="products.html">Apps</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">Studio</a>
+<a href="contact.html">Contact</a>
+</nav>
     <a class="nav-cta" href="contact.html">Launch Lab
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -107,13 +110,12 @@
   </div>
 </header>
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-  <a href="services.html">Services</a>
-  <a href="products.html">Work</a>
-  <a href="blog.html">Blog</a>
-  <a href="momoi.html">Momoi</a>
-  <a href="about.html">Studio</a>
-  <a href="contact.html">Contact</a>
-  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+<a href="products.html">Apps</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">Studio</a>
+<a href="contact.html">Contact</a>
+<a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
 <main id="main">
@@ -122,12 +124,38 @@
   <div class="wrap">
     <span class="eyebrow reveal">Work</span>
     <h1 class="reveal reveal-d1">AI 앱을 <em>카테고리</em>별로</h1>
-    <p class="reveal reveal-d2">각 앱을 클릭하면 바로 사용할 수 있습니다. 새로운 앱은 계속 추가됩니다.</p>
+    <p class="reveal reveal-d2">Google Play에 출시한 앱 3종과, 웹에서 바로 쓸 수 있는 앱들입니다. 카드를 누르면 바로 이동합니다.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
+
+    <!-- Google Play 출시 앱 -->
+    <div class="cat-block">
+      <div class="cat-head reveal">
+        <div class="cat-ico mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4z" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="cat-title">Google Play 출시 앱</div>
+        <div class="cat-count">03 APPS</div>
+      </div>
+      <div class="app-grid">
+        <div class="app-item reveal">
+          <div class="app-top"><img class="app-icon" src="img/app-momoi.png" alt="" width="40" height="40" loading="lazy" /><div style="flex:1;min-width:0"><div class="app-row" style="margin-bottom:6px"><div class="app-name">모모아이 Momoi</div><span class="app-mark play">Play</span></div><div class="app-price">생산성 · 인앱 구매 · 업데이트 2026.08.12</div></div></div>
+          <div class="app-desc">통화·회의 녹음을 올리면 AI가 전사·요약·액션 아이템을 만들고, 통화 속 일정은 캘린더에 자동 등록합니다. 화자별 전사와 스크린샷 분석까지.</div>
+          <div class="app-links"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa" target="_blank" rel="noopener">Google Play</a><a class="btn-sm" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener">웹에서 쓰기</a><a class="btn-sm" href="momoi.html">자세히</a></div>
+        </div>
+        <div class="app-item reveal">
+          <div class="app-top"><img class="app-icon" src="img/app-songbit.png" alt="" width="40" height="40" loading="lazy" /><div style="flex:1;min-width:0"><div class="app-row" style="margin-bottom:6px"><div class="app-name">송빗 Songbit</div><span class="app-mark play">Play</span></div><div class="app-price">음악·오디오 · 인앱 구매 · 업데이트 2026.08.12</div></div></div>
+          <div class="app-desc">장르·분위기·키워드만 고르면 AI가 가사부터 보컬 완곡까지 만들어 줍니다. 음색과 곡 언어(한국어·한+영·영어)를 고를 수 있고, 첫 가입 시 무료 크레딧을 제공합니다.</div>
+          <div class="app-links"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener">Google Play</a><a class="btn-sm" href="https://songbit.lightonpluslab.com" target="_blank" rel="noopener">웹에서 쓰기</a></div>
+        </div>
+        <div class="app-item reveal">
+          <div class="app-top"><img class="app-icon" src="img/app-ainote.png" alt="" width="40" height="40" loading="lazy" /><div style="flex:1;min-width:0"><div class="app-row" style="margin-bottom:6px"><div class="app-name">라이트온 AI 노트</div><span class="app-mark play">Play</span></div><div class="app-price">교육 · 인앱 구매 · 업데이트 2026.08.10</div></div></div>
+          <div class="app-desc">강의를 녹음하면 정밀 모드가 화자를 구분해 전사하고, AI가 요약·플래시카드·퀴즈를 만들어 간격반복(SRS)으로 복습시켜 줍니다. 노트는 기기에 암호화 저장됩니다.</div>
+          <div class="app-links"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener">Google Play</a><a class="btn-sm" href="lighton-ai-note.html">자세히</a></div>
+        </div>
+      </div>
+    </div>
 
     <!-- 업무 관리 -->
     <div class="cat-block">
@@ -138,8 +166,9 @@
       </div>
       <div class="app-grid">
         <a class="app-item reveal" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener">
-          <div class="app-row"><div class="app-name">Momoi — AI 업무 관리</div><span class="app-mark live">Live</span></div>
+          <div class="app-row"><div class="app-name">모모아이 Momoi — 웹</div><span class="app-mark live">Live</span></div>
           <div class="app-desc">통화 녹음 → AI가 요약·할 일·일정 자동 추출. AI 인박스 + 캘린더 + PWA.</div>
+          <div class="app-price">Google Play 앱은 위 출시 앱 섹션에서 받을 수 있습니다.</div>
         </a>
       </div>
     </div>
@@ -199,9 +228,9 @@
           <div class="app-desc">마음을 말하면 AI가 성경 구절을 찾아줍니다. 음성 검색 + 31,088절 전문.</div>
         </a>
         <a class="app-item reveal reveal-d2" href="lighton-ai-note.html">
-          <div class="app-row"><div class="app-name">라이트온 AI 노트</div><span class="app-mark soon">Play Beta</span></div>
-          <div class="app-desc">강의를 녹음하면 AI가 전사·요약·핵심 포인트·용어사전을 자동 생성. 노트 기반 Q&amp;A까지 지원.</div>
-          <div class="app-price">무료 · Android 앱 Google Play 테스트 진행 중</div>
+          <div class="app-row"><div class="app-name">라이트온 AI 노트</div><span class="app-mark play">Play</span></div>
+          <div class="app-desc">강의를 녹음하면 정밀 모드가 화자를 구분해 전사하고, AI가 요약·플래시카드·퀴즈를 만들어 간격반복(SRS)으로 복습시켜 줍니다.</div>
+          <div class="app-price">무료 설치 · 인앱 구매 · Google Play 출시</div>
         </a>
       </div>
     </div>
@@ -232,7 +261,7 @@
         <a class="app-item reveal" href="https://songbit.lightonpluslab.com" target="_blank" rel="noopener">
           <div class="app-row"><div class="app-name">SongBit — AI 뮤직 스튜디오</div><span class="app-mark paid">Paid</span></div>
           <div class="app-desc">장르·분위기만 고르면 AI가 작사부터 보컬 곡까지 2~3분 만에 완성. 악보·뮤직비디오 생성, MP3 다운로드·공유 지원.</div>
-          <div class="app-price">충전식 · ₩5,000 (11곡) · ₩10,000 (23곡) · ₩30,000 (70곡)</div>
+          <div class="app-price">충전식 · ₩5,000 (11곡) · ₩10,000 (23곡) · ₩30,000 (70곡) · 앱은 Google Play</div>
         </a>
       </div>
     </div>
@@ -304,18 +333,19 @@
         </div>
         <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
       </div>
-      <div class="footer-col">
-        <h5>Studio</h5>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="blog.html">Blog</a>
-        <a href="momoi.html">Momoi</a>
-      </div>
-      <div class="footer-col">
-        <h5>Work</h5>
-        <a href="products.html">Products</a>
-        <a href="contact.html">New project</a>
-      </div>
+<div class="footer-col">
+<h5>Studio</h5>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+</div>
+<div class="footer-col">
+<h5>Work</h5>
+<a href="products.html">전체 앱</a>
+<a href="momoi.html">모모아이</a>
+<a href="lighton-ai-note.html">라이트온 AI 노트</a>
+<a href="contact.html">New project</a>
+</div>
       <div class="footer-col">
         <h5>Reach out</h5>
         <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
