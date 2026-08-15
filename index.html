@@ -15,308 +15,155 @@
 <link rel="canonical" href="https://lightonpluslab.com/" />
 <link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
 <meta property="og:url" content="https://lightonpluslab.com/" />
-<meta name="theme-color" content="#050814" />
+<meta name="theme-color" content="#FBFAF8" />
 <link rel="icon" href="logo-new.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=6b02aa3b" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
 <style>
-/* ========================================================
-   index-specific styles (hero + brain + sections)
-   ======================================================== */
-/* Full-bleed hero — canvas background + gradient overlay + text overlay */
-main{display:flex;flex-direction:column}
-.hero{order:1}.kpi-section{order:2}#apps{order:3}#trust{order:4}#stack{order:5}#work{order:6}#services{order:7}#contact{order:8}
-.hero{
-  position:relative;
-  min-height:clamp(660px,88vh,900px);
-  display:flex;align-items:center;
-  padding:64px 0 88px;
-  overflow:hidden;
-  isolation:isolate;
-}
-.hero-bg{
-  position:absolute;inset:0;z-index:-2;
-  pointer-events:auto;
-}
-#brain-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero-overlay{
-  position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:
-    linear-gradient(90deg,
-      rgba(5,8,20,.96) 0%,
-      rgba(5,8,20,.82) 34%,
-      rgba(5,8,20,.34) 67%,
-      rgba(5,8,20,.18) 100%
-    ),
-    linear-gradient(180deg,
-      rgba(5,8,20,.35) 0%,
-      transparent 25%,
-      transparent 75%,
-      rgba(5,8,20,.55) 100%
-    );
-}
-.hero-content{
-  position:relative;z-index:1;
-  max-width:670px;
-  display:flex;flex-direction:column;align-items:flex-start;
-}
-.hero-grid{
-  width:100%;
-  display:grid;
-  grid-template-columns:minmax(0, 1fr) minmax(280px, .82fr);
-  align-items:center;
-  gap:clamp(28px,6vw,88px);
-}
-.hero-grid > *{min-width:0}
+/* 홈 전용 — 공용 시스템(styles.css) 위에 얹는 레이아웃 */
+
+/* 히어로 — 배경 연출 없이 타이포와 제품으로 연다 */
+.hero{position:static;min-height:0;display:block;padding:clamp(52px,6.5vw,88px) 0 0;overflow:visible;isolation:auto}
+.hero-grid{display:block;width:100%}
+.hero-content{max-width:none;display:block}
 .hero-title{
-  margin:22px 0 24px;
-  font-size:clamp(44px,6vw,82px);
-  font-weight:800;
-  letter-spacing:0;
-  line-height:1.08;
-  word-break:keep-all;
-  text-shadow:0 2px 20px rgba(0,0,0,.35);
+  margin:16px 0 20px;font-size:var(--t-display);font-weight:700;
+  letter-spacing:-.035em;line-height:1.18;max-width:15ch;
+  word-break:keep-all;text-shadow:none;
 }
 .hero-title .line{display:block}
-.hero-title em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--cyan) 0%,var(--purple) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  letter-spacing:0;
-}
-.hero-sub{
-  color:var(--text-2);font-size:clamp(15px,1.18vw,18px);
-  line-height:1.72;max-width:46ch;margin-bottom:32px;
-  word-break:keep-all;
-  text-shadow:0 1px 12px rgba(0,0,0,.4);
-}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.hero-proof{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:10px;
-  width:min(100%,560px);
-  margin-top:28px;
-}
+.hero-title em{font-style:normal;background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--ink);letter-spacing:inherit}
+.hero-sub{color:var(--ink-2);font-size:var(--t-lead);line-height:1.8;max-width:47ch;margin-bottom:28px;word-break:keep-all;text-shadow:none}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.hero-proof{display:flex;flex-wrap:wrap;gap:7px 20px;width:auto;margin-top:24px}
 .hero-proof span{
-  display:flex;align-items:center;gap:8px;
-  min-height:42px;padding:10px 12px;border-radius:10px;
-  background:rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.08);
-  color:var(--text-2);font-size:12.5px;
+  display:inline-flex;align-items:center;gap:7px;min-height:0;
+  padding:0;border:0;background:none;border-radius:0;
+  color:var(--ink-3);font-size:var(--t-xs);
 }
-.hero-proof span::before{
-  content:"";width:6px;height:6px;border-radius:50%;
-  background:var(--mint);box-shadow:0 0 12px var(--mint);
-  flex:0 0 auto;
-}
-.signal-rail{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:10px;margin-top:28px;width:min(100%,640px);
-}
-.signal-step{
-  min-height:64px;padding:12px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:12px;
-  background:rgba(255,255,255,.035);
-}
-.signal-step b{
-  display:block;margin-bottom:5px;
-  font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--cyan);
-}
-.signal-step span{font-size:12px;color:var(--text-2);line-height:1.4;word-break:keep-all}
-.hero-apps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:26px;width:min(100%,600px)}
-.hero-app{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);transition:background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease)}
-.hero-app:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);transform:translateY(-2px)}
-.hero-app img{width:30px;height:30px;border-radius:8px;flex:0 0 auto}
-.hero-app b{display:block;font-size:12.5px;font-weight:600;color:var(--text);line-height:1.3}
-.hero-app span{display:block;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-4);margin-top:2px}
-.mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
-.rail-center{margin-left:auto;margin-right:auto;width:min(100%,860px)}
+.hero-proof span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink-4);box-shadow:none;flex:0 0 auto}
 
-.brain-badge{
-  position:absolute;top:28px;right:32px;z-index:1;
-  font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--cyan);
-  display:flex;align-items:center;gap:8px;
-  background:rgba(5,8,20,.6);
-  padding:6px 12px;border-radius:999px;
-  border:1px solid rgba(34,211,238,.3);
-  backdrop-filter:blur(8px);
+/* 제품 세 줄이 곧 히어로 이미지다 */
+.hero-apps{display:block;width:100%;margin-top:46px;border-top:1px solid var(--ink)}
+.hero-app{
+  display:grid;grid-template-columns:44px minmax(0,1fr) auto auto;
+  align-items:center;gap:16px;padding:17px 4px;
+  background:none;border:0;border-bottom:1px solid var(--rule);border-radius:0;
+  transition:background .18s var(--ease);
 }
-.brain-badge::before{
-  content:"";width:6px;height:6px;border-radius:50%;
-  background:var(--cyan);box-shadow:0 0 8px var(--cyan);
-  animation:pulse 2s var(--ease) infinite;
-}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero-app:hover{background:var(--paper-2);border-color:var(--rule);transform:none}
+.hero-app img{width:44px;height:44px;border-radius:10px;box-shadow:0 1px 2px rgba(26,25,23,.10)}
+.hero-app b{display:block;font-size:16px;font-weight:600;letter-spacing:-.022em;color:var(--ink);line-height:1.4}
+.hero-app .cat{font-size:var(--t-xs);color:var(--ink-3);letter-spacing:0;text-transform:none;white-space:nowrap}
+.hero-app .go{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-sm);font-weight:600;color:var(--ink);white-space:nowrap}
+.hero-app .go svg{width:12px;height:12px;stroke-width:2;transition:transform .18s var(--ease)}
+.hero-app:hover .go svg{transform:translate(2px,-2px)}
 
-/* KPI row */
-.kpi-section{padding:56px 0 24px}
-.kpi-row{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;
-}
-.kpi{
-  padding:24px 22px 22px;
-  border-radius:12px;
-  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
-  border:1px solid var(--panel-border);
-  transition:background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease);
-}
-.kpi:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
-.kpi-num{
-  font-size:34px;font-weight:700;letter-spacing:0;line-height:1.05;
-  margin-bottom:10px;
-  font-variant-numeric:tabular-nums;
-}
-.kpi-num span[data-counter]{font-weight:800}
-.kpi.mint .kpi-num{color:var(--mint)}
-.kpi.purple .kpi-num{color:var(--purple)}
-.kpi.pink .kpi-num{color:var(--pink)}
-.kpi.amber .kpi-num{color:var(--amber)}
-.kpi-label{font-family:var(--f-mono);font-size:10.5px;font-weight:600;color:var(--text-2);margin-bottom:8px;text-transform:uppercase;letter-spacing:.14em}
-.kpi-note{font-size:12px;color:var(--text-4);line-height:1.6}
+/* 숫자 — 카드가 아니라 선으로 나눈 표 */
+.kpi-section{padding:clamp(36px,4.5vw,60px) 0}
+.kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.kpi{padding:26px 22px 26px 0;background:none;border:0;border-right:1px solid var(--rule);border-radius:0;transition:none}
+.kpi:last-child{border-right:0}
+.kpi:not(:first-child){padding-left:22px}
+.kpi:hover{background:none;border-color:var(--rule);transform:none}
+.kpi-num{font-size:clamp(28px,3.2vw,36px);font-weight:700;letter-spacing:-.038em;line-height:1.1;margin-bottom:9px;color:var(--ink);font-variant-numeric:tabular-nums}
+.kpi.mint .kpi-num,.kpi.purple .kpi-num,.kpi.pink .kpi-num,.kpi.amber .kpi-num{color:var(--ink)}
+.kpi-num .unit{font-size:.5em;font-weight:600;margin-left:3px;letter-spacing:-.01em}
+.kpi-num span[data-counter]{font-weight:700}
+.kpi-label{font-family:var(--f-sans);font-size:var(--t-sm);font-weight:600;color:var(--ink);margin-bottom:5px;text-transform:none;letter-spacing:-.01em}
+.kpi-note{font-size:var(--t-xs);color:var(--ink-3);line-height:1.65}
 
-/* What We Build 4-up */
-.feat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.feat{padding:24px;border-radius:12px;background:var(--panel);border:1px solid var(--panel-border);transition:background .25s,border-color .25s,transform .25s}
-.feat:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
-.feat-title{font-size:15px;font-weight:600;margin-bottom:6px;letter-spacing:0}
-.feat-desc{font-size:12.5px;color:var(--text-3);line-height:1.6}
+/* 의뢰 섹션의 4단계 */
+.signal-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:0;width:100%;margin-top:0;border-top:1px solid var(--rule)}
+.signal-step{min-height:0;padding:20px 18px 20px 0;background:none;border:0;border-right:1px solid var(--rule);border-radius:0}
+.signal-step:last-child{border-right:0}
+.signal-step:not(:first-child){padding-left:18px}
+.signal-step b{display:block;margin-bottom:5px;font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:0;text-transform:none;color:var(--ink-3);font-weight:600}
+.signal-step span{font-size:var(--t-sm);color:var(--ink-2);line-height:1.6;word-break:keep-all}
+.rail-center{margin:0 0 40px;width:100%}
 
-/* Tech stack 2x2 */
-.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:960px;margin:0 auto}
-.stack-card{padding:28px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);transition:background .25s,border-color .25s}
-.stack-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover)}
-.stack-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-.stack-head .ibadge{margin:0;width:36px;height:36px;border-radius:10px}
-.stack-head .ibadge svg{width:16px;height:16px}
-.stack-title{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text)}
-.stack-rows{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:13px}
-.stack-k{color:var(--text-3);white-space:nowrap}
-.stack-v{color:var(--text);font-family:var(--f-mono);font-size:12px}
+/* 의뢰 4항목 */
+.feat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--rule)}
+.feat{padding:24px 20px 24px 0;background:none;border:0;border-right:1px solid var(--rule);border-radius:0;transition:none}
+.feat:last-child{border-right:0}
+.feat:not(:first-child){padding-left:20px}
+.feat:hover{background:none;border-color:var(--rule);transform:none}
+.feat .ibadge{width:28px;height:28px;margin-bottom:12px}
+.feat .ibadge svg{width:14px;height:14px}
+.feat-title{font-size:15px;font-weight:600;margin-bottom:7px;letter-spacing:-.02em}
+.feat-desc{font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
 
-/* Selected Projects — editorial, typography-first, no banner image */
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.proj{
-  position:relative;
-  border-radius:12px;
-  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.025));
-  border:1px solid var(--panel-border);
-  transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
-  padding:24px 26px 26px;
-  display:block;
-}
-.proj:hover{
-  transform:translateY(-3px);
-  border-color:var(--panel-border-hover);
-  background:var(--panel-hover);
-}
-.proj-meta{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:20px;
-  font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--text-4);
-}
-.proj-tag{
-  padding:3px 9px;border-radius:5px;
-  font-weight:600;
-  background:rgba(45,212,191,.12);color:var(--mint);
-  border:1px solid rgba(45,212,191,.28);
-}
-.proj-head{
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:12px;
-}
-.proj-mark{
-  width:40px;height:40px;border-radius:10px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  display:grid;place-items:center;flex-shrink:0;
-  color:var(--proj-accent-text, var(--mint));
-  transition:transform .3s var(--ease);
-}
-.proj:hover .proj-mark{transform:scale(1.06)}
-.proj-mark svg{width:18px;height:18px;stroke-width:1.8}
-.proj-name{font-size:20px;font-weight:700;letter-spacing:0;color:var(--text);line-height:1.2}
-.proj-desc{font-size:13.5px;color:var(--text-3);line-height:1.65}
-.proj-arrow{
-  position:absolute;top:22px;right:24px;
-  width:28px;height:28px;border-radius:8px;
-  display:grid;place-items:center;
-  color:var(--text-4);
-  opacity:0;transform:translate(-4px,4px);
-  transition:opacity .25s var(--ease),transform .25s var(--ease),color .25s var(--ease);
-}
-.proj:hover .proj-arrow{opacity:1;transform:translate(0,0);color:var(--mint)}
-.proj-arrow svg{width:14px;height:14px;stroke-width:2}
-.proj-media{
-  position:relative;
-  margin:-24px -26px 20px;
-  border-radius:12px 12px 0 0;
-  overflow:hidden;
-  aspect-ratio:16/9;
-  background:#070b18;
-  border-bottom:1px solid var(--panel-border);
-}
-.proj-media video{
-  width:100%;height:100%;object-fit:cover;display:block;
-  opacity:.9;
-  transition:transform .6s var(--ease),opacity .3s var(--ease);
-}
-.proj:hover .proj-media video{transform:scale(1.045);opacity:1}
-.proj-media::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(5,8,20,0) 55%,rgba(5,8,20,.45) 100%);
-}
-.post-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.post-card{display:block;padding:24px 26px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);transition:background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease)}
-.post-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
-.post-card h3{font-size:17px;font-weight:600;letter-spacing:0;margin:0 0 8px;line-height:1.4;word-break:keep-all}
-.post-card p{font-size:13.5px;color:var(--text-3);line-height:1.7;margin:0 0 12px;word-break:keep-all}
-.post-card .pc-meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--text-4)}
+/* 기술 구성 — 카드 대신 정의 목록 */
+.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,5vw,72px);max-width:none;margin:0;border-top:1px solid var(--rule)}
+.stack-card{padding:22px 0;background:none;border:0;border-bottom:1px solid var(--rule);border-radius:0;transition:none}
+.stack-card:hover{background:none;border-color:var(--rule)}
+.stack-head{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.stack-head .ibadge{display:none}
+.stack-title{font-family:var(--f-sans);font-size:16px;font-weight:700;letter-spacing:-.022em;text-transform:none;color:var(--ink)}
+.stack-rows{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-size:var(--t-sm)}
+.stack-k{color:var(--ink-3);white-space:nowrap}
+.stack-v{color:var(--ink);font-family:var(--f-sans);font-size:var(--t-sm)}
+
+/* 그 밖의 서비스 */
+.proj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.proj{position:relative;display:block;padding:0;background:none;border:0;border-radius:0;transition:none}
+.proj:hover{transform:none;background:none;border-color:transparent}
+.proj-media{position:relative;margin:0 0 14px;border-radius:8px;overflow:hidden;aspect-ratio:16/10;background:var(--paper-2);border:1px solid var(--rule)}
+.proj-media video{width:100%;height:100%;object-fit:cover;opacity:1;transition:none}
+.proj:hover .proj-media video{transform:none;opacity:1}
+.proj-media::after{display:none}
+.proj-meta{display:flex;align-items:center;gap:9px;margin-bottom:8px;font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:0;text-transform:none;color:var(--ink-3)}
+.proj-tag{padding:0;border-radius:0;font-weight:600;background:none!important;color:var(--accent)!important;border:0!important}
+.proj-head{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.proj-mark{display:none}
+.proj-name{font-size:17px;font-weight:700;letter-spacing:-.024em;color:var(--ink);line-height:1.35}
+.proj-desc{font-size:var(--t-sm);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+.proj-arrow{display:none}
+.mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:42px;border-top:1px solid var(--rule)}
+.mini-grid .proj{padding:20px 20px 20px 0;border-right:1px solid var(--rule)}
+.mini-grid .proj:last-child{border-right:0}
+.mini-grid .proj:not(:first-child){padding-left:20px}
+
+/* 글 — 카드 세 장이 아니라 목록 세 줄 */
+.post-grid{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink)}
+.post-card{display:block;padding:22px 4px;background:none;border:0;border-bottom:1px solid var(--rule);border-radius:0;transition:background .18s var(--ease)}
+.post-card:hover{background:var(--paper-2);border-color:var(--rule);transform:none}
+.post-card h3{font-size:18px;font-weight:600;margin:0 0 7px;line-height:1.45;letter-spacing:-.024em;color:var(--ink);word-break:keep-all}
+.post-card p{font-size:var(--t-sm);color:var(--ink-3);line-height:1.7;margin:0 0 9px;max-width:64ch;word-break:keep-all}
+.post-card .pc-meta{font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:0;color:var(--ink-3)}
 
 @media(max-width:960px){
-  .hero{min-height:auto;padding:52px 0 64px}
-  .hero-grid{grid-template-columns:1fr;gap:24px}
-  .hero-overlay{
-    background:
-      linear-gradient(180deg,
-        rgba(5,8,20,.55) 0%,
-        rgba(5,8,20,.85) 55%,
-        rgba(5,8,20,.95) 100%
-      );
-  }
-  .hero-content{max-width:100%}
-  .brain-badge{top:20px;right:20px}
-  .kpi-row{grid-template-columns:1fr 1fr;gap:12px}
-  .feat-grid{grid-template-columns:1fr 1fr}
+  .hero-title{max-width:none}
+  .kpi-row{grid-template-columns:1fr 1fr;border-bottom:0}
+  .kpi{border-bottom:1px solid var(--rule)}
+  .kpi:nth-child(2n){border-right:0;padding-left:22px}
+  .kpi:nth-last-child(-n+2){border-bottom:0}
+  .feat-grid,.signal-rail{grid-template-columns:1fr 1fr}
+  .feat:nth-child(2n),.signal-step:nth-child(2n){border-right:0}
+  .feat:nth-child(n+3),.signal-step:nth-child(n+3){border-top:1px solid var(--rule)}
+  .feat:nth-child(2n),.signal-step:nth-child(2n){padding-left:20px}
   .stack-grid{grid-template-columns:1fr}
-  .proj-grid{grid-template-columns:1fr}
-  .mini-grid{grid-template-columns:1fr 1fr}
-  .post-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:560px){
-  .brain-badge{display:none}
-  .hero-title{font-size:clamp(34px,10.2vw,42px);line-height:1.14}
-  .hero-sub{max-width:100%;overflow-wrap:anywhere}
-  .hero-actions{width:100%;max-width:calc(100vw - 40px);display:grid;grid-template-columns:1fr}
-  .hero-actions .btn{justify-content:center;width:100%}
-  .hero-proof{grid-template-columns:1fr;max-width:calc(100vw - 40px)}
-  .signal-rail{grid-template-columns:1fr 1fr;max-width:calc(100vw - 40px)}
-  .hero-apps{grid-template-columns:1fr;max-width:calc(100vw - 40px)}
+  .proj-grid{grid-template-columns:1fr 1fr}
   .mini-grid{grid-template-columns:1fr}
-  .post-grid{grid-template-columns:1fr}
+  .mini-grid .proj{border-right:0;border-bottom:1px solid var(--rule);padding-left:0}
+  .mini-grid .proj:last-child{border-bottom:0}
+}
+@media(max-width:600px){
+  .hero-app{grid-template-columns:38px minmax(0,1fr) auto;gap:13px}
+  .hero-app img{width:38px;height:38px}
+  .hero-app .cat{display:none}
+  .hero-actions{display:grid;grid-template-columns:1fr}
+  .hero-actions .btn{justify-content:center}
   .kpi-row{grid-template-columns:1fr}
-  .feat-grid{grid-template-columns:1fr}
-  .stack-rows{grid-template-columns:1fr;gap:4px 0}
+  .kpi{border-right:0;padding-left:0!important}
+  .feat-grid,.signal-rail{grid-template-columns:1fr}
+  .feat,.signal-step{border-right:0;border-top:1px solid var(--rule);padding-left:0!important}
+  .feat:first-child,.signal-step:first-child{border-top:0}
+  .proj-grid{grid-template-columns:1fr}
+  .stack-rows{grid-template-columns:1fr;gap:3px 0}
   .stack-k{white-space:normal}
 }
 </style>
@@ -364,8 +211,6 @@ main{display:flex;flex-direction:column}
 </head>
 <body>
 
-<canvas id="starfield" aria-hidden="true"></canvas>
-<div class="page-glow" aria-hidden="true"></div>
 
 <!-- ============================================================
      NAV
@@ -407,22 +252,17 @@ main{display:flex;flex-direction:column}
 <main id="main">
 
 <!-- ============================================================
-     HERO — full-bleed visual + text overlay
+     HERO — 타이포와 제품 세 줄로 연다
      ============================================================ -->
 <section class="hero">
-  <div class="hero-bg">
-    <canvas id="brain-canvas" aria-hidden="true"></canvas>
-  </div>
-  <div class="hero-overlay" aria-hidden="true"></div>
-  <span class="brain-badge">Neural · Live</span>
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-content">
-        <span class="eyebrow reveal">Google Play · 3 Apps Live</span>
+        <span class="eyebrow reveal">라이트온 플러스 랩 · 경기 안양</span>
         <h1 class="hero-title reveal reveal-d1">
-          <span class="line">AI 앱을 만들고,</span>
-          <span class="line"><em>출시하고</em>,</span>
-          <span class="line">매일 고칩니다.</span>
+          <span class="line">앱을 만들어</span>
+          <span class="line"><em>플레이스토어에 올리고</em></span>
+          <span class="line">직접 운영합니다.</span>
         </h1>
         <p class="hero-sub reveal reveal-d2">
           라이트온 플러스 랩은 기획·개발·배포·운영을 혼자 끝내는 AI 앱 스튜디오입니다. 모모아이 · 송빗 · 라이트온 AI 노트 — 세 개의 앱이 지금 Google Play에서 서비스되고 있습니다.
@@ -443,9 +283,24 @@ main{display:flex;flex-direction:column}
           <span>최신 업데이트 2026.08</span>
         </div>
         <div class="hero-apps reveal reveal-d4">
-          <a class="hero-app" href="#apps"><img src="img/app-momoi.png" alt="" width="30" height="30" /><div><b>모모아이</b><span>생산성</span></div></a>
-          <a class="hero-app" href="#apps"><img src="img/app-songbit.png" alt="" width="30" height="30" /><div><b>송빗</b><span>음악·오디오</span></div></a>
-          <a class="hero-app" href="#apps"><img src="img/app-ainote.png" alt="" width="30" height="30" /><div><b>AI 노트</b><span>교육</span></div></a>
+          <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa" target="_blank" rel="noopener">
+            <img src="img/app-momoi.png" alt="" width="44" height="44" />
+            <b>모모아이</b>
+            <span class="cat">생산성</span>
+            <span class="go">Google Play<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener">
+            <img src="img/app-songbit.png" alt="" width="44" height="44" />
+            <b>송빗</b>
+            <span class="cat">음악·오디오</span>
+            <span class="go">Google Play<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener">
+            <img src="img/app-ainote.png" alt="" width="44" height="44" />
+            <b>라이트온 AI 노트</b>
+            <span class="cat">교육</span>
+            <span class="go">Google Play<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
         </div>
       </div>
     </div>
@@ -459,24 +314,24 @@ main{display:flex;flex-direction:column}
   <div class="wrap">
     <div class="kpi-row">
       <div class="kpi mint reveal">
-        <div class="kpi-num"><span data-counter="3">3</span> Apps</div>
-        <div class="kpi-label">GOOGLE PLAY</div>
-        <div class="kpi-note">모모아이 · 송빗 · 라이트온 AI 노트가 스토어에서 서비스 중입니다.</div>
+        <div class="kpi-num"><span data-counter="3">3</span><span class="unit">개</span></div>
+        <div class="kpi-label">Google Play 출시 앱</div>
+        <div class="kpi-note">모모아이 · 송빗 · 라이트온 AI 노트</div>
       </div>
       <div class="kpi purple reveal reveal-d1">
-        <div class="kpi-num"><span data-counter="3">3</span>분+</div>
-        <div class="kpi-label">SONGBIT</div>
-        <div class="kpi-note">키워드만 고르면 3분 이상 풀렝스 곡이 완성됩니다.</div>
+        <div class="kpi-num"><span data-counter="3">3</span><span class="unit">분+</span></div>
+        <div class="kpi-label">송빗이 만드는 곡 길이</div>
+        <div class="kpi-note">키워드만 고르면 풀렝스 완곡이 나옵니다</div>
       </div>
       <div class="kpi pink reveal reveal-d2">
-        <div class="kpi-num"><span data-counter="4">4</span>개 언어</div>
-        <div class="kpi-label">AI NOTE STT</div>
-        <div class="kpi-note">한국어·영어·중국어·일본어를 자동 인식해 전사합니다.</div>
+        <div class="kpi-num"><span data-counter="4">4</span><span class="unit">개</span></div>
+        <div class="kpi-label">AI 노트가 인식하는 언어</div>
+        <div class="kpi-note">한국어 · 영어 · 중국어 · 일본어</div>
       </div>
       <div class="kpi amber reveal reveal-d3">
-        <div class="kpi-num"><span data-counter="37">37</span>개국</div>
-        <div class="kpi-label">MOMOI CALENDAR</div>
-        <div class="kpi-note">모모아이 캘린더는 37개국 공휴일을 자동 표시합니다.</div>
+        <div class="kpi-num"><span data-counter="37">37</span><span class="unit">개국</span></div>
+        <div class="kpi-label">모모아이 캘린더 공휴일</div>
+        <div class="kpi-note">통화 속 일정이 자동 등록됩니다</div>
       </div>
     </div>
   </div>
@@ -499,7 +354,7 @@ main{display:flex;flex-direction:column}
      ============================================================ -->
 <section id="stack">
   <div class="wrap">
-    <h2 class="section-title reveal">Technology Stack</h2>
+    <h2 class="section-title reveal">기술 구성</h2>
     <p class="section-desc reveal reveal-d1">
       실제로 이 앱들이 돌아가는 구성입니다. 쓰지 않는 기술은 적지 않습니다.
     </p>
@@ -630,7 +485,7 @@ main{display:flex;flex-direction:column}
       <a class="proj reveal" href="https://math-tutor-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener" style="--proj-accent-text:var(--mint)"><div class="proj-head"><span class="proj-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10 12 5 2 10l10 5 10-5z" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 12v5a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-5" stroke-width="1.6"/></svg></span><div class="proj-name">수학친구</div></div><div class="proj-desc">초등부터 수능까지 단계별 풀이. 문제를 사진으로 찍으면 AI가 해설해 줍니다.</div><span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
 
-    <div style="text-align:center;margin-top:40px">
+    <div style="margin-top:36px">
       <a class="btn btn-ghost" href="products.html">
         전체 작업 보기
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -664,7 +519,7 @@ main{display:flex;flex-direction:column}
       <!-- writing:end -->
     </div>
 
-    <div style="text-align:center;margin-top:40px">
+    <div style="margin-top:36px">
       <a class="btn btn-ghost" href="blog.html">
         전체 글 보기
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -768,7 +623,7 @@ main{display:flex;flex-direction:column}
       <div class="footer-col">
         <h5>Reach out</h5>
         <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
-        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">카카오톡 1:1 문의</a>
         <a href="tel:07080985734">070-8098-5734</a>
       </div>
     </div>
@@ -781,354 +636,6 @@ main{display:flex;flex-direction:column}
   </div>
 </footer>
 
-<script src="app.js"></script>
-<script>
-/* ============================================================
-   Hero neural core — wireframe icosphere + orbiting particle halo
-   three.js is lazy-loaded on idle so it never blocks first paint
-   ============================================================ */
-(function(){
-  var canvas = document.getElementById('brain-canvas');
-  if(!canvas) return;
-
-  var loaded = false;
-  function boot(){
-    if(loaded) return; loaded = true;
-    var s = document.createElement('script');
-    s.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
-    s.onload = initBrain;
-    document.head.appendChild(s);
-  }
-  if('requestIdleCallback' in window){ requestIdleCallback(boot, {timeout:2000}); }
-  else { setTimeout(boot, 300); }
-
-  function initBrain(){
-  if(typeof THREE === 'undefined') return;
-
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-  var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
-  camera.position.z = 5.4;
-
-  function sizeRenderer(){
-    var w = canvas.clientWidth;
-    var h = canvas.clientHeight;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    if(group) updateSceneLayout();
-  }
-
-  var group = new THREE.Group();
-  scene.add(group);
-
-  function updateSceneLayout(){
-    var wide = window.innerWidth > 960;
-    group.position.x = wide ? 1.05 : 0;
-    group.position.y = wide ? 0.04 : -0.35;
-    var s = wide ? 1.12 : 0.82;
-    group.scale.set(s, s, s);
-    camera.position.z = wide ? 5.2 : 6.4;
-  }
-  sizeRenderer();
-  new ResizeObserver(sizeRenderer).observe(canvas);
-
-  // Core: icosahedron wireframe
-  var coreRadius = 1.35;
-  var coreGeo = new THREE.IcosahedronGeometry(coreRadius, 2);
-  var edges = new THREE.EdgesGeometry(coreGeo, 8);
-  var coreMat = new THREE.LineBasicMaterial({
-    color: 0x22D3EE,
-    transparent: true,
-    opacity: 0.55,
-    depthWrite: false,
-  });
-  var core = new THREE.LineSegments(edges, coreMat);
-  group.add(core);
-
-  // Inner ghost core: slightly smaller, purple tint
-  var innerGeo = new THREE.IcosahedronGeometry(coreRadius * 0.78, 1);
-  var innerEdges = new THREE.EdgesGeometry(innerGeo, 8);
-  var innerMat = new THREE.LineBasicMaterial({
-    color: 0xA78BFA,
-    transparent: true,
-    opacity: 0.32,
-    depthWrite: false,
-  });
-  var innerCore = new THREE.LineSegments(innerEdges, innerMat);
-  group.add(innerCore);
-
-  // Three orbit rings give the hero a clearer 3D product-system silhouette.
-  var ringGroup = new THREE.Group();
-  var ringMatA = new THREE.MeshBasicMaterial({
-    color: 0x22D3EE,
-    transparent: true,
-    opacity: 0.24,
-    wireframe: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-  });
-  var ringMatB = new THREE.MeshBasicMaterial({
-    color: 0xA78BFA,
-    transparent: true,
-    opacity: 0.18,
-    wireframe: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-  });
-  var ringGeoA = new THREE.TorusGeometry(2.06, 0.008, 8, 160);
-  var ringGeoB = new THREE.TorusGeometry(2.52, 0.006, 8, 160);
-  var ringA = new THREE.Mesh(ringGeoA, ringMatA);
-  var ringB = new THREE.Mesh(ringGeoB, ringMatB);
-  var ringC = new THREE.Mesh(ringGeoB, ringMatA.clone());
-  ringC.material.opacity = 0.14;
-  ringA.rotation.x = Math.PI * 0.5;
-  ringB.rotation.y = Math.PI * 0.5;
-  ringC.rotation.x = Math.PI * 0.28;
-  ringC.rotation.y = Math.PI * 0.64;
-  ringGroup.add(ringA, ringB, ringC);
-  group.add(ringGroup);
-
-  // Vertex glow points on the outer icosphere — each vertex gets a bright dot
-  var vertexPositions = coreGeo.attributes.position.array;
-  var uniqueVerts = [];
-  var seen = {};
-  for(var i=0; i<vertexPositions.length; i+=3){
-    var vx = vertexPositions[i].toFixed(3);
-    var vy = vertexPositions[i+1].toFixed(3);
-    var vz = vertexPositions[i+2].toFixed(3);
-    var key = vx+'|'+vy+'|'+vz;
-    if(!seen[key]){
-      seen[key] = true;
-      uniqueVerts.push(vertexPositions[i], vertexPositions[i+1], vertexPositions[i+2]);
-    }
-  }
-  var vertGeo = new THREE.BufferGeometry();
-  vertGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(uniqueVerts), 3));
-  var vertMat = new THREE.PointsMaterial({
-    color: 0x22D3EE,
-    size: 0.08,
-    transparent: true,
-    opacity: 0.95,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-    sizeAttenuation: true,
-  });
-  var vertPoints = new THREE.Points(vertGeo, vertMat);
-  group.add(vertPoints);
-
-  // Orbiting particle halo — 3 rings with varied tilts
-  var haloCount = 600;
-  var haloPositions = new Float32Array(haloCount * 3);
-  var haloData = [];
-  for(var i=0; i<haloCount; i++){
-    var ring = Math.floor(Math.random()*3);
-    var ringRadius = 2.1 + ring*0.35 + (Math.random()-0.5)*0.15;
-    var angle = Math.random() * Math.PI * 2;
-    var tilt = (ring-1) * 0.4 + (Math.random()-0.5)*0.15;
-    haloData.push({
-      r: ringRadius,
-      angle: angle,
-      tilt: tilt,
-      speed: 0.08 + Math.random()*0.12 + ring*0.04
-    });
-  }
-  var haloGeo = new THREE.BufferGeometry();
-  haloGeo.setAttribute('position', new THREE.BufferAttribute(haloPositions, 3));
-  var haloMat = new THREE.ShaderMaterial({
-    uniforms: {
-      uPixel: { value: Math.min(window.devicePixelRatio || 1, 2) },
-      uColorA: { value: new THREE.Color(0x22D3EE) },
-      uColorB: { value: new THREE.Color(0xA78BFA) },
-    },
-    vertexShader: [
-      'uniform float uPixel;',
-      'varying float vD;',
-      'void main(){',
-      '  vec4 mv = modelViewMatrix * vec4(position,1.0);',
-      '  gl_PointSize = 1.6 * uPixel * (220.0 / -mv.z);',
-      '  gl_Position = projectionMatrix * mv;',
-      '  vD = -mv.z;',
-      '}'
-    ].join('\n'),
-    fragmentShader: [
-      'uniform vec3 uColorA;',
-      'uniform vec3 uColorB;',
-      'varying float vD;',
-      'void main(){',
-      '  vec2 c = gl_PointCoord - 0.5;',
-      '  float d = length(c);',
-      '  if(d > 0.5) discard;',
-      '  float alpha = smoothstep(0.5, 0.1, d);',
-      '  float mixv = clamp((vD - 3.0) * 0.35, 0.0, 1.0);',
-      '  vec3 col = mix(uColorA, uColorB, mixv);',
-      '  gl_FragColor = vec4(col, alpha * 0.85);',
-      '}'
-    ].join('\n'),
-    transparent: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-  });
-  var halo = new THREE.Points(haloGeo, haloMat);
-  group.add(halo);
-
-  // Ambient sparkle particles — scattered in larger volume
-  var sparkCount = 200;
-  var sparkPositions = new Float32Array(sparkCount * 3);
-  for(var i=0; i<sparkCount; i++){
-    var sr = 1.8 + Math.random()*2.2;
-    var su = Math.random()*Math.PI*2;
-    var sv = Math.acos(2*Math.random()-1);
-    sparkPositions[i*3+0] = sr * Math.sin(sv) * Math.cos(su);
-    sparkPositions[i*3+1] = sr * Math.sin(sv) * Math.sin(su);
-    sparkPositions[i*3+2] = sr * Math.cos(sv);
-  }
-  var sparkGeo = new THREE.BufferGeometry();
-  sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPositions, 3));
-  var sparkMat = new THREE.PointsMaterial({
-    color: 0xE0F7FF,
-    size: 0.025,
-    transparent: true,
-    opacity: 0.4,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-    sizeAttenuation: true,
-  });
-  var sparks = new THREE.Points(sparkGeo, sparkMat);
-  group.add(sparks);
-
-  // Floating product panes around the core, kept abstract so the canvas stays lightweight.
-  var paneGroup = new THREE.Group();
-  var paneMat = new THREE.MeshBasicMaterial({
-    color: 0xE8ECF4,
-    transparent: true,
-    opacity: 0.055,
-    side: THREE.DoubleSide,
-    depthWrite: false,
-  });
-  var paneEdgeMat = new THREE.LineBasicMaterial({
-    color: 0x22D3EE,
-    transparent: true,
-    opacity: 0.32,
-    depthWrite: false,
-  });
-  function makePane(x, y, z, ry, accent){
-    var geo = new THREE.PlaneGeometry(0.8, 0.52, 3, 2);
-    var pane = new THREE.Mesh(geo, paneMat.clone());
-    pane.position.set(x, y, z);
-    pane.rotation.y = ry;
-    pane.rotation.z = (Math.random() - 0.5) * 0.16;
-    var edge = new THREE.LineSegments(new THREE.EdgesGeometry(geo), paneEdgeMat.clone());
-    edge.material.color = new THREE.Color(accent);
-    edge.position.copy(pane.position);
-    edge.rotation.copy(pane.rotation);
-    paneGroup.add(pane, edge);
-  }
-  makePane(-1.75, 0.72, 0.74, 0.46, 0x2DD4BF);
-  makePane(1.78, 0.42, -0.38, -0.52, 0xA78BFA);
-  makePane(0.82, -1.22, 0.64, -0.34, 0xF472B6);
-  group.add(paneGroup);
-
-  // Edge pulses — bright dots travel along random icosphere edges like synapses
-  var edgePositions = edges.attributes.position.array; // pairs of vertices (a,b)
-  var edgePairCount = edgePositions.length / 6;
-  var pulseCount = 14;
-  var pulsePositions = new Float32Array(pulseCount * 3);
-  var pulseData = [];
-  for(var k=0; k<pulseCount; k++){
-    pulseData.push({
-      edge: Math.floor(Math.random()*edgePairCount),
-      t: Math.random(),
-      speed: 0.35 + Math.random()*0.6,
-    });
-  }
-  var pulseGeo = new THREE.BufferGeometry();
-  pulseGeo.setAttribute('position', new THREE.BufferAttribute(pulsePositions, 3));
-  var pulseMat = new THREE.PointsMaterial({
-    color: 0xE0F7FF,
-    size: 0.11,
-    transparent: true,
-    opacity: 0.95,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-    sizeAttenuation: true,
-  });
-  var pulses = new THREE.Points(pulseGeo, pulseMat);
-  group.add(pulses);
-
-  function updatePulses(dt){
-    for(var k=0; k<pulseCount; k++){
-      var p = pulseData[k];
-      p.t += dt * p.speed;
-      if(p.t >= 1){
-        p.t = 0;
-        p.edge = Math.floor(Math.random()*edgePairCount);
-        p.speed = 0.35 + Math.random()*0.6;
-      }
-      var ei = p.edge * 6;
-      var ax = edgePositions[ei],   ay = edgePositions[ei+1], az = edgePositions[ei+2];
-      var bx = edgePositions[ei+3], by = edgePositions[ei+4], bz = edgePositions[ei+5];
-      pulsePositions[k*3+0] = ax + (bx-ax)*p.t;
-      pulsePositions[k*3+1] = ay + (by-ay)*p.t;
-      pulsePositions[k*3+2] = az + (bz-az)*p.t;
-    }
-    pulseGeo.attributes.position.needsUpdate = true;
-  }
-
-  function updateHalo(t){
-    for(var i=0; i<haloCount; i++){
-      var h = haloData[i];
-      h.angle += h.speed * 0.016;
-      var cx = Math.cos(h.angle) * h.r;
-      var cz = Math.sin(h.angle) * h.r;
-      // Tilt each ring around x-axis
-      var y = Math.sin(h.tilt) * cz;
-      var z = Math.cos(h.tilt) * cz;
-      haloPositions[i*3+0] = cx;
-      haloPositions[i*3+1] = y;
-      haloPositions[i*3+2] = z;
-    }
-    haloGeo.attributes.position.needsUpdate = true;
-  }
-
-  // Mouse parallax
-  var mx = 0, my = 0, tmx = 0, tmy = 0;
-  canvas.addEventListener('mousemove', function(e){
-    var r = canvas.getBoundingClientRect();
-    tmx = ((e.clientX - r.left) / r.width - 0.5) * 0.5;
-    tmy = ((e.clientY - r.top)  / r.height - 0.5) * 0.3;
-  });
-  canvas.addEventListener('mouseleave', function(){ tmx = 0; tmy = 0; });
-
-  var clock = new THREE.Clock();
-  var last = 0;
-  function animate(){
-    var t = clock.getElapsedTime();
-    var dt = Math.min(0.05, t - last);
-    last = t;
-    mx += (tmx - mx) * 0.04;
-    my += (tmy - my) * 0.04;
-    group.rotation.y = t * (reduce ? 0 : 0.08) + mx;
-    group.rotation.x = Math.sin(t*0.14)*0.1 + my;
-    ringGroup.rotation.z = t * (reduce ? 0 : 0.055);
-    ringGroup.rotation.x += reduce ? 0 : 0.0008;
-    paneGroup.rotation.y = Math.sin(t * 0.22) * 0.08;
-    // Counter-rotate inner core for depth
-    innerCore.rotation.y = -t * (reduce ? 0 : 0.15);
-    innerCore.rotation.x = t * (reduce ? 0 : 0.09);
-    // Sparkle field slow drift
-    sparks.rotation.y = t * (reduce ? 0 : 0.02);
-    if(!reduce){ updateHalo(t); updatePulses(dt); }
-    renderer.render(scene, camera);
-    if(!reduce) requestAnimationFrame(animate);
-  }
-  animate();
-  }
-})();
-</script>
+<script src="app.js?v=20ab1c48"></script>
 </body>
 </html>

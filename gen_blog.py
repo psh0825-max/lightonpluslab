@@ -15,23 +15,20 @@ HEAD = """<!doctype html>
 <meta property="og:url" content="https://lightonpluslab.com/{slug}.html" />
 <meta property="og:image" content="{ogimg}" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="theme-color" content="#050814" />
+<meta name="theme-color" content="#FBFAF8" />
 <link rel="icon" href="logo-new.png" />
 <link rel="canonical" href="https://lightonpluslab.com/{slug}.html" />
 <link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=20260815" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
 <style>
 .page-hero{{padding:72px 0 24px;text-align:center}}
 .page-hero .eyebrow{{margin-bottom:20px}}
 .page-hero h1{{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px}}
-.page-hero h1 em{{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}}
+.page-hero h1 em{{font-style:normal;color:var(--ink)}}
 .page-hero p{{color:var(--text-3);max-width:56ch;margin:0 auto;font-size:15px;line-height:1.7}}
 .article-meta{{color:var(--text-3);font-size:13px;margin-top:14px}}
 .prose{{max-width:720px;margin:0 auto;padding:8px 0 72px;font-size:15.5px;line-height:1.85;color:var(--text-2,#cdd5e1)}}
@@ -46,9 +43,9 @@ HEAD = """<!doctype html>
 .prose th{{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}}
 .prose .tip{{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}}
 .prose a{{color:var(--cyan,#5eead4)}}
-.prose pre{{margin:0 0 18px;padding:16px 18px;border-radius:12px;background:#080d1a;border:1px solid var(--panel-border,#232b3d);overflow-x:auto;font-size:13px;line-height:1.7}}
-.prose pre code{{font-family:var(--f-mono);color:var(--text-2,#cdd5e1);background:none;padding:0;border:0;white-space:pre}}
-.prose code{{font-family:var(--f-mono);font-size:.92em;padding:2px 6px;border-radius:5px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);color:var(--cyan,#5eead4)}}
+.prose pre{{margin:0 0 18px;padding:16px 18px;border-radius:8px;background:var(--paper-2);border:1px solid var(--rule);overflow-x:auto;font-size:13px;line-height:1.7}}
+.prose pre code{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);background:none;padding:0;border:0;white-space:pre}}
+.prose code{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;padding:2px 6px;border-radius:4px;background:var(--paper-2);border:1px solid var(--rule);color:var(--accent)}}
 .prose img,.post-hero img{{max-width:100%;height:auto;border-radius:16px;display:block;margin:0 auto}}
 .post-hero{{margin:18px 0 26px}}
 .post-hero img{{width:min(560px,100%)}}
@@ -62,8 +59,6 @@ HEAD = """<!doctype html>
 </style>
 </head>
 <body>
-<canvas id="starfield" aria-hidden="true"></canvas>
-<div class="page-glow" aria-hidden="true"></div>
 
 <header class="nav">
   <div class="wrap nav-inner">
@@ -130,7 +125,7 @@ FOOTER = """
       <div class="footer-col">
         <h5>Reach out</h5>
         <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
-        <a href="https://open.kakao.com/o/lightonpluslab" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">카카오톡 1:1 문의</a>
         <a href="tel:07080985734">070-8098-5734</a>
       </div>
     </div>
@@ -143,7 +138,7 @@ FOOTER = """
   </div>
 </footer>
 
-<script src="app.js"></script>
+<script src="app.js?v=20260815"></script>
 </body>
 </html>
 """
@@ -628,6 +623,39 @@ def update_index_cards(path="index.html"):
         f.write(head + block + tail)
     print(path)
 
+def stamp_asset_versions():
+    """styles.css / app.js 링크에 내용 해시를 찍는다.
+
+    빌드 단계가 없는 정적 사이트라 캐시 무효화 수단이 이것뿐이다. 날짜로 찍으면
+    CSS를 고치고 스탬프를 안 올리는 순간 재방문자가 새 HTML에 옛 CSS를 물어
+    페이지가 깨진다. 해시는 파일이 바뀔 때만 달라지므로 어긋날 수가 없다.
+    """
+    import hashlib, glob, re as _re
+
+    ver = {}
+    for asset in ("styles.css", "app.js"):
+        with io.open(asset, "rb") as f:
+            ver[asset] = hashlib.sha1(f.read()).hexdigest()[:8]
+
+    touched = 0
+    for path in sorted(glob.glob("*.html")):
+        with io.open(path, encoding="utf-8") as f:
+            src = f.read()
+        out = src
+        for asset, h in ver.items():
+            attr = "href" if asset.endswith(".css") else "src"
+            out = _re.sub(
+                r'%s="%s(\?v=[^"]*)?"' % (attr, _re.escape(asset)),
+                '%s="%s?v=%s"' % (attr, asset, h),
+                out,
+            )
+        if out != src:
+            with io.open(path, "w", encoding="utf-8", newline="\n") as f:
+                f.write(out)
+            touched += 1
+    print("asset stamp %s (%d files)" % (ver, touched))
+
+
 with io.open("blog.html", "w", encoding="utf-8") as f:
     f.write(list_html())
 print("blog.html")
@@ -700,3 +728,5 @@ with io.open("feed.xml", "w", encoding="utf-8") as f:
 </rss>
 """)
 print("feed.xml")
+
+stamp_asset_versions()
