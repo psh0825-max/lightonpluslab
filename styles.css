@@ -99,7 +99,7 @@ input,textarea{font:inherit;color:inherit}
 /* -------- 3. Layout -------- */
 .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
 main,header,footer{position:relative}
-section{padding:clamp(60px,7.5vw,104px) 0}
+section{padding:clamp(44px,7.5vw,104px) 0}
 
 /* -------- 4. Typography -------- */
 h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.34;letter-spacing:-.021em}
@@ -390,6 +390,17 @@ h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.34;letter-spacing:-.0
 }
 @media(max-width:640px){
   :root{--gut:20px}
+  .store-acts{display:flex;flex-wrap:wrap;gap:8px}
+  .store-acts .btn-play{flex:1 1 100%;justify-content:center}
+  .store-acts .btn-sm{flex:1 1 calc(50% - 4px);justify-content:center}
+  .section-title{padding-top:18px;margin-bottom:10px}
+  .section-desc{margin-bottom:30px}
+  .store-card{padding:26px 0;gap:18px}
+  .store-one{margin-bottom:14px}
+  .store-feats{margin-bottom:18px}
+  .store-feats div{padding:6px 0}
+  .footer{padding:40px 0 24px}
+  .footer-top{margin-bottom:30px}
   .footer-legal{gap:6px;line-height:2}
   .footer-legal a{display:inline-block;padding:9px 0}
   .footer-col a{padding:11px 0}
@@ -397,7 +408,6 @@ h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.34;letter-spacing:-.0
   .footer-top{gap:24px}
   .footer-top{grid-template-columns:1fr}
   .footer-legal{flex-direction:column;align-items:flex-start}
-  .store-acts{display:grid;grid-template-columns:1fr}
   .btn-play,.btn-sm{justify-content:center}
   .prin-grid{grid-template-columns:1fr}
   .prin{border-right:0;padding-left:0!important}
