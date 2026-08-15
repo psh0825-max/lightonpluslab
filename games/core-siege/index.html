@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#04070d">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<title>CORE SIEGE — 코어를 사수하라</title>
+<style>
+:root{
+  --cyan:#4ce0ff;
+  --cyan-soft:rgba(76,224,255,.28);
+  --cyan-dim:rgba(76,224,255,.14);
+  --red:#ff4d5e;
+  --red-soft:rgba(255,77,94,.35);
+  --bg:#04070d;
+  --panel:rgba(9,18,31,.78);
+  --line:rgba(76,224,255,.20);
+  --text:#d7e9f5;
+  --text-dim:#8fb3c9;
+  --sab:env(safe-area-inset-bottom,0px);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);overscroll-behavior:none}
+body{
+  font-family:"Bahnschrift","Segoe UI","Malgun Gothic",sans-serif;
+  color:var(--text);
+  -webkit-user-select:none;user-select:none;
+}
+canvas#game{position:fixed;inset:0;display:block;touch-action:none}
+@media (pointer:fine){canvas#game{cursor:none}}
+
+/* ---------- HUD frame ---------- */
+#hud{position:fixed;inset:0;pointer-events:none;z-index:5}
+.pill{
+  display:flex;align-items:center;gap:8px;
+  background:linear-gradient(180deg,#293643,#161f2b 55%,#111a25);
+  border:1px solid #3d5165;border-bottom-color:#0b121b;
+  border-radius:10px;padding:8px 16px;
+  box-shadow:inset 0 1px 0 rgba(210,230,255,.09),inset 0 -8px 14px rgba(0,0,0,.32),0 4px 18px rgba(0,0,0,.55);
+}
+button{
+  pointer-events:auto;cursor:pointer;color:var(--text);
+  font-family:inherit;touch-action:manipulation;
+  background:linear-gradient(180deg,#32434f,#1b2834 60%,#15202b);
+  border:1px solid #48607a;border-bottom-color:#0d151e;
+  border-radius:8px;
+  padding:6px 12px;font-size:12px;letter-spacing:.06em;
+  box-shadow:inset 0 1px 0 rgba(210,230,255,.12),0 2px 6px rgba(0,0,0,.4);
+  transition:box-shadow .15s,border-color .15s,transform .08s;
+}
+button:hover{border-color:var(--cyan);box-shadow:inset 0 1px 0 rgba(210,230,255,.14),0 0 14px var(--cyan-dim)}
+button:active{transform:translateY(1px);box-shadow:inset 0 2px 8px rgba(0,0,0,.55)}
+button:disabled{opacity:.35;cursor:default;box-shadow:none}
+button.icon{width:34px;height:34px;padding:0;font-size:15px;line-height:1}
+
+#topbar{position:absolute;top:12px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+#resPill b{font-size:19px;color:var(--cyan);min-width:56px;text-align:right;font-variant-numeric:tabular-nums}
+#resPill .crystal{color:var(--cyan);font-size:15px;text-shadow:0 0 10px var(--cyan)}
+#resPill #income{font-size:11px;color:var(--text-dim)}
+#resPill.pop b{animation:pop .28s}
+@keyframes pop{50%{transform:scale(1.22)}}
+
+#wavePill{flex-direction:column;gap:2px;padding:8px 24px;min-width:220px;align-items:center}
+#waveLabel{font-size:17px;font-weight:700;letter-spacing:.34em;text-indent:.34em;color:#fff;text-shadow:0 0 12px var(--cyan-soft)}
+#waveState{font-size:12px;color:var(--text-dim);font-variant-numeric:tabular-nums}
+#waveState b{color:var(--cyan)}
+#btnCall{margin-top:4px;font-size:11px;padding:4px 12px}
+#btnCall .bonus{color:var(--cyan)}
+
+#rightPill{gap:12px}
+#rightPill .lbl{font-size:10px;color:var(--text-dim);letter-spacing:.1em}
+#rightPill .val{font-size:15px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+
+/* ---------- boss bar ---------- */
+#bossBar{position:absolute;top:74px;left:50%;transform:translateX(-50%);width:min(540px,62vw);text-align:center}
+#bossBar label{font-size:11px;letter-spacing:.4em;text-indent:.4em;color:var(--red);text-shadow:0 0 10px var(--red-soft)}
+#bossBar .bar{margin-top:4px;height:10px}
+#bossBar .bar i{background:linear-gradient(90deg,#a1202f,var(--red));box-shadow:0 0 14px var(--red-soft)}
+
+/* ---------- bars ---------- */
+.bar{position:relative;background:#060d15;border:1px solid #33465a;border-top-color:#0a121b;border-radius:6px;overflow:hidden;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.6)}
+.bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#1a9fd0,var(--cyan));transition:width .12s linear}
+.bar span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#eaf7ff;text-shadow:0 1px 3px #000}
+
+/* ---------- bottom dock ---------- */
+#coreStatus{position:absolute;bottom:calc(110px + var(--sab));left:50%;transform:translateX(-50%);width:300px;display:flex;flex-direction:column;gap:4px}
+#coreStatus .bar.shield{height:7px}
+#coreStatus .bar.shield i{background:linear-gradient(90deg,#2f86c8,#9beeff)}
+#coreStatus .bar.hp{height:15px}
+#coreStatus .bar.hp.low i{background:linear-gradient(90deg,#a1202f,var(--red))}
+
+#dock{position:absolute;bottom:calc(12px + var(--sab));left:50%;transform:translateX(-50%);display:flex;align-items:flex-end;gap:14px}
+#cards,#abilities{display:flex;gap:8px;align-items:flex-end}
+#cards{max-width:min(600px,58vw);overflow-x:auto;padding:6px 2px 2px;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.card{scroll-snap-align:center}
+@media (max-width:700px){
+  #cards{max-width:94vw}
+}
+.card{
+  pointer-events:auto;cursor:pointer;position:relative;width:76px;flex:0 0 auto;touch-action:none;
+  background:linear-gradient(180deg,#2b3846,#17212d 55%,#121b26);
+  border:1px solid #3d5165;border-bottom-color:#0b121b;border-radius:10px;
+  padding:8px 4px 6px;display:flex;flex-direction:column;align-items:center;gap:2px;
+  box-shadow:inset 0 1px 0 rgba(210,230,255,.09),0 3px 10px rgba(0,0,0,.5);
+  transition:transform .12s,border-color .12s,box-shadow .12s;
+}
+.card:hover{border-color:var(--cyan-soft);transform:translateY(-3px)}
+.card.sel{border-color:var(--cyan);box-shadow:0 0 18px var(--cyan-soft);transform:translateY(-5px)}
+.card.dis{opacity:.35;filter:saturate(.15)}
+.card canvas{width:40px;height:40px}
+.card .nm{font-size:10px;color:var(--text-dim);white-space:nowrap}
+.card .cost{font-size:12px;font-weight:700;color:var(--cyan);font-variant-numeric:tabular-nums}
+.card .hk{position:absolute;top:3px;left:5px;font-size:9px;color:#54748c;border:1px solid rgba(84,116,140,.4);border-radius:4px;padding:0 4px}
+
+.ab{
+  pointer-events:auto;cursor:pointer;position:relative;width:58px;height:58px;touch-action:manipulation;
+  background:linear-gradient(180deg,#2b3846,#17212d 55%,#121b26);
+  border:1px solid #3d5165;border-bottom-color:#0b121b;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:inset 0 1px 0 rgba(210,230,255,.09),0 3px 10px rgba(0,0,0,.5);
+  transition:border-color .12s,box-shadow .12s;overflow:hidden;
+}
+.ab canvas{width:34px;height:34px}
+.ab .hk{position:absolute;bottom:2px;right:5px;font-size:9px;color:#54748c}
+.ab::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:conic-gradient(rgba(2,6,12,.85) calc(var(--cd,0)*1turn),transparent 0);
+}
+.ab.ready{border-color:var(--cyan-soft)}
+.ab.ready:hover{border-color:var(--cyan);box-shadow:0 0 16px var(--cyan-soft)}
+.ab.armed{border-color:var(--cyan);box-shadow:0 0 20px var(--cyan-soft)}
+
+/* ---------- turret panel ---------- */
+#turretPanel{
+  position:absolute;right:16px;bottom:calc(110px + var(--sab));width:224px;pointer-events:auto;
+  background:linear-gradient(180deg,#293643,#161f2b 55%,#111a25);
+  border:1px solid #3d5165;border-bottom-color:#0b121b;border-radius:12px;
+  padding:12px;
+  box-shadow:inset 0 1px 0 rgba(210,230,255,.09),0 6px 20px rgba(0,0,0,.55);
+}
+#tpName{font-size:14px;font-weight:700;color:#fff;margin-bottom:2px}
+#tpName em{font-style:normal;color:var(--cyan);font-size:11px;margin-left:6px}
+#tpStats{font-size:11px;color:var(--text-dim);line-height:1.6;margin-bottom:8px;white-space:pre-line}
+#tpHp{height:6px;margin-bottom:10px}
+#turretPanel .row{display:flex;gap:6px}
+#turretPanel .row button{flex:1;font-size:11px;padding:6px 4px}
+
+/* ---------- banners / hint ---------- */
+#banners{position:absolute;top:23%;left:0;right:0;text-align:center;pointer-events:none}
+.banner{font-size:36px;font-weight:700;letter-spacing:.42em;text-indent:.42em;color:#fff;
+  text-shadow:0 0 24px var(--cyan-soft),0 0 60px var(--cyan-dim);
+  animation:bannerIn 2.4s forwards}
+.banner.sub{font-size:15px;letter-spacing:.2em;text-indent:.2em;color:var(--text-dim);text-shadow:none;margin-top:6px}
+.banner.danger{color:#ffdada;text-shadow:0 0 24px var(--red-soft),0 0 60px var(--red-soft)}
+@keyframes bannerIn{
+  0%{opacity:0;transform:scale(1.25);filter:blur(6px)}
+  12%{opacity:1;transform:scale(1);filter:blur(0)}
+  80%{opacity:1}
+  100%{opacity:0;transform:scale(.98)}
+}
+#hint{position:absolute;bottom:calc(172px + var(--sab));left:50%;transform:translateX(-50%);
+  font-size:13px;color:#7fa8c0;text-shadow:0 1px 4px #000;transition:opacity .3s;white-space:nowrap}
+
+#btnCancel{position:absolute;right:14px;bottom:calc(180px + var(--sab));
+  font-size:13px;padding:11px 18px;border-color:var(--red-soft);border-radius:12px}
+#btnCancel:hover{border-color:var(--red);box-shadow:0 0 14px var(--red-soft)}
+
+/* ---------- 다음 웨이브 미리보기 ---------- */
+#wavePreview{display:flex;gap:9px;align-items:center;justify-content:center;flex-wrap:wrap;
+  margin-top:5px;max-width:320px}
+.pvItem{display:flex;align-items:center;gap:2px}
+.pvItem canvas{width:22px;height:22px}
+.pvItem i{font-style:normal;font-size:11px;font-weight:700;color:var(--text-dim);font-variant-numeric:tabular-nums}
+.pvBoss{font-size:11px;font-weight:700;color:var(--red);letter-spacing:.1em;text-shadow:0 0 10px var(--red-soft)}
+
+/* ---------- 콤보 ---------- */
+#combo{position:absolute;top:calc(23% + 66px);left:50%;transform:translateX(-50%);
+  font-size:27px;font-weight:700;letter-spacing:.08em;color:#fff;pointer-events:none;
+  text-shadow:0 0 16px var(--cyan-soft),0 2px 4px #000}
+#combo.pop{animation:comboPop .18s}
+@keyframes comboPop{45%{transform:translateX(-50%) scale(1.35)}}
+
+/* ---------- 카드 잠금/해금 ---------- */
+.card .lock{display:none;position:absolute;left:0;right:0;bottom:7px;text-align:center;
+  font-size:11px;font-weight:700;letter-spacing:.08em;color:#8fb3c9}
+.card.locked{opacity:.42;filter:grayscale(.9) brightness(.72)}
+.card.locked .cost{visibility:hidden}
+.card.locked .lock{display:block}
+.card.flash{animation:cardFlash 1.4s}
+@keyframes cardFlash{
+  0%,55%{border-color:var(--cyan);box-shadow:0 0 24px var(--cyan-soft),inset 0 0 14px var(--cyan-dim);transform:translateY(-6px)}
+  100%{transform:translateY(0)}
+}
+
+/* ---------- 난이도 · 일시정지 메뉴 · 랭크 ---------- */
+/* ---------- 작전 구역 선택 ---------- */
+#mapRow{margin-top:26px;display:flex;gap:10px;max-width:min(92vw,640px);
+  overflow-x:auto;padding:6px 4px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.mapCard{
+  pointer-events:auto;cursor:pointer;flex:0 0 auto;width:128px;scroll-snap-align:center;
+  background:linear-gradient(180deg,#26333f,#131d28);
+  border:1px solid #3d5165;border-bottom-color:#0b121b;border-radius:12px;
+  padding:8px;display:flex;flex-direction:column;gap:5px;align-items:center;
+  transition:border-color .12s,box-shadow .12s,transform .12s;
+  box-shadow:inset 0 1px 0 rgba(210,230,255,.08)}
+.mapCard:hover{transform:translateY(-2px)}
+.mapCard.sel{border-color:var(--cyan);box-shadow:0 0 16px var(--cyan-dim),inset 0 1px 0 rgba(210,230,255,.12)}
+.mapCard canvas{width:112px;height:60px;border-radius:8px}
+.mapCard .mn{font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
+.mapCard .mg{font-size:9px;line-height:1.45;color:var(--text-dim);text-align:center;min-height:26px}
+.mapCard.locked{opacity:.45;filter:grayscale(.85)}
+.mapCard.locked .mn{color:#8fb3c9}
+@media (max-width:700px){
+  #mapRow{margin-top:18px}
+  .mapCard{width:108px}
+  .mapCard canvas{width:92px;height:50px}
+}
+
+#diffRow{margin-top:22px;display:flex;gap:10px}
+#diffRow button{padding:9px 30px;font-size:13px;letter-spacing:.24em;text-indent:.24em;color:var(--text-dim)}
+#diffRow button.sel{border-color:var(--cyan);box-shadow:0 0 16px var(--cyan-dim),inset 0 1px 0 rgba(210,230,255,.14);color:#fff}
+/* ---------- 연구소 ---------- */
+#labScreen{background:rgba(3,6,11,.95)}
+#btnLab,#btnLabOver{margin-top:16px;font-size:13px;padding:10px 22px;letter-spacing:.06em}
+#btnLab .c,#labShards{color:var(--cyan)}
+#labRows{margin-top:26px;display:flex;flex-direction:column;gap:10px;width:min(420px,88vw);
+  max-height:52vh;overflow-y:auto;padding:4px}
+.labRow{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:linear-gradient(180deg,#283543,#151f2b 60%,#111a25);
+  border:1px solid #3d5165;border-bottom-color:#0b121b;border-radius:12px;padding:12px 14px;
+  box-shadow:inset 0 1px 0 rgba(210,230,255,.08)}
+.labInfo{display:flex;flex-direction:column;gap:3px;text-align:left}
+.labInfo b{font-size:14px;color:#fff}
+.labInfo span{font-size:11px;color:var(--text-dim)}
+.pips{display:flex;gap:4px;margin-top:3px}
+.pips i{width:14px;height:5px;border-radius:2px;background:#22303e;border:1px solid #0b121b}
+.pips i.on{background:var(--cyan);box-shadow:0 0 6px var(--cyan-dim)}
+.labBuy{min-width:86px;padding:10px 8px;font-size:12px;font-variant-numeric:tabular-nums}
+
+#pauseBtns{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+#pauseBtns button{padding:11px 22px;font-size:14px;letter-spacing:.12em}
+/* 첫 판 코치마크 */
+#coach{position:fixed;z-index:15;transform:translateX(-50%);pointer-events:none;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  animation:coachPulse 1.6s ease-in-out infinite}
+#coachTxt{background:linear-gradient(180deg,#1d3a4d,#10222f);border:1px solid var(--cyan);
+  border-radius:10px;padding:10px 16px;font-size:13px;color:#d9f6ff;max-width:76vw;text-align:center;
+  box-shadow:0 0 22px var(--cyan-dim),0 4px 14px rgba(0,0,0,.5)}
+#coachArrow,#coachArrowUp{color:var(--cyan);font-size:15px;text-shadow:0 0 10px var(--cyan)}
+@keyframes coachPulse{50%{transform:translateX(-50%) translateY(-5px)}}
+/* 설정 화면 */
+#setRows{margin-top:26px;display:flex;flex-direction:column;gap:14px;width:min(360px,86vw)}
+.setRow{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:linear-gradient(180deg,#283543,#151f2b 60%,#111a25);
+  border:1px solid #3d5165;border-radius:10px;padding:12px 16px;font-size:13px}
+.setRow input[type=range]{flex:1;max-width:170px;accent-color:#4ce0ff}
+.tglBtn{min-width:88px;padding:8px 14px;font-size:12px}
+#ovRank{font-size:100px;font-weight:700;line-height:1;margin-top:16px;
+  filter:drop-shadow(0 0 30px rgba(76,224,255,.35))}
+.rank-S{color:#7ce8ff}.rank-A{color:#9fe8b0}.rank-B{color:#d7e9f5}.rank-C{color:#c9a23f}.rank-D{color:#7d8fa0}
+
+/* ---------- screens ---------- */
+.screen{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  justify-content:safe center;overflow-y:auto;overflow-x:hidden;
+  background:radial-gradient(ellipse at center,rgba(4,7,13,.5) 0%,rgba(4,7,13,.93) 100%);pointer-events:auto}
+#startScreen{
+  background:
+    linear-gradient(180deg,rgba(4,7,13,.86) 0%,rgba(4,7,13,.46) 30%,rgba(4,7,13,.62) 62%,rgba(4,7,13,.95) 100%),
+    url('assets/keyart.webp') center/cover no-repeat,
+    radial-gradient(ellipse at center,rgba(4,7,13,.5) 0%,rgba(4,7,13,.93) 100%);
+}
+#lore{margin-top:16px;font-size:13px;line-height:1.8;color:var(--text-dim);text-align:center;
+  text-shadow:0 1px 6px #000;letter-spacing:.02em}
+/* 타이틀 시네마틱 영상 (없으면 키아트 이미지 폴백) */
+#titleVid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.5;z-index:0;pointer-events:none}
+#startScreen>*:not(#titleVid){position:relative;z-index:1}
+#overVid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.45;z-index:0;pointer-events:none}
+#overScreen>*:not(#overVid){position:relative;z-index:1}
+/* 보스 등장 스플래시 */
+#bossSplash{position:fixed;inset:0;z-index:18;pointer-events:none;display:flex;
+  align-items:center;justify-content:center;background:rgba(2,3,8,.55);
+  opacity:0;transition:opacity .35s}
+#bossSplash.show{opacity:1}
+#bossSplash img{width:min(74vw,400px);aspect-ratio:1;object-fit:cover;border-radius:12px;
+  border:1px solid rgba(255,77,94,.55);
+  box-shadow:0 0 60px rgba(255,51,85,.5),0 0 150px rgba(255,51,85,.28);
+  animation:bossZoom 2.8s ease-out}
+#bossSplashName{position:absolute;bottom:16%;left:0;right:0;text-align:center;
+  font-size:min(32px,7vw);font-weight:700;letter-spacing:.3em;text-indent:.3em;color:#ffe2e5;
+  text-shadow:0 0 26px rgba(255,51,85,.9),0 2px 6px #000}
+@keyframes bossZoom{from{transform:scale(1.14)}to{transform:scale(1)}}
+.screen h1{font-size:min(72px,9vw);font-weight:700;letter-spacing:.4em;text-indent:.4em;text-align:center;
+  background:linear-gradient(180deg,#ffffff 10%,#c9edf9 36%,#3f7f9f 50%,#eaf9ff 60%,#79b2cc 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 28px rgba(76,224,255,.45)) drop-shadow(0 3px 2px rgba(0,0,0,.85))}
+#overScreen h1{
+  background:linear-gradient(180deg,#ffffff 10%,#ffd3d8 36%,#a13040 50%,#ffe8ea 60%,#c96a74 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 28px rgba(255,77,94,.45)) drop-shadow(0 3px 2px rgba(0,0,0,.85))}
+.screen .tag{margin-top:10px;font-size:15px;letter-spacing:.28em;text-indent:.28em;color:var(--text-dim)}
+.bigbtn{margin-top:44px;font-size:17px;letter-spacing:.34em;text-indent:.34em;padding:16px 52px;border-radius:12px;
+  animation:pulseGlow 2.2s infinite}
+@keyframes pulseGlow{
+  0%,100%{box-shadow:0 0 12px var(--cyan-dim)}
+  50%{box-shadow:0 0 30px var(--cyan-soft)}
+}
+#howto{margin-top:40px;display:grid;grid-template-columns:auto auto;gap:10px 28px;font-size:13px;color:var(--text-dim)}
+#howto .k{color:var(--text)}
+kbd{display:inline-block;min-width:22px;text-align:center;border:1px solid rgba(143,179,201,.45);border-radius:5px;
+  padding:1px 7px;font-size:11px;font-family:inherit;background:rgba(143,179,201,.08);margin-right:2px}
+
+#overScreen h1{font-size:min(56px,8vw);color:#ffe2e5;text-shadow:0 0 34px var(--red-soft),0 0 90px var(--red-soft)}
+#ovStats{margin-top:32px;display:grid;grid-template-columns:auto auto;gap:10px 36px;font-size:15px}
+#ovStats .lbl{color:var(--text-dim);letter-spacing:.14em}
+#ovStats .val{text-align:right;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+#ovStats .val.hi{color:var(--cyan)}
+#newBest{margin-top:18px;font-size:14px;letter-spacing:.3em;text-indent:.3em;color:var(--cyan);
+  text-shadow:0 0 16px var(--cyan-soft);animation:pulseGlow 1.6s infinite}
+
+#pauseVeil{background:rgba(4,7,13,.66)}
+#pauseVeil h1{font-size:38px}
+#pauseVeil .tag{margin-top:14px}
+
+#tooltip{position:fixed;z-index:30;pointer-events:none;max-width:230px;
+  background:rgba(6,13,23,.95);border:1px solid var(--line);border-radius:8px;
+  padding:9px 11px;font-size:11px;line-height:1.55;color:var(--text-dim);
+  box-shadow:0 8px 30px rgba(0,0,0,.6)}
+#tooltip b{color:#fff;font-size:12px}
+#tooltip .c{color:var(--cyan)}
+
+.hidden{display:none !important}
+
+@media (max-width:980px){
+  .card{width:64px}
+  .ab{width:50px;height:50px}
+  #coreStatus{width:250px}
+}
+
+/* ---------- 모바일 (좁은 화면) ---------- */
+@media (max-width:700px){
+  #topbar{top:8px;left:8px;right:8px;gap:6px}
+  .pill{padding:6px 10px;border-radius:10px;gap:6px}
+  #resPill b{font-size:15px;min-width:40px}
+  #resPill #income{display:none}
+  #wavePill{min-width:0;padding:6px 12px}
+  #waveLabel{font-size:13px}
+  #waveState{font-size:10px}
+  #btnCall{font-size:10px;padding:3px 8px;margin-top:2px}
+  #rightPill{gap:6px}
+  button.icon{width:30px;height:30px;font-size:13px}
+  #bossBar{top:60px;width:74vw}
+  #dock{flex-direction:column-reverse;align-items:center;gap:6px;bottom:calc(8px + var(--sab))}
+  #cards{gap:4px}
+  .card{width:46px;padding:5px 2px 4px;border-radius:8px}
+  .card canvas{width:30px;height:30px}
+  .card .nm{display:none}
+  .card .hk{display:none}
+  .card .cost{font-size:10px}
+  #abilities{gap:6px}
+  .ab{width:46px;height:46px;border-radius:10px}
+  .ab canvas{width:26px;height:26px}
+  #coreStatus{width:200px;bottom:calc(122px + var(--sab))}
+  #coreStatus .bar.hp{height:12px}
+  #hint{bottom:calc(198px + var(--sab));font-size:11px;max-width:92vw;white-space:normal;text-align:center}
+  #btnCancel{bottom:calc(200px + var(--sab));right:10px;font-size:12px;padding:10px 14px}
+  #turretPanel{left:50%;right:auto;transform:translateX(-50%);bottom:calc(208px + var(--sab));width:208px;padding:10px}
+  .banner{font-size:22px}
+  .banner.sub{font-size:12px}
+  #howto,#howtoTouch{gap:6px 14px;font-size:11px;margin-top:24px}
+  .bigbtn{margin-top:28px;font-size:15px;padding:12px 36px}
+  .screen h1{letter-spacing:.26em;text-indent:.26em}
+  #wavePreview{max-width:210px;gap:6px}
+  .pvItem canvas{width:16px;height:16px}
+  .pvItem i{font-size:10px}
+  #combo{font-size:19px}
+  #ovRank{font-size:66px}
+  #diffRow{margin-top:22px}
+  #diffRow button{padding:7px 20px;font-size:12px}
+}
+@media (max-width:560px){
+  #rightPill > div{display:none}
+}
+@media (max-width:480px){
+  #howto,#howtoTouch{grid-template-columns:1fr;gap:5px}
+}
+
+/* 터치 기기: 키보드 안내 대신 터치 안내 */
+#howtoTouch{margin-top:40px;display:none;grid-template-columns:auto auto;gap:10px 28px;font-size:13px;color:var(--text-dim)}
+#howtoTouch .k{color:var(--text)}
+@media (pointer:coarse){
+  #howto{display:none}
+  #howtoTouch{display:grid}
+  .card .hk,.ab .hk{display:none}
+  button.icon{width:40px;height:40px;font-size:16px}
+  #turretPanel .row button{padding:10px 4px;font-size:12px}
+}
+
+/* ---------- 태블릿 (터치 + 넓은 화면): 터치 타깃 확대 + 카드 노출 증가 ---------- */
+@media (pointer:coarse) and (min-width:701px){
+  #cards{max-width:min(720px,calc(100vw - 292px))}
+  .card{width:72px}
+  .card canvas{width:42px;height:42px}
+  .ab{width:56px;height:56px}
+  .ab canvas{width:32px;height:32px}
+  #coreStatus{width:300px}
+  #btnCancel{font-size:14px;padding:13px 22px}
+}
+
+/* ---------- 터치 가로 저높이 (폰 가로 · 소형 태블릿 가로): 하단 UI 압축 ---------- */
+@media (pointer:coarse) and (max-height:600px){
+  #topbar{top:6px}
+  #bossBar{top:52px}
+  #banners{top:16%}
+  .banner{font-size:24px}
+  #dock{bottom:calc(6px + var(--sab));gap:10px}
+  .card{width:52px;padding:5px 2px 4px}
+  .card canvas{width:32px;height:32px}
+  .card .nm{display:none}
+  .ab{width:48px;height:48px}
+  .ab canvas{width:27px;height:27px}
+  #coreStatus{width:210px;bottom:calc(84px + var(--sab))}
+  #coreStatus .bar.hp{height:11px}
+  #hint{bottom:calc(148px + var(--sab));font-size:11px}
+  #btnCancel{bottom:calc(148px + var(--sab));font-size:12px;padding:10px 14px}
+  #turretPanel{left:auto;right:12px;transform:none;bottom:calc(94px + var(--sab));width:200px;padding:10px}
+}
+
+/* ---------- 저높이 오버레이 (폰 가로 등 세로 480px 이하): 스크린 콘텐츠 압축 ---------- */
+@media (max-height:480px){
+  .screen{padding:14px 12px}
+  .screen h1{font-size:min(30px,7vh);letter-spacing:.22em;text-indent:.22em}
+  .screen .tag{margin-top:4px;font-size:11px}
+  #lore{display:none}
+  #mapRow{margin-top:12px}
+  .mapCard{width:96px;padding:6px}
+  .mapCard canvas{width:80px;height:42px}
+  .mapCard .mg{min-height:0;font-size:8px}
+  #diffRow{margin-top:10px}
+  #diffRow button{padding:6px 18px;font-size:11px}
+  .bigbtn{margin-top:12px;font-size:13px;padding:10px 30px}
+  #btnDaily{margin-top:8px !important;font-size:11px !important}
+  #btnLab{margin-top:8px}
+  #btnSet{margin-top:6px !important}
+  #howto,#howtoTouch{display:none}
+  #overScreen h1{font-size:min(26px,7vh)}
+  #ovRank{font-size:42px;margin-top:6px}
+  #ovStats{margin-top:10px;gap:4px 26px;font-size:12px}
+  #newBest{margin-top:8px;font-size:11px}
+  #labRows{margin-top:12px;gap:6px}
+  #btnLabClose{margin-top:12px !important}
+  #setRows{margin-top:10px;gap:6px}
+  .setRow{padding:6px 12px;font-size:12px}
+  #btnSetClose{margin-top:12px !important}
+  #pauseVeil h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<div id="hud">
+  <div id="topbar">
+    <div class="pill" id="resPill">
+      <span class="crystal">◆</span><b id="minerals">0</b><span id="income">+4/s</span>
+    </div>
+    <div class="pill" id="wavePill">
+      <div id="waveLabel">WAVE 1</div>
+      <div id="waveState">방어 준비 <b id="waveTimer">18</b>s</div>
+      <div id="wavePreview" class="hidden"></div>
+      <button id="btnCall">즉시 소환 <span class="bonus">+0◆</span></button>
+    </div>
+    <div class="pill" id="rightPill">
+      <div><div class="lbl">SCORE</div><div class="val" id="score">0</div></div>
+      <div><div class="lbl">BEST</div><div class="val" id="best">0</div></div>
+      <button class="icon" id="btnMute" title="음소거 (M)">🔊</button>
+      <button class="icon" id="btnPause" title="일시정지 (P)">⏸</button>
+    </div>
+  </div>
+
+  <div id="bossBar" class="hidden">
+    <label id="bossName">BEHEMOTH</label>
+    <div class="bar"><i id="bossFill"></i></div>
+  </div>
+
+  <div id="banners"></div>
+  <div id="combo" class="hidden"></div>
+  <div id="hint"></div>
+
+  <div id="coreStatus">
+    <div class="bar shield"><i id="shieldFill"></i></div>
+    <div class="bar hp"><i id="hpFill"></i><span id="hpText"></span></div>
+  </div>
+
+  <div id="dock">
+    <div id="cards"></div>
+    <div id="abilities"></div>
+  </div>
+
+  <div id="turretPanel" class="hidden">
+    <div id="tpName"></div>
+    <div class="bar" id="tpHp"><i></i></div>
+    <div id="tpStats"></div>
+    <div class="row">
+      <button id="btnUp"></button>
+      <button id="btnSell"></button>
+    </div>
+  </div>
+
+  <button id="btnCancel" class="hidden">✕ 취소</button>
+  <div id="tooltip" class="hidden"></div>
+</div>
+
+<div id="startScreen" class="screen">
+  <video id="titleVid" autoplay muted loop playsinline></video>
+  <h1>CORE SIEGE</h1>
+  <div class="tag">바스티온-7 방어 작전</div>
+  <div id="lore">변경 전초기지 '바스티온-7' — 지각 아래 잠들어 있던 군체가 코어의 공명에 깨어났다.<br>철수선이 도착할 때까지, 코어가 버텨야 한다.</div>
+  <div id="mapRow"></div>
+  <div id="diffRow">
+    <button data-diff="normal">보통</button>
+    <button data-diff="hard">어려움</button>
+  </div>
+  <button class="bigbtn hidden" id="btnResumeRun" style="border-color:var(--cyan);box-shadow:0 0 18px var(--cyan-dim)">이어하기</button>
+  <button class="bigbtn" id="btnStart">방어 개시</button>
+  <button id="btnDaily" style="margin-top:12px;font-size:12px;padding:9px 18px">📅 일일 작전</button>
+  <button id="btnLab">🔬 연구소 <span class="c">— 영구 업그레이드</span></button>
+  <button id="btnSet" style="margin-top:10px;font-size:12px;padding:8px 18px">⚙ 설정</button>
+  <div id="howto">
+    <div><kbd>1</kbd>~<kbd>7</kbd> 터렛 / 드론 선택</div><div class="k">좌클릭 배치 · 우클릭 취소</div>
+    <div><kbd>Q</kbd><kbd>W</kbd><kbd>E</kbd> 특수 능력</div><div class="k">궤도 폭격 · 정지장 · 긴급 수리</div>
+    <div><kbd>Space</kbd> 웨이브 조기 소환</div><div class="k">남은 시간만큼 보너스 ◆</div>
+    <div><kbd>U</kbd> 강화 · <kbd>X</kbd> 매각</div><div class="k">터렛 클릭 후 사용</div>
+    <div><kbd>P</kbd> 일시정지 · <kbd>M</kbd> 음소거</div><div class="k">5웨이브마다 보스 출현</div>
+  </div>
+  <div id="howtoTouch">
+    <div>카드를 필드로 드래그</div><div class="k">손가락 위에 미리보기 · 놓으면 배치</div>
+    <div>터렛 탭</div><div class="k">강화 / 매각 패널</div>
+    <div>하단 원형 버튼</div><div class="k">궤도 폭격(드래그 조준) · 정지장 · 수리</div>
+    <div>[즉시 소환] 버튼</div><div class="k">남은 시간만큼 보너스 ◆</div>
+    <div>5웨이브마다</div><div class="k">보스 출현</div>
+  </div>
+</div>
+
+<div id="bossSplash" class="hidden">
+  <img id="bossSplashImg" alt="">
+  <div id="bossSplashName"></div>
+</div>
+
+<div id="overScreen" class="screen hidden">
+  <video id="overVid" muted loop playsinline></video>
+  <h1 id="ovTitle">CORE DESTROYED</h1>
+  <div class="tag" id="ovTag">방어선이 붕괴되었습니다</div>
+  <div id="ovRank">D</div>
+  <div id="ovStats">
+    <div class="lbl">도달 웨이브</div><div class="val" id="ovWave">0</div>
+    <div class="lbl">처치</div><div class="val" id="ovKills">0</div>
+    <div class="lbl">생존 시간</div><div class="val" id="ovTime">0:00</div>
+    <div class="lbl">최종 점수</div><div class="val hi" id="ovScore">0</div>
+    <div class="lbl">코어 파편 획득</div><div class="val hi" id="ovShards">+0</div>
+  </div>
+  <div id="newBest" class="hidden">— NEW RECORD —</div>
+  <button class="bigbtn" id="btnRetry">재도전</button>
+  <button id="btnLabOver">🔬 연구소에서 강해지기</button>
+</div>
+
+<div id="labScreen" class="screen hidden">
+  <h1 style="font-size:min(40px,7vw)">연구소</h1>
+  <div class="tag">코어 파편 보유 — <b id="labShards" class="c">0</b></div>
+  <div id="labRows"></div>
+  <button class="bigbtn" id="btnLabClose" style="margin-top:28px">닫기</button>
+</div>
+
+<div id="pauseVeil" class="screen hidden">
+  <h1>PAUSED</h1>
+  <div class="tag"><kbd>P</kbd> 키로 재개</div>
+  <div class="row" id="pauseBtns">
+    <button id="btnResume">계속하기</button>
+    <button id="btnRestartP">재시작</button>
+    <button id="btnSetP">설정</button>
+    <button id="btnGiveUp" style="border-color:var(--red-soft);color:#ffb3ba">포기·정산</button>
+  </div>
+</div>
+
+<div id="coach" class="hidden">
+  <div id="coachArrowUp">▲</div>
+  <div id="coachTxt"></div>
+  <div id="coachArrow">▼</div>
+</div>
+
+<div id="setScreen" class="screen hidden">
+  <h1 style="font-size:min(40px,7vw)">설정</h1>
+  <div id="setRows">
+    <div class="setRow"><span>음악</span><input type="range" id="volMus" min="0" max="100" step="5"></div>
+    <div class="setRow"><span>효과음</span><input type="range" id="volSfx" min="0" max="100" step="5"></div>
+    <div class="setRow"><span>진동 (모바일)</span><button class="tglBtn" id="tglVib">켜짐</button></div>
+    <div class="setRow"><span>화질</span><button class="tglBtn" id="tglQ">자동</button></div>
+    <div class="setRow"><span>언어 / Language</span><button class="tglBtn" id="tglLang">한국어</button></div>
+  </div>
+  <button class="bigbtn" id="btnSetClose" style="margin-top:28px">닫기</button>
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/entities.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

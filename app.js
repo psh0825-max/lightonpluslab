@@ -90,6 +90,9 @@
     var vids = document.querySelectorAll('video[data-ambient]');
     if(!vids.length) return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // poster only
+    // 좁은 화면에서는 포스터만. 영상 6개는 모바일 데이터·배터리를 쓰는데
+    // 작은 화면에서 얻는 값이 그만큼 되지 않는다.
+    if(window.matchMedia('(max-width: 768px)').matches) return;
     if(!('IntersectionObserver' in window)) return;
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
