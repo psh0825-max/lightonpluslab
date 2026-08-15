@@ -1,0 +1,13 @@
+{
+  "name": "CORE SIEGE — 바스티온-7 방어 작전",
+  "short_name": "CORE SIEGE",
+  "start_url": ".",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#04070d",
+  "theme_color": "#04070d",
+  "icons": [
+    { "src": "assets/icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon.png", "sizes": "192x192", "type": "image/png", "purpose": "any" }
+  ]
+}

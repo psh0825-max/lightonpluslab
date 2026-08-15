@@ -681,6 +681,8 @@ PAGE_LASTMOD = {
     "privacy.html": "2026-08-08",
     "privacy-en.html": "2026-08-08",
     "terms.html": "2026-07-05",
+    "games/core-siege/": "2026-08-15",
+    "games/hole/": "2026-08-15",
 }
 LEGAL_PAGES = {"privacy.html", "privacy-en.html", "terms.html"}
 entries = list(PAGE_LASTMOD.items()) + [(a["slug"] + ".html", a["date"]) for a in ARTICLES]
