@@ -16,7 +16,8 @@ HEAD = """<!doctype html>
 <meta property="og:image" content="{ogimg}" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="theme-color" content="#FBFAF8" />
-<link rel="icon" href="logo-new.png" />
+<link rel="icon" href="img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="img/logo-mark.png" />
 <link rel="canonical" href="https://lightonpluslab.com/{slug}.html" />
 <link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -63,7 +64,7 @@ HEAD = """<!doctype html>
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="index.html">
-      <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+      <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
             <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
     </a>
     <nav class="nav-links" aria-label="메뉴">
@@ -103,7 +104,7 @@ FOOTER = """
       <div>
         <div class="footer-brand">
           <a class="brand" href="index.html">
-            <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
             <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
           </a>
         </div>
@@ -531,7 +532,7 @@ def article_jsonld(a, ogimg):
                    "url": "https://lightonpluslab.com/"},
         "publisher": {"@type": "Organization", "name": "LightOn Plus Lab",
                       "logo": {"@type": "ImageObject",
-                               "url": "https://lightonpluslab.com/logo-new.png"}},
+                               "url": "https://lightonpluslab.com/img/logo-mark.png"}},
     }
     return ('<script type="application/ld+json">\n'
             + json.dumps(data, ensure_ascii=False, indent=1)

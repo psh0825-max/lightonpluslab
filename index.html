@@ -16,7 +16,8 @@
 <link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
 <meta property="og:url" content="https://lightonpluslab.com/" />
 <meta name="theme-color" content="#FBFAF8" />
-<link rel="icon" href="logo-new.png" />
+<link rel="icon" href="img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="img/logo-mark.png" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
 <link rel="stylesheet" href="styles.css?v=42176cce" />
@@ -25,56 +26,67 @@
 <style>
 /* 홈 전용 — 공용 시스템(styles.css) 위에 얹는 레이아웃 */
 
-/* 히어로 — 배경 연출 없이 타이포와 제품으로 연다 */
-.hero{position:static;min-height:0;display:block;padding:clamp(52px,6.5vw,88px) 0 0;overflow:visible;isolation:auto}
-.hero-grid{display:block;width:100%}
-.hero-content{max-width:none;display:block}
+/* 히어로 — 좌: 문장과 증거 / 우: 제품 (D안) */
+.hero{position:static;min-height:0;display:block;padding:clamp(40px,5.5vw,76px) 0 0;overflow:visible;isolation:auto}
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
+  gap:clamp(32px,5vw,64px);align-items:start;width:100%;
+}
+.hero-content{max-width:none;display:block;min-width:0}
+
+/* 한글은 어절 중간에서 끊지 않는다. 각 줄은 완결된 절이라 접혀도 뜻이 안 잘린다. */
 .hero-title{
   margin:16px 0 20px;font-size:var(--t-display);font-weight:700;
-  letter-spacing:-.035em;line-height:1.18;max-width:15ch;
-  word-break:keep-all;text-shadow:none;
+  letter-spacing:-.038em;line-height:1.16;max-width:20ch;
+  word-break:keep-all;overflow-wrap:break-word;text-wrap:balance;text-shadow:none;
 }
 .hero-title .line{display:block}
-.hero-title em{font-style:normal;background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--ink);letter-spacing:inherit}
-.hero-sub{color:var(--ink-2);font-size:var(--t-lead);line-height:1.8;max-width:47ch;margin-bottom:28px;word-break:keep-all;text-shadow:none}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.hero-proof{display:flex;flex-wrap:wrap;gap:7px 20px;width:auto;margin-top:24px}
-.hero-proof span{
-  display:inline-flex;align-items:center;gap:7px;min-height:0;
-  padding:0;border:0;background:none;border-radius:0;
-  color:var(--ink-3);font-size:var(--t-xs);
+.hero-title em{font-style:normal;background:none;color:var(--ink);letter-spacing:inherit}
+.hero-sub{
+  color:var(--ink-2);font-size:var(--t-lead);line-height:1.8;
+  max-width:44ch;margin-bottom:28px;
+  word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty;text-shadow:none;
 }
-.hero-proof span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink-4);box-shadow:none;flex:0 0 auto}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
-/* 제품 세 줄이 곧 히어로 이미지다 */
-.hero-apps{display:block;width:100%;margin-top:46px;border-top:1px solid var(--ink)}
+/* 숫자를 히어로 안에서 증거로 쓴다 */
+.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:38px;border-top:1px solid var(--rule)}
+.hero-stat{padding:18px 18px 18px 0;border-bottom:1px solid var(--rule)}
+.hero-stat:nth-child(2n){padding-left:18px}
+.hero-stat b{
+  display:block;font-size:clamp(24px,2.6vw,30px);font-weight:700;
+  letter-spacing:-.038em;line-height:1.1;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.hero-stat b .unit{font-size:.5em;font-weight:600;margin-left:3px;letter-spacing:-.01em}
+.hero-stat span{display:block;font-size:var(--t-xs);color:var(--ink-3);margin-top:5px;word-break:keep-all;line-height:1.5}
+
+/* 우측: 제품이 지면의 절반을 차지한다 */
+.hero-rail{display:flex;flex-direction:column;gap:12px;min-width:0}
 .hero-app{
-  display:grid;grid-template-columns:44px minmax(0,1fr) auto auto;
-  align-items:center;gap:16px;padding:17px 4px;
-  background:none;border:0;border-bottom:1px solid var(--rule);border-radius:0;
+  display:grid;grid-template-columns:56px minmax(0,1fr) auto;
+  align-items:center;gap:14px;padding:18px 20px;
+  background:var(--card);border:1px solid var(--rule);border-radius:14px;
+  transition:border-color .18s var(--ease),background .18s var(--ease);
+}
+.hero-app:hover{border-color:var(--rule-2);background:var(--paper-2);transform:none}
+.hero-app img{width:56px;height:56px;border-radius:14px;box-shadow:0 1px 2px rgba(26,25,23,.10)}
+.hero-app .t{min-width:0}
+.hero-app b{display:block;font-size:16.5px;font-weight:700;letter-spacing:-.024em;color:var(--ink);line-height:1.35}
+.hero-app .cat{display:block;font-size:13.5px;color:var(--ink-3);line-height:1.6;margin-top:3px;word-break:keep-all}
+.hero-app .go{
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  padding:10px 15px;border-radius:8px;background:var(--ink);color:var(--paper);
+  font-size:13.5px;font-weight:600;
+}
+.hero-games{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:17px 20px;border:1px dashed var(--rule-2);border-radius:14px;
   transition:background .18s var(--ease);
 }
-.hero-app:hover{background:var(--paper-2);border-color:var(--rule);transform:none}
-.hero-app img{width:44px;height:44px;border-radius:10px;box-shadow:0 1px 2px rgba(26,25,23,.10)}
-.hero-app b{display:block;font-size:16px;font-weight:600;letter-spacing:-.022em;color:var(--ink);line-height:1.4}
-.hero-app .cat{font-size:var(--t-xs);color:var(--ink-3);letter-spacing:0;text-transform:none;white-space:nowrap}
-.hero-app .go{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-sm);font-weight:600;color:var(--ink);white-space:nowrap}
-.hero-app .go svg{width:12px;height:12px;stroke-width:2;transition:transform .18s var(--ease)}
-.hero-app:hover .go svg{transform:translate(2px,-2px)}
-
-/* 숫자 — 카드가 아니라 선으로 나눈 표 */
-.kpi-section{padding:clamp(36px,4.5vw,60px) 0}
-.kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.kpi{padding:26px 22px 26px 0;background:none;border:0;border-right:1px solid var(--rule);border-radius:0;transition:none}
-.kpi:last-child{border-right:0}
-.kpi:not(:first-child){padding-left:22px}
-.kpi:hover{background:none;border-color:var(--rule);transform:none}
-.kpi-num{font-size:clamp(28px,3.2vw,36px);font-weight:700;letter-spacing:-.038em;line-height:1.1;margin-bottom:9px;color:var(--ink);font-variant-numeric:tabular-nums}
-.kpi.mint .kpi-num,.kpi.purple .kpi-num,.kpi.pink .kpi-num,.kpi.amber .kpi-num{color:var(--ink)}
-.kpi-num .unit{font-size:.5em;font-weight:600;margin-left:3px;letter-spacing:-.01em}
-.kpi-num span[data-counter]{font-weight:700}
-.kpi-label{font-family:var(--f-sans);font-size:var(--t-sm);font-weight:600;color:var(--ink);margin-bottom:5px;text-transform:none;letter-spacing:-.01em}
-.kpi-note{font-size:var(--t-xs);color:var(--ink-3);line-height:1.65}
+.hero-games:hover{background:var(--paper-2)}
+.hero-games .m{font-size:14px;color:var(--ink-2);word-break:keep-all;line-height:1.6}
+.hero-games .go{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;white-space:nowrap;color:var(--ink)}
+.hero-games .go svg,.hero-app .go svg{width:12px;height:12px;stroke-width:2;flex:0 0 auto}
 
 /* 의뢰 섹션의 4단계 */
 .signal-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:0;width:100%;margin-top:0;border-top:1px solid var(--rule)}
@@ -136,11 +148,12 @@
 .post-card .pc-meta{font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:0;color:var(--ink-3)}
 
 @media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero-title{max-width:24ch}
+  .hero-stats{margin-top:30px}
+}
+@media(max-width:960px){
   .hero-title{max-width:none}
-  .kpi-row{grid-template-columns:1fr 1fr;border-bottom:0}
-  .kpi{border-bottom:1px solid var(--rule)}
-  .kpi:nth-child(2n){border-right:0;padding-left:22px}
-  .kpi:nth-last-child(-n+2){border-bottom:0}
   .feat-grid,.signal-rail{grid-template-columns:1fr 1fr}
   .feat:nth-child(2n),.signal-step:nth-child(2n){border-right:0}
   .feat:nth-child(n+3),.signal-step:nth-child(n+3){border-top:1px solid var(--rule)}
@@ -151,11 +164,25 @@
   .mini-grid .proj{border-right:0;border-bottom:1px solid var(--rule);padding-left:0}
   .mini-grid .proj:last-child{border-bottom:0}
 }
+/* 가로로 눕힌 폰처럼 세로가 짧은 화면 */
+@media(max-height:520px) and (orientation:landscape){
+  .hero{padding-top:28px}
+  .hero-stats{margin-top:24px}
+}
+@media(max-width:400px){
+  .hero-title{font-size:31px;letter-spacing:-.042em}
+}
 @media(max-width:600px){
+  .hero-app{grid-template-columns:48px minmax(0,1fr);gap:12px;padding:16px}
+  .hero-app img{width:48px;height:48px;border-radius:12px}
+  .hero-app .go{grid-column:1 / -1;justify-content:center;margin-top:4px}
+  .hero-games{flex-direction:column;align-items:stretch;gap:10px}
+  .hero-games .go{justify-content:center;padding:10px;border:1px solid var(--rule-2);border-radius:8px}
+  .hero-stat{padding:15px 12px 15px 0}
+  .hero-stat:nth-child(2n){padding-left:12px}
   .stack-card{padding:16px 0}
   .stack-head{margin-bottom:9px}
   .stack-rows{gap:5px 14px}
-  .kpi{padding:20px 0}
   .feat{padding:18px 0}
   .signal-step{padding:16px 0}
   .proj-grid{gap:20px}
@@ -168,8 +195,6 @@
   .hero-app .cat{display:none}
   .hero-actions{display:grid;grid-template-columns:1fr}
   .hero-actions .btn{justify-content:center}
-  .kpi-row{grid-template-columns:1fr}
-  .kpi{border-right:0;padding-left:0!important}
   .feat-grid,.signal-rail{grid-template-columns:1fr}
   .feat,.signal-step{border-right:0;border-top:1px solid var(--rule);padding-left:0!important}
   .feat:first-child,.signal-step:first-child{border-top:0}
@@ -188,7 +213,7 @@
       "name": "LightOn Plus Lab",
       "alternateName": "라이트온 플러스 랩",
       "url": "https://lightonpluslab.com/",
-      "logo": "https://lightonpluslab.com/logo-new.png",
+      "logo": "https://lightonpluslab.com/img/logo-mark.png",
       "email": "support@lightonpluslab.com",
       "telephone": "+82-70-8098-5734",
       "address": {
@@ -229,7 +254,7 @@
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="index.html" aria-label="LightOn Plus Lab 홈">
-      <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+      <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
       <span class="brand-text">
         <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
         <span class="brand-sub">AI Apps · Innovation</span>
@@ -263,7 +288,7 @@
 <main id="main">
 
 <!-- ============================================================
-     HERO — 타이포와 제품 세 줄로 연다
+     HERO — 좌: 문장과 증거 / 우: 제품
      ============================================================ -->
 <section class="hero">
   <div class="wrap">
@@ -272,81 +297,55 @@
         <span class="eyebrow reveal">라이트온 플러스 랩 · 경기 안양</span>
         <h1 class="hero-title reveal reveal-d1">
           <span class="line">앱을 만들어</span>
-          <span class="line"><em>플레이스토어에 올리고</em></span>
+          <span class="line">플레이스토어에 올리고</span>
           <span class="line">직접 운영합니다.</span>
         </h1>
         <p class="hero-sub reveal reveal-d2">
-          라이트온 플러스 랩은 기획·개발·배포·운영을 혼자 끝내는 AI 앱 스튜디오입니다. 모모아이 · 송빗 · 라이트온 AI 노트 — 세 개의 앱이 지금 Google Play에서 서비스되고 있습니다.
+          기획·개발·배포·운영을 혼자 끝내는 AI 앱 스튜디오입니다. 스토어에 올린 뒤에도 사용자 피드백으로 계속 고칩니다.
         </p>
         <div class="hero-actions reveal reveal-d3">
           <a class="btn btn-primary" href="#apps">
             출시된 앱 보기
-            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a class="btn btn-ghost" href="contact.html">
             제작 의뢰하기
-            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
-        <div class="hero-proof reveal reveal-d4" aria-label="LightOn Plus Lab 강점">
-          <span>Google Play 정식 출시 3종</span>
-          <span>앱 3종 모두 인앱 구매 운영</span>
-          <span>최신 업데이트 2026.08</span>
+        <div class="hero-stats reveal reveal-d4">
+          <div class="hero-stat"><b><span data-counter="3">3</span><span class="unit">개</span></b><span>Google Play 출시 앱</span></div>
+          <div class="hero-stat"><b><span data-counter="3">3</span><span class="unit">분+</span></b><span>송빗이 만드는 곡 길이</span></div>
+          <div class="hero-stat"><b><span data-counter="4">4</span><span class="unit">개</span></b><span>AI 노트가 인식하는 언어</span></div>
+          <div class="hero-stat"><b><span data-counter="37">37</span><span class="unit">개국</span></b><span>모모아이 캘린더 공휴일</span></div>
         </div>
-        <div class="hero-apps reveal reveal-d4">
-          <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa" target="_blank" rel="noopener">
-            <img src="img/app-momoi.png" alt="" width="44" height="44" />
-            <b>모모아이</b>
-            <span class="cat">생산성</span>
-            <span class="go">Google Play<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </a>
-          <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener">
-            <img src="img/app-songbit.png" alt="" width="44" height="44" />
-            <b>송빗</b>
-            <span class="cat">음악·오디오</span>
-            <span class="go">Google Play<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </a>
-          <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener">
-            <img src="img/app-ainote.png" alt="" width="44" height="44" />
-            <b>라이트온 AI 노트</b>
-            <span class="cat">교육</span>
-            <span class="go">Google Play<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </a>
-        </div>
+      </div>
+
+      <div class="hero-rail reveal reveal-d2">
+        <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa" target="_blank" rel="noopener">
+          <img src="img/app-momoi.png" alt="" width="56" height="56" />
+          <span class="t"><b>모모아이</b><span class="cat">통화 녹음 → AI 요약·할 일·일정</span></span>
+          <span class="go">받기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener">
+          <img src="img/app-songbit.png" alt="" width="56" height="56" />
+          <span class="t"><b>송빗</b><span class="cat">키워드만 고르면 완곡 한 편</span></span>
+          <span class="go">받기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener">
+          <img src="img/app-ainote.png" alt="" width="56" height="56" />
+          <span class="t"><b>라이트온 AI 노트</b><span class="cat">강의 전사 + 간격반복 복습</span></span>
+          <span class="go">받기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="hero-games" href="#work">
+          <span class="m">게임 두 편은 설치 없이 브라우저에서 바로 플레이</span>
+          <span class="go">해보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     KPI ROW
-     ============================================================ -->
-<section class="kpi-section">
-  <div class="wrap">
-    <div class="kpi-row">
-      <div class="kpi mint reveal">
-        <div class="kpi-num"><span data-counter="3">3</span><span class="unit">개</span></div>
-        <div class="kpi-label">Google Play 출시 앱</div>
-        <div class="kpi-note">모모아이 · 송빗 · 라이트온 AI 노트</div>
-      </div>
-      <div class="kpi purple reveal reveal-d1">
-        <div class="kpi-num"><span data-counter="3">3</span><span class="unit">분+</span></div>
-        <div class="kpi-label">송빗이 만드는 곡 길이</div>
-        <div class="kpi-note">키워드만 고르면 풀렝스 완곡이 나옵니다</div>
-      </div>
-      <div class="kpi pink reveal reveal-d2">
-        <div class="kpi-num"><span data-counter="4">4</span><span class="unit">개</span></div>
-        <div class="kpi-label">AI 노트가 인식하는 언어</div>
-        <div class="kpi-note">한국어 · 영어 · 중국어 · 일본어</div>
-      </div>
-      <div class="kpi amber reveal reveal-d3">
-        <div class="kpi-num"><span data-counter="37">37</span><span class="unit">개국</span></div>
-        <div class="kpi-label">모모아이 캘린더 공휴일</div>
-        <div class="kpi-note">통화 속 일정이 자동 등록됩니다</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="apps"><div class="wrap">
   <h2 class="section-title reveal">Google Play에 출시한 앱</h2>
@@ -646,7 +645,7 @@
       <div>
         <div class="footer-brand">
           <a class="brand" href="index.html">
-            <img class="brand-img" src="logo-new.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
             <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
           </a>
         </div>
