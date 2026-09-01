@@ -85,6 +85,29 @@
     els.forEach(function(el){ io.observe(el); });
   })();
 
+  /* -------- 광고 영상 — 눌러야 재생된다 --------
+     내레이션이 있는 광고라 소리 없이는 뜻이 없다. 브라우저는 소리 있는 자동재생을
+     막으므로, 사용자가 누른 그 클릭으로 재생을 시작해 소리를 허용받는다. */
+  (function(){
+    document.addEventListener('click', function(e){
+      var btn = e.target.closest ? e.target.closest('.vplay') : null;
+      if(!btn) return;
+      var img = btn.querySelector('img');
+      var v = document.createElement('video');
+      v.src = btn.getAttribute('data-video');
+      if(img) v.poster = img.getAttribute('src');
+      v.controls = true; v.autoplay = true; v.preload = 'auto';
+      v.setAttribute('playsinline','');
+      btn.parentNode.replaceChild(v, btn);
+      v.play().catch(function(){});
+      // 한 편이 시작하면 나머지는 멈춘다
+      v.addEventListener('play', function(){
+        var others = document.querySelectorAll('.store-media video');
+        Array.prototype.forEach.call(others, function(o){ if(o !== v) o.pause(); });
+      });
+    });
+  })();
+
   /* -------- Ambient card videos -------- */
   (function(){
     var vids = document.querySelectorAll('video[data-ambient]');
