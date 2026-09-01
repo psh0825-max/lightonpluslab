@@ -383,6 +383,9 @@ h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.34;letter-spacing:-.0
   font-size:11.5px;font-weight:600;line-height:1.4;letter-spacing:.01em;
 }
 .vplay:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+/* 광고가 아직 없는 앱 — 세로 필름 대신 실제 앱 화면을 가로로 둔다.
+   광고가 나오면 이 줄만 지우면 다른 카드와 같은 9:16 재생기로 돌아온다. */
+.store-media.wide{aspect-ratio:16/9;max-width:420px}
 
 /* 원칙 — 카드가 아니라 선으로 나눈 항목 */
 .prin-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--rule)}
