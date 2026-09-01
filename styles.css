@@ -351,17 +351,41 @@ h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.34;letter-spacing:-.0
   transition:background .18s var(--ease),border-color .18s var(--ease);
 }
 .btn-sm:hover{background:var(--paper-2);border-color:var(--ink-4);color:var(--ink)}
+/* 앱 광고 — 세로 영상을 눌러서 소리와 함께 본다.
+   4:3 가로 슬롯에 9:16을 넣으면 cover가 세로 58%를 잘라내 자막과 끝 화면이 사라진다.
+   그래서 슬롯 자체를 세로로 바꾸고, 폭을 묶어 카드가 지나치게 길어지지 않게 한다. */
 .store-media{
   position:relative;overflow:hidden;border:1px solid var(--rule);
-  border-radius:10px;background:var(--paper-2);min-height:0;aspect-ratio:4/3;
+  border-radius:14px;background:var(--paper-2);min-height:0;aspect-ratio:9/16;
+  width:100%;max-width:272px;justify-self:center;
 }
-.store-media video,.store-media img{width:100%;height:100%;object-fit:cover;opacity:1;transition:none}
-.store-card:hover .store-media video{transform:none;opacity:1}
+.store-media video,.store-media img{width:100%;height:100%;object-fit:cover;opacity:1;transition:none;display:block}
+.store-media video{background:#000}
 .store-media::after{display:none}
-.store-card.alt{grid-template-columns:minmax(0,.8fr) minmax(0,1fr)}
-.store-card.alt .store-body{grid-column:2;grid-row:1}
-.store-card.alt .store-media{grid-column:1;grid-row:1;border-left:1px solid var(--rule);border-right:1px solid var(--rule)}
-.store-card.alt .store-media::after{display:none}
+.vplay{
+  position:absolute;inset:0;display:block;width:100%;height:100%;
+  padding:0;border:0;background:none;cursor:pointer;overflow:hidden;border-radius:inherit;
+}
+.vplay img{transition:transform .5s var(--ease)}
+.vplay:hover img{transform:scale(1.035)}
+.vplay-ui{
+  position:absolute;left:50%;top:50%;width:58px;height:58px;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:rgba(251,250,248,.94);display:grid;place-items:center;
+  box-shadow:0 2px 16px rgba(26,25,23,.3);
+  transition:transform .18s var(--ease),background .18s var(--ease);
+}
+.vplay:hover .vplay-ui{transform:translate(-50%,-50%) scale(1.07);background:#FBFAF8}
+.vplay-ui svg{width:21px;height:21px;fill:var(--ink);margin-left:3px}
+.vplay-tag{
+  position:absolute;left:10px;bottom:10px;padding:4px 9px;border-radius:6px;
+  background:rgba(26,25,23,.74);color:#FBFAF8;
+  font-size:11.5px;font-weight:600;line-height:1.4;letter-spacing:.01em;
+}
+.vplay:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+/* 광고가 아직 없는 앱 — 세로 필름 대신 실제 앱 화면을 가로로 둔다.
+   광고가 나오면 이 줄만 지우면 다른 카드와 같은 9:16 재생기로 돌아온다. */
+.store-media.wide{aspect-ratio:16/9;max-width:420px}
 
 /* 원칙 — 카드가 아니라 선으로 나눈 항목 */
 .prin-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--rule)}
@@ -380,9 +404,9 @@ h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.34;letter-spacing:-.0
   .nav-links,.nav-cta{display:none}
   .hamburger{display:inline-flex}
   .footer-top{grid-template-columns:1fr 1fr;gap:28px}
-  .store-card,.store-card.alt{grid-template-columns:1fr;gap:26px}
-  .store-card .store-body,.store-card.alt .store-body{grid-column:1;grid-row:2}
-  .store-media,.store-card.alt .store-media{grid-column:1;grid-row:1;aspect-ratio:16/9;border:1px solid var(--rule)}
+  .store-card{grid-template-columns:1fr;gap:26px}
+  .store-card .store-body{grid-column:1;grid-row:2}
+  .store-media{grid-column:1;grid-row:1;aspect-ratio:9/16;max-width:258px;border:1px solid var(--rule)}
   .prin-grid{grid-template-columns:1fr 1fr}
   .prin{border-bottom:1px solid var(--rule);padding-left:0!important}
   .prin:nth-child(2n){border-right:0;padding-left:22px!important}
