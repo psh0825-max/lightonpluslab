@@ -685,6 +685,70 @@ PAGE_LASTMOD = {
 }
 LEGAL_PAGES = {"privacy.html", "privacy-en.html", "terms.html",
                "privacy-stone-arena.html"}
+
+# 아직 공개하지 않을 페이지. **여기에만 적으면 된다** —
+# sitemap 제외·noindex 삽입·링크 검사가 자동으로 따라온다.
+#
+# 왜 필요한가: "Beta"/"Soon" 배지는 공개를 막지 못한다. 2026-10-16에 아래 세
+# 페이지가 배지를 단 채 7월부터 sitemap에 올라가 구글에 색인되고 있었고, 앱
+# 목록에서 누구나 눌러 들어갈 수 있었다. 배지는 안내지 접근 제어가 아니다.
+UNPUBLISHED = {
+    "focusguard.html": "미완성",
+    "teams-translator.html": "미완성",
+    "vibe-studio.html": "미완성",
+    # 페이지는 남긴다 — Play 등록정보가 접근 가능한 방침 URL을 요구한다.
+    "score-studio-privacy.html": "SCORE STUDIO 미출시",
+}
+
+NOINDEX = '<meta name="robots" content="noindex, nofollow" />'
+
+
+def enforce_unpublished():
+    """미공개 페이지에 noindex 를 보장하고, 어디서도 링크되지 않는지 확인한다.
+
+    sitemap 에서 빼는 것만으로는 부족하다. 목록에 링크가 살아 있으면 방문자는
+    그대로 들어가고, 구글도 링크를 타고 들어온다. 그래서 링크가 하나라도 남아
+    있으면 빌드를 세운다 — 조용히 넘어가면 또 같은 일이 난다.
+    """
+    import glob, os, re as _re
+
+    if "" in UNPUBLISHED:
+        raise SystemExit("미공개: 홈은 내릴 수 없다")
+
+    added = []
+    for page in sorted(UNPUBLISHED):
+        if not os.path.exists(page):
+            raise SystemExit("미공개: %s 가 없다 (목록에서 빼거나 파일을 되살릴 것)" % page)
+        with io.open(page, encoding="utf-8") as f:
+            body = f.read()
+        tag = _re.search(r'<meta name="robots"[^>]*>', body)
+        if tag:
+            if "noindex" not in tag.group(0):
+                raise SystemExit("미공개: %s 의 robots 메타에 noindex 가 없다 — %s"
+                                 % (page, tag.group(0)))
+            continue
+        vp = _re.search(r'<meta name="viewport"[^>]*>', body)
+        if not vp:
+            raise SystemExit("미공개: %s 에 viewport 메타가 없어 noindex 를 넣을 자리가 없다" % page)
+        body = body.replace(vp.group(0), vp.group(0) + "\n" + NOINDEX, 1)
+        with io.open(page, "w", encoding="utf-8", newline="\n") as f:
+            f.write(body)
+        added.append(page)
+
+    linked = []
+    for path in sorted(glob.glob("*.html")):
+        if path in UNPUBLISHED:
+            continue
+        with io.open(path, encoding="utf-8") as f:
+            body = f.read()
+        for page in UNPUBLISHED:
+            if 'href="%s"' % page in body:
+                linked.append("%s → %s" % (path, page))
+    if linked:
+        raise SystemExit("미공개 페이지로 가는 링크가 남아 있다:\n  " + "\n  ".join(linked))
+
+    print("미공개 %d개 확인%s" % (len(UNPUBLISHED),
+                                 (" (noindex 추가: " + ", ".join(added) + ")") if added else ""))
 LASTMOD_STATE = "_lastmod.json"
 
 
@@ -727,6 +791,8 @@ def resolve_lastmod(seed):
             out[page] = today
         state[page] = {"hash": digest, "date": out[page]}
 
+    for gone in [k for k in state if k in UNPUBLISHED]:
+        state.pop(gone)          # 내린 페이지는 상태도 들고 있지 않는다
     with io.open(LASTMOD_STATE, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=1, sort_keys=True, ensure_ascii=False)
         f.write("\n")
@@ -734,7 +800,9 @@ def resolve_lastmod(seed):
 
 
 def write_sitemap():
-    seed = list(PAGE_LASTMOD.items()) + [(a["slug"] + ".html", a["date"]) for a in ARTICLES]
+    seed = [(p, d) for p, d in list(PAGE_LASTMOD.items())
+            + [(a["slug"] + ".html", a["date"]) for a in ARTICLES]
+            if p not in UNPUBLISHED]
     dates = resolve_lastmod(seed)
     moved = [p for p, _ in seed if dates[p] == datetime.date.today().isoformat()]
     urls = "\n".join(
@@ -783,5 +851,6 @@ with io.open("feed.xml", "w", encoding="utf-8") as f:
 """)
 print("feed.xml")
 
+enforce_unpublished()
 stamp_asset_versions()
 write_sitemap()
