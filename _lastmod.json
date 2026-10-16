@@ -1,0 +1,114 @@
+{
+ "": {
+  "date": "2026-10-16",
+  "hash": "060f37a3799722b958f0ebb35eb7b1673d7121fa"
+ },
+ "about.html": {
+  "date": "2026-08-13",
+  "hash": "127a531638334fbb4dea77e6f4aeb70b2b59c850"
+ },
+ "blog-ai-assisted-development.html": {
+  "date": "2026-05-12",
+  "hash": "c1d6b72f92d9c249976d86cfe77221953b5760d4"
+ },
+ "blog-local-first-apps.html": {
+  "date": "2026-06-18",
+  "hash": "3974b623b02bbc1d88e023479e0cc72e921f36ae"
+ },
+ "blog-lyrics-alignment-drift.html": {
+  "date": "2026-08-13",
+  "hash": "e3b9e2cd4102baab52bbea4ee02c999fe89086d2"
+ },
+ "blog-momoi-call-summary.html": {
+  "date": "2026-06-05",
+  "hash": "868288d95cffb1b6120a94b08cc3a3ac94a34f21"
+ },
+ "blog-notification-ux.html": {
+  "date": "2026-05-20",
+  "hash": "edf6ac6ac8197142dd58ff75efb6dfd696fa4d5d"
+ },
+ "blog-paper-coupon-management.html": {
+  "date": "2026-06-25",
+  "hash": "b7114407eef95018b0a9387a281498d0613f39b5"
+ },
+ "blog-pwa-vs-native.html": {
+  "date": "2026-05-28",
+  "hash": "eefcc19186e8e038b082d111973a90bfab696454"
+ },
+ "blog-twa-play-store.html": {
+  "date": "2026-07-03",
+  "hash": "772e097b2bbe36c2925a969fba34001cf07e3c81"
+ },
+ "blog-two-week-mvp.html": {
+  "date": "2026-06-10",
+  "hash": "e0df8f26360f6bf7bf37109b9a9e10ddd0613259"
+ },
+ "blog-why-summary-is-not-memory.html": {
+  "date": "2026-08-13",
+  "hash": "18abe81a792a5c356f262ffec52ef69fe8a431b4"
+ },
+ "blog.html": {
+  "date": "2026-08-13",
+  "hash": "582cb0cbebfc294816e8e6942d029b9633de7bdd"
+ },
+ "contact.html": {
+  "date": "2026-07-05",
+  "hash": "162a668c4ad7c13151bf350854215eb9c12c7bb7"
+ },
+ "focusguard.html": {
+  "date": "2026-07-05",
+  "hash": "0b0afa7db27887c2fd715f375368796150e76adc"
+ },
+ "games/core-siege/": {
+  "date": "2026-08-15",
+  "hash": ""
+ },
+ "games/hole/": {
+  "date": "2026-08-15",
+  "hash": ""
+ },
+ "lighton-ai-note.html": {
+  "date": "2026-08-13",
+  "hash": "3a2432dc1dc7db953d540134e463090f219f3c74"
+ },
+ "momoi.html": {
+  "date": "2026-08-13",
+  "hash": "a5b6fcaacd3b60f953c61aa60eb41925b6a91bfd"
+ },
+ "privacy-en.html": {
+  "date": "2026-08-08",
+  "hash": "85506bddcbc27f727126935f4936f5d4b13934b5"
+ },
+ "privacy-stone-arena.html": {
+  "date": "2026-09-04",
+  "hash": "579a913064c64b4f992454add1cee9d484be74df"
+ },
+ "privacy.html": {
+  "date": "2026-08-08",
+  "hash": "07bb57f6420ac2c642e874e213ee9987a912a150"
+ },
+ "products.html": {
+  "date": "2026-08-13",
+  "hash": "a5d504a363cfa992d4483a38150d05aef7c05a27"
+ },
+ "score-studio-privacy.html": {
+  "date": "2026-08-17",
+  "hash": "62fb99388155f9636feb8996d17fc6592f14d47e"
+ },
+ "services.html": {
+  "date": "2026-08-13",
+  "hash": "36fafd528b6028fcec071c87eb0e10f672fd8bca"
+ },
+ "teams-translator.html": {
+  "date": "2026-07-05",
+  "hash": "69f2f8c1f503228023c9c4c170f2f3aae9820c66"
+ },
+ "terms.html": {
+  "date": "2026-07-05",
+  "hash": "d71b7d6897c1fa238774d4aade17828299af7c29"
+ },
+ "vibe-studio.html": {
+  "date": "2026-07-05",
+  "hash": "547517313f05ccf1a8e4d5a9e9627afe6521e3a5"
+ }
+}
