@@ -685,10 +685,9 @@ PAGE_LASTMOD = {
     "games/core-siege/": "2026-08-15",
     "games/hole/": "2026-08-15",
     "privacy-stone-arena.html": "2026-09-04",
-    "score-studio-privacy.html": "2026-08-17",
 }
 LEGAL_PAGES = {"privacy.html", "privacy-en.html", "terms.html",
-               "privacy-stone-arena.html", "score-studio-privacy.html"}
+               "privacy-stone-arena.html"}
 LASTMOD_STATE = "_lastmod.json"
 
 
