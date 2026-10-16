@@ -668,7 +668,7 @@ for a in ARTICLES:
 
 # sitemap
 PAGE_LASTMOD = {
-    "": "2026-08-13",
+    "": "2026-10-16",
     "about.html": "2026-08-13",
     "services.html": "2026-08-13",
     "products.html": "2026-08-13",
@@ -684,23 +684,78 @@ PAGE_LASTMOD = {
     "terms.html": "2026-07-05",
     "games/core-siege/": "2026-08-15",
     "games/hole/": "2026-08-15",
+    "privacy-stone-arena.html": "2026-09-04",
+    "score-studio-privacy.html": "2026-08-17",
 }
-LEGAL_PAGES = {"privacy.html", "privacy-en.html", "terms.html"}
-entries = list(PAGE_LASTMOD.items()) + [(a["slug"] + ".html", a["date"]) for a in ARTICLES]
-urls = "\n".join(
-    f"""  <url>
+LEGAL_PAGES = {"privacy.html", "privacy-en.html", "terms.html",
+               "privacy-stone-arena.html", "score-studio-privacy.html"}
+LASTMOD_STATE = "_lastmod.json"
+
+
+def resolve_lastmod(seed):
+    """내용이 실제로 바뀐 날을 lastmod 로 쓴다.
+
+    손으로 적은 표는 썩는다(홈을 고치고도 두 달 전 날짜가 남아 있었다). 그렇다고
+    git 커밋일을 쓰면 애셋 스탬프만 바뀐 날에도 26개 전부가 "오늘 바뀜"이 되어
+    lastmod 를 믿을 수 없게 만든다. 그래서 스탬프를 지운 내용의 해시를 기록해
+    두고, 해시가 달라진 페이지만 날짜를 올린다. seed 는 상태 파일이 없을 때의
+    최초 기준값이다.
+    """
+    import hashlib, os, re as _re
+
+    try:
+        with io.open(LASTMOD_STATE, encoding="utf-8") as f:
+            state = json.load(f)
+    except (OSError, ValueError):
+        state = {}
+
+    today = datetime.date.today().isoformat()
+    out = {}
+    for page, fallback in seed:
+        path = "index.html" if page == "" else page
+        if page.endswith("/"):          # 게임은 폴더 — 날짜를 그대로 둔다
+            out[page] = state.get(page, {}).get("date", fallback)
+            state[page] = {"hash": "", "date": out[page]}
+            continue
+        if not os.path.exists(path):
+            raise SystemExit("sitemap: %s 가 없다" % path)
+        with io.open(path, encoding="utf-8") as f:
+            body = _re.sub(r"\?v=[0-9a-f]+", "", f.read())
+        digest = hashlib.sha1(body.encode("utf-8")).hexdigest()
+        prev = state.get(page)
+        if prev is None:
+            out[page] = fallback          # 최초 1회 — 알고 있는 날짜를 심는다
+        elif prev.get("hash") == digest:
+            out[page] = prev["date"]
+        else:
+            out[page] = today
+        state[page] = {"hash": digest, "date": out[page]}
+
+    with io.open(LASTMOD_STATE, "w", encoding="utf-8") as f:
+        json.dump(state, f, indent=1, sort_keys=True, ensure_ascii=False)
+        f.write("\n")
+    return out
+
+
+def write_sitemap():
+    seed = list(PAGE_LASTMOD.items()) + [(a["slug"] + ".html", a["date"]) for a in ARTICLES]
+    dates = resolve_lastmod(seed)
+    moved = [p for p, _ in seed if dates[p] == datetime.date.today().isoformat()]
+    urls = "\n".join(
+        f"""  <url>
     <loc>https://lightonpluslab.com/{p}</loc>
-    <lastmod>{lastmod}</lastmod>
+    <lastmod>{dates[p]}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>{'1.0' if p == '' else '0.3' if p in LEGAL_PAGES else '0.7'}</priority>
-  </url>""" for p, lastmod in entries)
-with io.open("sitemap.xml", "w", encoding="utf-8") as f:
-    f.write(f"""<?xml version="1.0" encoding="UTF-8"?>
+  </url>""" for p, _ in seed)
+    with io.open("sitemap.xml", "w", encoding="utf-8") as f:
+        f.write(f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {urls}
 </urlset>
 """)
-print("sitemap.xml")
+    print("sitemap.xml (%d URL, 오늘 갱신 %d개%s)"
+          % (len(seed), len(moved), (": " + ", ".join(p or "/" for p in moved)) if moved else ""))
 
 # RSS feed
 def _xml_escape(s):
@@ -733,3 +788,4 @@ with io.open("feed.xml", "w", encoding="utf-8") as f:
 print("feed.xml")
 
 stamp_asset_versions()
+write_sitemap()
