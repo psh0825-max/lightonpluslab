@@ -69,7 +69,8 @@ HEAD = """<!doctype html>
     </a>
     <nav class="nav-links" aria-label="메뉴">
       <a href="products.html">Apps</a>
-      <a href="services.html">Services</a>
+      <a href="index.html#lens">Lens</a>
+<a href="services.html">Services</a>
       <a href="blog.html">Blog</a>
       <a href="about.html">Studio</a>
       <a href="contact.html">Contact</a>
@@ -85,7 +86,8 @@ HEAD = """<!doctype html>
 </header>
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
   <a href="products.html">Apps</a>
-  <a href="services.html">Services</a>
+  <a href="index.html#lens">Lens</a>
+<a href="services.html">Services</a>
   <a href="blog.html">Blog</a>
   <a href="about.html">Studio</a>
   <a href="contact.html">Contact</a>
@@ -119,6 +121,7 @@ FOOTER = """
       <div class="footer-col">
         <h5>Work</h5>
         <a href="products.html">전체 앱</a>
+<a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens 렌즈 해석</a>
         <a href="momoi.html">모모아이</a>
         <a href="lighton-ai-note.html">라이트온 AI 노트</a>
         <a href="contact.html">New project</a>

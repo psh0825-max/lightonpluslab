@@ -1,59 +1,59 @@
 {
  "": {
-  "date": "2026-10-16",
-  "hash": "060f37a3799722b958f0ebb35eb7b1673d7121fa"
+  "date": "2026-10-22",
+  "hash": "68a479fb02912ca0633b4432d2ce088d25cbf711"
  },
  "about.html": {
-  "date": "2026-08-13",
-  "hash": "127a531638334fbb4dea77e6f4aeb70b2b59c850"
+  "date": "2026-10-22",
+  "hash": "6a26334bf52cdd3a5f063f21a094b7074c6798f9"
  },
  "blog-ai-assisted-development.html": {
-  "date": "2026-05-12",
-  "hash": "c1d6b72f92d9c249976d86cfe77221953b5760d4"
+  "date": "2026-10-22",
+  "hash": "33c481ca03f2e07b238aed9cddfe0030bf3cb4b1"
  },
  "blog-local-first-apps.html": {
-  "date": "2026-06-18",
-  "hash": "3974b623b02bbc1d88e023479e0cc72e921f36ae"
+  "date": "2026-10-22",
+  "hash": "22d8e763b00eef82f740913c3a9aac4bd9c8dc61"
  },
  "blog-lyrics-alignment-drift.html": {
-  "date": "2026-08-13",
-  "hash": "e3b9e2cd4102baab52bbea4ee02c999fe89086d2"
+  "date": "2026-10-22",
+  "hash": "2ec586d761b54c4c201297eab64e6a884acab88f"
  },
  "blog-momoi-call-summary.html": {
-  "date": "2026-06-05",
-  "hash": "868288d95cffb1b6120a94b08cc3a3ac94a34f21"
+  "date": "2026-10-22",
+  "hash": "f7aa23557f4f1bc606092ca0e0cb7e8143bbd1a3"
  },
  "blog-notification-ux.html": {
-  "date": "2026-05-20",
-  "hash": "edf6ac6ac8197142dd58ff75efb6dfd696fa4d5d"
+  "date": "2026-10-22",
+  "hash": "fd9d12b34346bb83246b2d63e005ec065d84b951"
  },
  "blog-paper-coupon-management.html": {
-  "date": "2026-06-25",
-  "hash": "b7114407eef95018b0a9387a281498d0613f39b5"
+  "date": "2026-10-22",
+  "hash": "ca3858a92852c482f060d86b7792ddf1a182c704"
  },
  "blog-pwa-vs-native.html": {
-  "date": "2026-05-28",
-  "hash": "eefcc19186e8e038b082d111973a90bfab696454"
+  "date": "2026-10-22",
+  "hash": "58259e049e6790e0f0dfbab112a7205677de2008"
  },
  "blog-twa-play-store.html": {
-  "date": "2026-07-03",
-  "hash": "772e097b2bbe36c2925a969fba34001cf07e3c81"
+  "date": "2026-10-22",
+  "hash": "b27a0eb810c1516143d1762182d865402f9790aa"
  },
  "blog-two-week-mvp.html": {
-  "date": "2026-06-10",
-  "hash": "e0df8f26360f6bf7bf37109b9a9e10ddd0613259"
+  "date": "2026-10-22",
+  "hash": "9d0da4ab69e81e2054dc436fb1fd079591dd6b78"
  },
  "blog-why-summary-is-not-memory.html": {
-  "date": "2026-08-13",
-  "hash": "18abe81a792a5c356f262ffec52ef69fe8a431b4"
+  "date": "2026-10-22",
+  "hash": "f53ef883a094c60314241ae51c40e4d044a0464b"
  },
  "blog.html": {
-  "date": "2026-08-13",
-  "hash": "582cb0cbebfc294816e8e6942d029b9633de7bdd"
+  "date": "2026-10-22",
+  "hash": "a4c6c0c26672f50f5b0c2eb959b526424a83a8e1"
  },
  "contact.html": {
-  "date": "2026-07-05",
-  "hash": "162a668c4ad7c13151bf350854215eb9c12c7bb7"
+  "date": "2026-10-22",
+  "hash": "886b8866b93d3d9ca0c8d001f6c1280fe44cc0f5"
  },
  "games/core-siege/": {
   "date": "2026-08-15",
@@ -64,35 +64,35 @@
   "hash": ""
  },
  "lighton-ai-note.html": {
-  "date": "2026-08-13",
-  "hash": "3a2432dc1dc7db953d540134e463090f219f3c74"
+  "date": "2026-10-22",
+  "hash": "237caf5afc3926928aa102957c5ed9080f45b93f"
  },
  "momoi.html": {
-  "date": "2026-08-13",
-  "hash": "a5b6fcaacd3b60f953c61aa60eb41925b6a91bfd"
+  "date": "2026-10-22",
+  "hash": "037a24704bbdd05da7132eb05f3846ba8123d6ce"
  },
  "privacy-en.html": {
-  "date": "2026-08-08",
-  "hash": "85506bddcbc27f727126935f4936f5d4b13934b5"
+  "date": "2026-10-22",
+  "hash": "4eeb51ea32d227986160dfd9aec37ee8bef14ebb"
  },
  "privacy-stone-arena.html": {
-  "date": "2026-09-04",
-  "hash": "579a913064c64b4f992454add1cee9d484be74df"
+  "date": "2026-10-22",
+  "hash": "8c9d690fff02d83035c476ab1b837390a132c7dd"
  },
  "privacy.html": {
-  "date": "2026-08-08",
-  "hash": "07bb57f6420ac2c642e874e213ee9987a912a150"
+  "date": "2026-10-22",
+  "hash": "d215279a8ae3f90a9eeb968156f40d1b69223e21"
  },
  "products.html": {
-  "date": "2026-10-16",
-  "hash": "4ee91fe00b98b7b77a2c9baaef4f1a713b2aaf64"
+  "date": "2026-10-22",
+  "hash": "ed620520a7de3e88623c253c9aa264b162eeceb1"
  },
  "services.html": {
-  "date": "2026-08-13",
-  "hash": "36fafd528b6028fcec071c87eb0e10f672fd8bca"
+  "date": "2026-10-22",
+  "hash": "7ac1da607457c200732147d01b4f3983c9f7b328"
  },
  "terms.html": {
-  "date": "2026-07-05",
-  "hash": "d71b7d6897c1fa238774d4aade17828299af7c29"
+  "date": "2026-10-22",
+  "hash": "8e76292ed7a3fb5eb1849e3b693fea4987fc81a0"
  }
 }
