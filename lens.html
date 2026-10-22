@@ -65,10 +65,20 @@ main code{
 .lens-step b{display:block;font-size:var(--t-sm);font-weight:600;color:var(--ink);margin-bottom:6px}
 .lens-step span{display:block;font-size:var(--t-xs);color:var(--ink-3);line-height:1.75;word-break:keep-all}
 
+/* 스크린샷 — 글 열 줄보다 한 장이 빠르다 */
+/* 원본이 800px — 그보다 키우면 뭉갠다 */
+.lens-shot{margin:0 auto;max-width:800px;border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:var(--card)}
+.lens-shot img{display:block;width:100%;height:auto}
+.lens-cap{margin:11px auto 0;max-width:800px;font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+.lens-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,26px);margin-top:clamp(28px,3.5vw,42px)}
+.lens-gallery figure{margin:0}
+.lens-gallery img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:10px;background:var(--card)}
+.lens-gallery figcaption{margin-top:9px;font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+
 .lens-cta{text-align:center;padding:clamp(34px,5vw,56px) 0 0}
 .lens-cta .act-row{justify-content:center;margin-top:22px}
 @media(max-width:760px){
-  .lens-tabs,.lens-steps{grid-template-columns:1fr}
+  .lens-tabs,.lens-steps,.lens-gallery{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -120,6 +130,15 @@ main code{
   </div>
 </section>
 
+<section style="padding-top:clamp(18px,2.5vw,32px)">
+  <div class="wrap">
+    <figure class="lens-shot reveal">
+      <img src="img/lens-shot-layout.jpg" alt="Lens 화면 — 왼쪽은 시스템·파장·필드와 면 데이터 표, 오른쪽은 단면도와 EFL·F수·TTL 같은 1차 특성" width="800" height="505" loading="lazy" decoding="async" />
+    </figure>
+    <p class="lens-cap reveal">예제로 들어 있는 트리플렛 f50 F4. 왼쪽이 처방 시트, 오른쪽이 해석 화면입니다.</p>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
     <p class="lens-claim reveal">
@@ -140,6 +159,12 @@ main code{
       <div class="lens-tab reveal"><i>04</i><div><b>광선 수차</b><span>왼쪽은 접선(Y) εy vs 동공 Py, 오른쪽은 시상(X) εx vs Px. 단위 µm.</span></div></div>
       <div class="lens-tab reveal"><i>05</i><div><b>필드 곡률 · 왜곡</b><span>비점수차 필드 곡선을 T 실선·S 점선으로, 왜곡은 f·tanθ와 f·θ 기준을 함께.</span></div></div>
       <div class="lens-tab reveal"><i>06</i><div><b>유리</b><span>SCHOTT·HOYA·OHARA·CDGM·SUMITA·HIKARI 6개사 1,598종. refractiveindex.info 공개 데이터.</span></div></div>
+    </div>
+
+    <div class="lens-gallery">
+      <figure class="reveal"><img src="img/lens-shot-spot.jpg" alt="스팟 다이어그램 — 네 개 필드의 스팟과 RMS 직경" width="800" height="500" loading="lazy" decoding="async" /><figcaption>스팟 다이어그램 — 필드별 스팟과 RMS 직경을 한 화면에.</figcaption></figure>
+      <figure class="reveal reveal-d1"><img src="img/lens-shot-mtf.jpg" alt="MTF 곡선 — 접선·시상과 회절 한계, 아래에 주파수별 수치 표" width="800" height="500" loading="lazy" decoding="async" /><figcaption>MTF — 회절 한계를 점선으로 겹쳐 그리고, 주파수별 값을 표로 같이 냅니다.</figcaption></figure>
+      <figure class="reveal reveal-d2"><img src="img/lens-shot-curves.jpg" alt="비점수차 필드 곡선과 왜곡 그래프, 아래에 상고별 수치 표" width="800" height="500" loading="lazy" decoding="async" /><figcaption>필드 곡률 · 왜곡 — T·S 곡선과 f·tanθ / f·θ 기준 왜곡.</figcaption></figure>
     </div>
   </div>
 </section>
