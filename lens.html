@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
+<script id="lpl-lang">(function(){try{var s=localStorage.getItem("lpl-lang");if(s==="ko"||/bot|crawl|spider|slurp|mediapartners|adsbot|lighthouse|headless/i.test(navigator.userAgent))return;var l=s||String((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase();if(!l||l.indexOf("ko")===0)return;var d=l.indexOf("ja")===0?"ja":l.indexOf("zh")===0?"zh":"en";location.replace("/"+d+"/lens.html"+location.search+location.hash);}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lens — 렌즈 설계 파일 브라우저 해석 — LightOn Plus Lab</title>
 <meta name="description" content="CODE V .seq와 Zemax OpticStudio .zmx 렌즈 파일을 브라우저에서 열어 단면과 1차 특성, 스팟 다이어그램, MTF, 광선 수차, 필드 곡률을 해석합니다. 파일은 브라우저 안에서만 계산되고 서버로 올라가지 않습니다. 무료." />
@@ -103,7 +104,7 @@ main code{
 <a href="about.html">Studio</a>
 <a href="contact.html">Contact</a>
 </nav>
-    <div class="langsw" role="group" aria-label="Language"><a href="/lens.html" hreflang="ko" lang="ko" aria-current="true">KO</a><a href="/en/lens.html" hreflang="en" lang="en">EN</a><a href="/ja/lens.html" hreflang="ja" lang="ja">JA</a><a href="/zh/lens.html" hreflang="zh-Hans" lang="zh-Hans">ZH</a></div>
+    <div class="langsw" role="group" aria-label="Language"><a href="/lens.html" hreflang="ko" lang="ko" aria-current="true" onclick="try{localStorage.setItem('lpl-lang','ko')}catch(e){}">KO</a><a href="/en/lens.html" hreflang="en" lang="en" onclick="try{localStorage.setItem('lpl-lang','en')}catch(e){}">EN</a><a href="/ja/lens.html" hreflang="ja" lang="ja" onclick="try{localStorage.setItem('lpl-lang','ja')}catch(e){}">JA</a><a href="/zh/lens.html" hreflang="zh-Hans" lang="zh-Hans" onclick="try{localStorage.setItem('lpl-lang','zh')}catch(e){}">ZH</a></div>
     <a class="nav-cta" href="contact.html">Launch Lab
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -119,7 +120,7 @@ main code{
 <a href="blog.html">Blog</a>
 <a href="about.html">Studio</a>
 <a href="contact.html">Contact</a>
-<div class="langsw langsw-m" role="group" aria-label="Language"><a href="/lens.html" hreflang="ko" lang="ko" aria-current="true">한국어</a><a href="/en/lens.html" hreflang="en" lang="en">English</a><a href="/ja/lens.html" hreflang="ja" lang="ja">日本語</a><a href="/zh/lens.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+<div class="langsw langsw-m" role="group" aria-label="Language"><a href="/lens.html" hreflang="ko" lang="ko" aria-current="true" onclick="try{localStorage.setItem('lpl-lang','ko')}catch(e){}">한국어</a><a href="/en/lens.html" hreflang="en" lang="en" onclick="try{localStorage.setItem('lpl-lang','en')}catch(e){}">English</a><a href="/ja/lens.html" hreflang="ja" lang="ja" onclick="try{localStorage.setItem('lpl-lang','ja')}catch(e){}">日本語</a><a href="/zh/lens.html" hreflang="zh-Hans" lang="zh-Hans" onclick="try{localStorage.setItem('lpl-lang','zh')}catch(e){}">中文</a></div>
 <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
@@ -252,6 +253,6 @@ main code{
   </div>
 </footer>
 
-<script src="app.js?v=cc60ac47"></script>
+<script src="app.js?v=11b4789a"></script>
 </body>
 </html>
