@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="naver-site-verification" content="bc9982d4de3ced48138d3544886aa05aae5b422d" />
+<meta name="naver-site-verification" content="a44880bba706de4af866818cf5d21c9e024465b1" />
+<title>LightOn Plus Lab — AI App Studio</title>
+<meta name="description" content="The one-person AI app studio behind Momoi, Songbit and LightOn AI Note. Shipped and run on Google Play." />
+<meta property="og:title" content="LightOn Plus Lab — AI App Studio" />
+<meta property="og:description" content="Momoi · Songbit · LightOn AI Note — AI apps we build and run ourselves, live on Google Play." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/" />
+<link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/" />
+<link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/" />
+<link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/" />
+<link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/" />
+<link rel="canonical" href="https://lightonpluslab.com/en/" />
+<link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
+<meta property="og:url" content="https://lightonpluslab.com/en/" />
+<meta name="theme-color" content="#FBFAF8" />
+<link rel="icon" href="/img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="/img/logo-mark.png" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="/styles.css?v=035e41ac" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<style>
+/* 홈 전용 — 공용 시스템(styles.css) 위에 얹는 레이아웃 */
+
+/* 히어로 — 좌: 문장과 증거 / 우: 제품 (D안) */
+.hero{position:static;min-height:0;display:block;padding:clamp(40px,5.5vw,76px) 0 0;overflow:visible;isolation:auto}
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
+  gap:clamp(32px,5vw,64px);align-items:start;width:100%;
+}
+.hero-content{max-width:none;display:block;min-width:0}
+
+/* 한글은 어절 중간에서 끊지 않는다. 각 줄은 완결된 절이라 접혀도 뜻이 안 잘린다. */
+.hero-title{
+  margin:16px 0 20px;font-size:var(--t-display);font-weight:700;
+  letter-spacing:-.038em;line-height:1.16;max-width:20ch;
+  word-break:keep-all;overflow-wrap:break-word;text-wrap:balance;text-shadow:none;
+}
+.hero-title .line{display:block}
+.hero-title em{font-style:normal;background:none;color:var(--ink);letter-spacing:inherit}
+.hero-sub{
+  color:var(--ink-2);font-size:var(--t-lead);line-height:1.8;
+  max-width:44ch;margin-bottom:28px;
+  word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty;text-shadow:none;
+}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* 숫자를 히어로 안에서 증거로 쓴다 */
+.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:38px;border-top:1px solid var(--rule)}
+.hero-stat{padding:18px 18px 18px 0;border-bottom:1px solid var(--rule)}
+.hero-stat:nth-child(2n){padding-left:18px}
+.hero-stat b{
+  display:block;font-size:clamp(24px,2.6vw,30px);font-weight:700;
+  letter-spacing:-.038em;line-height:1.1;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.hero-stat b .unit{font-size:.5em;font-weight:600;margin-left:3px;letter-spacing:-.01em}
+.hero-stat span{display:block;font-size:var(--t-xs);color:var(--ink-3);margin-top:5px;word-break:keep-all;line-height:1.5}
+
+/* 우측: 제품이 지면의 절반을 차지한다 */
+.hero-rail{display:flex;flex-direction:column;gap:12px;min-width:0}
+.hero-app{
+  display:grid;grid-template-columns:56px minmax(0,1fr) auto;
+  align-items:center;gap:14px;padding:18px 20px;
+  background:var(--card);border:1px solid var(--rule);border-radius:14px;
+  transition:border-color .18s var(--ease),background .18s var(--ease);
+}
+.hero-app:hover{border-color:var(--rule-2);background:var(--paper-2);transform:none}
+.hero-app img{width:56px;height:56px;border-radius:14px;box-shadow:0 1px 2px rgba(26,25,23,.10)}
+.hero-app .t{min-width:0}
+.hero-app b{display:block;font-size:16.5px;font-weight:700;letter-spacing:-.024em;color:var(--ink);line-height:1.35}
+.hero-app .cat{display:block;font-size:13.5px;color:var(--ink-3);line-height:1.6;margin-top:3px;word-break:keep-all}
+.hero-app .go{
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  padding:10px 15px;border-radius:8px;background:var(--ink);color:var(--paper);
+  font-size:13.5px;font-weight:600;
+}
+.hero-games{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:17px 20px;border:1px dashed var(--rule-2);border-radius:14px;
+  transition:background .18s var(--ease);
+}
+.hero-games:hover{background:var(--paper-2)}
+.hero-games .m{font-size:14px;color:var(--ink-2);word-break:keep-all;line-height:1.6}
+.hero-games .go{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;white-space:nowrap;color:var(--ink)}
+.hero-games .go svg,.hero-app .go svg{width:12px;height:12px;stroke-width:2;flex:0 0 auto}
+
+/* 의뢰 섹션의 4단계 */
+.signal-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:0;width:100%;margin-top:0;border-top:1px solid var(--rule)}
+.signal-step{min-height:0;padding:20px 18px 20px 0;background:none;border:0;border-right:1px solid var(--rule);border-radius:0}
+.signal-step:last-child{border-right:0}
+.signal-step:not(:first-child){padding-left:18px}
+.signal-step b{display:block;margin-bottom:5px;font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:0;text-transform:none;color:var(--ink-3);font-weight:600}
+.signal-step span{font-size:var(--t-sm);color:var(--ink-2);line-height:1.6;word-break:keep-all}
+.rail-center{margin:0 0 40px;width:100%}
+
+/* 의뢰 4항목 */
+.feat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--rule)}
+.feat{padding:24px 20px 24px 0;background:none;border:0;border-right:1px solid var(--rule);border-radius:0;transition:none}
+.feat:last-child{border-right:0}
+.feat:not(:first-child){padding-left:20px}
+.feat:hover{background:none;border-color:var(--rule);transform:none}
+.feat .ibadge{width:28px;height:28px;margin-bottom:12px}
+.feat .ibadge svg{width:14px;height:14px}
+.feat-title{font-size:15px;font-weight:600;margin-bottom:7px;letter-spacing:-.02em}
+.feat-desc{font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+
+/* 기술 구성 — 카드 대신 정의 목록 */
+.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,5vw,72px);max-width:none;margin:0;border-top:1px solid var(--rule)}
+.stack-card{padding:22px 0;background:none;border:0;border-bottom:1px solid var(--rule);border-radius:0;transition:none}
+.stack-card:hover{background:none;border-color:var(--rule)}
+.stack-head{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.stack-head .ibadge{display:none}
+.stack-title{font-family:var(--f-sans);font-size:16px;font-weight:700;letter-spacing:-.022em;text-transform:none;color:var(--ink)}
+.stack-rows{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-size:var(--t-sm)}
+.stack-k{color:var(--ink-3);white-space:nowrap}
+.stack-v{color:var(--ink);font-family:var(--f-sans);font-size:var(--t-sm)}
+
+/* 그 밖의 서비스 */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:26px}
+.proj{position:relative;display:block;padding:0;background:none;border:0;border-radius:0;transition:none}
+.proj:hover{transform:none;background:none;border-color:transparent}
+.proj-media{position:relative;margin:0 0 14px;border-radius:8px;overflow:hidden;aspect-ratio:16/10;background:var(--paper-2);border:1px solid var(--rule)}
+.proj-media video{width:100%;height:100%;object-fit:cover;opacity:1;transition:none}
+.proj:hover .proj-media video{transform:none;opacity:1}
+.proj-media::after{display:none}
+.proj-meta{display:flex;align-items:center;gap:9px;margin-bottom:8px;font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:0;text-transform:none;color:var(--ink-3)}
+.proj-tag{padding:0;border-radius:0;font-weight:600;background:none!important;color:var(--accent)!important;border:0!important}
+.proj-head{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.proj-mark{display:none}
+.proj-name{font-size:17px;font-weight:700;letter-spacing:-.024em;color:var(--ink);line-height:1.35}
+.proj-desc{font-size:var(--t-sm);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+.proj-arrow{display:none}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:0;margin-top:42px;border-top:1px solid var(--rule)}
+.mini-grid .proj{padding:20px 20px 20px 0;border-right:1px solid var(--rule)}
+.mini-grid .proj:last-child{border-right:0}
+.mini-grid .proj:not(:first-child){padding-left:20px}
+
+/* 글 — 카드 세 장이 아니라 목록 세 줄 */
+.post-grid{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink)}
+.post-card{display:block;padding:22px 4px;background:none;border:0;border-bottom:1px solid var(--rule);border-radius:0;transition:background .18s var(--ease)}
+.post-card:hover{background:var(--paper-2);border-color:var(--rule);transform:none}
+.post-card h3{font-size:18px;font-weight:600;margin:0 0 7px;line-height:1.45;letter-spacing:-.024em;color:var(--ink);word-break:keep-all}
+.post-card p{font-size:var(--t-sm);color:var(--ink-3);line-height:1.7;margin:0 0 9px;max-width:64ch;word-break:keep-all}
+.post-card .pc-meta{font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:0;color:var(--ink-3)}
+
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero-title{max-width:24ch}
+  .hero-stats{margin-top:30px}
+}
+@media(max-width:960px){
+  .hero-title{max-width:none}
+  .feat-grid,.signal-rail{grid-template-columns:1fr 1fr}
+  .feat:nth-child(2n),.signal-step:nth-child(2n){border-right:0}
+  .feat:nth-child(n+3),.signal-step:nth-child(n+3){border-top:1px solid var(--rule)}
+  .feat:nth-child(2n),.signal-step:nth-child(2n){padding-left:20px}
+  .stack-grid{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr 1fr}
+  .mini-grid{grid-template-columns:1fr}
+  .mini-grid .proj{border-right:0;border-bottom:1px solid var(--rule);padding-left:0}
+  .mini-grid .proj:last-child{border-bottom:0}
+}
+/* 가로로 눕힌 폰처럼 세로가 짧은 화면 */
+@media(max-height:520px) and (orientation:landscape){
+  .hero{padding-top:28px}
+  .hero-stats{margin-top:24px}
+}
+@media(max-width:400px){
+  .hero-title{font-size:31px;letter-spacing:-.042em}
+}
+@media(max-width:600px){
+  .hero-app{grid-template-columns:48px minmax(0,1fr);gap:12px;padding:16px}
+  .hero-app img{width:48px;height:48px;border-radius:12px}
+  .hero-app .go{grid-column:1 / -1;justify-content:center;margin-top:4px}
+  .hero-games{flex-direction:column;align-items:stretch;gap:10px}
+  .hero-games .go{justify-content:center;padding:10px;border:1px solid var(--rule-2);border-radius:8px}
+  .hero-stat{padding:15px 12px 15px 0}
+  .hero-stat:nth-child(2n){padding-left:12px}
+  .stack-card{padding:16px 0}
+  .stack-head{margin-bottom:9px}
+  .stack-rows{gap:5px 14px}
+  .feat{padding:18px 0}
+  .signal-step{padding:16px 0}
+  .proj-grid{gap:20px}
+  .mini-grid{margin-top:28px}
+  .mini-grid .proj{padding:16px 0}
+  .post-card{padding:18px 4px}
+  .hero-apps{margin-top:34px}
+  .hero-app{grid-template-columns:38px minmax(0,1fr) auto;gap:13px}
+  .hero-app img{width:38px;height:38px}
+  .hero-app .cat{display:none}
+  .hero-actions{display:grid;grid-template-columns:1fr}
+  .hero-actions .btn{justify-content:center}
+  .feat-grid,.signal-rail{grid-template-columns:1fr}
+  .feat,.signal-step{border-right:0;border-top:1px solid var(--rule);padding-left:0!important}
+  .feat:first-child,.signal-step:first-child{border-top:0}
+  .proj-grid{grid-template-columns:1fr}
+  .stack-rows{grid-template-columns:1fr;gap:3px 0}
+  .stack-k{white-space:normal}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://lightonpluslab.com/#organization",
+      "name": "LightOn Plus Lab",
+      "alternateName": "LightOn Plus Lab",
+      "url": "https://lightonpluslab.com/",
+      "logo": "https://lightonpluslab.com/img/logo-mark.png",
+      "email": "support@lightonpluslab.com",
+      "telephone": "+82-70-8098-5734",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Anyang-si",
+        "addressRegion": "Gyeonggi-do",
+        "addressCountry": "KR"
+      },
+      "description": "A one-person studio that turns AI into shipped products — planned, released and operated in-house.",
+      "sameAs": [
+        "https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa",
+        "https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit",
+        "https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote",
+        "https://www.youtube.com/@momoi_app"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://lightonpluslab.com/#website",
+      "url": "https://lightonpluslab.com/",
+      "name": "LightOn Plus Lab",
+      "publisher": { "@id": "https://lightonpluslab.com/#organization" },
+      "inLanguage": "ko"
+    },
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-momoi","name":"Momoi — AI Call Summary & Meeting Notes","applicationCategory":"BusinessApplication","operatingSystem":"ANDROID","description":"An AI inbox and calendar: upload a call recording and it writes the summary, tasks and events.","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-songbit","name":"Songbit - AI Song Maker","applicationCategory":"MultimediaApplication","operatingSystem":"ANDROID, IOS","description":"An AI music studio: pick genre, mood and keywords, and it writes the lyrics through to a finished vocal track.","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-ainote","name":"LightOn AI Note","applicationCategory":"EducationalApplication","operatingSystem":"ANDROID, IOS","description":"A note app that transcribes lectures and meetings with speaker separation, then makes them stick with AI summaries and spaced repetition.","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-saybetter","name":"SayBetter AI","applicationCategory":"EducationalApplication","operatingSystem":"ANDROID, IOS","description":"A voice coach for rehearsing and reviewing the conversations that matter.","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.saybetter","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.saybetter"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-couponbook","name":"Coupon Book: Stamps & Passes","applicationCategory":"LifestyleApplication","operatingSystem":"ANDROID, IOS","description":"A coupon wallet that keeps paper coupons, stamp cards and passes on the device, with no sign-up.","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.couponbook.twa","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.couponbook.twa"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-hangullab","name":"Hangul Lab: Learn Korean","applicationCategory":"EducationalApplication","operatingSystem":"ANDROID","description":"A free app for learning to read Korean — forty Hangul letters, stroke by stroke.","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.hangullab","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.hangullab"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-gananda","name":"Ganada Play — first steps in Hangul","applicationCategory":"EducationalApplication","operatingSystem":"ANDROID","description":"Hangul for ages three to seven — consonants and vowels through to words and sentences, by sound and stroke order.","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.gananda.play","installUrl":"https://play.google.com/store/apps/details?id=com.gananda.play"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-stonearena","name":"Stone Arena","applicationCategory":"GameApplication","operatingSystem":"ANDROID, IOS","description":"Five board games in one — Gomoku, Alkkagi, Go, Janggi and Chess. Ten computer levels and two-player play.","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"900","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.shpark.stone_arena","installUrl":"https://play.google.com/store/apps/details?id=com.shpark.stone_arena"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-towerdefense","name":"Tower Defense: Kingdom Siege","applicationCategory":"GameApplication","operatingSystem":"IOS","description":"Classic tower defense with ten towers. No ads, plays offline.","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"1000","priceCurrency":"KRW"},"url":"https://apps.apple.com/kr/app/id6811584152","installUrl":"https://apps.apple.com/kr/app/id6811584152"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-coresiege","name":"CORE SIEGE: Bastion-7","applicationCategory":"GameApplication","operatingSystem":"IOS","description":"Science-fiction wave defense — hold the core against a swarm closing in from every side.","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://apps.apple.com/kr/app/id6811583075","installUrl":"https://apps.apple.com/kr/app/id6811583075"},
+    {"@type":"WebApplication","@id":"https://lightonpluslab.com/#lens","name":"LightOn Plus Lab Lens","applicationCategory":"DesignApplication","operatingSystem":"Web","browserRequirements":"Requires JavaScript","description":"A tool that opens CODE V .seq and Zemax OpticStudio .zmx lens files in the browser for ray tracing, spot diagrams, MTF and aberrations. The file is computed inside the browser only.","inLanguage":["ko","en","ja","zh-Hans"],"publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://lens.lightonpluslab.com/"}
+  ]
+}
+</script>
+</head>
+<body>
+
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/index.html" aria-label="LightOn Plus Lab home">
+      <img class="brand-img" src="/img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+      <span class="brand-text">
+        <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
+        <span class="brand-sub">AI Apps · Innovation</span>
+      </span>
+    </a>
+<nav class="nav-links" aria-label="Menu">
+<a href="/products.html">Apps</a>
+<a href="/lens.html">Lens</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+<a href="/about.html">Studio</a>
+<a href="/contact.html">Contact</a>
+</nav>
+    
+    
+    
+    
+    
+    <div class="langsw" role="group" aria-label="Language"><a href="/" hreflang="ko" lang="ko">KO</a><a href="/en/" hreflang="en" lang="en" aria-current="true">EN</a><a href="/ja/" hreflang="ja" lang="ja">JA</a><a href="/zh/" hreflang="zh-Hans" lang="zh-Hans">ZH</a></div>
+    <a class="nav-cta" href="/contact.html">
+      Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile menu">
+<a href="/products.html">Apps</a>
+<a href="/lens.html">Lens</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+<a href="/about.html">Studio</a>
+<a href="/contact.html">Contact</a>
+<div class="langsw langsw-m" role="group" aria-label="Language"><a href="/" hreflang="ko" lang="ko">한국어</a><a href="/en/" hreflang="en" lang="en" aria-current="true">English</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+<a href="/contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="eyebrow reveal">LightOn Plus Lab · Anyang, Korea</span>
+        <h1 class="hero-title reveal reveal-d1">
+          <span class="line">We build apps,</span>
+          <span class="line">ship them to the stores,</span>
+          <span class="line">and run them ourselves.</span>
+        </h1>
+        <p class="hero-sub reveal reveal-d2">
+          A one-person AI app studio that takes a product from idea to store listing to daily operation. Shipping is the start — we keep fixing from user feedback.
+        </p>
+        <div class="hero-actions reveal reveal-d3">
+          <a class="btn btn-primary" href="#apps">
+            See the apps
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="/contact.html">
+            Start a project
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="hero-stats reveal reveal-d4">
+          <div class="hero-stat"><b><span data-counter="10">10</span><span class="unit"></span></b><span>Apps on the stores</span></div>
+          <div class="hero-stat"><b><span data-counter="3">3</span><span class="unit">min+</span></b><span>Song length Songbit writes</span></div>
+          <div class="hero-stat"><b><span data-counter="4">4</span><span class="unit"></span></b><span>Languages AI Note hears</span></div>
+          <div class="hero-stat"><b><span data-counter="2">2</span><span class="unit"></span></b><span>Google Play · App Store</span></div>
+        </div>
+      </div>
+
+      <div class="hero-rail reveal reveal-d2">
+        <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa" target="_blank" rel="noopener">
+          <img src="/img/app-momoi.png" alt="" width="56" height="56" />
+          <span class="t"><b>Momoi</b><span class="cat">Call recording → AI summary, tasks, events</span></span>
+          <span class="go">Get<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener">
+          <img src="/img/app-songbit.png" alt="" width="56" height="56" />
+          <span class="t"><b>Songbit</b><span class="cat">Pick a few keywords, get a full song</span></span>
+          <span class="go">Get<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener">
+          <img src="/img/app-ainote.png" alt="" width="56" height="56" />
+          <span class="t"><b>LightOn AI Note</b><span class="cat">Lecture transcripts + spaced review</span></span>
+          <span class="go">Get<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="hero-games" href="#work">
+          <span class="m">Two games play straight in the browser, nothing to install</span>
+          <span class="go">Play<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="apps"><div class="wrap">
+  <h2 class="section-title reveal">Apps on both stores</h2>
+  <p class="section-desc reveal reveal-d1">Planned, built and shipped here, then kept in repair from user feedback. Eight on Google Play, seven on the App Store — five are on both.</p>
+  <div class="store-grid">
+    <div class="store-card reveal"><div class="store-body"><div class="store-head"><img class="store-icon" src="/img/app-momoi.png" alt="" width="60" height="60" loading="lazy" /><div><div class="store-name">Momoi</div><div class="store-meta"><span class="store-chip">Productivity</span> <span class="store-chip">In-app purchases</span> <span class="store-chip">Android</span> <span class="store-chip new">Meeting recording added</span></div></div></div><p class="store-one">Upload a call recording and AI writes the summary, the tasks and the calendar entries. It files; you act.</p><div class="store-feats"><div><span class="dot"></span>Upload once: transcript → summary → action items</div><div><span class="dot"></span>Speaker-separated transcripts show who said what</div><div><span class="dot"></span>Dates mentioned in the call land in your calendar, with reminders</div><div><span class="dot"></span>Screenshots and pasted text get sorted into projects and deadlines too</div></div><div class="store-acts"><a class="btn-play" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener">Use on the web</a> <a class="btn-sm" href="/momoi.html">Details</a></div></div><div class="store-media"><button class="vplay" type="button" data-video="video/ad-momoi.mp4" aria-label="Play the Momoi ad — one minute, with sound"><img src="/img/ad-momoi-poster.jpg" alt="" width="720" height="1280" loading="lazy" decoding="async" /><span class="vplay-ui" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.14v13.72L19 12z"/></svg></span><span class="vplay-tag" aria-hidden="true">Ad · 1:00</span></button></div></div>
+    <div class="store-card reveal"><div class="store-body"><div class="store-head"><img class="store-icon" src="/img/app-songbit.png" alt="" width="60" height="60" loading="lazy" /><div><div class="store-name">Songbit</div><div class="store-meta"><span class="store-chip">Music & Audio</span> <span class="store-chip">In-app purchases</span> <span class="store-chip">Android · iOS</span> <span class="store-chip accent">Free credits to start</span></div></div></div><p class="store-one">Choose a few keywords and AI writes the lyrics, the melody and the vocal — a song that is yours.</p><div class="store-feats"><div><span class="dot"></span>Genre, mood, keywords → AI lyrics → finished vocal track</div><div><span class="dot"></span>Pick a voice: soft, powerful, husky or rap</div><div><span class="dot"></span>Pick a language: Korean, Korean-English mix, or English</div><div><span class="dot"></span>Keep, play and share what you make. Free credits when you sign up.</div></div><div class="store-acts"><a class="btn-play" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://apps.apple.com/kr/app/id6808511106" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a> <a class="btn-sm" href="https://songbit.lightonpluslab.com" target="_blank" rel="noopener">Use on the web</a></div></div><div class="store-media"><button class="vplay" type="button" data-video="video/ad-songbit.mp4" aria-label="Play the Songbit ad — one minute, with sound"><img src="/img/ad-songbit-poster.jpg" alt="" width="720" height="1280" loading="lazy" decoding="async" /><span class="vplay-ui" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.14v13.72L19 12z"/></svg></span><span class="vplay-tag" aria-hidden="true">Ad · 1:00</span></button></div></div>
+    <div class="store-card reveal"><div class="store-body"><div class="store-head"><img class="store-icon" src="/img/app-ainote.png" alt="" width="60" height="60" loading="lazy" /><div><div class="store-name">LightOn AI Note</div><div class="store-meta"><span class="store-chip">Education</span> <span class="store-chip">In-app purchases</span> <span class="store-chip">Android · iOS</span></div></div></div><p class="store-one">Takes down lectures and meetings accurately, then makes them stick with AI summaries and spaced repetition.</p><div class="store-feats"><div><span class="dot"></span>Live transcription, plus speaker separation in precision mode (Korean, English, Chinese, Japanese detected automatically)</div><div><span class="dot"></span>Key summaries, an AI tutor, flashcards and quizzes generated for you</div><div><span class="dot"></span>Spaced repetition (SRS) decides when you review</div><div><span class="dot"></span>Notes are encrypted on the device — no cloud sync, no ads, no tracking</div></div><div class="store-acts"><a class="btn-play" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://apps.apple.com/kr/app/id6807350318" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a> <a class="btn-sm" href="/lighton-ai-note.html">Details</a></div></div><div class="store-media wide"><img src="/img/ainote-screen.jpg" alt="LightOn AI Note's summary screen — a lecture broken into key summary, key points and chapters" width="947" height="533" loading="lazy" decoding="async" /></div></div>
+  </div>
+  <div class="app-grid">
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-saybetter.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">SayBetter AI</h3><p class="appc-one">A voice coach for the conversations that matter — rehearse them before you have them.</p><div class="appc-acts"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.saybetter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://apps.apple.com/kr/app/id6808524488" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-couponbook.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">Coupon Book</h3><p class="appc-one">Paper coupons, stamp cards and passes in one place. No sign-up — it stays on your phone.</p><div class="appc-acts"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.couponbook.twa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://apps.apple.com/kr/app/id6811589324" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a> <a class="btn-sm" href="https://coupon.lightonpluslab.com" target="_blank" rel="noopener">Use on the web</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-hangullab.png" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">Hangul Lab</h3><p class="appc-one">Read Hangul in a weekend. Forty letters, stroke by stroke, free.</p><div class="appc-acts"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.hangullab" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-gananda.png" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">Ganada Play</h3><p class="appc-one">From consonants and vowels to words and sentences, with Hoya the tiger cub. Hangul for small children, by sound and stroke order.</p><div class="appc-acts"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.gananda.play" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-stonearena.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">Stone Arena</h3><p class="appc-one">Gomoku, Alkkagi, Go, Janggi and Chess in one app. Ten computer levels and two-player games.</p><div class="appc-acts"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.shpark.stone_arena" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://apps.apple.com/kr/app/id6807355792" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-towerdefense.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">Tower Defense</h3><p class="appc-one">Classic tower defense. One purchase, no ads, works offline.</p><div class="appc-acts"><a class="btn-sm" href="https://apps.apple.com/kr/app/id6811584152" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-coresiege.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">CORE SIEGE</h3><p class="appc-one">Wave defense — hold the core against a swarm closing in from every side.</p><div class="appc-acts"><a class="btn-sm" href="https://apps.apple.com/kr/app/id6811583075" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a> <a class="btn-sm" href="/games/core-siege/">Play in browser</a></div></div></article>
+  </div>
+</div></section>
+
+<section id="lens"><div class="wrap">
+  <span class="eyebrow reveal">Optical design</span>
+  <h2 class="section-title reveal">Open lens design files in the browser</h2>
+  <p class="section-desc reveal reveal-d1">Open CODE V <code>.seq</code> and Zemax OpticStudio <code>.zmx</code> files as they are and read ray traces, spot diagrams, MTF and aberrations. <b>The file is computed inside your browser and never sent to a server.</b> A lens prescription is the design, so it could not work any other way.</p>
+  <div class="prin-grid">
+    <div class="prin reveal"><b>Lens data</b><span>Surfaces, radii, thickness, glass and index — read like a prescription sheet.</span></div>
+    <div class="prin reveal reveal-d1"><b>Aberration and distortion</b><span>Astigmatic field curves (T and S) next to distortion against f·tanθ and f·θ.</span></div>
+    <div class="prin reveal reveal-d2"><b>Through-focus MTF</b><span>Response by frequency across a focus shift of ±5 to 50 µm.</span></div>
+    <div class="prin reveal reveal-d3"><b>Zoom positions</b><span>Switch between zoom positions. A sample lens is included to open right away.</span></div>
+  </div>
+  <div class="lens-foot reveal reveal-d2">
+    <div class="lens-meta">
+      <span>CODE V <code>.seq</code> · Zemax OpticStudio <code>.zmx</code></span>
+      <span>English · 한국어 · 日本語 · 中文</span>
+    </div>
+    <a class="btn-play" href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Open Lens <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <a class="btn-sm" href="/lens.html">Details</a>
+  </div>
+</div></section>
+
+<section id="trust"><div class="wrap"><h2 class="section-title reveal">How we operate</h2><p class="section-desc reveal reveal-d1">Exactly what we declare in the Google Play Data Safety section.</p><div class="prin-grid"><div class="prin reveal"><b>Encrypted in transit</b><span>Momoi, Songbit and AI Note encrypt data in transit.</span></div><div class="prin reveal reveal-d1"><b>Deletion on request</b><span>You can ask us to delete your account and data at any time.</span></div><div class="prin reveal reveal-d2"><b>AI Note stays on device</b><span>Notes are encrypted on the device. No ads, no behavioural tracking.</span></div><div class="prin reveal reveal-d3"><b>Run in the Seoul region</b><span>The backend runs on Google Cloud Run in the Seoul region (asia-northeast3).</span></div></div></div></section>
+
+<section id="stack">
+  <div class="wrap">
+    <h2 class="section-title reveal">What it runs on</h2>
+    <p class="section-desc reveal reveal-d1">
+      What these apps actually run on. Nothing listed that we do not use.
+    </p>
+    <div class="stack-grid">
+      <div class="stack-card reveal">
+        <div class="stack-head">
+          <div class="ibadge mint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="12" rx="2" stroke-width="1.8"/><path d="M8 20h8M12 16v4" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div class="stack-title">Mobile</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">App Framework</div><div class="stack-v">Flutter · Android</div><div class="stack-k">Distribution</div><div class="stack-v">Google Play</div>
+        </div>
+      </div>
+      <div class="stack-card reveal reveal-d1">
+        <div class="stack-head">
+          <div class="ibadge cyan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="8" stroke-width="1.8"/><path d="M4 12c4-4 12-4 16 0M4 12c4 4 12 4 16 0" stroke-width="1.2"/></svg>
+          </div>
+          <div class="stack-title">Web</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">Frontend</div><div class="stack-v">Next.js · React · TypeScript</div><div class="stack-k">Hosting</div><div class="stack-v">Vercel · Cloudflare</div>
+        </div>
+      </div>
+      <div class="stack-card reveal reveal-d2">
+        <div class="stack-head">
+          <div class="ibadge purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 7l9 4 9-4M12 11v10" stroke-width="1.2"/></svg>
+          </div>
+          <div class="stack-title">Cloud</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">Runtime</div><div class="stack-v">Cloud Run (Seoul region)</div><div class="stack-k">Data &amp; Auth</div><div class="stack-v">Firebase · Firestore</div>
+        </div>
+      </div>
+      <div class="stack-card reveal reveal-d3">
+        <div class="stack-head">
+          <div class="ibadge pink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke-width="1.6"/></svg>
+          </div>
+          <div class="stack-title">AI</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">Language Models</div><div class="stack-v">GPT-4o mini · Gemini 2.5 Flash</div><div class="stack-k">Speech</div><div class="stack-v">Soniox transcription & diarization</div>
+        </div>
+      </div>
+      <div class="stack-card reveal">
+        <div class="stack-head">
+          <div class="ibadge amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 17V6l12-3v11" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="17" r="3" stroke-width="1.6"/><circle cx="18" cy="14" r="3" stroke-width="1.6"/></svg>
+          </div>
+          <div class="stack-title">Media</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">Music</div><div class="stack-v">AI music generation engine</div><div class="stack-k">Image</div><div class="stack-v">Imagen</div>
+        </div>
+      </div>
+      <div class="stack-card reveal reveal-d1">
+        <div class="stack-head">
+          <div class="ibadge mint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2" stroke-width="1.7"/><path d="M2 10h20" stroke-width="1.7"/></svg>
+          </div>
+          <div class="stack-title">Payments</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">App</div><div class="stack-v">Google Play Billing</div><div class="stack-k">Web</div><div class="stack-v">Toss Payments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <h2 class="section-title reveal">Other things we run</h2>
+    <p class="section-desc reveal reveal-d1">Besides the store apps we build and run web apps and games. The games open and play with nothing to install.</p>
+
+    <div class="proj-grid">
+      <a class="proj reveal reveal-d3" href="https://bible-search-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener" style="--proj-accent-text:var(--mint)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-bible.jpg" data-ambient>
+            <source src="/img/proj-bible.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-tag">Free</span>
+          <span>2026</span>
+        </div>
+        <div class="proj-head">
+          <span class="proj-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v18M5 5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="proj-name">Bible Search</div>
+        </div>
+        <div class="proj-desc">Search scripture by voice or text, browse by feeling, and follow a reading plan.</div>
+        <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="proj reveal reveal-d1" href="https://receipt.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--amber)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-receipt.jpg" data-ambient>
+            <source src="/img/proj-receipt.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-tag" style="background:rgba(245,158,11,.12);color:var(--amber);border-color:rgba(245,158,11,.28)">Live</span>
+          <span>2026</span>
+        </div>
+        <div class="proj-head">
+          <span class="proj-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2V2z" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 7h6M9 11h6M9 15h4" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+          <div class="proj-name">Receipt AI</div>
+        </div>
+        <div class="proj-desc">AI OCR that files expenses from one photo — nine categories and a monthly report.</div>
+        <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+
+    <div class="mini-grid">
+      <a class="proj reveal" href="/games/hole/" style="--proj-accent-text:var(--accent)">
+        <div class="proj-head">
+          <span class="proj-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="8" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke-width="1.6"/></svg></span>
+          <div class="proj-name">HOLE</div>
+        </div>
+        <div class="proj-desc">A hole that swallows the city and grows. Endless mode and a two-minute rush — plays in the browser.</div>
+        <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="proj reveal" href="https://noddak.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--amber)"><div class="proj-head"><span class="proj-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="proj-name">Noddak</div></div><div class="proj-desc">Photograph the ticket and it reads the offence, weighs the appeal and drafts the objection.</div><span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="proj reveal" href="https://meongnyang.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--pink)"><div class="proj-head"><span class="proj-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 18c-4 0-6-3-6-6 0-1.5 1-3 2-3.5 1 1 2 2 2 4 0-1 1-3 2-4 1-1 3 1 3 3.5 0 3-2 6-3 6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="6" r="1.5"/><circle cx="17" cy="6" r="1.5"/></svg></span><div class="proj-name">Pet Log</div></div><div class="proj-desc">Upload a photo and AI keeps the diary in your pet's voice, tagging mood and health signals.</div><span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="proj reveal" href="https://math-tutor-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener" style="--proj-accent-text:var(--mint)"><div class="proj-head"><span class="proj-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10 12 5 2 10l10 5 10-5z" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 12v5a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-5" stroke-width="1.6"/></svg></span><div class="proj-name">Math Friend</div></div><div class="proj-desc">Step-by-step solutions from primary school to the college entrance exam. Photograph a problem and AI explains it.</div><span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    </div>
+
+    <div style="margin-top:36px">
+      <a class="btn btn-ghost" href="/products.html">
+        See all our work
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="wrap">
+    <h2 class="section-title reveal">Notes from building</h2>
+    <p class="section-desc reveal reveal-d1">What we actually ran into while building apps and getting them onto the stores.</p>
+
+    <div class="post-grid">
+      
+      <a class="post-card reveal" href="/blog-why-summary-is-not-memory.html">
+        <h3>Why recording and summarising a lecture still does not make it stick</h3>
+        <p>Transcription and summaries are everywhere now. The paradox is that the tidier the note, the less you go back to it. On the forgetting curve and what spaced repetition fills in.</p>
+        <div class="pc-meta">Product · 2026-08-13</div>
+      </a>
+      <a class="post-card reveal reveal-d1" href="/blog-lyrics-alignment-drift.html">
+        <h3>Why the lyrics drifted up to 16 seconds — match, do not count</h3>
+        <p>Karaoke lyrics drifted further the longer the song ran, and worst in Korean. The culprit was not the timestamps but how we counted words. Replacing proportional estimation with character-offset matching.</p>
+        <div class="pc-meta">Dev Note · 2026-08-13</div>
+      </a>
+      <a class="post-card reveal reveal-d2" href="/blog-twa-play-store.html">
+        <h3>Putting a web app on Google Play — a TWA release, in practice</h3>
+        <p>Wrapping a PWA as a TWA and shipping it: the steps and the traps — assetlinks, AAB signing, target API, closed-testing requirements.</p>
+        <div class="pc-meta">Dev Note · 2026-07-03</div>
+      </a>
+      
+    </div>
+
+    <div style="margin-top:36px">
+      <a class="btn btn-ghost" href="/blog.html">
+        Read all posts
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <h2 class="section-title reveal">Hand it to someone who has shipped one</h2>
+    <p class="section-desc reveal reveal-d1">
+      We build your product the same way. One person carries it from planning through store listing, in-app billing and operation.
+    </p>
+    <div class="signal-rail rail-center reveal" style="margin-bottom:36px"><div class="signal-step"><b>01 Brief</b><span>Frame the problem and the user flow</span></div><div class="signal-step"><b>02 Prototype</b><span>Prove the core AI feature</span></div><div class="signal-step"><b>03 Launch</b><span>Ship web and app, wired up</span></div><div class="signal-step"><b>04 Improve</b><span>Improve from the data</span></div></div>
+    <div class="feat-grid">
+      <div class="feat panel reveal">
+        <div class="ibadge mint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feat-title">Fast MVP</div>
+        <div class="feat-desc">A working MVP in two to six weeks, so the hypothesis gets tested early.</div>
+      </div>
+      <div class="feat panel reveal reveal-d1">
+        <div class="ibadge cyan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="feat-title">AI Ready</div>
+        <div class="feat-desc">Designed by someone who has wired up LLMs, transcription, diarization and generative media firsthand.</div>
+      </div>
+      <div class="feat panel reveal reveal-d2">
+        <div class="ibadge purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+        </div>
+        <div class="feat-title">Ship</div>
+        <div class="feat-desc">From deployment to store listing and in-app billing — we actually ship it.</div>
+      </div>
+      <div class="feat panel reveal reveal-d3">
+        <div class="ibadge amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 12l2 2 4-4M12 3l9 4v5c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+        </div>
+        <div class="feat-title">Support</div>
+        <div class="feat-desc">Thirty days of free fixes after launch. You get all the source. No lock-in.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-block reveal">
+      <h2>Have a project?</h2>
+      <p>An idea, or an AI feature for something already running — either is fine. We reply within 24 hours.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-primary" href="/contact.html">
+          Get in touch
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="/index.html">
+            <img class="brand-img" src="/img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">A one-person studio that turns AI into shipped products. Anyang, Korea.</div>
+      </div>
+<div class="footer-col">
+<h5>Studio</h5>
+<a href="/about.html">About</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+</div>
+<div class="footer-col">
+<h5>Work</h5>
+<a href="/products.html">All apps</a>
+<a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens — optical analysis</a>
+<a href="/momoi.html">Momoi</a>
+<a href="/lighton-ai-note.html">LightOn AI Note</a>
+<a href="/contact.html">New project</a>
+</div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">KakaoTalk chat</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a></div>
+    </div>
+    <div class="footer-biz">
+      LightOn Plus Lab · Representative: Seunghyuk Park · Business reg. 229-15-70907 · E-commerce reg. 2026-Anyang Dongan-0514 · 333 Gwanpyeong-ro, Dongan-gu, Anyang, Gyeonggi, Korea (Bldg 6, #504)
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js?v=cc60ac47"></script>
+</body>
+</html>

@@ -809,21 +809,42 @@ def write_sitemap():
             if p not in UNPUBLISHED]
     dates = resolve_lastmod(seed)
     moved = [p for p, _ in seed if dates[p] == datetime.date.today().isoformat()]
-    urls = "\n".join(
-        f"""  <url>
-    <loc>https://lightonpluslab.com/{p}</loc>
+    # 홈은 네 언어가 같은 문서의 번역본이다. 서로를 alternate 로 가리켜 줘야
+    # 구글이 한 페이지의 언어판으로 묶는다 — 안 하면 중복 문서로 본다.
+    from i18n_home import LANG_META, LANGS
+    alts = "\n".join(
+        f"""    <xhtml:link rel="alternate" hreflang="{LANG_META[c]['hreflang']}" href="https://lightonpluslab.com/{LANG_META[c]['dir']}" />"""
+        for c in ["ko"] + LANGS) + """
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/" />"""
+
+    rows = []
+    for p, _ in seed:
+        extra = "\n" + alts if p == "" else ""
+        rows.append(f"""  <url>
+    <loc>https://lightonpluslab.com/{p}</loc>{extra}
     <lastmod>{dates[p]}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>{'1.0' if p == '' else '0.3' if p in LEGAL_PAGES else '0.7'}</priority>
-  </url>""" for p, _ in seed)
+  </url>""")
+    for c in LANGS:
+        rows.append(f"""  <url>
+    <loc>https://lightonpluslab.com/{LANG_META[c]['dir']}</loc>
+{alts}
+    <lastmod>{dates['']}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>""")
+    urls = "\n".join(rows)
     with io.open("sitemap.xml", "w", encoding="utf-8") as f:
         f.write(f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 {urls}
 </urlset>
 """)
-    print("sitemap.xml (%d URL, 오늘 갱신 %d개%s)"
-          % (len(seed), len(moved), (": " + ", ".join(p or "/" for p in moved)) if moved else ""))
+    print("sitemap.xml (%d URL · 번역판 %d, 오늘 갱신 %d개%s)"
+          % (len(seed) + len(LANGS), len(LANGS), len(moved),
+             (": " + ", ".join(p or "/" for p in moved)) if moved else ""))
 
 # RSS feed
 def _xml_escape(s):
@@ -857,4 +878,5 @@ print("feed.xml")
 
 enforce_unpublished()
 stamp_asset_versions()
+import build_i18n; build_i18n.build()
 write_sitemap()

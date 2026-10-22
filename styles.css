@@ -353,6 +353,23 @@ h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.34;letter-spacing:-.0
 .btn-sm:hover{background:var(--paper-2);border-color:var(--ink-4);color:var(--ink)}
 .btn-sm svg{width:14px;height:14px;flex:0 0 auto}
 
+/* 언어 전환 — 데스크톱은 약어, 모바일 서랍은 제 이름으로 */
+.langsw{display:flex;align-items:center;gap:1px;margin-right:6px}
+.langsw a{
+  padding:6px 8px;border-radius:7px;
+  font-family:var(--f-sans);font-size:var(--t-xs);font-weight:600;letter-spacing:.02em;
+  color:var(--ink-3);transition:background .18s var(--ease),color .18s var(--ease);
+}
+.langsw a:hover{background:var(--paper-2);color:var(--ink)}
+.langsw a[aria-current]{color:var(--ink);background:var(--paper-2)}
+.langsw-m{display:none}
+@media(max-width:960px){
+  .langsw{display:none}
+  .langsw-m{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px;padding-top:14px;border-top:1px solid var(--rule)}
+  .langsw-m a{padding:9px 12px;border:1px solid var(--rule-2);border-radius:8px;font-size:var(--t-sm);color:var(--ink-2)}
+  .langsw-m a[aria-current]{border-color:var(--ink);color:var(--ink);font-weight:700}
+}
+
 /* 나머지 앱 — 큰 카드 대신 선으로 나눈 목록.
    열 개를 모두 큰 카드로 두면 섹션이 끝나지 않는다. 광고 영상과 상세 페이지가
    있는 세 앱만 카드로 두고, 나머지는 아이콘·한 줄·스토어 링크만 남긴다. */
