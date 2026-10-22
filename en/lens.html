@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lens — read lens design files in the browser — LightOn Plus Lab</title>
+<meta name="description" content="Open CODE V .seq and Zemax OpticStudio .zmx lens files in the browser to read layout and first-order properties, spot diagrams, MTF, ray aberrations and field curvature. The file is computed inside the browser and never uploaded. Free." />
+<meta property="og:title" content="Lens — optical analysis — LightOn Plus Lab" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Open CODE V .seq and Zemax OpticStudio .zmx lens files in the browser to read layout and first-order properties, spot diagrams, MTF, ray aberrations and field curvature. The file is computed inside the browser and never uploaded. Free." />
+<meta property="og:url" content="https://lightonpluslab.com/en/lens.html" />
+<meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/lens.html" />
+<link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/lens.html" />
+<link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/lens.html" />
+<link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/lens.html" />
+<link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/lens.html" />
+<link rel="canonical" href="https://lightonpluslab.com/en/lens.html" />
+<meta name="theme-color" content="#FBFAF8" />
+<link rel="icon" href="/img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="/img/logo-mark.png" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="/styles.css?v=f0ce776f" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"@id":"https://lightonpluslab.com/lens.html#app","name":"LightOn Plus Lab Lens",
+"applicationCategory":"DesignApplication","operatingSystem":"Web",
+"browserRequirements":"Requires JavaScript","url":"https://lens.lightonpluslab.com/",
+"description":"Open CODE V .seq and Zemax OpticStudio .zmx lens files in the browser to read layout and first-order properties, spot diagrams, MTF, ray aberrations and field curvature. The file is computed inside the browser and never uploaded. Free.",
+"inLanguage":["ko","en","ja","zh-Hans"],
+"featureList":["CODE V .seq 읽기","Zemax OpticStudio .zmx 읽기","Layout · first-order","Spot diagram","MTF","Ray aberration","Field curvature · distortion","유리 선도"],
+"publisher":{"@type":"Organization","name":"LightOn Plus Lab","url":"https://lightonpluslab.com/"},
+"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}
+</script>
+<style>
+.page-hero{padding:72px 0 40px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:20px;word-break:keep-all}
+.page-hero h1 em{font-style:normal;color:var(--accent)}
+.page-hero p{color:var(--ink-3);max-width:56ch;margin:0 auto;font-size:16px;line-height:1.8;word-break:keep-all}
+.act-row{display:flex;gap:10px;flex-wrap:wrap}
+
+/* 코드 조각 — 파일 확장자가 본문에 자주 나온다 */
+main code{
+  font-size:.92em;padding:1px 5px;border-radius:4px;
+  background:rgba(27,77,62,.09);color:var(--accent);
+}
+
+/* 한 줄짜리 근거 — 이 도구를 고르는 이유가 여기 하나로 걸린다 */
+.lens-claim{
+  margin:0;padding:clamp(24px,4vw,36px) clamp(22px,4vw,40px);
+  background:var(--accent-tint);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;
+}
+.lens-claim b{display:block;font-size:clamp(18px,2.2vw,23px);letter-spacing:-.024em;line-height:1.45;margin-bottom:10px;color:var(--ink);word-break:keep-all}
+.lens-claim span{display:block;font-size:var(--t-sm);color:var(--ink-2);line-height:1.8;word-break:keep-all}
+
+/* 탭 7개 — 도구가 실제로 보여 주는 화면 목록 */
+.lens-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,4vw,56px);border-top:1px solid var(--rule)}
+.lens-tab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule);min-width:0}
+.lens-tab i{font-style:normal;font-size:var(--t-xs);color:var(--ink-4);font-variant-numeric:tabular-nums}
+.lens-tab b{display:block;font-size:var(--t-sm);font-weight:600;color:var(--ink);margin-bottom:5px}
+.lens-tab span{display:block;font-size:var(--t-xs);color:var(--ink-3);line-height:1.75;word-break:keep-all}
+
+.lens-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(28px,4vw,56px);border-top:1px solid var(--rule)}
+.lens-step{padding:22px 0;border-bottom:1px solid var(--rule);min-width:0}
+.lens-step b{display:block;font-size:var(--t-sm);font-weight:600;color:var(--ink);margin-bottom:6px}
+.lens-step span{display:block;font-size:var(--t-xs);color:var(--ink-3);line-height:1.75;word-break:keep-all}
+
+/* 스크린샷 — 글 열 줄보다 한 장이 빠르다 */
+/* 원본이 800px — 그보다 키우면 뭉갠다 */
+.lens-shot{margin:0 auto;max-width:800px;border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:var(--card)}
+.lens-shot img{display:block;width:100%;height:auto}
+.lens-cap{margin:11px auto 0;max-width:800px;font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+.lens-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,26px);margin-top:clamp(28px,3.5vw,42px)}
+.lens-gallery figure{margin:0;min-width:0}
+.lens-gallery img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:10px;background:var(--card)}
+.lens-gallery figcaption{margin-top:9px;font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+
+.lens-cta{text-align:center;padding:clamp(34px,5vw,56px) 0 0}
+.lens-cta .act-row{justify-content:center;margin-top:22px}
+@media(max-width:760px){
+  .lens-tabs,.lens-steps,.lens-gallery{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/en/">
+      <img class="brand-img" src="/img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+<nav class="nav-links" aria-label="Menu">
+<a href="/en/products.html">Apps</a>
+<a href="/en/lens.html">Lens</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+<a href="/about.html">Studio</a>
+<a href="/contact.html">Contact</a>
+</nav>
+    <div class="langsw" role="group" aria-label="Language"><a href="/lens.html" hreflang="ko" lang="ko">KO</a><a href="/en/lens.html" hreflang="en" lang="en" aria-current="true">EN</a><a href="/ja/lens.html" hreflang="ja" lang="ja">JA</a><a href="/zh/lens.html" hreflang="zh-Hans" lang="zh-Hans">ZH</a></div>
+    <a class="nav-cta" href="/contact.html">Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile menu">
+<a href="/en/products.html">Apps</a>
+<a href="/en/lens.html">Lens</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+<a href="/about.html">Studio</a>
+<a href="/contact.html">Contact</a>
+<div class="langsw langsw-m" role="group" aria-label="Language"><a href="/lens.html" hreflang="ko" lang="ko">한국어</a><a href="/en/lens.html" hreflang="en" lang="en" aria-current="true">English</a><a href="/ja/lens.html" hreflang="ja" lang="ja">日本語</a><a href="/zh/lens.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+<a href="/contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Optical design · free</span>
+    <h1 class="reveal reveal-d1">Open lens files <em>in the browser</em></h1>
+    <p class="reveal reveal-d2">Open CODE V <code>.seq</code> and Zemax OpticStudio <code>.zmx</code> files as they are and read the layout and first-order properties, spot diagrams, MTF, ray aberrations and field curvature. Nothing to install, no account to make.</p>
+    <div class="act-row reveal reveal-d3" style="justify-content:center;margin-top:32px">
+      <a class="btn-play" href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Open Lens <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn-sm" href="/contact.html">Design enquiry</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:clamp(18px,2.5vw,32px)">
+  <div class="wrap">
+    <figure class="lens-shot reveal">
+      <img src="/img/lens-shot-layout.jpg" alt="The Lens screen — system, wavelengths, fields and the surface table on the left; the layout and first-order values such as EFL, F-number and TTL on the right" width="800" height="505" loading="lazy" decoding="async" />
+    </figure>
+    <p class="lens-cap reveal">The triplet f50 F4 that ships as the sample. Prescription sheet on the left, analysis on the right.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="lens-claim reveal">
+      <b>The file is computed inside your browser and never uploaded.</b>
+      <span>A lens prescription is the design. It is not something you can park on somebody else's server to analyse, so the whole computation happens in the browser. From the moment you drop the file, the data does not leave this computer.</span>
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title reveal">What it shows</h2>
+    <p class="section-desc reveal reveal-d1">Six analysis tabs. Open one and it computes and draws.</p>
+    <div class="lens-tabs">
+      <div class="lens-tab reveal"><i>01</i><div><b>Layout · first-order</b><span>The lens cross-section and the ray paths, with first-order quantities like focal length and F-number alongside.</span></div></div>
+      <div class="lens-tab reveal"><i>02</i><div><b>Spot diagram</b><span>Referenced to the chief ray at the reference wavelength; RMS is given as a centroid-based diameter.</span></div></div>
+      <div class="lens-tab reveal"><i>03</i><div><b>MTF</b><span>The diffraction limit is drawn alongside, so you can see how much design margin is left. Through-focus runs ±5 to 50 µm.</span></div></div>
+      <div class="lens-tab reveal"><i>04</i><div><b>Ray aberration</b><span>Tangential (Y) εy against pupil Py on the left, sagittal (X) εx against Px on the right. Units are µm.</span></div></div>
+      <div class="lens-tab reveal"><i>05</i><div><b>Field curvature · distortion</b><span>Astigmatic field curves as a solid T and a dashed S, with distortion against both f·tanθ and f·θ.</span></div></div>
+      <div class="lens-tab reveal"><i>06</i><div><b>Glass</b><span>1,598 glasses from six makers — SCHOTT, HOYA, OHARA, CDGM, SUMITA and HIKARI. Open data from refractiveindex.info.</span></div></div>
+    </div>
+
+    <div class="lens-gallery">
+      <figure class="reveal"><img src="/img/lens-shot-spot.jpg" alt="Spot diagram — spots and RMS diameters for four fields" width="800" height="500" loading="lazy" decoding="async" /><figcaption>Spot diagram — every field's spot and RMS diameter on one screen.</figcaption></figure>
+      <figure class="reveal reveal-d1"><img src="/img/lens-shot-mtf.jpg" alt="MTF curves — tangential and sagittal with the diffraction limit, and a table of values by frequency below" width="800" height="500" loading="lazy" decoding="async" /><figcaption>MTF — the diffraction limit overlaid as a dashed line, with the values by frequency in a table below.</figcaption></figure>
+      <figure class="reveal reveal-d2"><img src="/img/lens-shot-curves.jpg" alt="Astigmatic field curves and a distortion plot, with a table of values by image height below" width="800" height="500" loading="lazy" decoding="async" /><figcaption>Field curvature and distortion — T and S curves, distortion against f·tanθ and f·θ.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title reveal">Edit as you look</h2>
+    <p class="section-desc reveal reveal-d1">Not a read-only viewer. Change a value in the table and it recomputes on the spot.</p>
+    <div class="lens-steps">
+      <div class="lens-step reveal"><b>Surface data</b><span>Edit radius, thickness, glass and semi-diameter directly. Semi-diameter comes from CIR (a user aperture) or CODE V's default aperture.</span></div>
+      <div class="lens-step reveal reveal-d1"><b>System · fields · wavelengths</b><span>Change field angles and wavelengths with their weights to see the same lens under other conditions.</span></div>
+      <div class="lens-step reveal reveal-d2"><b>Zoom positions</b><span>For a zoom, switch between positions and check the performance at each.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title reveal">How to start</h2>
+    <div class="lens-steps">
+      <div class="lens-step reveal"><b>Drop a file</b><span>Drop a <code>.seq</code> or <code>.zmx</code> file on the page and it opens. Pasting works too.</span></div>
+      <div class="lens-step reveal reveal-d1"><b>No file to hand?</b><span>A sample lens is included — open it and walk the whole flow first.</span></div>
+      <div class="lens-step reveal reveal-d2"><b>Four languages</b><span>English, 한국어, 日本語 and 中文. There is a dark theme too.</span></div>
+    </div>
+
+    <div class="lens-cta reveal">
+      <h2 class="section-title" style="padding-top:0">Just open it</h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto">No sign-up, no install, no upload.</p>
+      <div class="act-row">
+        <a class="btn-play" href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">lens.lightonpluslab.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn-sm" href="/en/products.html">See other products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="/en/">
+            <img class="brand-img" src="/img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">A one-person studio that turns AI into shipped products. Anyang, Korea.</div>
+      </div>
+<div class="footer-col">
+<h5>Studio</h5>
+<a href="/about.html">About</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+</div>
+<div class="footer-col">
+<h5>Work</h5>
+<a href="/en/products.html">All apps</a>
+<a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens — optical analysis</a>
+<a href="/momoi.html">Momoi</a>
+<a href="/lighton-ai-note.html">LightOn AI Note</a>
+<a href="/contact.html">New project</a>
+</div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">KakaoTalk chat</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a></div>
+    </div>
+    <div class="footer-biz">
+      LightOn Plus Lab · Representative: Seunghyuk Park · Business reg. 229-15-70907 · E-commerce reg. 2026-Anyang Dongan-0514 · 333 Gwanpyeong-ro, Dongan-gu, Anyang, Gyeonggi, Korea (Bldg 6, #504)
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js?v=cc60ac47"></script>
+</body>
+</html>

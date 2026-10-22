@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lens — 在浏览器解析镜头设计文件 — LightOn Plus Lab</title>
+<meta name="description" content="在浏览器中打开 CODE V .seq 与 Zemax OpticStudio .zmx 镜头文件，解析剖面与一阶特性、点列图、MTF、光线像差与场曲。文件只在浏览器内计算，不会上传。免费。" />
+<meta property="og:title" content="Lens — 镜头解析 — LightOn Plus Lab" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="在浏览器中打开 CODE V .seq 与 Zemax OpticStudio .zmx 镜头文件，解析剖面与一阶特性、点列图、MTF、光线像差与场曲。文件只在浏览器内计算，不会上传。免费。" />
+<meta property="og:url" content="https://lightonpluslab.com/zh/lens.html" />
+<meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/lens.html" />
+<link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/lens.html" />
+<link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/lens.html" />
+<link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/lens.html" />
+<link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/lens.html" />
+<link rel="canonical" href="https://lightonpluslab.com/zh/lens.html" />
+<meta name="theme-color" content="#FBFAF8" />
+<link rel="icon" href="/img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="/img/logo-mark.png" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="/styles.css?v=f0ce776f" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"@id":"https://lightonpluslab.com/lens.html#app","name":"LightOn Plus Lab Lens",
+"applicationCategory":"DesignApplication","operatingSystem":"Web",
+"browserRequirements":"Requires JavaScript","url":"https://lens.lightonpluslab.com/",
+"description":"在浏览器中打开 CODE V .seq 与 Zemax OpticStudio .zmx 镜头文件，解析剖面与一阶特性、点列图、MTF、光线像差与场曲。文件只在浏览器内计算，不会上传。免费。",
+"inLanguage":["ko","en","ja","zh-Hans"],
+"featureList":["CODE V .seq 읽기","Zemax OpticStudio .zmx 읽기","剖面 · 一阶特性","点列图","MTF","光线像差","场曲 · 畸变","유리 선도"],
+"publisher":{"@type":"Organization","name":"LightOn Plus Lab","url":"https://lightonpluslab.com/"},
+"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}
+</script>
+<style>
+.page-hero{padding:72px 0 40px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:20px;word-break:keep-all}
+.page-hero h1 em{font-style:normal;color:var(--accent)}
+.page-hero p{color:var(--ink-3);max-width:56ch;margin:0 auto;font-size:16px;line-height:1.8;word-break:keep-all}
+.act-row{display:flex;gap:10px;flex-wrap:wrap}
+
+/* 코드 조각 — 파일 확장자가 본문에 자주 나온다 */
+main code{
+  font-size:.92em;padding:1px 5px;border-radius:4px;
+  background:rgba(27,77,62,.09);color:var(--accent);
+}
+
+/* 한 줄짜리 근거 — 이 도구를 고르는 이유가 여기 하나로 걸린다 */
+.lens-claim{
+  margin:0;padding:clamp(24px,4vw,36px) clamp(22px,4vw,40px);
+  background:var(--accent-tint);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;
+}
+.lens-claim b{display:block;font-size:clamp(18px,2.2vw,23px);letter-spacing:-.024em;line-height:1.45;margin-bottom:10px;color:var(--ink);word-break:keep-all}
+.lens-claim span{display:block;font-size:var(--t-sm);color:var(--ink-2);line-height:1.8;word-break:keep-all}
+
+/* 탭 7개 — 도구가 실제로 보여 주는 화면 목록 */
+.lens-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,4vw,56px);border-top:1px solid var(--rule)}
+.lens-tab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule);min-width:0}
+.lens-tab i{font-style:normal;font-size:var(--t-xs);color:var(--ink-4);font-variant-numeric:tabular-nums}
+.lens-tab b{display:block;font-size:var(--t-sm);font-weight:600;color:var(--ink);margin-bottom:5px}
+.lens-tab span{display:block;font-size:var(--t-xs);color:var(--ink-3);line-height:1.75;word-break:keep-all}
+
+.lens-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(28px,4vw,56px);border-top:1px solid var(--rule)}
+.lens-step{padding:22px 0;border-bottom:1px solid var(--rule);min-width:0}
+.lens-step b{display:block;font-size:var(--t-sm);font-weight:600;color:var(--ink);margin-bottom:6px}
+.lens-step span{display:block;font-size:var(--t-xs);color:var(--ink-3);line-height:1.75;word-break:keep-all}
+
+/* 스크린샷 — 글 열 줄보다 한 장이 빠르다 */
+/* 원본이 800px — 그보다 키우면 뭉갠다 */
+.lens-shot{margin:0 auto;max-width:800px;border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:var(--card)}
+.lens-shot img{display:block;width:100%;height:auto}
+.lens-cap{margin:11px auto 0;max-width:800px;font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+.lens-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,26px);margin-top:clamp(28px,3.5vw,42px)}
+.lens-gallery figure{margin:0;min-width:0}
+.lens-gallery img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:10px;background:var(--card)}
+.lens-gallery figcaption{margin-top:9px;font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+
+.lens-cta{text-align:center;padding:clamp(34px,5vw,56px) 0 0}
+.lens-cta .act-row{justify-content:center;margin-top:22px}
+@media(max-width:760px){
+  .lens-tabs,.lens-steps,.lens-gallery{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/zh/">
+      <img class="brand-img" src="/img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+<nav class="nav-links" aria-label="菜单">
+<a href="/zh/products.html">Apps</a>
+<a href="/zh/lens.html">Lens</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+<a href="/about.html">Studio</a>
+<a href="/contact.html">Contact</a>
+</nav>
+    <div class="langsw" role="group" aria-label="Language"><a href="/lens.html" hreflang="ko" lang="ko">KO</a><a href="/en/lens.html" hreflang="en" lang="en">EN</a><a href="/ja/lens.html" hreflang="ja" lang="ja">JA</a><a href="/zh/lens.html" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">ZH</a></div>
+    <a class="nav-cta" href="/contact.html">Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="菜单" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="移动端菜单">
+<a href="/zh/products.html">Apps</a>
+<a href="/zh/lens.html">Lens</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+<a href="/about.html">Studio</a>
+<a href="/contact.html">Contact</a>
+<div class="langsw langsw-m" role="group" aria-label="Language"><a href="/lens.html" hreflang="ko" lang="ko">한국어</a><a href="/en/lens.html" hreflang="en" lang="en">English</a><a href="/ja/lens.html" hreflang="ja" lang="ja">日本語</a><a href="/zh/lens.html" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">中文</a></div>
+<a href="/contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">光学设计 · 免费</span>
+    <h1 class="reveal reveal-d1"><em>在浏览器里</em>打开镜头文件</h1>
+    <p class="reveal reveal-d2">直接打开 CODE V 的 <code>.seq</code> 与 Zemax OpticStudio 的 <code>.zmx</code>，查看剖面与一阶特性、点列图、MTF、光线像差与场曲。无需安装，也不用注册。</p>
+    <div class="act-row reveal reveal-d3" style="justify-content:center;margin-top:32px">
+      <a class="btn-play" href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">打开 Lens <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn-sm" href="/contact.html">设计咨询</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:clamp(18px,2.5vw,32px)">
+  <div class="wrap">
+    <figure class="lens-shot reveal">
+      <img src="/img/lens-shot-layout.jpg" alt="Lens 界面 — 左侧为系统、波长、视场与面数据表，右侧为剖面图及 EFL、F 数、TTL 等一阶特性" width="800" height="505" loading="lazy" decoding="async" />
+    </figure>
+    <p class="lens-cap reveal">内置示例三片式 f50 F4。左为处方单，右为解析界面。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="lens-claim reveal">
+      <b>文件只在浏览器内计算，不会上传。</b>
+      <span>镜头处方本身就是设计，不是可以放到别人服务器上去分析的东西，所以把全部计算都放在浏览器里。从你放下文件的那一刻起，数据就不会离开这台电脑。</span>
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title reveal">能看到什么</h2>
+    <p class="section-desc reveal reveal-d1">六个解析标签页。打开即计算并绘制。</p>
+    <div class="lens-tabs">
+      <div class="lens-tab reveal"><i>01</i><div><b>剖面 · 一阶特性</b><span>镜头剖面与光线路径，并同时读取焦距、F 数等一阶量。</span></div></div>
+      <div class="lens-tab reveal"><i>02</i><div><b>点列图</b><span>以基准波长主光线为参考，RMS 以质心（centroid）为基准的直径给出。</span></div></div>
+      <div class="lens-tab reveal"><i>03</i><div><b>MTF</b><span>同时绘出衍射极限，看得出还剩多少设计余量。离焦范围 ±5~50 µm。</span></div></div>
+      <div class="lens-tab reveal"><i>04</i><div><b>光线像差</b><span>左为子午（Y）εy 对瞳孔 Py，右为弧矢（X）εx 对 Px。单位 µm。</span></div></div>
+      <div class="lens-tab reveal"><i>05</i><div><b>场曲 · 畸变</b><span>像散场曲以 T 实线、S 虚线表示，畸变同时给出 f·tanθ 与 f·θ 两种基准。</span></div></div>
+      <div class="lens-tab reveal"><i>06</i><div><b>玻璃</b><span>SCHOTT、HOYA、OHARA、CDGM、SUMITA、HIKARI 六家共 1,598 种。来自 refractiveindex.info 的公开数据。</span></div></div>
+    </div>
+
+    <div class="lens-gallery">
+      <figure class="reveal"><img src="/img/lens-shot-spot.jpg" alt="点列图 — 四个视场的点列与 RMS 直径" width="800" height="500" loading="lazy" decoding="async" /><figcaption>点列图 — 各视场的点列与 RMS 直径同屏呈现。</figcaption></figure>
+      <figure class="reveal reveal-d1"><img src="/img/lens-shot-mtf.jpg" alt="MTF 曲线 — 子午与弧矢及衍射极限，下方为各频率数值表" width="800" height="500" loading="lazy" decoding="async" /><figcaption>MTF — 以虚线叠加衍射极限，并以表格给出各频率数值。</figcaption></figure>
+      <figure class="reveal reveal-d2"><img src="/img/lens-shot-curves.jpg" alt="像散场曲与畸变曲线，下方为各像高数值表" width="800" height="500" loading="lazy" decoding="async" /><figcaption>场曲与畸变 — T·S 曲线，以及 f·tanθ / f·θ 基准的畸变。</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title reveal">边改边看</h2>
+    <p class="section-desc reveal reveal-d1">不是只读查看器。改动表中数值，立刻重新计算。</p>
+    <div class="lens-steps">
+      <div class="lens-step reveal"><b>面数据</b><span>可直接修改半径、厚度、玻璃与半口径。半口径取自 CIR（用户光阑）或 CODE V 的默认光阑。</span></div>
+      <div class="lens-step reveal reveal-d1"><b>系统 · 视场 · 波长</b><span>改变视场角与波长（nm）及权重，在不同条件下查看同一镜头。</span></div>
+      <div class="lens-step reveal reveal-d2"><b>变焦位置</b><span>变焦镜头可切换各档位，查看每个位置的性能。</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title reveal">如何开始</h2>
+    <div class="lens-steps">
+      <div class="lens-step reveal"><b>拖入文件</b><span>把 <code>.seq</code> 或 <code>.zmx</code> 文件拖到页面上即可打开，粘贴也行。</span></div>
+      <div class="lens-step reveal reveal-d1"><b>手头没有文件？</b><span>内置示例镜头。可以先打开，把整个流程走一遍。</span></div>
+      <div class="lens-step reveal reveal-d2"><b>四种语言</b><span>中文、English、한국어、日本語。也可切换为深色界面。</span></div>
+    </div>
+
+    <div class="lens-cta reveal">
+      <h2 class="section-title" style="padding-top:0">打开看看就好</h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto">无需注册、安装或上传。</p>
+      <div class="act-row">
+        <a class="btn-play" href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">lens.lightonpluslab.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn-sm" href="/zh/products.html">查看其他产品</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="/zh/">
+            <img class="brand-img" src="/img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">把 AI 做成真实产品的一人工作室。韩国安养。</div>
+      </div>
+<div class="footer-col">
+<h5>Studio</h5>
+<a href="/about.html">About</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+</div>
+<div class="footer-col">
+<h5>Work</h5>
+<a href="/zh/products.html">全部应用</a>
+<a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens 镜头解析</a>
+<a href="/momoi.html">Momoi</a>
+<a href="/lighton-ai-note.html">LightOn AI 笔记</a>
+<a href="/contact.html">New project</a>
+</div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">KakaoTalk 咨询</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="/privacy.html">隐私政策</a> · <a href="/terms.html">服务条款</a></div>
+    </div>
+    <div class="footer-biz">
+      商号：LightOn Plus Lab · 代表：朴丞赫 · 营业执照号 229-15-70907 · 电子商务备案 第2026-安养东安-0514号 · 韩国京畿道安养市东安区冠坪路 333 号 6 栋 504 室
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js?v=cc60ac47"></script>
+</body>
+</html>

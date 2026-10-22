@@ -4,20 +4,25 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lens — 렌즈 설계 파일 브라우저 해석 — LightOn Plus Lab</title>
-<meta name="description" content="CODE V .seq와 Zemax OpticStudio .zmx 렌즈 파일을 브라우저에서 열어 단면·스팟 다이어그램·MTF·광선 수차·필드 곡률을 해석합니다. 파일은 브라우저 안에서만 계산되고 서버로 올라가지 않습니다. 무료." />
+<meta name="description" content="CODE V .seq와 Zemax OpticStudio .zmx 렌즈 파일을 브라우저에서 열어 단면과 1차 특성, 스팟 다이어그램, MTF, 광선 수차, 필드 곡률을 해석합니다. 파일은 브라우저 안에서만 계산되고 서버로 올라가지 않습니다. 무료." />
 <meta property="og:title" content="Lens — 렌즈 해석 — LightOn Plus Lab" />
 <meta property="og:type" content="website" />
-<meta property="og:description" content="CODE V .seq와 Zemax OpticStudio .zmx 렌즈 파일을 브라우저에서 열어 단면·스팟 다이어그램·MTF·광선 수차·필드 곡률을 해석합니다. 파일은 브라우저 안에서만 계산되고 서버로 올라가지 않습니다. 무료." />
+<meta property="og:description" content="CODE V .seq와 Zemax OpticStudio .zmx 렌즈 파일을 브라우저에서 열어 단면과 1차 특성, 스팟 다이어그램, MTF, 광선 수차, 필드 곡률을 해석합니다. 파일은 브라우저 안에서만 계산되고 서버로 올라가지 않습니다. 무료." />
 <meta property="og:url" content="https://lightonpluslab.com/lens.html" />
 <meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/lens.html" />
+<link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/lens.html" />
+<link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/lens.html" />
+<link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/lens.html" />
+<link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/lens.html" />
 <link rel="canonical" href="https://lightonpluslab.com/lens.html" />
 <meta name="theme-color" content="#FBFAF8" />
 <link rel="icon" href="img/logo-mark-180.png" />
 <link rel="apple-touch-icon" href="img/logo-mark.png" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="styles.css?v=035e41ac" />
+<link rel="stylesheet" href="styles.css?v=f0ce776f" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
 <script type="application/ld+json">
@@ -25,7 +30,7 @@
 "@id":"https://lightonpluslab.com/lens.html#app","name":"LightOn Plus Lab Lens",
 "applicationCategory":"DesignApplication","operatingSystem":"Web",
 "browserRequirements":"Requires JavaScript","url":"https://lens.lightonpluslab.com/",
-"description":"CODE V .seq와 Zemax OpticStudio .zmx 렌즈 파일을 브라우저에서 열어 단면·스팟 다이어그램·MTF·광선 수차·필드 곡률을 해석합니다. 파일은 브라우저 안에서만 계산되고 서버로 올라가지 않습니다. 무료.",
+"description":"CODE V .seq와 Zemax OpticStudio .zmx 렌즈 파일을 브라우저에서 열어 단면과 1차 특성, 스팟 다이어그램, MTF, 광선 수차, 필드 곡률을 해석합니다. 파일은 브라우저 안에서만 계산되고 서버로 올라가지 않습니다. 무료.",
 "inLanguage":["ko","en","ja","zh-Hans"],
 "featureList":["CODE V .seq 읽기","Zemax OpticStudio .zmx 읽기","단면 · 1차 특성","스팟 다이어그램","MTF","광선 수차","필드 곡률 · 왜곡","유리 선도"],
 "publisher":{"@type":"Organization","name":"LightOn Plus Lab","url":"https://lightonpluslab.com/"},
@@ -55,13 +60,13 @@ main code{
 
 /* 탭 7개 — 도구가 실제로 보여 주는 화면 목록 */
 .lens-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,4vw,56px);border-top:1px solid var(--rule)}
-.lens-tab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule)}
+.lens-tab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule);min-width:0}
 .lens-tab i{font-style:normal;font-size:var(--t-xs);color:var(--ink-4);font-variant-numeric:tabular-nums}
 .lens-tab b{display:block;font-size:var(--t-sm);font-weight:600;color:var(--ink);margin-bottom:5px}
 .lens-tab span{display:block;font-size:var(--t-xs);color:var(--ink-3);line-height:1.75;word-break:keep-all}
 
 .lens-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(28px,4vw,56px);border-top:1px solid var(--rule)}
-.lens-step{padding:22px 0;border-bottom:1px solid var(--rule)}
+.lens-step{padding:22px 0;border-bottom:1px solid var(--rule);min-width:0}
 .lens-step b{display:block;font-size:var(--t-sm);font-weight:600;color:var(--ink);margin-bottom:6px}
 .lens-step span{display:block;font-size:var(--t-xs);color:var(--ink-3);line-height:1.75;word-break:keep-all}
 
@@ -71,7 +76,7 @@ main code{
 .lens-shot img{display:block;width:100%;height:auto}
 .lens-cap{margin:11px auto 0;max-width:800px;font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
 .lens-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,26px);margin-top:clamp(28px,3.5vw,42px)}
-.lens-gallery figure{margin:0}
+.lens-gallery figure{margin:0;min-width:0}
 .lens-gallery img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:10px;background:var(--card)}
 .lens-gallery figcaption{margin-top:9px;font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
 
@@ -98,6 +103,7 @@ main code{
 <a href="about.html">Studio</a>
 <a href="contact.html">Contact</a>
 </nav>
+    <div class="langsw" role="group" aria-label="Language"><a href="/lens.html" hreflang="ko" lang="ko" aria-current="true">KO</a><a href="/en/lens.html" hreflang="en" lang="en">EN</a><a href="/ja/lens.html" hreflang="ja" lang="ja">JA</a><a href="/zh/lens.html" hreflang="zh-Hans" lang="zh-Hans">ZH</a></div>
     <a class="nav-cta" href="contact.html">Launch Lab
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -113,6 +119,7 @@ main code{
 <a href="blog.html">Blog</a>
 <a href="about.html">Studio</a>
 <a href="contact.html">Contact</a>
+<div class="langsw langsw-m" role="group" aria-label="Language"><a href="/lens.html" hreflang="ko" lang="ko" aria-current="true">한국어</a><a href="/en/lens.html" hreflang="en" lang="en">English</a><a href="/ja/lens.html" hreflang="ja" lang="ja">日本語</a><a href="/zh/lens.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
 <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
 </nav>
 
