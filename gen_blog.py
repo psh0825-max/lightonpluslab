@@ -809,30 +809,46 @@ def write_sitemap():
             if p not in UNPUBLISHED]
     dates = resolve_lastmod(seed)
     moved = [p for p, _ in seed if dates[p] == datetime.date.today().isoformat()]
-    # 홈은 네 언어가 같은 문서의 번역본이다. 서로를 alternate 로 가리켜 줘야
+    # 번역된 페이지는 네 언어가 같은 문서다. 서로를 alternate 로 가리켜 줘야
     # 구글이 한 페이지의 언어판으로 묶는다 — 안 하면 중복 문서로 본다.
     from i18n_home import LANG_META, LANGS
-    alts = "\n".join(
-        f"""    <xhtml:link rel="alternate" hreflang="{LANG_META[c]['hreflang']}" href="https://lightonpluslab.com/{LANG_META[c]['dir']}" />"""
-        for c in ["ko"] + LANGS) + """
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/" />"""
+    from build_i18n import PAGES as I18N_PAGES
+
+    def url_of(page, code):
+        d = LANG_META[code]["dir"]
+        return "https://lightonpluslab.com/" + (d if page == "index.html" else d + page)
+
+    def alts_of(page):
+        rows = ['    <xhtml:link rel="alternate" hreflang="%s" href="%s" />'
+                % (LANG_META[c]["hreflang"], url_of(page, c)) for c in ["ko"] + LANGS]
+        rows.append('    <xhtml:link rel="alternate" hreflang="x-default" href="%s" />'
+                    % url_of(page, "ko"))
+        return "\n".join(rows)
+
+    # sitemap 의 빈 경로("")는 index.html 을 뜻한다
+    def as_page(p):
+        return "index.html" if p == "" else p
 
     rows = []
     for p, _ in seed:
-        extra = "\n" + alts if p == "" else ""
+        extra = "\n" + alts_of(as_page(p)) if as_page(p) in I18N_PAGES else ""
         rows.append(f"""  <url>
     <loc>https://lightonpluslab.com/{p}</loc>{extra}
     <lastmod>{dates[p]}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>{'1.0' if p == '' else '0.3' if p in LEGAL_PAGES else '0.7'}</priority>
   </url>""")
-    for c in LANGS:
-        rows.append(f"""  <url>
-    <loc>https://lightonpluslab.com/{LANG_META[c]['dir']}</loc>
-{alts}
-    <lastmod>{dates['']}</lastmod>
+    trans = 0
+    for page in I18N_PAGES:
+        ko_key = "" if page == "index.html" else page
+        for c in LANGS:
+            trans += 1
+            rows.append(f"""  <url>
+    <loc>{url_of(page, c)}</loc>
+{alts_of(page)}
+    <lastmod>{dates[ko_key]}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>{'0.9' if page == 'index.html' else '0.6'}</priority>
   </url>""")
     urls = "\n".join(rows)
     with io.open("sitemap.xml", "w", encoding="utf-8") as f:
@@ -843,7 +859,7 @@ def write_sitemap():
 </urlset>
 """)
     print("sitemap.xml (%d URL · 번역판 %d, 오늘 갱신 %d개%s)"
-          % (len(seed) + len(LANGS), len(LANGS), len(moved),
+          % (len(seed) + trans, trans, len(moved),
              (": " + ", ".join(p or "/" for p in moved)) if moved else ""))
 
 # RSS feed
