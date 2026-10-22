@@ -1,59 +1,59 @@
 {
  "": {
   "date": "2026-10-22",
-  "hash": "68a479fb02912ca0633b4432d2ce088d25cbf711"
+  "hash": "6a7355607abb8cf80585585f7b867f02422be970"
  },
  "about.html": {
   "date": "2026-10-22",
-  "hash": "6a26334bf52cdd3a5f063f21a094b7074c6798f9"
+  "hash": "70d4c70f6bed449e26e1b2b0e35cc61d3f2b3f26"
  },
  "blog-ai-assisted-development.html": {
   "date": "2026-10-22",
-  "hash": "33c481ca03f2e07b238aed9cddfe0030bf3cb4b1"
+  "hash": "4d856b239e787b07b326559b23b7a963e8b8cc32"
  },
  "blog-local-first-apps.html": {
   "date": "2026-10-22",
-  "hash": "22d8e763b00eef82f740913c3a9aac4bd9c8dc61"
+  "hash": "d6531b40197119ce5941851e642780d7c4088be2"
  },
  "blog-lyrics-alignment-drift.html": {
   "date": "2026-10-22",
-  "hash": "2ec586d761b54c4c201297eab64e6a884acab88f"
+  "hash": "ce76ec45bebdee3975539fb95b84f0a2892dc524"
  },
  "blog-momoi-call-summary.html": {
   "date": "2026-10-22",
-  "hash": "f7aa23557f4f1bc606092ca0e0cb7e8143bbd1a3"
+  "hash": "ffde84f3bca29ddf499088d1548dc96697c20a2a"
  },
  "blog-notification-ux.html": {
   "date": "2026-10-22",
-  "hash": "fd9d12b34346bb83246b2d63e005ec065d84b951"
+  "hash": "97d25b73f31d7b287fc97e60458d05d4935add3a"
  },
  "blog-paper-coupon-management.html": {
   "date": "2026-10-22",
-  "hash": "ca3858a92852c482f060d86b7792ddf1a182c704"
+  "hash": "f5e000ebabea90d31df1f2bbfc607d7cbe130f4e"
  },
  "blog-pwa-vs-native.html": {
   "date": "2026-10-22",
-  "hash": "58259e049e6790e0f0dfbab112a7205677de2008"
+  "hash": "5387a890043b7f9f5374d1c4f62fc54e7e649def"
  },
  "blog-twa-play-store.html": {
   "date": "2026-10-22",
-  "hash": "b27a0eb810c1516143d1762182d865402f9790aa"
+  "hash": "9aa607db14bbc2079fdc90a653e27266f9dcba37"
  },
  "blog-two-week-mvp.html": {
   "date": "2026-10-22",
-  "hash": "9d0da4ab69e81e2054dc436fb1fd079591dd6b78"
+  "hash": "32ae3794bab8f2a3bcea53e7bea3195d36f6fe91"
  },
  "blog-why-summary-is-not-memory.html": {
   "date": "2026-10-22",
-  "hash": "f53ef883a094c60314241ae51c40e4d044a0464b"
+  "hash": "088a0effebf91346e18d1ce6ceaad7952381cdde"
  },
  "blog.html": {
   "date": "2026-10-22",
-  "hash": "a4c6c0c26672f50f5b0c2eb959b526424a83a8e1"
+  "hash": "d4e235b08c94967c91dbd0545727702aeb7a7478"
  },
  "contact.html": {
   "date": "2026-10-22",
-  "hash": "886b8866b93d3d9ca0c8d001f6c1280fe44cc0f5"
+  "hash": "e309d1abca1c1aba2b00874dc9267f63ff2e08cc"
  },
  "games/core-siege/": {
   "date": "2026-08-15",
@@ -63,36 +63,40 @@
   "date": "2026-08-15",
   "hash": ""
  },
+ "lens.html": {
+  "date": "2026-10-22",
+  "hash": "ea84421f9f83977e7cc427cf485c55a1b7f6ae0f"
+ },
  "lighton-ai-note.html": {
   "date": "2026-10-22",
-  "hash": "237caf5afc3926928aa102957c5ed9080f45b93f"
+  "hash": "a6cd986b3ca63a8878e83e9de23fa60fa414fc5d"
  },
  "momoi.html": {
   "date": "2026-10-22",
-  "hash": "037a24704bbdd05da7132eb05f3846ba8123d6ce"
+  "hash": "b243da676c98b90a3a38f4462123b9cadb60fd4d"
  },
  "privacy-en.html": {
   "date": "2026-10-22",
-  "hash": "4eeb51ea32d227986160dfd9aec37ee8bef14ebb"
+  "hash": "e73e0f32bd760c42b027565280ebd1d3f0960ce3"
  },
  "privacy-stone-arena.html": {
   "date": "2026-10-22",
-  "hash": "8c9d690fff02d83035c476ab1b837390a132c7dd"
+  "hash": "6ab489e495bd7e341bd62d7b7b0b30510240f0dc"
  },
  "privacy.html": {
   "date": "2026-10-22",
-  "hash": "d215279a8ae3f90a9eeb968156f40d1b69223e21"
+  "hash": "f0d14c61229deaaf095603527a35736cb0377194"
  },
  "products.html": {
   "date": "2026-10-22",
-  "hash": "ed620520a7de3e88623c253c9aa264b162eeceb1"
+  "hash": "884bd9ceeef47d21dbea89e7f9d726e097017c54"
  },
  "services.html": {
   "date": "2026-10-22",
-  "hash": "7ac1da607457c200732147d01b4f3983c9f7b328"
+  "hash": "5f6b053b9bf7a3bfa429fa4747c1fbb7060eb357"
  },
  "terms.html": {
   "date": "2026-10-22",
-  "hash": "8e76292ed7a3fb5eb1849e3b693fea4987fc81a0"
+  "hash": "f365a4905d87413571ce3f241d280723ed703ebc"
  }
 }

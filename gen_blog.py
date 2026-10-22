@@ -69,7 +69,7 @@ HEAD = """<!doctype html>
     </a>
     <nav class="nav-links" aria-label="메뉴">
       <a href="products.html">Apps</a>
-      <a href="index.html#lens">Lens</a>
+      <a href="lens.html">Lens</a>
 <a href="services.html">Services</a>
       <a href="blog.html">Blog</a>
       <a href="about.html">Studio</a>
@@ -86,7 +86,7 @@ HEAD = """<!doctype html>
 </header>
 <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
   <a href="products.html">Apps</a>
-  <a href="index.html#lens">Lens</a>
+  <a href="lens.html">Lens</a>
 <a href="services.html">Services</a>
   <a href="blog.html">Blog</a>
   <a href="about.html">Studio</a>
@@ -675,6 +675,7 @@ PAGE_LASTMOD = {
     "about.html": "2026-08-13",
     "services.html": "2026-08-13",
     "products.html": "2026-08-13",
+    "lens.html": "2026-10-22",
     "momoi.html": "2026-08-13",
     "lighton-ai-note.html": "2026-08-13",
     "blog.html": "2026-08-13",
