@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="naver-site-verification" content="bc9982d4de3ced48138d3544886aa05aae5b422d" />
+<meta name="naver-site-verification" content="a44880bba706de4af866818cf5d21c9e024465b1" />
+<title>LightOn Plus Lab — AI 应用工作室</title>
+<meta name="description" content="打造 Momoi、Songbit 与 LightOn AI 笔记的一人 AI 应用工作室。在 Google Play 上架并运营。" />
+<meta property="og:title" content="LightOn Plus Lab — AI 应用工作室" />
+<meta property="og:description" content="Momoi · Songbit · LightOn AI 笔记 — 我们自行开发并运营、已在 Google Play 上线的 AI 应用。" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/" />
+<link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/" />
+<link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/" />
+<link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/" />
+<link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/" />
+<link rel="canonical" href="https://lightonpluslab.com/zh/" />
+<link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
+<meta property="og:url" content="https://lightonpluslab.com/zh/" />
+<meta name="theme-color" content="#FBFAF8" />
+<link rel="icon" href="/img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="/img/logo-mark.png" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="/styles.css?v=035e41ac" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<style>
+/* 홈 전용 — 공용 시스템(styles.css) 위에 얹는 레이아웃 */
+
+/* 히어로 — 좌: 문장과 증거 / 우: 제품 (D안) */
+.hero{position:static;min-height:0;display:block;padding:clamp(40px,5.5vw,76px) 0 0;overflow:visible;isolation:auto}
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
+  gap:clamp(32px,5vw,64px);align-items:start;width:100%;
+}
+.hero-content{max-width:none;display:block;min-width:0}
+
+/* 한글은 어절 중간에서 끊지 않는다. 각 줄은 완결된 절이라 접혀도 뜻이 안 잘린다. */
+.hero-title{
+  margin:16px 0 20px;font-size:var(--t-display);font-weight:700;
+  letter-spacing:-.038em;line-height:1.16;max-width:20ch;
+  word-break:keep-all;overflow-wrap:break-word;text-wrap:balance;text-shadow:none;
+}
+.hero-title .line{display:block}
+.hero-title em{font-style:normal;background:none;color:var(--ink);letter-spacing:inherit}
+.hero-sub{
+  color:var(--ink-2);font-size:var(--t-lead);line-height:1.8;
+  max-width:44ch;margin-bottom:28px;
+  word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty;text-shadow:none;
+}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* 숫자를 히어로 안에서 증거로 쓴다 */
+.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:38px;border-top:1px solid var(--rule)}
+.hero-stat{padding:18px 18px 18px 0;border-bottom:1px solid var(--rule)}
+.hero-stat:nth-child(2n){padding-left:18px}
+.hero-stat b{
+  display:block;font-size:clamp(24px,2.6vw,30px);font-weight:700;
+  letter-spacing:-.038em;line-height:1.1;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.hero-stat b .unit{font-size:.5em;font-weight:600;margin-left:3px;letter-spacing:-.01em}
+.hero-stat span{display:block;font-size:var(--t-xs);color:var(--ink-3);margin-top:5px;word-break:keep-all;line-height:1.5}
+
+/* 우측: 제품이 지면의 절반을 차지한다 */
+.hero-rail{display:flex;flex-direction:column;gap:12px;min-width:0}
+.hero-app{
+  display:grid;grid-template-columns:56px minmax(0,1fr) auto;
+  align-items:center;gap:14px;padding:18px 20px;
+  background:var(--card);border:1px solid var(--rule);border-radius:14px;
+  transition:border-color .18s var(--ease),background .18s var(--ease);
+}
+.hero-app:hover{border-color:var(--rule-2);background:var(--paper-2);transform:none}
+.hero-app img{width:56px;height:56px;border-radius:14px;box-shadow:0 1px 2px rgba(26,25,23,.10)}
+.hero-app .t{min-width:0}
+.hero-app b{display:block;font-size:16.5px;font-weight:700;letter-spacing:-.024em;color:var(--ink);line-height:1.35}
+.hero-app .cat{display:block;font-size:13.5px;color:var(--ink-3);line-height:1.6;margin-top:3px;word-break:keep-all}
+.hero-app .go{
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  padding:10px 15px;border-radius:8px;background:var(--ink);color:var(--paper);
+  font-size:13.5px;font-weight:600;
+}
+.hero-games{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:17px 20px;border:1px dashed var(--rule-2);border-radius:14px;
+  transition:background .18s var(--ease);
+}
+.hero-games:hover{background:var(--paper-2)}
+.hero-games .m{font-size:14px;color:var(--ink-2);word-break:keep-all;line-height:1.6}
+.hero-games .go{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;white-space:nowrap;color:var(--ink)}
+.hero-games .go svg,.hero-app .go svg{width:12px;height:12px;stroke-width:2;flex:0 0 auto}
+
+/* 의뢰 섹션의 4단계 */
+.signal-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:0;width:100%;margin-top:0;border-top:1px solid var(--rule)}
+.signal-step{min-height:0;padding:20px 18px 20px 0;background:none;border:0;border-right:1px solid var(--rule);border-radius:0}
+.signal-step:last-child{border-right:0}
+.signal-step:not(:first-child){padding-left:18px}
+.signal-step b{display:block;margin-bottom:5px;font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:0;text-transform:none;color:var(--ink-3);font-weight:600}
+.signal-step span{font-size:var(--t-sm);color:var(--ink-2);line-height:1.6;word-break:keep-all}
+.rail-center{margin:0 0 40px;width:100%}
+
+/* 의뢰 4항목 */
+.feat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--rule)}
+.feat{padding:24px 20px 24px 0;background:none;border:0;border-right:1px solid var(--rule);border-radius:0;transition:none}
+.feat:last-child{border-right:0}
+.feat:not(:first-child){padding-left:20px}
+.feat:hover{background:none;border-color:var(--rule);transform:none}
+.feat .ibadge{width:28px;height:28px;margin-bottom:12px}
+.feat .ibadge svg{width:14px;height:14px}
+.feat-title{font-size:15px;font-weight:600;margin-bottom:7px;letter-spacing:-.02em}
+.feat-desc{font-size:var(--t-xs);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+
+/* 기술 구성 — 카드 대신 정의 목록 */
+.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,5vw,72px);max-width:none;margin:0;border-top:1px solid var(--rule)}
+.stack-card{padding:22px 0;background:none;border:0;border-bottom:1px solid var(--rule);border-radius:0;transition:none}
+.stack-card:hover{background:none;border-color:var(--rule)}
+.stack-head{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.stack-head .ibadge{display:none}
+.stack-title{font-family:var(--f-sans);font-size:16px;font-weight:700;letter-spacing:-.022em;text-transform:none;color:var(--ink)}
+.stack-rows{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-size:var(--t-sm)}
+.stack-k{color:var(--ink-3);white-space:nowrap}
+.stack-v{color:var(--ink);font-family:var(--f-sans);font-size:var(--t-sm)}
+
+/* 그 밖의 서비스 */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:26px}
+.proj{position:relative;display:block;padding:0;background:none;border:0;border-radius:0;transition:none}
+.proj:hover{transform:none;background:none;border-color:transparent}
+.proj-media{position:relative;margin:0 0 14px;border-radius:8px;overflow:hidden;aspect-ratio:16/10;background:var(--paper-2);border:1px solid var(--rule)}
+.proj-media video{width:100%;height:100%;object-fit:cover;opacity:1;transition:none}
+.proj:hover .proj-media video{transform:none;opacity:1}
+.proj-media::after{display:none}
+.proj-meta{display:flex;align-items:center;gap:9px;margin-bottom:8px;font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:0;text-transform:none;color:var(--ink-3)}
+.proj-tag{padding:0;border-radius:0;font-weight:600;background:none!important;color:var(--accent)!important;border:0!important}
+.proj-head{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.proj-mark{display:none}
+.proj-name{font-size:17px;font-weight:700;letter-spacing:-.024em;color:var(--ink);line-height:1.35}
+.proj-desc{font-size:var(--t-sm);color:var(--ink-3);line-height:1.7;word-break:keep-all}
+.proj-arrow{display:none}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:0;margin-top:42px;border-top:1px solid var(--rule)}
+.mini-grid .proj{padding:20px 20px 20px 0;border-right:1px solid var(--rule)}
+.mini-grid .proj:last-child{border-right:0}
+.mini-grid .proj:not(:first-child){padding-left:20px}
+
+/* 글 — 카드 세 장이 아니라 목록 세 줄 */
+.post-grid{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink)}
+.post-card{display:block;padding:22px 4px;background:none;border:0;border-bottom:1px solid var(--rule);border-radius:0;transition:background .18s var(--ease)}
+.post-card:hover{background:var(--paper-2);border-color:var(--rule);transform:none}
+.post-card h3{font-size:18px;font-weight:600;margin:0 0 7px;line-height:1.45;letter-spacing:-.024em;color:var(--ink);word-break:keep-all}
+.post-card p{font-size:var(--t-sm);color:var(--ink-3);line-height:1.7;margin:0 0 9px;max-width:64ch;word-break:keep-all}
+.post-card .pc-meta{font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:0;color:var(--ink-3)}
+
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero-title{max-width:24ch}
+  .hero-stats{margin-top:30px}
+}
+@media(max-width:960px){
+  .hero-title{max-width:none}
+  .feat-grid,.signal-rail{grid-template-columns:1fr 1fr}
+  .feat:nth-child(2n),.signal-step:nth-child(2n){border-right:0}
+  .feat:nth-child(n+3),.signal-step:nth-child(n+3){border-top:1px solid var(--rule)}
+  .feat:nth-child(2n),.signal-step:nth-child(2n){padding-left:20px}
+  .stack-grid{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr 1fr}
+  .mini-grid{grid-template-columns:1fr}
+  .mini-grid .proj{border-right:0;border-bottom:1px solid var(--rule);padding-left:0}
+  .mini-grid .proj:last-child{border-bottom:0}
+}
+/* 가로로 눕힌 폰처럼 세로가 짧은 화면 */
+@media(max-height:520px) and (orientation:landscape){
+  .hero{padding-top:28px}
+  .hero-stats{margin-top:24px}
+}
+@media(max-width:400px){
+  .hero-title{font-size:31px;letter-spacing:-.042em}
+}
+@media(max-width:600px){
+  .hero-app{grid-template-columns:48px minmax(0,1fr);gap:12px;padding:16px}
+  .hero-app img{width:48px;height:48px;border-radius:12px}
+  .hero-app .go{grid-column:1 / -1;justify-content:center;margin-top:4px}
+  .hero-games{flex-direction:column;align-items:stretch;gap:10px}
+  .hero-games .go{justify-content:center;padding:10px;border:1px solid var(--rule-2);border-radius:8px}
+  .hero-stat{padding:15px 12px 15px 0}
+  .hero-stat:nth-child(2n){padding-left:12px}
+  .stack-card{padding:16px 0}
+  .stack-head{margin-bottom:9px}
+  .stack-rows{gap:5px 14px}
+  .feat{padding:18px 0}
+  .signal-step{padding:16px 0}
+  .proj-grid{gap:20px}
+  .mini-grid{margin-top:28px}
+  .mini-grid .proj{padding:16px 0}
+  .post-card{padding:18px 4px}
+  .hero-apps{margin-top:34px}
+  .hero-app{grid-template-columns:38px minmax(0,1fr) auto;gap:13px}
+  .hero-app img{width:38px;height:38px}
+  .hero-app .cat{display:none}
+  .hero-actions{display:grid;grid-template-columns:1fr}
+  .hero-actions .btn{justify-content:center}
+  .feat-grid,.signal-rail{grid-template-columns:1fr}
+  .feat,.signal-step{border-right:0;border-top:1px solid var(--rule);padding-left:0!important}
+  .feat:first-child,.signal-step:first-child{border-top:0}
+  .proj-grid{grid-template-columns:1fr}
+  .stack-rows{grid-template-columns:1fr;gap:3px 0}
+  .stack-k{white-space:normal}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://lightonpluslab.com/#organization",
+      "name": "LightOn Plus Lab",
+      "alternateName": "LightOn Plus Lab",
+      "url": "https://lightonpluslab.com/",
+      "logo": "https://lightonpluslab.com/img/logo-mark.png",
+      "email": "support@lightonpluslab.com",
+      "telephone": "+82-70-8098-5734",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "安养市",
+        "addressRegion": "京畿道",
+        "addressCountry": "KR"
+      },
+      "description": "把 AI 做成真实产品的一人工作室。从策划到发布与运营，全部自行完成。",
+      "sameAs": [
+        "https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa",
+        "https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit",
+        "https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote",
+        "https://www.youtube.com/@momoi_app"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://lightonpluslab.com/#website",
+      "url": "https://lightonpluslab.com/",
+      "name": "LightOn Plus Lab",
+      "publisher": { "@id": "https://lightonpluslab.com/#organization" },
+      "inLanguage": "ko"
+    },
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-momoi","name":"Momoi — AI 通话摘要与会议记录","applicationCategory":"BusinessApplication","operatingSystem":"ANDROID","description":"上传通话录音即自动生成摘要、待办与日程的 AI 收件箱与日历。","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-songbit","name":"Songbit - AI 歌曲创作","applicationCategory":"MultimediaApplication","operatingSystem":"ANDROID, IOS","description":"只需选择曲风、氛围与关键词，便从歌词到完整人声成品的 AI 音乐工作室。","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-ainote","name":"LightOn AI 笔记","applicationCategory":"EducationalApplication","operatingSystem":"ANDROID, IOS","description":"以说话人分离转写课堂与会议，再用 AI 摘要与间隔重复（SRS）帮助记忆的笔记应用。","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-saybetter","name":"SayBetter AI","applicationCategory":"EducationalApplication","operatingSystem":"ANDROID, IOS","description":"先把重要对话说一遍再检视的 AI 语音对话陪练。","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.saybetter","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.saybetter"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-couponbook","name":"优惠券本 — 券、印章与次卡钱包","applicationCategory":"LifestyleApplication","operatingSystem":"ANDROID, IOS","description":"无需注册、仅存于本机的优惠券、集章卡与次卡钱包。","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.couponbook.twa","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.couponbook.twa"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-hangullab","name":"Hangul Lab: Learn Korean","applicationCategory":"EducationalApplication","operatingSystem":"ANDROID","description":"按笔顺学会四十个韩文字母的免费韩语阅读学习应用。","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.lightonpluslab.hangullab","installUrl":"https://play.google.com/store/apps/details?id=com.lightonpluslab.hangullab"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-gananda","name":"Ganada 识字 — 幼儿韩文启蒙","applicationCategory":"EducationalApplication","operatingSystem":"ANDROID","description":"面向 3~7 岁，从辅音元音到词句、以声音与笔顺学习的韩文应用。","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.gananda.play","installUrl":"https://play.google.com/store/apps/details?id=com.gananda.play"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-stonearena","name":"石子竞技场","applicationCategory":"GameApplication","operatingSystem":"ANDROID, IOS","description":"五子棋、弹石棋、围棋、韩国象棋、国际象棋五合一的棋类合集。电脑十级与双人对弈。","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"900","priceCurrency":"KRW"},"url":"https://play.google.com/store/apps/details?id=com.shpark.stone_arena","installUrl":"https://play.google.com/store/apps/details?id=com.shpark.stone_arena"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-towerdefense","name":"塔防：王国保卫战","applicationCategory":"GameApplication","operatingSystem":"IOS","description":"用十种塔守卫王国的正统塔防。无广告，可离线游玩。","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"1000","priceCurrency":"KRW"},"url":"https://apps.apple.com/kr/app/id6811584152","installUrl":"https://apps.apple.com/kr/app/id6811584152"},
+    {"@type":"MobileApplication","@id":"https://lightonpluslab.com/#app-coresiege","name":"CORE SIEGE：堡垒-7","applicationCategory":"GameApplication","operatingSystem":"IOS","description":"抵挡四面涌来的虫群、守住核心的科幻波次防守。","publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://apps.apple.com/kr/app/id6811583075","installUrl":"https://apps.apple.com/kr/app/id6811583075"},
+    {"@type":"WebApplication","@id":"https://lightonpluslab.com/#lens","name":"LightOn Plus Lab Lens","applicationCategory":"DesignApplication","operatingSystem":"Web","browserRequirements":"Requires JavaScript","description":"在浏览器中打开 CODE V .seq 与 Zemax OpticStudio .zmx 镜头文件，进行光线追迹、点列图、MTF 与像差分析的工具。文件仅在浏览器内计算。","inLanguage":["ko","en","ja","zh-Hans"],"publisher":{"@id":"https://lightonpluslab.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"url":"https://lens.lightonpluslab.com/"}
+  ]
+}
+</script>
+</head>
+<body>
+
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/index.html" aria-label="LightOn Plus Lab 首页">
+      <img class="brand-img" src="/img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+      <span class="brand-text">
+        <span class="brand-name">LightOn<span class="plus">+</span>Lab</span>
+        <span class="brand-sub">AI Apps · Innovation</span>
+      </span>
+    </a>
+<nav class="nav-links" aria-label="菜单">
+<a href="/products.html">Apps</a>
+<a href="/lens.html">Lens</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+<a href="/about.html">Studio</a>
+<a href="/contact.html">Contact</a>
+</nav>
+    
+    
+    
+    
+    
+    <div class="langsw" role="group" aria-label="Language"><a href="/" hreflang="ko" lang="ko">KO</a><a href="/en/" hreflang="en" lang="en">EN</a><a href="/ja/" hreflang="ja" lang="ja">JA</a><a href="/zh/" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">ZH</a></div>
+    <a class="nav-cta" href="/contact.html">
+      Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="菜单" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="移动端菜单">
+<a href="/products.html">Apps</a>
+<a href="/lens.html">Lens</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+<a href="/about.html">Studio</a>
+<a href="/contact.html">Contact</a>
+<div class="langsw langsw-m" role="group" aria-label="Language"><a href="/" hreflang="ko" lang="ko">한국어</a><a href="/en/" hreflang="en" lang="en">English</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/zh/" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">中文</a></div>
+<a href="/contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="eyebrow reveal">LightOn Plus Lab · 韩国 安养</span>
+        <h1 class="hero-title reveal reveal-d1">
+          <span class="line">我们做应用，</span>
+          <span class="line">上架到商店，</span>
+          <span class="line">并亲自运营。</span>
+        </h1>
+        <p class="hero-sub reveal reveal-d2">
+          从策划、开发、上架到运营由一人完成的 AI 应用工作室。上架之后仍根据用户反馈持续打磨。
+        </p>
+        <div class="hero-actions reveal reveal-d3">
+          <a class="btn btn-primary" href="#apps">
+            查看应用
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="/contact.html">
+            发起项目
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="hero-stats reveal reveal-d4">
+          <div class="hero-stat"><b><span data-counter="10">10</span><span class="unit"></span></b><span>已上架应用</span></div>
+          <div class="hero-stat"><b><span data-counter="3">3</span><span class="unit">分+</span></b><span>Songbit 生成的歌曲时长</span></div>
+          <div class="hero-stat"><b><span data-counter="4">4</span><span class="unit"></span></b><span>AI 笔记可识别语言</span></div>
+          <div class="hero-stat"><b><span data-counter="2">2</span><span class="unit"></span></b><span>Google Play · App Store</span></div>
+        </div>
+      </div>
+
+      <div class="hero-rail reveal reveal-d2">
+        <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa" target="_blank" rel="noopener">
+          <img src="/img/app-momoi.png" alt="" width="56" height="56" />
+          <span class="t"><b>Momoi</b><span class="cat">通话录音 → AI 摘要・待办・日程</span></span>
+          <span class="go">获取<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener">
+          <img src="/img/app-songbit.png" alt="" width="56" height="56" />
+          <span class="t"><b>Songbit</b><span class="cat">只需选关键词，生成整首歌</span></span>
+          <span class="go">获取<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="hero-app" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener">
+          <img src="/img/app-ainote.png" alt="" width="56" height="56" />
+          <span class="t"><b>LightOn AI 笔记</b><span class="cat">课堂转写 + 间隔重复复习</span></span>
+          <span class="go">获取<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="hero-games" href="#work">
+          <span class="m">两款游戏无需安装，浏览器直接玩</span>
+          <span class="go">试玩<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="apps"><div class="wrap">
+  <h2 class="section-title reveal">两大商店上架的应用</h2>
+  <p class="section-desc reveal reveal-d1">自行策划、开发、上架，并依据用户反馈持续修正。Google Play 8 款，App Store 7 款 — 其中 5 款两边都有。</p>
+  <div class="store-grid">
+    <div class="store-card reveal"><div class="store-body"><div class="store-head"><img class="store-icon" src="/img/app-momoi.png" alt="" width="60" height="60" loading="lazy" /><div><div class="store-name">Momoi</div><div class="store-meta"><span class="store-chip">效率</span> <span class="store-chip">应用内购买</span> <span class="store-chip">Android</span> <span class="store-chip new">新增会议录音</span></div></div></div><p class="store-one">上传通话录音，AI 自动生成摘要、待办与日程。整理交给 AI，你只管执行。</p><div class="store-feats"><div><span class="dot"></span>上传录音即可：转写 → 摘要 → 行动项</div><div><span class="dot"></span>按说话人分离，清楚谁说了什么</div><div><span class="dot"></span>通话中提到的日程自动进日历并提醒</div><div><span class="dot"></span>截图与粘贴文本也会归入项目与截止日</div></div><div class="store-acts"><a class="btn-play" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.momoi.twa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://momoi.lightonpluslab.com" target="_blank" rel="noopener">网页版</a> <a class="btn-sm" href="/momoi.html">详情</a></div></div><div class="store-media"><button class="vplay" type="button" data-video="video/ad-momoi.mp4" aria-label="播放 Momoi 广告 — 1 分钟，有声"><img src="/img/ad-momoi-poster.jpg" alt="" width="720" height="1280" loading="lazy" decoding="async" /><span class="vplay-ui" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.14v13.72L19 12z"/></svg></span><span class="vplay-tag" aria-hidden="true">广告 · 1:00</span></button></div></div>
+    <div class="store-card reveal"><div class="store-body"><div class="store-head"><img class="store-icon" src="/img/app-songbit.png" alt="" width="60" height="60" loading="lazy" /><div><div class="store-name">Songbit</div><div class="store-meta"><span class="store-chip">音乐与音频</span> <span class="store-chip">应用内购买</span> <span class="store-chip">Android · iOS</span> <span class="store-chip accent">赠送免费额度</span></div></div></div><p class="store-one">只需选几个关键词，AI 便从歌词到旋律、人声完成一首属于你的歌。</p><div class="store-feats"><div><span class="dot"></span>选择曲风、氛围、关键词 → AI 作词 → 完成人声成品</div><div><span class="dot"></span>音色可选：柔和 · 有力 · 沙哑 · 说唱</div><div><span class="dot"></span>歌曲语言：韩语 · 韩英混合 · 英语</div><div><span class="dot"></span>作品可保存、播放与分享，注册即赠免费额度。</div></div><div class="store-acts"><a class="btn-play" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.songbit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://apps.apple.com/kr/app/id6808511106" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a> <a class="btn-sm" href="https://songbit.lightonpluslab.com" target="_blank" rel="noopener">网页版</a></div></div><div class="store-media"><button class="vplay" type="button" data-video="video/ad-songbit.mp4" aria-label="播放 Songbit 广告 — 1 分钟，有声"><img src="/img/ad-songbit-poster.jpg" alt="" width="720" height="1280" loading="lazy" decoding="async" /><span class="vplay-ui" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.14v13.72L19 12z"/></svg></span><span class="vplay-tag" aria-hidden="true">广告 · 1:00</span></button></div></div>
+    <div class="store-card reveal"><div class="store-body"><div class="store-head"><img class="store-icon" src="/img/app-ainote.png" alt="" width="60" height="60" loading="lazy" /><div><div class="store-name">LightOn AI 笔记</div><div class="store-meta"><span class="store-chip">教育</span> <span class="store-chip">应用内购买</span> <span class="store-chip">Android · iOS</span></div></div></div><p class="store-one">准确记录课堂与会议，再用 AI 摘要和间隔重复真正记住。</p><div class="store-feats"><div><span class="dot"></span>实时转写，精确模式支持说话人分离（自动识别韩、英、中、日）</div><div><span class="dot"></span>要点摘要、AI 导师、自动生成闪卡与测验</div><div><span class="dot"></span>以科学的间隔重复（SRS）自动安排复习时机</div><div><span class="dot"></span>笔记加密存于本机 — 无云同步、无广告、无追踪</div></div><div class="store-acts"><a class="btn-play" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://apps.apple.com/kr/app/id6807350318" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a> <a class="btn-sm" href="/lighton-ai-note.html">详情</a></div></div><div class="store-media wide"><img src="/img/ainote-screen.jpg" alt="LightOn AI 笔记的摘要界面 — 分为要点摘要、关键点与章节的课堂整理" width="947" height="533" loading="lazy" decoding="async" /></div></div>
+  </div>
+  <div class="app-grid">
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-saybetter.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">SayBetter AI</h3><p class="appc-one">越重要的对话越要先练一遍 — AI 语音对话陪练。</p><div class="appc-acts"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.saybetter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://apps.apple.com/kr/app/id6808524488" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-couponbook.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">优惠券本</h3><p class="appc-one">纸质优惠券、集章卡与次卡集中管理。无需注册，只存在手机里。</p><div class="appc-acts"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.couponbook.twa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://apps.apple.com/kr/app/id6811589324" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a> <a class="btn-sm" href="https://coupon.lightonpluslab.com" target="_blank" rel="noopener">网页版</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-hangullab.png" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">Hangul Lab</h3><p class="appc-one">一个周末学会读韩文。四十个字母，按笔顺学，免费。</p><div class="appc-acts"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.lightonpluslab.hangullab" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-gananda.png" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">Ganada 识字</h3><p class="appc-one">和小老虎 Hoya 一起，从辅音元音到词语句子。用声音和笔顺学的幼儿韩文。</p><div class="appc-acts"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.gananda.play" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-stonearena.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">石子竞技场</h3><p class="appc-one">五子棋、弹石棋、围棋、韩国象棋、国际象棋五合一。电脑十级与双人对弈。</p><div class="appc-acts"><a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.shpark.stone_arena" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 .6.9l9.7-9.8zM14.7 10.6 5.5 1.6l11.2 6.4zM5.5 22.4l9.2-9 2 2zM18.1 9.1l3.4 1.9a1.2 1.2 0 0 1 0 2l-3.4 2-2.5-2.5z"/></svg>Google Play</a> <a class="btn-sm" href="https://apps.apple.com/kr/app/id6807355792" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-towerdefense.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">塔防</h3><p class="appc-one">正统塔防。无广告，一次买断，离线可玩。</p><div class="appc-acts"><a class="btn-sm" href="https://apps.apple.com/kr/app/id6811584152" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a></div></div></article>
+    <article class="appc reveal"><img class="appc-icon" src="/img/app-coresiege.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" /><div class="appc-body"><h3 class="appc-name">CORE SIEGE</h3><p class="appc-one">波次防守 — 抵挡四面八方涌来的虫群，守住核心。</p><div class="appc-acts"><a class="btn-sm" href="https://apps.apple.com/kr/app/id6811583075" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.86-1.86-3.48-1.89-1.48-.15-2.89.87-3.64.87-.75 0-1.91-.85-3.14-.83-1.61.02-3.1.94-3.93 2.38-1.68 2.91-.43 7.22 1.2 9.58.8 1.16 1.75 2.45 3 2.4 1.21-.05 1.66-.78 3.12-.78 1.46 0 1.87.78 3.14.76 1.3-.02 2.12-1.17 2.91-2.33.92-1.34 1.3-2.64 1.32-2.7-.03-.01-2.53-.97-2.55-3.84zM14.63 5.1c.66-.8 1.11-1.92.99-3.03-.95.04-2.11.63-2.79 1.43-.61.71-1.15 1.85-1.01 2.94 1.06.08 2.15-.54 2.81-1.34z"/></svg>App Store</a> <a class="btn-sm" href="/games/core-siege/">浏览器直接玩</a></div></div></article>
+  </div>
+</div></section>
+
+<section id="lens"><div class="wrap">
+  <span class="eyebrow reveal">光学设计</span>
+  <h2 class="section-title reveal">在浏览器里打开镜头设计文件</h2>
+  <p class="section-desc reveal reveal-d1">直接打开 CODE V 的 <code>.seq</code> 与 Zemax OpticStudio 的 <code>.zmx</code>，查看光线追迹、点列图、MTF 与像差。<b>文件只在浏览器内计算，不会上传到服务器。</b>镜头处方本身就是设计，无法交给别人的服务器，所以做成了这样。</p>
+  <div class="prin-grid">
+    <div class="prin reveal"><b>镜头数据</b><span>面、半径、厚度、玻璃与折射率，像处方单一样读。</span></div>
+    <div class="prin reveal reveal-d1"><b>像差与畸变</b><span>像散场曲（T·S）与以 f·tanθ / f·θ 为基准的畸变并排查看。</span></div>
+    <div class="prin reveal reveal-d2"><b>离焦 MTF</b><span>在 ±5~50 µm 的离焦范围内查看各频率响应。</span></div>
+    <div class="prin reveal reveal-d3"><b>变焦位置</b><span>可切换变焦位置查看，并内置可直接打开的示例镜头。</span></div>
+  </div>
+  <div class="lens-foot reveal reveal-d2">
+    <div class="lens-meta">
+      <span>CODE V <code>.seq</code> · Zemax OpticStudio <code>.zmx</code></span>
+      <span>中文 · English · 한국어 · 日本語</span>
+    </div>
+    <a class="btn-play" href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">打开 Lens <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <a class="btn-sm" href="/lens.html">详情</a>
+  </div>
+</div></section>
+
+<section id="trust"><div class="wrap"><h2 class="section-title reveal">运营原则</h2><p class="section-desc reveal reveal-d1">与我们在 Google Play 数据安全中声明的内容一致。</p><div class="prin-grid"><div class="prin reveal"><b>传输加密</b><span>Momoi、Songbit 与 AI 笔记均加密传输数据。</span></div><div class="prin reveal reveal-d1"><b>可申请删除数据</b><span>你可以随时要求删除账号与数据。</span></div><div class="prin reveal reveal-d2"><b>AI 笔记存于本机</b><span>笔记加密保存在设备上，不投放广告、不进行行为追踪。</span></div><div class="prin reveal reveal-d3"><b>运行于首尔区域</b><span>后端运行在 Google Cloud Run 首尔区域（asia-northeast3）。</span></div></div></div></section>
+
+<section id="stack">
+  <div class="wrap">
+    <h2 class="section-title reveal">技术构成</h2>
+    <p class="section-desc reveal reveal-d1">
+      这些应用真实运行所依赖的构成。没用到的技术不会写上去。
+    </p>
+    <div class="stack-grid">
+      <div class="stack-card reveal">
+        <div class="stack-head">
+          <div class="ibadge mint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="12" rx="2" stroke-width="1.8"/><path d="M8 20h8M12 16v4" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div class="stack-title">Mobile</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">App Framework</div><div class="stack-v">Flutter · Android</div><div class="stack-k">Distribution</div><div class="stack-v">Google Play</div>
+        </div>
+      </div>
+      <div class="stack-card reveal reveal-d1">
+        <div class="stack-head">
+          <div class="ibadge cyan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="8" stroke-width="1.8"/><path d="M4 12c4-4 12-4 16 0M4 12c4 4 12 4 16 0" stroke-width="1.2"/></svg>
+          </div>
+          <div class="stack-title">Web</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">Frontend</div><div class="stack-v">Next.js · React · TypeScript</div><div class="stack-k">Hosting</div><div class="stack-v">Vercel · Cloudflare</div>
+        </div>
+      </div>
+      <div class="stack-card reveal reveal-d2">
+        <div class="stack-head">
+          <div class="ibadge purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 7l9 4 9-4M12 11v10" stroke-width="1.2"/></svg>
+          </div>
+          <div class="stack-title">Cloud</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">Runtime</div><div class="stack-v">Cloud Run（首尔区域）</div><div class="stack-k">Data &amp; Auth</div><div class="stack-v">Firebase · Firestore</div>
+        </div>
+      </div>
+      <div class="stack-card reveal reveal-d3">
+        <div class="stack-head">
+          <div class="ibadge pink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke-width="1.6"/></svg>
+          </div>
+          <div class="stack-title">AI</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">Language Models</div><div class="stack-v">GPT-4o mini · Gemini 2.5 Flash</div><div class="stack-k">Speech</div><div class="stack-v">Soniox 转写与说话人分离</div>
+        </div>
+      </div>
+      <div class="stack-card reveal">
+        <div class="stack-head">
+          <div class="ibadge amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 17V6l12-3v11" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="17" r="3" stroke-width="1.6"/><circle cx="18" cy="14" r="3" stroke-width="1.6"/></svg>
+          </div>
+          <div class="stack-title">Media</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">Music</div><div class="stack-v">AI 音乐生成引擎</div><div class="stack-k">Image</div><div class="stack-v">Imagen</div>
+        </div>
+      </div>
+      <div class="stack-card reveal reveal-d1">
+        <div class="stack-head">
+          <div class="ibadge mint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2" stroke-width="1.7"/><path d="M2 10h20" stroke-width="1.7"/></svg>
+          </div>
+          <div class="stack-title">Payments</div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-k">应用</div><div class="stack-v">Google Play 应用内结算</div><div class="stack-k">网页</div><div class="stack-v">Toss Payments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <h2 class="section-title reveal">其他在运营的服务</h2>
+    <p class="section-desc reveal reveal-d1">除了商店应用，我们还做并运营网页应用和游戏。游戏无需安装，点开即玩。</p>
+
+    <div class="proj-grid">
+      <a class="proj reveal reveal-d3" href="https://bible-search-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener" style="--proj-accent-text:var(--mint)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-bible.jpg" data-ambient>
+            <source src="/img/proj-bible.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-tag">Free</span>
+          <span>2026</span>
+        </div>
+        <div class="proj-head">
+          <span class="proj-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v18M5 5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="proj-name">经文检索</div>
+        </div>
+        <div class="proj-desc">用语音或文字检索经文，按心情浏览，还有读经计划。</div>
+        <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="proj reveal reveal-d1" href="https://receipt.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--amber)">
+        <div class="proj-media" aria-hidden="true">
+          <video muted loop playsinline preload="none" poster="img/proj-receipt.jpg" data-ambient>
+            <source src="/img/proj-receipt.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-tag" style="background:rgba(245,158,11,.12);color:var(--amber);border-color:rgba(245,158,11,.28)">Live</span>
+          <span>2026</span>
+        </div>
+        <div class="proj-head">
+          <span class="proj-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2V2z" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 7h6M9 11h6M9 15h4" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+          <div class="proj-name">票据 AI</div>
+        </div>
+        <div class="proj-desc">一张照片自动管理开支的 AI OCR — 九类归档与月度报表。</div>
+        <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+
+    <div class="mini-grid">
+      <a class="proj reveal" href="/games/hole/" style="--proj-accent-text:var(--accent)">
+        <div class="proj-head">
+          <span class="proj-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="8" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke-width="1.6"/></svg></span>
+          <div class="proj-name">HOLE</div>
+        </div>
+        <div class="proj-desc">吞噬城市不断变大的洞。无尽模式与两分钟冲刺 — 浏览器直接玩。</div>
+        <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="proj reveal" href="https://noddak.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--amber)"><div class="proj-head"><span class="proj-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="proj-name">Noddak</div></div><div class="proj-desc">拍一张罚单照片，即可分析违规内容、申诉可能性与法律依据，并代写异议书。</div><span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="proj reveal" href="https://meongnyang.lightonpluslab.com" target="_blank" rel="noopener" style="--proj-accent-text:var(--pink)"><div class="proj-head"><span class="proj-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 18c-4 0-6-3-6-6 0-1.5 1-3 2-3.5 1 1 2 2 2 4 0-1 1-3 2-4 1-1 3 1 3 3.5 0 3-2 6-3 6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="6" r="1.5"/><circle cx="17" cy="6" r="1.5"/></svg></span><div class="proj-name">宠物日志</div></div><div class="proj-desc">上传照片，AI 以毛孩子的视角写日记，还会标出情绪与健康信号。</div><span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="proj reveal" href="https://math-tutor-693521645262.asia-northeast3.run.app" target="_blank" rel="noopener" style="--proj-accent-text:var(--mint)"><div class="proj-head"><span class="proj-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10 12 5 2 10l10 5 10-5z" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 12v5a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-5" stroke-width="1.6"/></svg></span><div class="proj-name">数学伙伴</div></div><div class="proj-desc">从小学到高考的分步解法。拍下题目，AI 为你讲解。</div><span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    </div>
+
+    <div style="margin-top:36px">
+      <a class="btn btn-ghost" href="/products.html">
+        查看全部作品
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="wrap">
+    <h2 class="section-title reveal">开发手记</h2>
+    <p class="section-desc reveal reveal-d1">记录做应用、上架过程中真正遇到的问题。</p>
+
+    <div class="post-grid">
+      
+      <a class="post-card reveal" href="/blog-why-summary-is-not-memory.html">
+        <h3>录音加摘要，为什么还是记不住</h3>
+        <p>转写和摘要早已普及。悖论在于：笔记越整洁，越不会再看。关于遗忘曲线，以及间隔重复如何补上这段空缺。</p>
+        <div class="pc-meta">Product · 2026-08-13</div>
+      </a>
+      <a class="post-card reveal reveal-d1" href="/blog-lyrics-alignment-drift.html">
+        <h3>歌词最多偏移 16 秒的原因 — 别数，去比对</h3>
+        <p>卡拉OK歌词越到后半越偏，韩语歌尤其严重。问题不在时间戳，而在数词的方式。把比例估算改为字符偏移比对的记录。</p>
+        <div class="pc-meta">Dev Note · 2026-08-13</div>
+      </a>
+      <a class="post-card reveal reveal-d2" href="/blog-twa-play-store.html">
+        <h3>把网页应用上架 Google Play — TWA 发布实录</h3>
+        <p>把 PWA 包成 TWA 上架 Google Play 的实际流程与坑 — assetlinks、AAB 签名、target API、封闭测试要求。</p>
+        <div class="pc-meta">Dev Note · 2026-07-03</div>
+      </a>
+      
+    </div>
+
+    <div style="margin-top:36px">
+      <a class="btn btn-ghost" href="/blog.html">
+        查看全部文章
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <h2 class="section-title reveal">交给真正做过并上架的人</h2>
+    <p class="section-desc reveal reveal-d1">
+      我们用同样的方式做你的产品。从策划到上架、内购接入与运营，由一人全程负责。
+    </p>
+    <div class="signal-rail rail-center reveal" style="margin-bottom:36px"><div class="signal-step"><b>01 Brief</b><span>梳理问题与用户流程</span></div><div class="signal-step"><b>02 Prototype</b><span>验证核心 AI 功能</span></div><div class="signal-step"><b>03 Launch</b><span>网页与应用的发布与打通</span></div><div class="signal-step"><b>04 Improve</b><span>基于数据的改进</span></div></div>
+    <div class="feat-grid">
+      <div class="feat panel reveal">
+        <div class="ibadge mint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feat-title">Fast MVP</div>
+        <div class="feat-desc">2~6 周内做出真正可用的 MVP，尽早验证假设。</div>
+      </div>
+      <div class="feat panel reveal reveal-d1">
+        <div class="ibadge cyan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="feat-title">AI Ready</div>
+        <div class="feat-desc">以亲手接入 LLM、转写、说话人分离与生成式媒体的经验来设计。</div>
+      </div>
+      <div class="feat panel reveal reveal-d2">
+        <div class="ibadge purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+        </div>
+        <div class="feat-title">Ship</div>
+        <div class="feat-desc">从发布到上架、内购接入 — 我们真的把它推上线。</div>
+      </div>
+      <div class="feat panel reveal reveal-d3">
+        <div class="ibadge amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 12l2 2 4-4M12 3l9 4v5c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+        </div>
+        <div class="feat-title">Support</div>
+        <div class="feat-desc">上线后 30 天免费修正。源码 100% 交付，不做绑定。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-block reveal">
+      <h2>有项目吗？</h2>
+      <p>无论是想法阶段，还是想给已在运行的服务加上 AI，都可以。我们 24 小时内回复。</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-primary" href="/contact.html">
+          联系我们
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="/index.html">
+            <img class="brand-img" src="/img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">把 AI 做成真实产品的一人工作室。韩国安养。</div>
+      </div>
+<div class="footer-col">
+<h5>Studio</h5>
+<a href="/about.html">About</a>
+<a href="/services.html">Services</a>
+<a href="/blog.html">Blog</a>
+</div>
+<div class="footer-col">
+<h5>Work</h5>
+<a href="/products.html">全部应用</a>
+<a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens 镜头解析</a>
+<a href="/momoi.html">Momoi</a>
+<a href="/lighton-ai-note.html">LightOn AI 笔记</a>
+<a href="/contact.html">New project</a>
+</div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">KakaoTalk 咨询</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="/privacy.html">隐私政策</a> · <a href="/terms.html">服务条款</a></div>
+    </div>
+    <div class="footer-biz">
+      商号：LightOn Plus Lab · 代表：朴丞赫 · 营业执照号 229-15-70907 · 电子商务备案 第2026-安养东安-0514号 · 韩国京畿道安养市东安区冠坪路 333 号 6 栋 504 室
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js?v=cc60ac47"></script>
+</body>
+</html>
