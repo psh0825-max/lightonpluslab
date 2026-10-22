@@ -10,17 +10,20 @@ import io, os, re
 
 from i18n_home import T as T_HOME, LD, BLOCKS as B_HOME, LANGS, LANG_META
 from i18n_pages import T2, BLOCKS2
+from i18n_more import T3, BLOCKS3
 
 SITE = "https://lightonpluslab.com"
 IDX = {"en": 0, "ja": 1, "zh": 2}
 
 # 번역하는 페이지. 여기 있는 페이지끼리는 링크도 같은 언어판으로 이어 준다.
-PAGES = ["index.html", "products.html", "lens.html"]
+PAGES = ["index.html", "products.html", "lens.html", "about.html", "services.html", "contact.html"]
 
 T = dict(T_HOME)
 T.update(T2)
+T.update(T3)
 BLOCKS = dict(B_HOME)
 BLOCKS.update(BLOCKS2)
+BLOCKS.update(BLOCKS3)
 
 # 번역본에 남아도 되는 한글 — 언어 이름은 제 글자로 적는 게 맞다
 HANGUL_OK = ["한국어"]
@@ -86,8 +89,8 @@ def _switcher(page, cur, mobile=False):
         m = LANG_META[code]
         a = ' aria-current="true"' if code == cur else ""
         label = m["label"] if mobile else m["short"]
-        out.append('<a href="%s" hreflang="%s" lang="%s"%s>%s</a>'
-                   % (_page_url(page, code), m["hreflang"], m["html"], a, label))
+        out.append('<a href="%s" hreflang="%s" lang="%s"%s onclick="try{localStorage.setItem(\'lpl-lang\',\'%s\')}catch(e){}">%s</a>'
+                   % (_page_url(page, code), m["hreflang"], m["html"], a, code, label))
     out.append("</div>")
     return "".join(out)
 
@@ -113,11 +116,27 @@ def _check(html, lang, page):
                          % (lang, page, len(left), "\n  ".join(left[:8])))
 
 
+def _lang_redirect(page):
+    """한국어판에서만: 브라우저 언어가 한국어가 아니면 같은 페이지의 번역판으로 보낸다.
+    언어 스위처로 고른 값(lpl-lang)이 우선이고, 검색·광고 크롤러는 보내지 않는다
+    (한국어판이 색인과 애드센스 검토에서 빠지지 않게)."""
+    path = "" if page == "index.html" else page
+    return ('<script id="lpl-lang">(function(){try{var s=localStorage.getItem("lpl-lang");'
+            'if(s==="ko"||/bot|crawl|spider|slurp|mediapartners|adsbot|lighthouse|headless/i.test(navigator.userAgent))return;'
+            'var l=s||String((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase();'
+            'if(!l||l.indexOf("ko")===0)return;'
+            'var d=l.indexOf("ja")===0?"ja":l.indexOf("zh")===0?"zh":"en";'
+            'location.replace("/"+d+"/%s"+location.search+location.hash);}catch(e){}})();</script>' % path)
+
+
 def _inject_shell(html, page, lang):
     m = LANG_META[lang]
     url = SITE + _page_url(page, lang)
 
     html = re.sub(r'<html lang="[^"]*"', '<html lang="%s"' % m["html"], html, count=1)
+    html = re.sub(r'\n?<script id="lpl-lang">.*?</script>', "", html, flags=re.S)
+    if lang == "ko":
+        html = re.sub(r'(<meta charset="[^"]*"\s*/?>)', lambda mm: mm.group(1) + "\n" + _lang_redirect(page), html, count=1)
     html = re.sub(r'<link rel="canonical" href="[^"]*" />',
                   '<link rel="canonical" href="%s" />' % url, html, count=1)
     html = re.sub(r'<meta property="og:url" content="[^"]*" />',
