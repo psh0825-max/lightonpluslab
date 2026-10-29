@@ -141,9 +141,9 @@ main code{
 <section style="padding-top:clamp(18px,2.5vw,32px)">
   <div class="wrap">
     <figure class="lens-shot reveal">
-      <img src="img/lens-shot-layout.jpg" alt="Lens 화면 — 왼쪽은 시스템·파장·필드와 면 데이터 표, 오른쪽은 단면도와 EFL·F수·TTL 같은 1차 특성" width="800" height="505" loading="lazy" decoding="async" />
+      <img src="img/lens-shot-layout.jpg" alt="Lens 화면 — 왼쪽은 조리개·물체 거리·필드 형식 같은 설계 조건과 파장·필드·면 데이터 표, 오른쪽은 단면도와 EFL·F수·TTL 같은 1차 특성" width="800" height="505" loading="lazy" decoding="async" />
     </figure>
-    <p class="lens-cap reveal">예제로 들어 있는 트리플렛 f50 F4. 왼쪽이 처방 시트, 오른쪽이 해석 화면입니다.</p>
+    <p class="lens-cap reveal">예제로 들어 있는 4매 f35 F3.5(자체 설계한 테사 타입). 왼쪽에서 설계 조건과 처방을 고치고, 오른쪽에서 해석을 봅니다.</p>
   </div>
 </section>
 
@@ -166,7 +166,7 @@ main code{
       <div class="lens-tab reveal"><i>03</i><div><b>MTF</b><span>회절 한계를 같이 그려 어디까지가 설계 여유인지 보입니다. 스루포커스는 초점 이동 ±5~50 µm.</span></div></div>
       <div class="lens-tab reveal"><i>04</i><div><b>광선 수차</b><span>왼쪽은 접선(Y) εy vs 동공 Py, 오른쪽은 시상(X) εx vs Px. 단위 µm.</span></div></div>
       <div class="lens-tab reveal"><i>05</i><div><b>필드 곡률 · 왜곡</b><span>비점수차 필드 곡선을 T 실선·S 점선으로, 왜곡은 f·tanθ와 f·θ 기준을 함께.</span></div></div>
-      <div class="lens-tab reveal"><i>06</i><div><b>유리</b><span>SCHOTT·HOYA·OHARA·CDGM·SUMITA·HIKARI 6개사 1,598종. refractiveindex.info 공개 데이터.</span></div></div>
+      <div class="lens-tab reveal"><i>06</i><div><b>유리</b><span>SCHOTT·HOYA·OHARA·CDGM·SUMITA·HIKARI 6개사 1,615종과 석영·CaF₂·PMMA 같은 일반 재료. refractiveindex.info 공개 데이터.</span></div></div>
     </div>
 
     <div class="lens-gallery">
@@ -182,8 +182,8 @@ main code{
     <h2 class="section-title reveal">고쳐 가며 봅니다</h2>
     <p class="section-desc reveal reveal-d1">읽기만 하는 뷰어가 아닙니다. 표의 값을 고치면 그 자리에서 다시 계산합니다.</p>
     <div class="lens-steps">
-      <div class="lens-step reveal"><b>면 데이터</b><span>반경·두께·유리·반구경을 바로 고칩니다. 반구경은 CIR(사용자 개구) 또는 CODE V 방식의 기본 개구를 씁니다.</span></div>
-      <div class="lens-step reveal reveal-d1"><b>시스템 · 필드 · 파장</b><span>필드 각과 파장(nm)·가중치를 바꿔 가며 같은 렌즈를 다른 조건에서 봅니다.</span></div>
+      <div class="lens-step reveal"><b>면 데이터</b><span>반경·두께·유리·반구경(CIR)을 바로 고칩니다. 줄 끝 ⋮ 메뉴로 면이나 렌즈를 넣고 빼거나 조리개 면을 옮기고, 되돌리기로 언제든 돌아갑니다.</span></div>
+      <div class="lens-step reveal reveal-d1"><b>설계 조건 · 필드 · 파장</b><span>조리개는 EPD·F/#·NA로, 물체는 무한대나 유한 거리로, 필드는 각도·물체 높이·상 높이로 지정합니다. 형식을 바꾸면 같은 렌즈가 되도록 값을 환산하고, 파장과 필드는 더하거나 뺄 수 있습니다.</span></div>
       <div class="lens-step reveal reveal-d2"><b>줌 위치</b><span>줌 렌즈는 구간을 전환해 가며 각 위치의 성능을 확인합니다.</span></div>
     </div>
   </div>
