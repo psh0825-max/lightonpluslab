@@ -159,10 +159,10 @@ T2 = {
     "Lens — 렌즈 해석 — LightOn Plus Lab": ("Lens — optical analysis — LightOn Plus Lab", "Lens — レンズ解析 — LightOn Plus Lab", "Lens — 镜头解析 — LightOn Plus Lab"),
     "광학 설계 · 무료": ("Optical design · free", "光学設計 · 無料", "光学设计 · 免费"),
     "설계 문의": ("Design enquiry", "設計のご相談", "设计咨询"),
-    "예제로 들어 있는 트리플렛 f50 F4. 왼쪽이 처방 시트, 오른쪽이 해석 화면입니다.": (
-        "The triplet f50 F4 that ships as the sample. Prescription sheet on the left, analysis on the right.",
-        "サンプルとして入っているトリプレット f50 F4。左が処方シート、右が解析画面です。",
-        "内置示例三片式 f50 F4。左为处方单，右为解析界面。"),
+    "예제로 들어 있는 4매 f35 F3.5(자체 설계한 테사 타입). 왼쪽에서 설계 조건과 처방을 고치고, 오른쪽에서 해석을 봅니다.": (
+        "The sample that ships with Lens: a 4-element f35 F3.5 Tessar-type lens of our own design. Edit the specification and prescription on the left, read the analysis on the right.",
+        "サンプルとして入っている 4 枚構成 f35 F3.5（自社設計のテッサー型）。左で設計条件と処方を直し、右で解析を見ます。",
+        "内置示例为自行设计的四片式天塞型 f35 F3.5。在左侧修改设计条件与处方，在右侧查看解析。"),
     "파일은 브라우저 안에서만 계산되고 서버로 올라가지 않습니다.": (
         "The file is computed inside your browser and never uploaded.",
         "ファイルはブラウザの中だけで計算され、アップロードされません。",
@@ -201,10 +201,10 @@ T2 = {
         "非点収差のフィールドカーブを T 実線・S 点線で、歪曲は f·tanθ と f·θ の両基準で。",
         "像散场曲以 T 实线、S 虚线表示，畸变同时给出 f·tanθ 与 f·θ 两种基准。"),
     "유리": ("Glass", "硝材", "玻璃"),
-    "SCHOTT·HOYA·OHARA·CDGM·SUMITA·HIKARI 6개사 1,598종. refractiveindex.info 공개 데이터.": (
-        "1,598 glasses from six makers — SCHOTT, HOYA, OHARA, CDGM, SUMITA and HIKARI. Open data from refractiveindex.info.",
-        "SCHOTT・HOYA・OHARA・CDGM・SUMITA・HIKARI の6社1,598種。refractiveindex.info の公開データ。",
-        "SCHOTT、HOYA、OHARA、CDGM、SUMITA、HIKARI 六家共 1,598 种。来自 refractiveindex.info 的公开数据。"),
+    "SCHOTT·HOYA·OHARA·CDGM·SUMITA·HIKARI 6개사 1,615종과 석영·CaF₂·PMMA 같은 일반 재료. refractiveindex.info 공개 데이터.": (
+        "1,615 glasses from six makers — SCHOTT, HOYA, OHARA, CDGM, SUMITA and HIKARI — plus common materials such as fused silica, CaF₂ and PMMA. Open data from refractiveindex.info.",
+        "SCHOTT・HOYA・OHARA・CDGM・SUMITA・HIKARI の6社1,615種と、石英・CaF₂・PMMA などの一般材料。refractiveindex.info の公開データ。",
+        "SCHOTT、HOYA、OHARA、CDGM、SUMITA、HIKARI 六家共 1,615 种，另有石英、CaF₂、PMMA 等常用材料。来自 refractiveindex.info 的公开数据。"),
     "스팟 다이어그램 — 필드별 스팟과 RMS 직경을 한 화면에.": (
         "Spot diagram — every field's spot and RMS diameter on one screen.",
         "スポットダイアグラム — フィールドごとのスポットと RMS 直径を一画面に。",
@@ -223,15 +223,15 @@ T2 = {
         "読むだけのビューアではありません。表の値を直せばその場で再計算します。",
         "不是只读查看器。改动表中数值，立刻重新计算。"),
     "면 데이터": ("Surface data", "面データ", "面数据"),
-    "반경·두께·유리·반구경을 바로 고칩니다. 반구경은 CIR(사용자 개구) 또는 CODE V 방식의 기본 개구를 씁니다.": (
-        "Edit radius, thickness, glass and semi-diameter directly. Semi-diameter comes from CIR (a user aperture) or CODE V's default aperture.",
-        "曲率半径・厚み・硝材・半径を直接編集。半径は CIR（ユーザー開口）または CODE V 方式の既定開口を使います。",
-        "可直接修改半径、厚度、玻璃与半口径。半口径取自 CIR（用户光阑）或 CODE V 的默认光阑。"),
-    "시스템 · 필드 · 파장": ("System · fields · wavelengths", "システム · フィールド · 波長", "系统 · 视场 · 波长"),
-    "필드 각과 파장(nm)·가중치를 바꿔 가며 같은 렌즈를 다른 조건에서 봅니다.": (
-        "Change field angles and wavelengths with their weights to see the same lens under other conditions.",
-        "フィールド角と波長（nm）・重みを変えながら、同じレンズを別の条件で見ます。",
-        "改变视场角与波长（nm）及权重，在不同条件下查看同一镜头。"),
+    "반경·두께·유리·반구경(CIR)을 바로 고칩니다. 줄 끝 ⋮ 메뉴로 면이나 렌즈를 넣고 빼거나 조리개 면을 옮기고, 되돌리기로 언제든 돌아갑니다.": (
+        "Edit radius, thickness, glass and semi-diameter (as a CIR) directly. The ⋮ menu at the end of a row inserts or deletes surfaces and lenses or moves the stop, and Undo takes you back.",
+        "曲率半径・厚み・硝材・有効半径（CIR）を直接編集。行末の ⋮ メニューで面やレンズの挿入・削除、絞り面の移動ができ、元に戻すでいつでも戻れます。",
+        "可直接修改半径、厚度、玻璃与半口径（CIR）。行末的 ⋮ 菜单可插入、删除面和镜片或移动光阑，随时可用撤销返回。"),
+    "설계 조건 · 필드 · 파장": ("Specification · fields · wavelengths", "設計条件 · フィールド · 波長", "设计条件 · 视场 · 波长"),
+    "조리개는 EPD·F/#·NA로, 물체는 무한대나 유한 거리로, 필드는 각도·물체 높이·상 높이로 지정합니다. 형식을 바꾸면 같은 렌즈가 되도록 값을 환산하고, 파장과 필드는 더하거나 뺄 수 있습니다.": (
+        "Set the aperture as EPD, F-number or NA, the object at infinity or a finite distance, and fields as angles, object heights or image heights. Switching type converts the values so the lens stays the same; wavelengths and fields can be added or removed.",
+        "開口は EPD・F 値・NA、物体は無限遠か有限距離、フィールドは角度・物体高・像高で指定します。種類を切り替えると同じレンズになるよう値を換算し、波長とフィールドは追加・削除できます。",
+        "孔径可用 EPD、F 数或 NA 指定，物体可设为无穷远或有限距离，视场可用角度、物高或像高。切换类型时会换算数值，使镜头保持不变；波长和视场可以增删。"),
     "줌 렌즈는 구간을 전환해 가며 각 위치의 성능을 확인합니다.": (
         "For a zoom, switch between positions and check the performance at each.",
         "ズームレンズは区間を切り替えながら各位置の性能を確認します。",
@@ -255,10 +255,10 @@ T2 = {
         "Open CODE V .seq and Zemax OpticStudio .zmx lens files in the browser to read layout and first-order properties, spot diagrams, MTF, ray aberrations and field curvature. The file is computed inside the browser and never uploaded. Free.",
         "CODE V の .seq と Zemax OpticStudio の .zmx をブラウザで開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲を解析します。ファイルはブラウザ内だけで計算され、アップロードされません。無料。",
         "在浏览器中打开 CODE V .seq 与 Zemax OpticStudio .zmx 镜头文件，解析剖面与一阶特性、点列图、MTF、光线像差与场曲。文件只在浏览器内计算，不会上传。免费。"),
-    "Lens 화면 — 왼쪽은 시스템·파장·필드와 면 데이터 표, 오른쪽은 단면도와 EFL·F수·TTL 같은 1차 특성": (
-        "The Lens screen — system, wavelengths, fields and the surface table on the left; the layout and first-order values such as EFL, F-number and TTL on the right",
-        "Lens の画面 — 左はシステム・波長・フィールドと面データ表、右は断面図と EFL・F値・TTL などの一次特性",
-        "Lens 界面 — 左侧为系统、波长、视场与面数据表，右侧为剖面图及 EFL、F 数、TTL 等一阶特性"),
+    "Lens 화면 — 왼쪽은 조리개·물체 거리·필드 형식 같은 설계 조건과 파장·필드·면 데이터 표, 오른쪽은 단면도와 EFL·F수·TTL 같은 1차 특성": (
+        "The Lens screen — the specification (aperture, object distance, field type), wavelengths, fields and the surface table on the left; the layout and first-order values such as EFL, F-number and TTL on the right",
+        "Lens の画面 — 左は開口・物体距離・フィールド種別などの設計条件と波長・フィールド・面データ表、右は断面図と EFL・F値・TTL などの一次特性",
+        "Lens 界面 — 左侧为孔径、物距、视场类型等设计条件以及波长、视场与面数据表，右侧为剖面图及 EFL、F 数、TTL 等一阶特性"),
     "스팟 다이어그램 — 네 개 필드의 스팟과 RMS 직경": (
         "Spot diagram — spots and RMS diameters for four fields",
         "スポットダイアグラム — 4フィールドのスポットと RMS 直径",

@@ -140,9 +140,9 @@ main code{
 <section style="padding-top:clamp(18px,2.5vw,32px)">
   <div class="wrap">
     <figure class="lens-shot reveal">
-      <img src="/img/lens-shot-layout.jpg" alt="Lens 界面 — 左侧为系统、波长、视场与面数据表，右侧为剖面图及 EFL、F 数、TTL 等一阶特性" width="800" height="505" loading="lazy" decoding="async" />
+      <img src="/img/lens-shot-layout.jpg" alt="Lens 界面 — 左侧为孔径、物距、视场类型等设计条件以及波长、视场与面数据表，右侧为剖面图及 EFL、F 数、TTL 等一阶特性" width="800" height="505" loading="lazy" decoding="async" />
     </figure>
-    <p class="lens-cap reveal">内置示例三片式 f50 F4。左为处方单，右为解析界面。</p>
+    <p class="lens-cap reveal">内置示例为自行设计的四片式天塞型 f35 F3.5。在左侧修改设计条件与处方，在右侧查看解析。</p>
   </div>
 </section>
 
@@ -165,7 +165,7 @@ main code{
       <div class="lens-tab reveal"><i>03</i><div><b>MTF</b><span>同时绘出衍射极限，看得出还剩多少设计余量。离焦范围 ±5~50 µm。</span></div></div>
       <div class="lens-tab reveal"><i>04</i><div><b>光线像差</b><span>左为子午（Y）εy 对瞳孔 Py，右为弧矢（X）εx 对 Px。单位 µm。</span></div></div>
       <div class="lens-tab reveal"><i>05</i><div><b>场曲 · 畸变</b><span>像散场曲以 T 实线、S 虚线表示，畸变同时给出 f·tanθ 与 f·θ 两种基准。</span></div></div>
-      <div class="lens-tab reveal"><i>06</i><div><b>玻璃</b><span>SCHOTT、HOYA、OHARA、CDGM、SUMITA、HIKARI 六家共 1,598 种。来自 refractiveindex.info 的公开数据。</span></div></div>
+      <div class="lens-tab reveal"><i>06</i><div><b>玻璃</b><span>SCHOTT、HOYA、OHARA、CDGM、SUMITA、HIKARI 六家共 1,615 种，另有石英、CaF₂、PMMA 等常用材料。来自 refractiveindex.info 的公开数据。</span></div></div>
     </div>
 
     <div class="lens-gallery">
@@ -181,8 +181,8 @@ main code{
     <h2 class="section-title reveal">边改边看</h2>
     <p class="section-desc reveal reveal-d1">不是只读查看器。改动表中数值，立刻重新计算。</p>
     <div class="lens-steps">
-      <div class="lens-step reveal"><b>面数据</b><span>可直接修改半径、厚度、玻璃与半口径。半口径取自 CIR（用户光阑）或 CODE V 的默认光阑。</span></div>
-      <div class="lens-step reveal reveal-d1"><b>系统 · 视场 · 波长</b><span>改变视场角与波长（nm）及权重，在不同条件下查看同一镜头。</span></div>
+      <div class="lens-step reveal"><b>面数据</b><span>可直接修改半径、厚度、玻璃与半口径（CIR）。行末的 ⋮ 菜单可插入、删除面和镜片或移动光阑，随时可用撤销返回。</span></div>
+      <div class="lens-step reveal reveal-d1"><b>设计条件 · 视场 · 波长</b><span>孔径可用 EPD、F 数或 NA 指定，物体可设为无穷远或有限距离，视场可用角度、物高或像高。切换类型时会换算数值，使镜头保持不变；波长和视场可以增删。</span></div>
       <div class="lens-step reveal reveal-d2"><b>变焦位置</b><span>变焦镜头可切换各档位，查看每个位置的性能。</span></div>
     </div>
   </div>

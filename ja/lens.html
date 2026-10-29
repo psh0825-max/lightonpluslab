@@ -140,9 +140,9 @@ main code{
 <section style="padding-top:clamp(18px,2.5vw,32px)">
   <div class="wrap">
     <figure class="lens-shot reveal">
-      <img src="/img/lens-shot-layout.jpg" alt="Lens の画面 — 左はシステム・波長・フィールドと面データ表、右は断面図と EFL・F値・TTL などの一次特性" width="800" height="505" loading="lazy" decoding="async" />
+      <img src="/img/lens-shot-layout.jpg" alt="Lens の画面 — 左は開口・物体距離・フィールド種別などの設計条件と波長・フィールド・面データ表、右は断面図と EFL・F値・TTL などの一次特性" width="800" height="505" loading="lazy" decoding="async" />
     </figure>
-    <p class="lens-cap reveal">サンプルとして入っているトリプレット f50 F4。左が処方シート、右が解析画面です。</p>
+    <p class="lens-cap reveal">サンプルとして入っている 4 枚構成 f35 F3.5（自社設計のテッサー型）。左で設計条件と処方を直し、右で解析を見ます。</p>
   </div>
 </section>
 
@@ -165,7 +165,7 @@ main code{
       <div class="lens-tab reveal"><i>03</i><div><b>MTF</b><span>回折限界も一緒に描き、どこまでが設計余裕かが見えます。スルーフォーカスは焦点移動 ±5〜50 µm。</span></div></div>
       <div class="lens-tab reveal"><i>04</i><div><b>光線収差</b><span>左はタンジェンシャル（Y）εy vs 瞳 Py、右はサジタル（X）εx vs Px。単位は µm。</span></div></div>
       <div class="lens-tab reveal"><i>05</i><div><b>像面湾曲 · 歪曲</b><span>非点収差のフィールドカーブを T 実線・S 点線で、歪曲は f·tanθ と f·θ の両基準で。</span></div></div>
-      <div class="lens-tab reveal"><i>06</i><div><b>硝材</b><span>SCHOTT・HOYA・OHARA・CDGM・SUMITA・HIKARI の6社1,598種。refractiveindex.info の公開データ。</span></div></div>
+      <div class="lens-tab reveal"><i>06</i><div><b>硝材</b><span>SCHOTT・HOYA・OHARA・CDGM・SUMITA・HIKARI の6社1,615種と、石英・CaF₂・PMMA などの一般材料。refractiveindex.info の公開データ。</span></div></div>
     </div>
 
     <div class="lens-gallery">
@@ -181,8 +181,8 @@ main code{
     <h2 class="section-title reveal">直しながら見ます</h2>
     <p class="section-desc reveal reveal-d1">読むだけのビューアではありません。表の値を直せばその場で再計算します。</p>
     <div class="lens-steps">
-      <div class="lens-step reveal"><b>面データ</b><span>曲率半径・厚み・硝材・半径を直接編集。半径は CIR（ユーザー開口）または CODE V 方式の既定開口を使います。</span></div>
-      <div class="lens-step reveal reveal-d1"><b>システム · フィールド · 波長</b><span>フィールド角と波長（nm）・重みを変えながら、同じレンズを別の条件で見ます。</span></div>
+      <div class="lens-step reveal"><b>面データ</b><span>曲率半径・厚み・硝材・有効半径（CIR）を直接編集。行末の ⋮ メニューで面やレンズの挿入・削除、絞り面の移動ができ、元に戻すでいつでも戻れます。</span></div>
+      <div class="lens-step reveal reveal-d1"><b>設計条件 · フィールド · 波長</b><span>開口は EPD・F 値・NA、物体は無限遠か有限距離、フィールドは角度・物体高・像高で指定します。種類を切り替えると同じレンズになるよう値を換算し、波長とフィールドは追加・削除できます。</span></div>
       <div class="lens-step reveal reveal-d2"><b>ズーム位置</b><span>ズームレンズは区間を切り替えながら各位置の性能を確認します。</span></div>
     </div>
   </div>
