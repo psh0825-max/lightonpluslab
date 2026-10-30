@@ -1,58 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lightonpluslab.com/</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/" />
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/about.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/about.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/about.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/about.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/about.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/about.html" />
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/services.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/services.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/services.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/services.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/services.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/services.html" />
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/products.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/products.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/products.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/products.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/products.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/products.html" />
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lightonpluslab.com/lens.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/lens.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/lens.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/lens.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/lens.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/lens.html" />
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -76,12 +50,7 @@
   </url>
   <url>
     <loc>https://lightonpluslab.com/contact.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/contact.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/contact.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/contact.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/contact.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/contact.html" />
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -180,203 +149,5 @@
     <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/en/</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/ja/</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/zh/</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/en/products.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/products.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/products.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/products.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/products.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/products.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/ja/products.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/products.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/products.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/products.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/products.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/products.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/zh/products.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/products.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/products.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/products.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/products.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/products.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/en/lens.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/lens.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/lens.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/lens.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/lens.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/lens.html" />
-    <lastmod>2026-10-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/ja/lens.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/lens.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/lens.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/lens.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/lens.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/lens.html" />
-    <lastmod>2026-10-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/zh/lens.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/lens.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/lens.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/lens.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/lens.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/lens.html" />
-    <lastmod>2026-10-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/en/about.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/about.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/about.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/about.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/about.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/about.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/ja/about.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/about.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/about.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/about.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/about.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/about.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/zh/about.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/about.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/about.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/about.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/about.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/about.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/en/services.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/services.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/services.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/services.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/services.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/services.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/ja/services.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/services.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/services.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/services.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/services.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/services.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/zh/services.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/services.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/services.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/services.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/services.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/services.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/en/contact.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/contact.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/contact.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/contact.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/contact.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/contact.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/ja/contact.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/contact.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/contact.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/contact.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/contact.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/contact.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lightonpluslab.com/zh/contact.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/contact.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/contact.html" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://lightonpluslab.com/ja/contact.html" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://lightonpluslab.com/zh/contact.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lightonpluslab.com/contact.html" />
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>
