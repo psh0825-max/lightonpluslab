@@ -122,6 +122,7 @@ FOOTER = """
         <h5>Work</h5>
         <a href="products.html">전체 앱</a>
 <a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens 렌즈 해석</a>
+<a href="lens-docs.html">Lens 문서</a>
         <a href="momoi.html">모모아이</a>
         <a href="lighton-ai-note.html">라이트온 AI 노트</a>
         <a href="contact.html">New project</a>
@@ -676,6 +677,7 @@ PAGE_LASTMOD = {
     "services.html": "2026-08-13",
     "products.html": "2026-08-13",
     "lens.html": "2026-10-22",
+    "lens-docs.html": "2026-10-30",
     "momoi.html": "2026-08-13",
     "lighton-ai-note.html": "2026-08-13",
     "blog.html": "2026-08-13",
