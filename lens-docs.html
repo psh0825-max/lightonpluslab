@@ -152,7 +152,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>비네팅</td><td><code>VUX</code>, <code>VLX</code>, <code>VUY</code>, <code>VLY</code></td><td>필드별 상·하·좌·우 비네팅 계수.</td></tr>
 <tr><td>면</td><td><code>SO</code>, <code>S</code>, <code>STO</code>, <code>SI</code></td><td>물체면·일반면·조리개면·상면. <code>STO</code>가 값 없이 혼자 오면 직전 면을 조리개로 바꿉니다. <code>SI</code>가 없으면 마지막 면을 상면으로 쓰고 경고합니다.</td></tr>
 <tr><td>처방 수정</td><td><code>RDY</code>, <code>CUY</code>, <code>THI</code>, <code>GLA</code>, <code>K</code></td><td>면 지정자를 붙여 쓰는 LDM 편집(<code>THI S3 1.2</code>, <code>RDY S4 -10</code> 같은 꼴)도 읽습니다.</td></tr>
-<tr><td>비구면</td><td><code>ASP</code>, <code>A · B · C · D · E · F · G · H · J</code>, <code>K</code>, <code>CON</code>, <code>SPH</code></td><td>원뿔상수와 4차~20차 계수. CODE V 와 같이 <code>I</code>는 건너뜁니다.</td></tr>
+<tr><td>비구면</td><td><code>ASP</code>, <code>A · B · C · D · E · F · G · H · J</code>, <code>K</code>, <code>CON</code>, <code>SPH</code></td><td>원뿔상수와 4차~20차 계수. 계수 이름에 <code>I</code>는 쓰지 않습니다.</td></tr>
 <tr><td>Forbes 비구면</td><td><code>SPS QBF + SCO</code></td><td><code>SCO</code>의 <code>K</code>, <code>NRADIUS</code>, <code>C3</code> 이상을 Q-bfs 계수로 읽습니다. 그 밖의 특수면 형식은 모두 기저 원뿔면으로만 추적합니다.</td></tr>
 <tr><td>구경</td><td><code>CIR</code>, <code>CIR EDG</code>, <code>CIR OBS</code>, <code>REX / REY</code>, <code>ELX / ELY</code></td><td>반구경·에지 두께 기준 구경·중심 차폐·사각 및 타원 구경.</td></tr>
 <tr><td>편심 · 기울기</td><td><code>XDE / YDE / ZDE</code>, <code>ADE / BDE / CDE</code>, <code>XOD / YOD / ZOD</code>, <code>ADX / ADY</code>, <code>DAR</code>, <code>BEN</code>, <code>REV</code>, <code>RET</code></td><td><code>RET</code>는 앞선 면의 국부 좌표계를 가져옵니다.</td></tr>
@@ -227,7 +227,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tbody>
 <tr><td>단면 · 1차 특성</td><td>근축 추적과 실광선 추적</td><td>렌즈 단면과 광선 경로를 그리고 초점거리·F수 같은 1차량을 함께 냅니다. 값을 고치면 같은 자리에서 다시 계산합니다.</td></tr>
 <tr><td>스팟 다이어그램</td><td>실광선 추적</td><td>기준 파장의 주광선을 원점으로 삼습니다. RMS 는 중심(centroid) 기준 <strong>직경</strong>으로 냅니다 — 반경으로 보고하는 도구와 비교할 때는 2배 차이를 두고 보셔야 합니다.</td></tr>
-<tr><td>MTF</td><td>다색 회절 MTF</td><td>동공 함수를 상공간 방향코사인으로 리샘플한 뒤, 정규좌표계에서 직접 자기상관을 취해 OTF 를 구합니다 — CODE V 와 같은 방식입니다. FFT 격자에 얹지 않으므로 수 파장 이상 큰 수차에서도 위상 평균으로 변조가 깎이지 않습니다. 회절 한계는 같은 자기상관을 위상 없이 계산한 값이라 같은 격자·같은 동공에서 나온 비교 기준입니다. 접선(Y)과 시상(X)을 따로 냅니다.</td></tr>
+<tr><td>MTF</td><td>다색 회절 MTF</td><td>동공 함수를 상공간 방향코사인으로 리샘플한 뒤, 정규좌표계에서 직접 자기상관을 취해 OTF 를 구합니다. FFT 격자에 얹지 않으므로 수 파장 이상 큰 수차에서도 위상 평균으로 변조가 깎이지 않습니다. 회절 한계는 같은 자기상관을 위상 없이 계산한 값이라 같은 격자·같은 동공에서 나온 비교 기준입니다. 접선(Y)과 시상(X)을 따로 냅니다.</td></tr>
 <tr><td>스루포커스 MTF</td><td>같은 회절 MTF를 초점 위치별로</td><td>주파수 하나를 고르고 초점 이동 범위를 지정합니다. 화면의 초점 이동 프리셋은 ±5 · ±10 · ±20 · ±50 · ±100 µm 입니다.</td></tr>
 <tr><td>광선 수차</td><td>실광선 추적</td><td>왼쪽은 접선(Y) — 동공 좌표 P<sub>y</sub> 에 대한 ε<sub>y</sub>, 오른쪽은 시상(X) — P<sub>x</sub> 에 대한 ε<sub>x</sub>. 단위는 µm.</td></tr>
 <tr><td>필드 곡률</td><td>비점수차 필드 곡선</td><td>기준 파장에서 T(접선)는 실선, S(시상)는 점선. 단위는 mm.</td></tr>
@@ -295,7 +295,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <dt>CIR EDG</dt><dd>에지 두께로 지정한 구경.</dd>
 <dt>CIR OBS</dt><dd>면 중심의 차폐 반지름.</dd>
 <dt>K</dt><dd>원뿔상수(conic constant). 0 이면 구면, −1 이면 포물면.</dd>
-<dt>A … J</dt><dd>비구면 짝수차 계수. 4차부터 20차까지, CODE V 처럼 <code>I</code> 를 건너뜁니다.</dd>
+<dt>A … J</dt><dd>비구면 짝수차 계수. 4차부터 20차까지이며, 계수 이름에 <code>I</code> 는 쓰지 않습니다.</dd>
 <dt>PIM</dt><dd>상면 위치를 근축 상면에 자동으로 맞춥니다.</dd>
 <dt>SLB</dt><dd>면 이름표(surface label).</dd>
 <dt>T / S</dt><dd>접선(tangential) / 시상(sagittal). 필드 곡선에서 실선 / 점선.</dd>
