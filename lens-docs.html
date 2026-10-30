@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lens 문서 — .seq / .zmx 지원 범위와 해석 규약 — LightOn Plus Lab</title>
+<meta name="description" content="Lens 가 CODE V .seq 와 Zemax .zmx 에서 읽는 명령, 지원하지 않는 기능과 그때의 대체 동작, 스팟·MTF·광선수차·필드곡률·왜곡의 계산 방식과 축·단위 규약, 유리 1,621종의 분산식까지 정리한 기술 문서." />
+<meta property="og:title" content="Lens 문서 — 지원 범위와 해석 규약" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Lens 의 .seq / .zmx 지원 명령, 미지원 기능과 대체 동작, 해석 여섯 가지의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서." />
+<meta property="og:url" content="https://lightonpluslab.com/lens-docs.html" />
+<meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://lightonpluslab.com/lens-docs.html" />
+<meta name="theme-color" content="#FBFAF8" />
+<link rel="icon" href="img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="img/logo-mark.png" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="styles.css?v=d4d398ed" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+"@id":"https://lightonpluslab.com/lens-docs.html#doc",
+"headline":"Lens 문서 — .seq / .zmx 지원 범위와 해석 규약",
+"description":"Lens 의 .seq / .zmx 지원 명령, 미지원 기능과 대체 동작, 해석 여섯 가지의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서.",
+"inLanguage":"ko",
+"url":"https://lightonpluslab.com/lens-docs.html",
+"about":{"@type":"SoftwareApplication","name":"LightOn Lens",
+  "url":"https://lens.lightonpluslab.com/","applicationCategory":"EngineeringApplication"},
+"author":{"@type":"Organization","name":"LightOn Plus Lab",
+  "url":"https://lightonpluslab.com/"},
+"publisher":{"@type":"Organization","name":"LightOn Plus Lab",
+  "url":"https://lightonpluslab.com/"},
+"isPartOf":{"@type":"WebSite","name":"LightOn Plus Lab",
+  "url":"https://lightonpluslab.com/"}}
+</script>
+<style>
+/* 문서 페이지 — 긴 글과 표가 주인공이라 본문 폭을 좁히고 표를 촘촘하게 */
+.doc-hero{padding:72px 0 30px;border-bottom:1px solid var(--rule)}
+.doc-hero h1{font-size:clamp(28px,4.6vw,46px);margin:12px 0 14px;max-width:21ch}
+.doc-hero p{color:var(--ink-2);max-width:62ch;font-size:var(--t-lg)}
+.doc-kicker{font-family:var(--f-mono);font-size:var(--t-xs);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3)}
+
+/* 목차 — 긴 문서라 위에 한 번 깔아 준다 */
+.doc-toc{margin:26px 0 0;padding:18px 20px;border:1px solid var(--rule);border-radius:12px;
+  background:var(--paper-2)}
+.doc-toc h2{font-size:var(--t-sm);margin:0 0 10px;color:var(--ink-3);
+  font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.doc-toc ol{margin:0;padding-left:1.25em;columns:2;column-gap:32px}
+.doc-toc li{margin:5px 0;break-inside:avoid}
+.doc-toc a{color:var(--ink-2)}
+.doc-toc a:hover{color:var(--ink)}
+
+/* 앵커는 section 에 달려 있으니 여백도 section 이 가져야 고정 헤더에 안 가린다 */
+.doc-sec{padding:52px 0;border-bottom:1px solid var(--rule);scroll-margin-top:72px}
+.doc-sec:last-of-type{border-bottom:0}
+.doc-sec > .wrap > h2{font-size:clamp(21px,2.7vw,29px);margin:0 0 8px}
+.doc-sec .lede{color:var(--ink-2);max-width:66ch;margin:0 0 26px}
+.doc-sec h3{font-size:var(--t-lg);margin:30px 0 10px}
+.doc-sec h3:first-of-type{margin-top:22px}
+.doc-sec p{max-width:66ch;color:var(--ink-2)}
+.doc-sec ul{max-width:66ch;color:var(--ink-2)}
+.doc-sec li{margin:5px 0}
+.doc-sec code{font-family:var(--f-mono);font-size:.9em;background:var(--paper-2);
+  padding:1px 5px;border-radius:4px;color:var(--ink)}
+
+/* 표 — 모바일에서는 가로 스크롤로 넘긴다. 줄바꿈으로 뭉개지면 못 읽는다 */
+.doc-tw{overflow-x:auto;margin:16px 0 4px;-webkit-overflow-scrolling:touch}
+table.doc{width:100%;border-collapse:collapse;font-size:var(--t-sm);min-width:520px}
+table.doc th,table.doc td{text-align:left;vertical-align:top;padding:9px 12px 9px 0;
+  border-bottom:1px solid var(--rule)}
+table.doc th{color:var(--ink-3);font-weight:600;font-size:var(--t-xs);
+  letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+table.doc td:first-child{white-space:nowrap;padding-right:20px}
+table.doc code{white-space:nowrap}
+table.doc tr:last-child td{border-bottom:0}
+
+/* 정의 목록 — 용어 풀이 */
+dl.doc-dl{max-width:72ch;margin:18px 0 0}
+dl.doc-dl dt{font-weight:700;color:var(--ink);margin:16px 0 3px;
+  font-family:var(--f-mono);font-size:var(--t-sm)}
+dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
+
+.doc-note{margin:22px 0 0;padding:16px 18px;border-left:2px solid var(--purple);
+  background:var(--paper-2);border-radius:0 10px 10px 0}
+.doc-note p{margin:0;font-size:var(--t-sm);max-width:68ch}
+
+.doc-cta{padding:54px 0;text-align:center}
+.doc-cta h2{margin:0 0 10px}
+.doc-cta p{margin:0 auto 20px;color:var(--ink-2)}
+@media(max-width:760px){
+  .doc-toc ol{columns:1}
+  .doc-hero{padding:48px 0 24px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+<nav class="nav-links" aria-label="메뉴">
+<a href="products.html">Apps</a>
+<a href="lens.html">Lens</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">Studio</a>
+<a href="contact.html">Contact</a>
+</nav>
+    <a class="nav-cta" href="contact.html">Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<section class="doc-hero"><div class="wrap">
+<p class="doc-kicker">Lens · 기술 문서</p>
+<h1>무엇을 읽고, 어떻게 계산하고, 무엇을 못 하는가</h1>
+<p>Lens 는 CODE V 시퀀스 파일(<code>.seq</code>)과 Zemax OpticStudio 파일(<code>.zmx</code>)을 브라우저에서 열어 해석합니다. 해석 도구는 지원 범위를 모르면 쓸 수 없습니다 — 읽지 못한 명령을 조용히 넘기면 화면의 숫자가 설계와 다른 렌즈의 숫자가 되기 때문입니다. 이 문서는 읽는 명령, 읽지 않는 기능과 그때 대신 하는 일, 그래프마다의 축·단위·기준을 전부 적어 둔 것입니다.</p>
+<nav class="doc-toc" aria-label="목차"><h2>목차</h2><ol>
+<li><a href="#files">읽는 파일과 지원 명령</a></li>
+<li><a href="#limits">지원하지 않는 것</a></li>
+<li><a href="#analyses">해석 여섯 가지 — 계산 방식과 규약</a></li>
+<li><a href="#glass">유리와 분산 데이터</a></li>
+<li><a href="#units">단위 · 상수 · 기본값</a></li>
+<li><a href="#glossary">용어</a></li>
+</ol></nav>
+</div></section>
+<section class="doc-sec" id="files"><div class="wrap">
+<h2>읽는 파일과 지원 명령</h2>
+<p class="lede">두 형식 모두 텍스트 파일입니다. 화면에 끌어다 놓거나 붙여넣으면 바로 파싱합니다. 파싱과 이후 모든 계산은 브라우저 안에서 일어나고, 파일은 서버로 올라가지 않습니다.</p>
+<h3>CODE V 시퀀스 <code>.seq</code></h3>
+<p>면 지정자는 <code>SO</code>·<code>S1</code>·<code>S2</code>…·<code>SI</code> 꼴을 씁니다. 아래 명령 외의 줄은 건너뜁니다.</p>
+<div class="doc-tw">
+<table class="doc">
+<thead><tr><th>분류</th><th>명령</th><th>읽는 내용</th></tr></thead>
+<tbody>
+<tr><td>시스템</td><td><code>LEN</code>, <code>TIT / TITLE</code>, <code>DIM</code>, <code>RDM</code>, <code>GO</code></td><td>렌즈 시작·제목·치수 단위·반경/곡률 입력 모드·끝. <code>GO</code> 이후에는 내보낸 굴절률 표(<code>! LLIDX</code>)만 더 읽습니다.</td></tr>
+<tr><td>파장</td><td><code>WL</code>, <code>REF</code>, <code>WTW</code></td><td>파장 목록, 기준 파장 번호, 파장별 가중치. 파장은 nm 으로도, 스펙트럼 문자 <code>d</code>·<code>F</code>·<code>C</code>·<code>e</code>·<code>g</code> 로도 적을 수 있습니다.</td></tr>
+<tr><td>조리개 · 물체</td><td><code>EPD</code>, <code>FNO</code>, <code>NA</code>, <code>NAO</code></td><td>넷 중 마지막으로 읽은 하나가 조리개 지정이 됩니다.</td></tr>
+<tr><td>필드</td><td><code>XAN / YAN</code>, <code>XOB / YOB</code>, <code>XIM / YIM</code>, <code>XRI / YRI</code>, <code>WTF</code></td><td>각도·물체높이·상높이·실상높이 중 파일에 나온 형식을 그대로 씁니다(<code>AN</code> → <code>OB</code> → <code>IM</code> → <code>RI</code> 순으로 찾습니다). <code>WTF</code>는 필드 가중치.</td></tr>
+<tr><td>비네팅</td><td><code>VUX</code>, <code>VLX</code>, <code>VUY</code>, <code>VLY</code></td><td>필드별 상·하·좌·우 비네팅 계수.</td></tr>
+<tr><td>면</td><td><code>SO</code>, <code>S</code>, <code>STO</code>, <code>SI</code></td><td>물체면·일반면·조리개면·상면. <code>STO</code>가 값 없이 혼자 오면 직전 면을 조리개로 바꿉니다. <code>SI</code>가 없으면 마지막 면을 상면으로 쓰고 경고합니다.</td></tr>
+<tr><td>처방 수정</td><td><code>RDY</code>, <code>CUY</code>, <code>THI</code>, <code>GLA</code>, <code>K</code></td><td>면 지정자를 붙여 쓰는 LDM 편집(<code>THI S3 1.2</code>, <code>RDY S4 -10</code> 같은 꼴)도 읽습니다.</td></tr>
+<tr><td>비구면</td><td><code>ASP</code>, <code>A · B · C · D · E · F · G · H · J</code>, <code>K</code>, <code>CON</code>, <code>SPH</code></td><td>원뿔상수와 4차~20차 계수. CODE V 와 같이 <code>I</code>는 건너뜁니다.</td></tr>
+<tr><td>Forbes 비구면</td><td><code>SPS QBF + SCO</code></td><td><code>SCO</code>의 <code>K</code>, <code>NRADIUS</code>, <code>C3</code> 이상을 Q-bfs 계수로 읽습니다. 그 밖의 특수면 형식은 모두 기저 원뿔면으로만 추적합니다.</td></tr>
+<tr><td>구경</td><td><code>CIR</code>, <code>CIR EDG</code>, <code>CIR OBS</code>, <code>REX / REY</code>, <code>ELX / ELY</code></td><td>반구경·에지 두께 기준 구경·중심 차폐·사각 및 타원 구경.</td></tr>
+<tr><td>편심 · 기울기</td><td><code>XDE / YDE / ZDE</code>, <code>ADE / BDE / CDE</code>, <code>XOD / YOD / ZOD</code>, <code>ADX / ADY</code>, <code>DAR</code>, <code>BEN</code>, <code>REV</code>, <code>RET</code></td><td><code>RET</code>는 앞선 면의 국부 좌표계를 가져옵니다.</td></tr>
+<tr><td>기타 면 속성</td><td><code>SLB</code>, <code>PIM</code></td><td>면 이름표와 상면 위치 자동 보정.</td></tr>
+<tr><td>초점 이동</td><td><code>NFO</code>, <code>FFO</code>, <code>IFO</code></td><td>스루포커스 계산 개수·시작·증분.</td></tr>
+<tr><td>주광선 조준</td><td><code>CRA</code></td><td>파장·필드·면·줌 위치별 조준점. <code>CRA SI</code>(상면 조준)는 무시하고 경고합니다.</td></tr>
+<tr><td>사설 유리</td><td><code>PRV … END</code>, <code>PWL</code></td><td>뒤의 유리 절에서 설명합니다.</td></tr>
+<tr><td>줌</td><td><code>ZOO</code></td><td>줌 위치 수와 위치별 값.</td></tr>
+<tr><td>그 외</td><td><code>WID</code>, <code>CA</code>, <code>TEL</code></td><td>광각 모드·구경 계산 방식·물체공간 텔레센트릭(미지원, 경고).</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Zemax OpticStudio <code>.zmx</code></h3>
+<p>지원하는 키워드:</p>
+<div class="doc-tw">
+<table class="doc">
+<thead><tr><th>분류</th><th>키워드</th></tr></thead>
+<tbody>
+<tr><td>면 처방</td><td><code>TYPE</code>, <code>CURV</code>, <code>CONI</code>, <code>PARM</code>, <code>DISZ</code>, <code>GLAS</code>, <code>STOP</code>, <code>DIAM</code>, <code>COMM</code>, <code>SLAB</code></td></tr>
+<tr><td>구경 · 차폐</td><td><code>CLAP</code>, <code>OBSC</code>, <code>SQAP</code>, <code>ELAP</code>, <code>SQOB</code>, <code>ELOB</code>, <code>FLAP</code>, <code>OBDC</code>, <code>UDAP</code>, <code>XDAT</code></td></tr>
+<tr><td>면 플래그</td><td><code>IGNR</code>, <code>HIDE</code>, <code>MIRR</code>, <code>COAT</code>, <code>FLAG</code>, <code>POPS</code>, <code>MEMA</code></td></tr>
+<tr><td>시스템</td><td><code>NAME</code>, <code>UNIT</code>, <code>MODE</code>, <code>MNUM</code></td></tr>
+<tr><td>조리개 · 물체</td><td><code>ENPD</code>, <code>FNUM</code>, <code>OBNA</code>, <code>FLOA</code>, <code>GCAT</code></td></tr>
+<tr><td>필드</td><td><code>FTYP</code>, <code>XFLN</code>, <code>YFLN</code>, <code>FWGN</code>, <code>XFLD</code>, <code>YFLD</code>, <code>FWGT</code></td></tr>
+<tr><td>필드 비네팅</td><td><code>VDXN</code>, <code>VDYN</code>, <code>VCXN</code>, <code>VCYN</code>, <code>VDXF</code>, <code>VDYF</code>, <code>VCXF</code>, <code>VCYF</code></td></tr>
+<tr><td>파장</td><td><code>WAVM</code>, <code>WAVL</code>, <code>WWGT</code>, <code>PWAV</code></td></tr>
+</tbody>
+</table>
+</div>
+<h3>파일 인코딩</h3>
+<p>OpticStudio 가 내보낸 <code>.zmx</code> 는 UTF-16 인 경우가 많고, BOM 이 없는 파일도 있습니다. 다음 순서로 판별합니다.</p>
+<ul><li>BOM 이 있으면 UTF-16 LE / BE</li><li>BOM 이 없어도 바이트의 홀수 또는 짝수 자리가 0 으로 채워져 있으면 UTF-16 로 봅니다</li><li>그다음 UTF-8 (엄격 모드)</li><li>그래도 실패하면 EUC-KR, 마지막으로 Latin-1</li></ul>
+<p>오래된 한글 주석이 들어간 <code>.seq</code> 가 EUC-KR 로 저장돼 있어도 제목과 면 이름표가 깨지지 않습니다.</p>
+<div class="doc-note"><p>어느 형식이든, 읽지 못한 항목이나 근사로 바꾼 항목은 파일을 열 때 경고로 모아 보여 줍니다. 경고가 비어 있으면 파일의 모든 내용이 그대로 들어왔다는 뜻입니다.</p></div>
+</div></section>
+<section class="doc-sec" id="limits"><div class="wrap">
+<h2>지원하지 않는 것</h2>
+<p class="lede">아래는 엔진이 스스로 경고를 내는 항목을 그대로 옮긴 것입니다. 읽지 않고 넘기는 것과, 근사로 바꿔 계산하는 것을 구분해 적었습니다 — 후자는 숫자가 나오지만 그 숫자가 설계와 다른 전제에서 나온 값입니다.</p>
+<div class="doc-tw">
+<table class="doc">
+<thead><tr><th>항목</th><th>파일에 있는 것</th><th>대신 하는 일</th></tr></thead>
+<tbody>
+<tr><td>비순차 추적</td><td><code>.zmx</code> 의 NSC 데이터</td><td>읽지 않습니다.</td></tr>
+<tr><td>다중 구성</td><td>Zemax multi-configuration</td><td>파일에 저장된 상태 그대로만 불러옵니다.</td></tr>
+<tr><td>특수면</td><td>회절면(DOE·HOE), 자유곡면(XYP·ZFR·ODD), 사용자 정의면(UDS), Q-con(QCN)</td><td>기저 원뿔면으로만 추적하고 면마다 경고합니다.</td></tr>
+<tr><td>근축 이상렌즈</td><td>paraxial / ideal lens 면</td><td>두께 0 의 평면 더미면으로 추적합니다.</td></tr>
+<tr><td>전역 좌표</td><td><code>GLB</code></td><td>두께만으로 면을 놓습니다.</td></tr>
+<tr><td>굴절률 분포 유리</td><td>GRIN 사설 유리(<code>SEL</code>·<code>AXG</code>·<code>URN</code>·<code>LUN</code>·<code>SPG</code>·<code>MAX</code>·<code>UDG</code>)</td><td>읽지 않습니다.</td></tr>
+<tr><td>용해 데이터</td><td><code>PRV … MLT</code></td><td>읽지 않습니다.</td></tr>
+<tr><td>HAR 분산식</td><td><code>PRV … HAR</code></td><td>읽지 않습니다.</td></tr>
+<tr><td>물체공간 텔레센트릭</td><td><code>TEL</code></td><td>조리개를 향해 광선을 조준합니다.</td></tr>
+<tr><td>상면 주광선 조준</td><td><code>CRA SI</code></td><td>무시합니다.</td></tr>
+<tr><td>곡면 물체</td><td>곡률이 있는 <code>SO</code></td><td>평면으로 취급합니다.</td></tr>
+<tr><td>물체면 편심·기울기</td><td><code>SO</code> 의 틸트·디센터</td><td>무시합니다.</td></tr>
+<tr><td>사각·타원 차폐</td><td>rectangular / elliptical obscuration, 사용자 정의 구경</td><td>무시합니다.</td></tr>
+<tr><td>광각 모드</td><td><code>WID</code> + 유한 물체</td><td>무한 물체에서만 지원합니다.</td></tr>
+<tr><td>세오돌라이트 필드</td><td>theodolite 각도</td><td>보통 필드 각도로 읽습니다.</td></tr>
+<tr><td><code>.zmx</code> 조리개</td><td>읽을 수 없는 시스템 조리개</td><td>손으로 조리개 값을 넣어야 합니다.</td></tr>
+<tr><td><code>.zmx</code> 틸트</td><td>일부 틸트·디센터 설정</td><td>읽지 못한 항목을 경고합니다.</td></tr>
+<tr><td>카탈로그 밖 유리</td><td>공개 카탈로그에 없는 이름</td><td>가까운 등가 유리로 치환하고, 바뀐 이름을 모두 알려 줍니다.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="doc-note"><p>최적화와 공차 해석은 들어 있지 않습니다. Lens 는 이미 있는 설계를 열어 읽고 고쳐 보는 도구입니다. 최적화·공차·고스트 해석이 필요한 작업은 CODE V 나 OpticStudio 에서 하시는 것이 맞습니다.</p></div>
+</div></section>
+<section class="doc-sec" id="analyses"><div class="wrap">
+<h2>해석 여섯 가지 — 계산 방식과 규약</h2>
+<p class="lede">같은 이름의 그래프라도 도구마다 기준이 다릅니다. RMS 를 반경으로 내는지 직경으로 내는지, 왜곡을 f·tanθ 로 보는지 f·θ 로 보는지에 따라 값이 2배, 혹은 몇 % 씩 갈립니다. Lens 가 쓰는 기준은 다음과 같습니다.</p>
+<div class="doc-tw">
+<table class="doc">
+<thead><tr><th>해석</th><th>계산 방식</th><th>규약</th></tr></thead>
+<tbody>
+<tr><td>단면 · 1차 특성</td><td>근축 추적과 실광선 추적</td><td>렌즈 단면과 광선 경로를 그리고 초점거리·F수 같은 1차량을 함께 냅니다. 값을 고치면 같은 자리에서 다시 계산합니다.</td></tr>
+<tr><td>스팟 다이어그램</td><td>실광선 추적</td><td>기준 파장의 주광선을 원점으로 삼습니다. RMS 는 중심(centroid) 기준 <strong>직경</strong>으로 냅니다 — 반경으로 보고하는 도구와 비교할 때는 2배 차이를 두고 보셔야 합니다.</td></tr>
+<tr><td>MTF</td><td>다색 회절 MTF</td><td>동공 함수를 상공간 방향코사인으로 리샘플한 뒤, 정규좌표계에서 직접 자기상관을 취해 OTF 를 구합니다 — CODE V 와 같은 방식입니다. FFT 격자에 얹지 않으므로 수 파장 이상 큰 수차에서도 위상 평균으로 변조가 깎이지 않습니다. 회절 한계는 같은 자기상관을 위상 없이 계산한 값이라 같은 격자·같은 동공에서 나온 비교 기준입니다. 접선(Y)과 시상(X)을 따로 냅니다.</td></tr>
+<tr><td>스루포커스 MTF</td><td>같은 회절 MTF를 초점 위치별로</td><td>주파수 하나를 고르고 초점 이동 범위를 지정합니다. 화면의 초점 이동 프리셋은 ±5 · ±10 · ±20 · ±50 · ±100 µm 입니다.</td></tr>
+<tr><td>광선 수차</td><td>실광선 추적</td><td>왼쪽은 접선(Y) — 동공 좌표 P<sub>y</sub> 에 대한 ε<sub>y</sub>, 오른쪽은 시상(X) — P<sub>x</sub> 에 대한 ε<sub>x</sub>. 단위는 µm.</td></tr>
+<tr><td>필드 곡률</td><td>비점수차 필드 곡선</td><td>기준 파장에서 T(접선)는 실선, S(시상)는 점선. 단위는 mm.</td></tr>
+<tr><td>왜곡</td><td>두 기준을 함께</td><td>f·tanθ 기준은 실선, f·θ 기준은 점선, 단위는 %. 광각 렌즈에서는 두 기준의 값이 크게 갈리므로 어느 쪽을 보고 있는지 확인하셔야 합니다.</td></tr>
+</tbody>
+</table>
+</div>
+</div></section>
+<section class="doc-sec" id="glass"><div class="wrap">
+<h2>유리와 분산 데이터</h2>
+<p class="lede">분산 데이터는 refractiveindex.info 데이터베이스(CC0 1.0 퍼블릭 도메인, 각 제조사 카탈로그 값)에서 가져온 것입니다. 모두 파장별 굴절률을 분산식으로 계산하며, n<sub>d</sub>·v<sub>d</sub> 보간이 아닙니다.</p>
+<h3>카탈로그</h3>
+<div class="doc-tw">
+<table class="doc">
+<thead><tr><th>제조사</th><th>유리 수</th></tr></thead>
+<tbody>
+<tr><td>OHARA</td><td>410</td></tr>
+<tr><td>HIKARI</td><td>363</td></tr>
+<tr><td>CDGM</td><td>314</td></tr>
+<tr><td>HOYA</td><td>190</td></tr>
+<tr><td>SUMITA</td><td>176</td></tr>
+<tr><td>SCHOTT</td><td>162</td></tr>
+</tbody>
+</table>
+</div>
+<p>여섯 제조사 1,615종에, 일반 재료 6종(<code>SILICA</code>, <code>CAF2</code>, <code>SAPPHIRE</code>, <code>PMMA</code>, <code>POLYCARB</code>, <code>POLYSTYR</code>)을 더해 모두 1,621종입니다. 제조사를 적지 않은 유리 이름은 SCHOTT → OHARA → HOYA → CDGM → HIKARI → SUMITA 순으로 찾습니다.</p>
+<h3>사설 유리 <code>PRV</code></h3>
+<p>파일 안에 분산 계수를 직접 적는 사설 카탈로그를 읽습니다. 지원하는 형식은 <code>LAU</code>, <code>GML</code>, <code>GMS</code>, <code>SLM</code>, <code>CAU</code> 다섯 가지와, <code>PWL</code> 로 파장 목록을 주고 굴절률을 나열하는 표 방식입니다. <code>HAR</code> 분산식과 <code>MLT</code> 용해 데이터 피팅, GRIN 은 읽지 않고 경고합니다.</p>
+<h3>카탈로그에 없는 유리</h3>
+<p>공개 카탈로그에 없는 이름이 나오면 n<sub>d</sub>·v<sub>d</sub> 가 가까운 유리로 치환한 뒤, 바뀐 이름을 전부 경고에 적습니다. 치환된 유리의 성능 숫자는 원래 설계의 숫자가 아니므로, 경고에 이름이 올라왔다면 그 값을 그대로 쓰시면 안 됩니다.</p>
+</div></section>
+<section class="doc-sec" id="units"><div class="wrap">
+<h2>단위 · 상수 · 기본값</h2>
+<div class="doc-tw">
+<table class="doc">
+<thead><tr><th>항목</th><th>값</th></tr></thead>
+<tbody>
+<tr><td>치수 단위</td><td><code>DIM M</code> = mm(기본), <code>DIM C</code> = cm, <code>DIM I</code> = inch</td></tr>
+<tr><td>파장 입력</td><td>nm. 스펙트럼 문자 <code>d</code> <code>F</code> <code>C</code> <code>e</code> <code>g</code> 도 받습니다(대소문자 무관).</td></tr>
+<tr><td>스펙트럼 문자 값</td><td><code>d</code> 587.5618 · <code>F</code> 486.1327 · <code>C</code> 656.2725 · <code>e</code> 546.074 · <code>g</code> 435.8343 nm</td></tr>
+<tr><td>무한 물체 기준</td><td>물체 거리가 10<sup>8</sup>(치수 단위 기준) 이상이면 무한대로 취급합니다.</td></tr>
+<tr><td>기본 조리개</td><td>파일에 <code>EPD</code>·<code>FNO</code>·<code>NA</code>·<code>NAO</code> 가 모두 없으면 직접 넣어야 합니다.</td></tr>
+<tr><td>기본 필드 형식</td><td><code>AN</code>(각도) → <code>OB</code> → <code>IM</code> → <code>RI</code> 순으로 파일에 있는 것을 씁니다.</td></tr>
+<tr><td>스팟 원점</td><td>기준 파장의 주광선</td></tr>
+<tr><td>광선 수차 단위</td><td>µm</td></tr>
+<tr><td>필드 곡선 단위</td><td>mm</td></tr>
+<tr><td>왜곡 단위</td><td>%</td></tr>
+</tbody>
+</table>
+</div>
+<div class="doc-note"><p>조리개 형식(EPD / F수 / NA)과 필드 형식(각도 / 물체높이 / 상높이)은 화면에서 바꿀 수 있고, 바꿀 때 같은 렌즈가 되도록 값을 환산합니다. 환산이므로 원래 파일의 값과 표기가 달라 보일 수 있습니다.</p></div>
+</div></section>
+<section class="doc-sec" id="glossary"><div class="wrap">
+<h2>용어</h2>
+<p class="lede">화면과 파일에 나오는 약어입니다.</p>
+<dl class="doc-dl">
+<dt>EPD</dt><dd>입사동 지름(entrance pupil diameter). 조리개를 지름으로 지정하는 방식.</dd>
+<dt>FNO</dt><dd>F 수. 무한 물체에서 초점거리 ÷ 입사동 지름.</dd>
+<dt>NA / NAO</dt><dd>개구수. <code>NAO</code> 는 물체공간 개구수.</dd>
+<dt>REF</dt><dd>기준 파장 번호. 스팟 원점과 필드 곡선이 이 파장을 씁니다.</dd>
+<dt>RDM</dt><dd>반경/곡률 입력 모드. <code>RDM NO</code> 면 이후 값을 곡률로 읽습니다.</dd>
+<dt>RDY / CUY</dt><dd>면의 곡률반경 / 곡률. 서로 역수.</dd>
+<dt>THI</dt><dd>그 면부터 다음 면까지의 축상 거리.</dd>
+<dt>CIR</dt><dd>반구경(semi-diameter). 광선이 통과할 수 있는 반지름.</dd>
+<dt>CIR EDG</dt><dd>에지 두께로 지정한 구경.</dd>
+<dt>CIR OBS</dt><dd>면 중심의 차폐 반지름.</dd>
+<dt>K</dt><dd>원뿔상수(conic constant). 0 이면 구면, −1 이면 포물면.</dd>
+<dt>A … J</dt><dd>비구면 짝수차 계수. 4차부터 20차까지, CODE V 처럼 <code>I</code> 를 건너뜁니다.</dd>
+<dt>PIM</dt><dd>상면 위치를 근축 상면에 자동으로 맞춥니다.</dd>
+<dt>SLB</dt><dd>면 이름표(surface label).</dd>
+<dt>T / S</dt><dd>접선(tangential) / 시상(sagittal). 필드 곡선에서 실선 / 점선.</dd>
+<dt>f·tanθ</dt><dd>평면 상면의 이상적 상높이 기준. 보통 말하는 왜곡.</dd>
+<dt>f·θ</dt><dd>각도에 비례하는 상높이 기준. 어안·스캔 광학에서 씁니다.</dd>
+<dt>ZOO</dt><dd>줌 위치. 위치마다 두께·간격이 바뀝니다.</dd>
+</dl>
+</div></section>
+<section class="doc-cta"><div class="wrap">
+<h2>열어 보시면 됩니다</h2>
+<p>가입도, 설치도, 업로드도 없습니다. 가진 파일이 없으면 예제 렌즈가 들어 있습니다.</p>
+<a class="btn btn-primary" href="https://lens.lightonpluslab.com/" target="_blank" rel="noopener">lens.lightonpluslab.com</a>
+<a class="btn btn-ghost" href="lens.html">Lens 소개</a>
+</div></section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+<div class="footer-col">
+<h5>Studio</h5>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="blog.html">Blog</a>
+</div>
+<div class="footer-col">
+<h5>Work</h5>
+<a href="products.html">전체 앱</a>
+<a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens 렌즈 해석</a>
+<a href="lens-docs.html">Lens 문서</a>
+<a href="momoi.html">모모아이</a>
+<a href="lighton-ai-note.html">라이트온 AI 노트</a>
+<a href="contact.html">New project</a>
+</div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">카카오톡 1:1 문의</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
+    </div>
+  </div>
+</footer>
+
+<script src="app.js?v=cc60ac47"></script>
+</body>
+</html>

@@ -122,6 +122,7 @@ FOOTER = """
         <h5>Work</h5>
         <a href="products.html">전체 앱</a>
 <a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens 렌즈 해석</a>
+<a href="lens-docs.html">Lens 문서</a>
         <a href="momoi.html">모모아이</a>
         <a href="lighton-ai-note.html">라이트온 AI 노트</a>
         <a href="contact.html">New project</a>
@@ -676,6 +677,7 @@ PAGE_LASTMOD = {
     "services.html": "2026-08-13",
     "products.html": "2026-08-13",
     "lens.html": "2026-10-22",
+    "lens-docs.html": "2026-10-30",
     "momoi.html": "2026-08-13",
     "lighton-ai-note.html": "2026-08-13",
     "blog.html": "2026-08-13",
@@ -809,57 +811,23 @@ def write_sitemap():
             if p not in UNPUBLISHED]
     dates = resolve_lastmod(seed)
     moved = [p for p, _ in seed if dates[p] == datetime.date.today().isoformat()]
-    # 번역된 페이지는 네 언어가 같은 문서다. 서로를 alternate 로 가리켜 줘야
-    # 구글이 한 페이지의 언어판으로 묶는다 — 안 하면 중복 문서로 본다.
-    from i18n_home import LANG_META, LANGS
-    from build_i18n import PAGES as I18N_PAGES
-
-    def url_of(page, code):
-        d = LANG_META[code]["dir"]
-        return "https://lightonpluslab.com/" + (d if page == "index.html" else d + page)
-
-    def alts_of(page):
-        rows = ['    <xhtml:link rel="alternate" hreflang="%s" href="%s" />'
-                % (LANG_META[c]["hreflang"], url_of(page, c)) for c in ["ko"] + LANGS]
-        rows.append('    <xhtml:link rel="alternate" hreflang="x-default" href="%s" />'
-                    % url_of(page, "ko"))
-        return "\n".join(rows)
-
-    # sitemap 의 빈 경로("")는 index.html 을 뜻한다
-    def as_page(p):
-        return "index.html" if p == "" else p
-
     rows = []
     for p, _ in seed:
-        extra = "\n" + alts_of(as_page(p)) if as_page(p) in I18N_PAGES else ""
         rows.append(f"""  <url>
-    <loc>https://lightonpluslab.com/{p}</loc>{extra}
+    <loc>https://lightonpluslab.com/{p}</loc>
     <lastmod>{dates[p]}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>{'1.0' if p == '' else '0.3' if p in LEGAL_PAGES else '0.7'}</priority>
   </url>""")
-    trans = 0
-    for page in I18N_PAGES:
-        ko_key = "" if page == "index.html" else page
-        for c in LANGS:
-            trans += 1
-            rows.append(f"""  <url>
-    <loc>{url_of(page, c)}</loc>
-{alts_of(page)}
-    <lastmod>{dates[ko_key]}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>{'0.9' if page == 'index.html' else '0.6'}</priority>
-  </url>""")
     urls = "\n".join(rows)
     with io.open("sitemap.xml", "w", encoding="utf-8") as f:
         f.write(f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {urls}
 </urlset>
 """)
-    print("sitemap.xml (%d URL · 번역판 %d, 오늘 갱신 %d개%s)"
-          % (len(seed) + trans, trans, len(moved),
+    print("sitemap.xml (%d URL, 오늘 갱신 %d개%s)"
+          % (len(seed), len(moved),
              (": " + ", ".join(p or "/" for p in moved)) if moved else ""))
 
 # RSS feed
@@ -894,5 +862,4 @@ print("feed.xml")
 
 enforce_unpublished()
 stamp_asset_versions()
-import build_i18n; build_i18n.build()
 write_sitemap()
