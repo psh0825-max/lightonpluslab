@@ -704,6 +704,9 @@ UNPUBLISHED = {
     "vibe-studio.html": "미완성",
     # 페이지는 남긴다 — Play 등록정보가 접근 가능한 방침 URL을 요구한다.
     "score-studio-privacy.html": "SCORE STUDIO 미출시",
+    # Chrome 웹 스토어 등록 양식이 방침·판매 조건 URL을 요구한다. 판매 시작 시 PAGE_LASTMOD로 옮긴다.
+    "sidekey-privacy.html": "Sidekey 크롬판 미출시",
+    "sidekey-terms.html": "Sidekey 크롬판 미출시",
 }
 
 NOINDEX = '<meta name="robots" content="noindex, nofollow" />'
