@@ -64,6 +64,8 @@ main code{
 .lens-step{padding:22px 0;border-bottom:1px solid var(--rule);min-width:0}
 .lens-step b{display:block;font-size:var(--t-sm);font-weight:600;color:var(--ink);margin-bottom:6px}
 .lens-step span{display:block;font-size:var(--t-xs);color:var(--ink-3);line-height:1.75;word-break:keep-all}
+a.lens-step{display:block;text-decoration:none;color:inherit}
+a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
 
 /* 스크린샷 — 글 열 줄보다 한 장이 빠르다 */
 /* 원본이 800px — 그보다 키우면 뭉갠다 */
@@ -177,6 +179,20 @@ main code{
       <div class="lens-step reveal"><b>면 데이터</b><span>반경·두께·유리·반구경(CIR)을 바로 고칩니다. 줄 끝 ⋮ 메뉴로 면이나 렌즈를 넣고 빼거나 조리개 면을 옮기고, 되돌리기로 언제든 돌아갑니다.</span></div>
       <div class="lens-step reveal reveal-d1"><b>설계 조건 · 필드 · 파장</b><span>조리개는 EPD·F/#·NA로, 물체는 무한대나 유한 거리로, 필드는 각도·물체 높이·상 높이로 지정합니다. 형식을 바꾸면 같은 렌즈가 되도록 값을 환산하고, 파장과 필드는 더하거나 뺄 수 있습니다.</span></div>
       <div class="lens-step reveal reveal-d2"><b>줌 위치</b><span>줌 렌즈는 구간을 전환해 가며 각 위치의 성능을 확인합니다.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title reveal">가이드</h2>
+    <p class="section-desc reveal reveal-d1">렌즈 성능 지표를 처음 보는 분을 위해 그림과 계산 예로 풀어 쓴 글입니다. 영어·일본어·중국어로도 읽을 수 있습니다.</p>
+    <div class="lens-steps">
+      <a class="lens-step reveal" href="https://lens.lightonpluslab.com/guide/ko/open-lens-files" target="_blank" rel="noopener"><b>렌즈 파일 여는 법</b><span>CODE V .seq와 Zemax .zmx를 브라우저에서 여는 방법, 읽는 항목과 유리 데이터.</span></a>
+      <a class="lens-step reveal reveal-d1" href="https://lens.lightonpluslab.com/guide/ko/lens-spec-sheet" target="_blank" rel="noopener"><b>렌즈 사양서 읽는 법</b><span>초점 거리, F/#, 화각, 이미지 서클, 왜곡, 상대 조도, CRA가 서로 어떻게 묶이는지.</span></a>
+      <a class="lens-step reveal reveal-d2" href="https://lens.lightonpluslab.com/guide/ko/mtf-psf-strehl" target="_blank" rel="noopener"><b>MTF · PSF · Strehl 비 읽는 법</b><span>MTF, PSF, 에너지 집중도, 파면 오차의 뜻과 센서 나이퀴스트 주파수 계산.</span></a>
+      <a class="lens-step reveal" href="https://lens.lightonpluslab.com/guide/ko/relative-illumination" target="_blank" rel="noopener"><b>상대 조도와 cos⁴ 법칙</b><span>화면 가장자리가 어두워지는 이유와 실제 렌즈가 cos⁴에서 벗어나는 까닭.</span></a>
+      <a class="lens-step reveal reveal-d1" href="https://lens.lightonpluslab.com/guide/ko/sensor-cra" target="_blank" rel="noopener"><b>센서 CRA 맞추기</b><span>센서 CRA 사양의 뜻, 렌즈와 맞지 않을 때 생기는 일, CRA 곡선 비교법.</span></a>
     </div>
   </div>
 </section>
