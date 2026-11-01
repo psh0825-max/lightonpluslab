@@ -160,7 +160,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>초점 이동</td><td><code>NFO</code>, <code>FFO</code>, <code>IFO</code></td><td>스루포커스 계산 개수·시작·증분.</td></tr>
 <tr><td>주광선 조준</td><td><code>CRA</code></td><td>파장·필드·면·줌 위치별 조준점. <code>CRA SI</code>(상면 조준)는 무시하고 경고합니다.</td></tr>
 <tr><td>사설 유리</td><td><code>PRV … END</code>, <code>PWL</code></td><td>뒤의 유리 절에서 설명합니다.</td></tr>
-<tr><td>줌</td><td><code>ZOO</code></td><td>줌 위치 수와 위치별 값.</td></tr>
+<tr><td>줌</td><td><code>ZOO</code></td><td>줌 위치 수와 위치별 값. 조리개 면(<code>ZOO STO</code>)도 위치마다 바꿀 수 있고, 저장한 <code>.seq</code> 에도 줌 데이터가 그대로 남습니다.</td></tr>
 <tr><td>그 외</td><td><code>WID</code>, <code>CA</code>, <code>TEL</code></td><td>광각 모드·구경 계산 방식·물체공간 텔레센트릭(미지원, 경고).</td></tr>
 </tbody>
 </table>
@@ -180,6 +180,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>필드</td><td><code>FTYP</code>, <code>XFLN</code>, <code>YFLN</code>, <code>FWGN</code>, <code>XFLD</code>, <code>YFLD</code>, <code>FWGT</code></td></tr>
 <tr><td>필드 비네팅</td><td><code>VDXN</code>, <code>VDYN</code>, <code>VCXN</code>, <code>VCYN</code>, <code>VDXF</code>, <code>VDYF</code>, <code>VCXF</code>, <code>VCYF</code></td></tr>
 <tr><td>파장</td><td><code>WAVM</code>, <code>WAVL</code>, <code>WWGT</code>, <code>PWAV</code></td></tr>
+<tr><td>멀티 컨피그</td><td><code>MNUM</code> 뒤의 <code>THIC</code>, <code>CRVT</code>, <code>CONN</code>, <code>GLSS</code>, <code>SDIA</code>, <code>APMX</code>, <code>APDX</code>, <code>APDY</code>, <code>STPS</code>, <code>APER</code>, <code>XFIE</code>, <code>YFIE</code>, <code>FLWT</code>, <code>WLWT</code>, <code>WAVE</code>, <code>PRWV</code>, <code>FVDX</code>·<code>FVDY</code>·<code>FVCX</code>·<code>FVCY</code>, <code>PRAM</code>(짝수·홀수 비구면 계수, 좌표 브레이크) — 컨피그마다 줌 위치 하나로 읽습니다. 조리개가 FLOA 이면 컨피그마다 입사동을 다시 계산합니다.</td></tr>
 </tbody>
 </table>
 </div>
@@ -197,7 +198,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <thead><tr><th>항목</th><th>파일에 있는 것</th><th>대신 하는 일</th></tr></thead>
 <tbody>
 <tr><td>비순차 추적</td><td><code>.zmx</code> 의 NSC 데이터</td><td>읽지 않습니다.</td></tr>
-<tr><td>다중 구성</td><td>Zemax multi-configuration</td><td>파일에 저장된 상태 그대로만 불러옵니다.</td></tr>
+<tr><td>멀티 컨피그 일부</td><td>위 목록에 없는 <code>.zmx</code> 멀티 컨피그 연산자(면 무시, 자유곡면 계수 등)</td><td>읽지 않고 경고합니다. 컨피그마다 다른 온도·기압은 계산에 넣지 않습니다.</td></tr>
 <tr><td>특수면</td><td>회절면(DOE·HOE), 사용자 정의면(UDS), Q-con(QCN), <code>.seq</code> 의 홀수차 비구면(ODD), 확장 Fringe Zernike(ZFE)</td><td>기저 원뿔면으로만 추적하고 면마다 경고합니다.</td></tr>
 <tr><td>Zernike 면의 추가 항</td><td><code>.zmx</code> <code>FZERNSAG</code>·<code>SZERNSAG</code> 의 <code>PARM</code>(짝수 비구면 항·외삽·편심)</td><td>쓰지 않고 경고합니다.</td></tr>
 <tr><td>근축 이상렌즈</td><td>paraxial / ideal lens 면</td><td>두께 0 의 평면 더미면으로 추적합니다.</td></tr>
@@ -241,7 +242,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>PSF</td><td>다색 회절 PSF</td><td>원점은 기준 파장의 주광선이고, 필드마다 최고값을 1 로 둡니다. Strehl 비는 같은 동공에 수차가 없을 때의 최고값에 대한 비이며, 계산 격자 사이에 있는 최고점까지 찾습니다.</td></tr>
 <tr><td>에너지 집중도</td><td>같은 PSF 를 원 안에서 적분</td><td>원 지름별 에너지 비율. 원 중심은 최소 지름(주광선을 지나는 Y선 위에서 탐색) · 무게중심 · 주광선 중에서 고릅니다. 회색 점선은 첫 필드의 회절 한계.</td></tr>
 <tr><td>RMS 파면 오차</td><td>출사동 기준구에 대한 광로차</td><td>상높이별로, 기울기를 뺀 RMS 를 각 파장의 파장 단위로 냅니다. 초점 이동을 반영합니다.</td></tr>
-<tr><td>상대 조도</td><td>실제 광속의 상측 투영 입체각</td><td>모든 개구를 통과하는 광속으로 계산해 파장 가중치로 평균하고, 가장 큰 값을 100 % 로 둡니다. 코팅과 흡수에 의한 손실은 넣지 않습니다.</td></tr>
+<tr><td>상대 조도</td><td>실제 광속의 출사동을 상점에서 본 투영 입체각</td><td>모든 개구를 통과하는 광속으로 계산해 파장 가중치로 평균하고, 가장 큰 값을 100 % 로 둡니다. 코팅과 흡수에 의한 손실은 넣지 않습니다.</td></tr>
 </tbody>
 </table>
 </div>
