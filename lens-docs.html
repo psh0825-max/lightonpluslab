@@ -7,7 +7,7 @@
 <meta name="description" content="Lens 가 CODE V .seq 와 Zemax .zmx 에서 읽는 명령, 지원하지 않는 기능과 그때의 대체 동작, 스팟·MTF·광선수차·필드곡률·왜곡의 계산 방식과 축·단위 규약, 유리 1,621종의 분산식까지 정리한 기술 문서." />
 <meta property="og:title" content="Lens 문서 — 지원 범위와 해석 규약" />
 <meta property="og:type" content="website" />
-<meta property="og:description" content="Lens 의 .seq / .zmx 지원 명령, 미지원 기능과 대체 동작, 해석 여섯 가지의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서." />
+<meta property="og:description" content="Lens 의 .seq / .zmx 지원 명령, 미지원 기능과 대체 동작, 해석 탭 일곱 개의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서." />
 <meta property="og:url" content="https://lightonpluslab.com/lens-docs.html" />
 <meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -24,7 +24,7 @@
 {"@context":"https://schema.org","@type":"TechArticle",
 "@id":"https://lightonpluslab.com/lens-docs.html#doc",
 "headline":"Lens 문서 — .seq / .zmx 지원 범위와 해석 규약",
-"description":"Lens 의 .seq / .zmx 지원 명령, 미지원 기능과 대체 동작, 해석 여섯 가지의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서.",
+"description":"Lens 의 .seq / .zmx 지원 명령, 미지원 기능과 대체 동작, 해석 탭 일곱 개의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서.",
 "inLanguage":"ko",
 "url":"https://lightonpluslab.com/lens-docs.html",
 "about":{"@type":"SoftwareApplication","name":"LightOn Lens",
@@ -130,7 +130,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <nav class="doc-toc" aria-label="목차"><h2>목차</h2><ol>
 <li><a href="#files">읽는 파일과 지원 명령</a></li>
 <li><a href="#limits">지원하지 않는 것</a></li>
-<li><a href="#analyses">해석 여섯 가지 — 계산 방식과 규약</a></li>
+<li><a href="#analyses">해석 일곱 탭 — 계산 방식과 규약</a></li>
 <li><a href="#glass">유리와 분산 데이터</a></li>
 <li><a href="#units">단위 · 상수 · 기본값</a></li>
 <li><a href="#glossary">용어</a></li>
@@ -153,7 +153,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>면</td><td><code>SO</code>, <code>S</code>, <code>STO</code>, <code>SI</code></td><td>물체면·일반면·조리개면·상면. <code>STO</code>가 값 없이 혼자 오면 직전 면을 조리개로 바꿉니다. <code>SI</code>가 없으면 마지막 면을 상면으로 쓰고 경고합니다.</td></tr>
 <tr><td>처방 수정</td><td><code>RDY</code>, <code>CUY</code>, <code>THI</code>, <code>GLA</code>, <code>K</code></td><td>면 지정자를 붙여 쓰는 LDM 편집(<code>THI S3 1.2</code>, <code>RDY S4 -10</code> 같은 꼴)도 읽습니다.</td></tr>
 <tr><td>비구면</td><td><code>ASP</code>, <code>A · B · C · D · E · F · G · H · J</code>, <code>K</code>, <code>CON</code>, <code>SPH</code></td><td>원뿔상수와 4차~20차 계수. 계수 이름에 <code>I</code>는 쓰지 않습니다.</td></tr>
-<tr><td>Forbes 비구면</td><td><code>SPS QBF + SCO</code></td><td><code>SCO</code>의 <code>K</code>, <code>NRADIUS</code>, <code>C3</code> 이상을 Q-bfs 계수로 읽습니다. 그 밖의 특수면 형식은 모두 기저 원뿔면으로만 추적합니다.</td></tr>
+<tr><td>특수면</td><td><code>SPS QBF</code>, <code>SPS XYP</code>, <code>SPS ZFR</code>, <code>SPS ZRN</code> + <code>SCO</code></td><td>Q-bfs 비구면, XY 다항식, Fringe Zernike(37항), 표준 Zernike(66항) 자유곡면. <code>SCO</code> 계수는 번호(<code>C1</code>…)와 이름(<code>K</code>, <code>NRADIUS</code>, <code>X2Y</code>, <code>ZF5</code>, <code>ZP7</code> 같은 꼴)을 모두 읽습니다. 정규화 반경(<code>NRADIUS</code>)의 1.2배 밖에서는 광선이 실패합니다 — XYP·ZRN 은 그 값이 0 이나 1 이 아닐 때만이고, <code>CIR EDG</code> 가 있으면 그 구경이 대신합니다. 그 밖의 특수면 형식은 기저 원뿔면으로만 추적합니다.</td></tr>
 <tr><td>구경</td><td><code>CIR</code>, <code>CIR EDG</code>, <code>CIR OBS</code>, <code>REX / REY</code>, <code>ELX / ELY</code></td><td>반구경·에지 두께 기준 구경·중심 차폐·사각 및 타원 구경.</td></tr>
 <tr><td>편심 · 기울기</td><td><code>XDE / YDE / ZDE</code>, <code>ADE / BDE / CDE</code>, <code>XOD / YOD / ZOD</code>, <code>ADX / ADY</code>, <code>DAR</code>, <code>BEN</code>, <code>REV</code>, <code>RET</code></td><td><code>RET</code>는 앞선 면의 국부 좌표계를 가져옵니다.</td></tr>
 <tr><td>기타 면 속성</td><td><code>SLB</code>, <code>PIM</code></td><td>면 이름표와 상면 위치 자동 보정.</td></tr>
@@ -171,6 +171,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <table class="doc">
 <thead><tr><th>분류</th><th>키워드</th></tr></thead>
 <tbody>
+<tr><td>면 형식</td><td><code>STANDARD</code>, <code>EVENASPH</code>, <code>ODDASPHE</code>, <code>QED_TYPE</code>(Q-bfs), <code>XPOLYNOM</code>, <code>FZERNSAG</code>, <code>SZERNSAG</code>, <code>COORDBRK</code></td></tr>
 <tr><td>면 처방</td><td><code>TYPE</code>, <code>CURV</code>, <code>CONI</code>, <code>PARM</code>, <code>DISZ</code>, <code>GLAS</code>, <code>STOP</code>, <code>DIAM</code>, <code>COMM</code>, <code>SLAB</code></td></tr>
 <tr><td>구경 · 차폐</td><td><code>CLAP</code>, <code>OBSC</code>, <code>SQAP</code>, <code>ELAP</code>, <code>SQOB</code>, <code>ELOB</code>, <code>FLAP</code>, <code>OBDC</code>, <code>UDAP</code>, <code>XDAT</code></td></tr>
 <tr><td>면 플래그</td><td><code>IGNR</code>, <code>HIDE</code>, <code>MIRR</code>, <code>COAT</code>, <code>FLAG</code>, <code>POPS</code>, <code>MEMA</code></td></tr>
@@ -197,7 +198,8 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tbody>
 <tr><td>비순차 추적</td><td><code>.zmx</code> 의 NSC 데이터</td><td>읽지 않습니다.</td></tr>
 <tr><td>다중 구성</td><td>Zemax multi-configuration</td><td>파일에 저장된 상태 그대로만 불러옵니다.</td></tr>
-<tr><td>특수면</td><td>회절면(DOE·HOE), 자유곡면(XYP·ZFR·ODD), 사용자 정의면(UDS), Q-con(QCN)</td><td>기저 원뿔면으로만 추적하고 면마다 경고합니다.</td></tr>
+<tr><td>특수면</td><td>회절면(DOE·HOE), 사용자 정의면(UDS), Q-con(QCN), <code>.seq</code> 의 홀수차 비구면(ODD), 확장 Fringe Zernike(ZFE)</td><td>기저 원뿔면으로만 추적하고 면마다 경고합니다.</td></tr>
+<tr><td>Zernike 면의 추가 항</td><td><code>.zmx</code> <code>FZERNSAG</code>·<code>SZERNSAG</code> 의 <code>PARM</code>(짝수 비구면 항·외삽·편심)</td><td>쓰지 않고 경고합니다.</td></tr>
 <tr><td>근축 이상렌즈</td><td>paraxial / ideal lens 면</td><td>두께 0 의 평면 더미면으로 추적합니다.</td></tr>
 <tr><td>전역 좌표</td><td><code>GLB</code></td><td>두께만으로 면을 놓습니다.</td></tr>
 <tr><td>굴절률 분포 유리</td><td>GRIN 사설 유리(<code>SEL</code>·<code>AXG</code>·<code>URN</code>·<code>LUN</code>·<code>SPG</code>·<code>MAX</code>·<code>UDG</code>)</td><td>읽지 않습니다.</td></tr>
@@ -219,19 +221,27 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <div class="doc-note"><p>최적화와 공차 해석은 들어 있지 않습니다. Lens 는 이미 있는 설계를 열어 읽고 고쳐 보는 도구입니다. 최적화·공차·고스트 해석이 필요한 작업은 CODE V 나 OpticStudio 에서 하시는 것이 맞습니다.</p></div>
 </div></section>
 <section class="doc-sec" id="analyses"><div class="wrap">
-<h2>해석 여섯 가지 — 계산 방식과 규약</h2>
+<h2>해석 일곱 탭 — 계산 방식과 규약</h2>
 <p class="lede">같은 이름의 그래프라도 도구마다 기준이 다릅니다. RMS 를 반경으로 내는지 직경으로 내는지, 왜곡을 f·tanθ 로 보는지 f·θ 로 보는지에 따라 값이 2배, 혹은 몇 % 씩 갈립니다. Lens 가 쓰는 기준은 다음과 같습니다.</p>
 <div class="doc-tw">
 <table class="doc">
 <thead><tr><th>해석</th><th>계산 방식</th><th>규약</th></tr></thead>
 <tbody>
 <tr><td>단면 · 1차 특성</td><td>근축 추적과 실광선 추적</td><td>렌즈 단면과 광선 경로를 그리고 초점거리·F수 같은 1차량을 함께 냅니다. 값을 고치면 같은 자리에서 다시 계산합니다.</td></tr>
-<tr><td>스팟 다이어그램</td><td>실광선 추적</td><td>기준 파장의 주광선을 원점으로 삼습니다. RMS 는 중심(centroid) 기준 <strong>직경</strong>으로 냅니다 — 반경으로 보고하는 도구와 비교할 때는 2배 차이를 두고 보셔야 합니다.</td></tr>
+<tr><td>스팟 다이어그램</td><td>실광선 추적</td><td>기준 파장의 주광선을 원점으로 삼습니다. RMS 는 중심(centroid) 기준 <strong>직경</strong>으로 냅니다 — 반경으로 보고하는 도구와 비교할 때는 2배 차이를 두고 보셔야 합니다. 아래의 상높이별 RMS 직경 곡선도 같은 기준이며, 모든 파장과 초점 이동을 반영합니다.</td></tr>
 <tr><td>MTF</td><td>다색 회절 MTF</td><td>동공 함수를 상공간 방향코사인으로 리샘플한 뒤, 정규좌표계에서 직접 자기상관을 취해 OTF 를 구합니다. FFT 격자에 얹지 않으므로 수 파장 이상 큰 수차에서도 위상 평균으로 변조가 깎이지 않습니다. 회절 한계는 같은 자기상관을 위상 없이 계산한 값이라 같은 격자·같은 동공에서 나온 비교 기준입니다. 접선(Y)과 시상(X)을 따로 냅니다.</td></tr>
-<tr><td>스루포커스 MTF</td><td>같은 회절 MTF를 초점 위치별로</td><td>주파수 하나를 고르고 초점 이동 범위를 지정합니다. 화면의 초점 이동 프리셋은 ±5 · ±10 · ±20 · ±50 · ±100 µm 입니다.</td></tr>
+<tr><td>상높이별 MTF</td><td>같은 회절 MTF를 0 부터 최대 필드까지</td><td>고른 주파수마다 접선(T)은 실선, 시상(S)은 점선. 초점 이동을 반영합니다.</td></tr>
+<tr><td>스루포커스 MTF</td><td>같은 회절 MTF를 초점 위치별로</td><td>주파수 하나를 고르고 초점 이동 범위를 ± 값으로 직접 넣습니다(기본 ±0.05 mm).</td></tr>
 <tr><td>광선 수차</td><td>실광선 추적</td><td>왼쪽은 접선(Y) — 동공 좌표 P<sub>y</sub> 에 대한 ε<sub>y</sub>, 오른쪽은 시상(X) — P<sub>x</sub> 에 대한 ε<sub>x</sub>. 단위는 µm.</td></tr>
 <tr><td>필드 곡률</td><td>비점수차 필드 곡선</td><td>기준 파장에서 T(접선)는 실선, S(시상)는 점선. 단위는 mm.</td></tr>
 <tr><td>왜곡</td><td>두 기준을 함께</td><td>f·tanθ 기준은 실선, f·θ 기준은 점선, 단위는 %. 광각 렌즈에서는 두 기준의 값이 크게 갈리므로 어느 쪽을 보고 있는지 확인하셔야 합니다.</td></tr>
+<tr><td>왜곡 격자</td><td>기준 파장의 실제 주광선</td><td>대각이 최대 필드인 직사각형(1:1 · 4:3 · 16:9)에 근축 이상 격자(회색)와 실제 주광선이 닿는 위치(색)를 겹쳐 그립니다.</td></tr>
+<tr><td>배율 색수차</td><td>파장별 실제 주광선</td><td>각 파장의 주광선 상높이에서 기준 파장 주광선 상높이를 뺀 값. 단위는 µm.</td></tr>
+<tr><td>축상 색수차</td><td>파장별 근축 추적</td><td>각 파장의 근축 초점 위치를 기준 파장 초점 대비로. 단위는 µm.</td></tr>
+<tr><td>PSF</td><td>다색 회절 PSF</td><td>원점은 기준 파장의 주광선이고, 필드마다 최고값을 1 로 둡니다. Strehl 비는 같은 동공에 수차가 없을 때의 최고값에 대한 비이며, 계산 격자 사이에 있는 최고점까지 찾습니다.</td></tr>
+<tr><td>에너지 집중도</td><td>같은 PSF 를 원 안에서 적분</td><td>원 지름별 에너지 비율. 원 중심은 최소 지름(주광선을 지나는 Y선 위에서 탐색) · 무게중심 · 주광선 중에서 고릅니다. 회색 점선은 첫 필드의 회절 한계.</td></tr>
+<tr><td>RMS 파면 오차</td><td>출사동 기준구에 대한 광로차</td><td>상높이별로, 기울기를 뺀 RMS 를 각 파장의 파장 단위로 냅니다. 초점 이동을 반영합니다.</td></tr>
+<tr><td>상대 조도</td><td>실제 광속의 상측 투영 입체각</td><td>모든 개구를 통과하는 광속으로 계산해 파장 가중치로 평균하고, 가장 큰 값을 100 % 로 둡니다. 코팅과 흡수에 의한 손실은 넣지 않습니다.</td></tr>
 </tbody>
 </table>
 </div>
@@ -275,6 +285,9 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>광선 수차 단위</td><td>µm</td></tr>
 <tr><td>필드 곡선 단위</td><td>mm</td></tr>
 <tr><td>왜곡 단위</td><td>%</td></tr>
+<tr><td>색수차 단위</td><td>µm</td></tr>
+<tr><td>RMS 파면 오차 단위</td><td>각 파장의 파장(λ)</td></tr>
+<tr><td>상대 조도</td><td>가장 큰 값 = 100 %</td></tr>
 </tbody>
 </table>
 </div>
@@ -296,6 +309,8 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <dt>CIR OBS</dt><dd>면 중심의 차폐 반지름.</dd>
 <dt>K</dt><dd>원뿔상수(conic constant). 0 이면 구면, −1 이면 포물면.</dd>
 <dt>A … J</dt><dd>비구면 짝수차 계수. 4차부터 20차까지이며, 계수 이름에 <code>I</code> 는 쓰지 않습니다.</dd>
+<dt>XYP / ZFR / ZRN</dt><dd>자유곡면 형식. XY 다항식(xᵐyⁿ, 10차까지) / Fringe Zernike / 표준 Zernike 항을 기저 원뿔면에 더합니다.</dd>
+<dt>NRADIUS</dt><dd>자유곡면·Q 비구면 계수의 정규화 반경. 계수는 x/NRADIUS, y/NRADIUS 에 곱해집니다.</dd>
 <dt>PIM</dt><dd>상면 위치를 근축 상면에 자동으로 맞춥니다.</dd>
 <dt>SLB</dt><dd>면 이름표(surface label).</dd>
 <dt>T / S</dt><dd>접선(tangential) / 시상(sagittal). 필드 곡선에서 실선 / 점선.</dd>
