@@ -6,6 +6,7 @@ HEAD = """<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
+<meta name="google-adsense-account" content="ca-pub-7180935400084577">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{title} — LightOn Plus Lab</title>
 <meta name="description" content="{desc}" />
@@ -643,7 +644,10 @@ def stamp_asset_versions():
             ver[asset] = hashlib.sha1(f.read()).hexdigest()[:8]
 
     touched = 0
-    for path in sorted(glob.glob("*.html")):
+    targets = sorted(glob.glob("*.html"))
+    for d in ("ko", "ja", "zh"):
+        targets += sorted(glob.glob(d + "/*.html"))
+    for path in targets:
         with io.open(path, encoding="utf-8") as f:
             src = f.read()
         out = src
@@ -664,7 +668,7 @@ def stamp_asset_versions():
 with io.open("blog.html", "w", encoding="utf-8") as f:
     f.write(list_html())
 print("blog.html")
-update_index_cards()
+update_index_cards("_src/index.html")
 for a in ARTICLES:
     with io.open(a["slug"] + ".html", "w", encoding="utf-8") as f:
         f.write(article_html(a))
@@ -745,7 +749,7 @@ def enforce_unpublished():
         added.append(page)
 
     linked = []
-    for path in sorted(glob.glob("*.html")):
+    for path in sorted(glob.glob("*.html")) + sorted(glob.glob("_src/*.html")):
         if path in UNPUBLISHED:
             continue
         with io.open(path, encoding="utf-8") as f:
@@ -814,23 +818,57 @@ def write_sitemap():
             if p not in UNPUBLISHED]
     dates = resolve_lastmod(seed)
     moved = [p for p, _ in seed if dates[p] == datetime.date.today().isoformat()]
+    from i18n_home import LANG_META
+    from build_i18n import PAGES as I18N_PAGES, ORDER as I18N_ORDER, DEFAULT as I18N_DEFAULT
+
+    def url_of(page, code):
+        d = LANG_META[code]["dir"]
+        return "https://lightonpluslab.com/" + (d if page == "index.html" else d + page)
+
+    def alts_of(page):
+        rows = ['    <xhtml:link rel="alternate" hreflang="%s" href="%s" />'
+                % (LANG_META[c]["hreflang"], url_of(page, c)) for c in I18N_ORDER]
+        rows.append('    <xhtml:link rel="alternate" hreflang="x-default" href="%s" />'
+                    % url_of(page, I18N_DEFAULT))
+        return "\n".join(rows)
+
+    # sitemap 의 빈 경로("")는 index.html 을 뜻한다
+    def as_page(p):
+        return "index.html" if p == "" else p
+
     rows = []
     for p, _ in seed:
+        extra = "\n" + alts_of(as_page(p)) if as_page(p) in I18N_PAGES else ""
         rows.append(f"""  <url>
-    <loc>https://lightonpluslab.com/{p}</loc>
+    <loc>https://lightonpluslab.com/{p}</loc>{extra}
     <lastmod>{dates[p]}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>{'1.0' if p == '' else '0.3' if p in LEGAL_PAGES else '0.7'}</priority>
   </url>""")
+    trans = 0
+    for page in I18N_PAGES:
+        root_key = "" if page == "index.html" else page
+        for c in I18N_ORDER:
+            if c == I18N_DEFAULT:
+                continue            # 기본 언어는 위의 seed 에 이미 들어 있다
+            trans += 1
+            rows.append(f"""  <url>
+    <loc>{url_of(page, c)}</loc>
+{alts_of(page)}
+    <lastmod>{dates[root_key]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>{'0.9' if page == 'index.html' else '0.6'}</priority>
+  </url>""")
     urls = "\n".join(rows)
     with io.open("sitemap.xml", "w", encoding="utf-8") as f:
         f.write(f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 {urls}
 </urlset>
 """)
-    print("sitemap.xml (%d URL, 오늘 갱신 %d개%s)"
-          % (len(seed), len(moved),
+    print("sitemap.xml (%d URL · 번역판 %d, 오늘 갱신 %d개%s)"
+          % (len(seed) + trans, trans, len(moved),
              (": " + ", ".join(p or "/" for p in moved)) if moved else ""))
 
 # RSS feed
@@ -864,5 +902,6 @@ with io.open("feed.xml", "w", encoding="utf-8") as f:
 print("feed.xml")
 
 enforce_unpublished()
+import build_i18n; build_i18n.build()
 stamp_asset_versions()
 write_sitemap()
