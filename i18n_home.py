@@ -9,8 +9,8 @@
 LANGS = ["en", "ja", "zh"]
 
 LANG_META = {
-    "ko": {"label": "한국어", "short": "KO", "html": "ko", "dir": "ko/", "hreflang": "ko"},
-    "en": {"label": "English", "short": "EN", "html": "en", "dir": "", "hreflang": "en"},
+    "ko": {"label": "한국어", "short": "KO", "html": "ko", "dir": "", "hreflang": "ko"},
+    "en": {"label": "English", "short": "EN", "html": "en", "dir": "en/", "hreflang": "en"},
     "ja": {"label": "日本語", "short": "JA", "html": "ja", "dir": "ja/", "hreflang": "ja"},
     "zh": {"label": "中文", "short": "ZH", "html": "zh-Hans", "dir": "zh/", "hreflang": "zh-Hans"},
 }

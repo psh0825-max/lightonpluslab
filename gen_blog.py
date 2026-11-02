@@ -645,7 +645,7 @@ def stamp_asset_versions():
 
     touched = 0
     targets = sorted(glob.glob("*.html"))
-    for d in ("ko", "ja", "zh"):
+    for d in ("en", "ja", "zh"):
         targets += sorted(glob.glob(d + "/*.html"))
     for path in targets:
         with io.open(path, encoding="utf-8") as f:
