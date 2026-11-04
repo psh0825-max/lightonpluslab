@@ -4,11 +4,11 @@
 <meta charset="utf-8" />
 <meta name="google-adsense-account" content="ca-pub-7180935400084577">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lens 문서 — .seq / .zmx 지원 범위와 해석 규약 — LightOn Plus Lab</title>
-<meta name="description" content="Lens 가 CODE V .seq 와 Zemax .zmx 에서 읽는 명령, 지원하지 않는 기능과 그때의 대체 동작, 스팟·MTF·광선수차·필드곡률·왜곡의 계산 방식과 축·단위 규약, 유리 1,621종의 분산식까지 정리한 기술 문서." />
+<title>Lens 문서 — .seq / .zmx / .csv 지원 범위와 해석 규약 — LightOn Plus Lab</title>
+<meta name="description" content="Lens 가 CODE V .seq 와 Zemax .zmx, CSV 렌즈 표에서 읽는 항목, 지원하지 않는 기능과 그때의 대체 동작, 스팟·MTF·광선수차·필드곡률·왜곡·Seidel 수차의 계산 방식과 축·단위 규약, 유리 1,621종의 분산식까지 정리한 기술 문서." />
 <meta property="og:title" content="Lens 문서 — 지원 범위와 해석 규약" />
 <meta property="og:type" content="website" />
-<meta property="og:description" content="Lens 의 .seq / .zmx 지원 명령, 미지원 기능과 대체 동작, 해석 탭 일곱 개의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서." />
+<meta property="og:description" content="Lens 의 .seq / .zmx / .csv 지원 범위, 미지원 기능과 대체 동작, 해석 탭 여덟 개의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서." />
 <meta property="og:url" content="https://lightonpluslab.com/lens-docs.html" />
 <meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -24,8 +24,8 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle",
 "@id":"https://lightonpluslab.com/lens-docs.html#doc",
-"headline":"Lens 문서 — .seq / .zmx 지원 범위와 해석 규약",
-"description":"Lens 의 .seq / .zmx 지원 명령, 미지원 기능과 대체 동작, 해석 탭 일곱 개의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서.",
+"headline":"Lens 문서 — .seq / .zmx / .csv 지원 범위와 해석 규약",
+"description":"Lens 의 .seq / .zmx / .csv 지원 범위, 미지원 기능과 대체 동작, 해석 탭 여덟 개의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서.",
 "inLanguage":"ko",
 "url":"https://lightonpluslab.com/lens-docs.html",
 "about":{"@type":"SoftwareApplication","name":"LightOn Lens",
@@ -127,11 +127,11 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <section class="doc-hero"><div class="wrap">
 <p class="doc-kicker">Lens · 기술 문서</p>
 <h1>무엇을 읽고, 어떻게 계산하고, 무엇을 못 하는가</h1>
-<p>Lens 는 CODE V 시퀀스 파일(<code>.seq</code>)과 Zemax OpticStudio 파일(<code>.zmx</code>)을 브라우저에서 열어 해석합니다. 해석 도구는 지원 범위를 모르면 쓸 수 없습니다 — 읽지 못한 명령을 조용히 넘기면 화면의 숫자가 설계와 다른 렌즈의 숫자가 되기 때문입니다. 이 문서는 읽는 명령, 읽지 않는 기능과 그때 대신 하는 일, 그래프마다의 축·단위·기준을 전부 적어 둔 것입니다.</p>
+<p>Lens 는 CODE V 시퀀스 파일(<code>.seq</code>), Zemax OpticStudio 파일(<code>.zmx</code>), 렌즈 표(<code>.csv</code>)를 브라우저에서 열어 해석합니다. 해석 도구는 지원 범위를 모르면 쓸 수 없습니다 — 읽지 못한 명령을 조용히 넘기면 화면의 숫자가 설계와 다른 렌즈의 숫자가 되기 때문입니다. 이 문서는 읽는 명령, 읽지 않는 기능과 그때 대신 하는 일, 그래프마다의 축·단위·기준을 전부 적어 둔 것입니다.</p>
 <nav class="doc-toc" aria-label="목차"><h2>목차</h2><ol>
 <li><a href="#files">읽는 파일과 지원 명령</a></li>
 <li><a href="#limits">지원하지 않는 것</a></li>
-<li><a href="#analyses">해석 일곱 탭 — 계산 방식과 규약</a></li>
+<li><a href="#analyses">해석 여덟 탭 — 계산 방식과 규약</a></li>
 <li><a href="#glass">유리와 분산 데이터</a></li>
 <li><a href="#units">단위 · 상수 · 기본값</a></li>
 <li><a href="#glossary">용어</a></li>
@@ -139,7 +139,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 </div></section>
 <section class="doc-sec" id="files"><div class="wrap">
 <h2>읽는 파일과 지원 명령</h2>
-<p class="lede">두 형식 모두 텍스트 파일입니다. 화면에 끌어다 놓거나 붙여넣으면 바로 파싱합니다. 파싱과 이후 모든 계산은 브라우저 안에서 일어나고, 파일은 서버로 올라가지 않습니다.</p>
+<p class="lede">세 형식 모두 텍스트 파일입니다. 화면에 끌어다 놓거나 파일 선택으로 열면 바로 파싱하고, 렌즈 표는 붙여넣어도 됩니다. 파싱과 이후 모든 계산은 브라우저 안에서 일어나고, 파일은 서버로 올라가지 않습니다.</p>
 <h3>CODE V 시퀀스 <code>.seq</code></h3>
 <p>면 지정자는 <code>SO</code>·<code>S1</code>·<code>S2</code>…·<code>SI</code> 꼴을 씁니다. 아래 명령 외의 줄은 건너뜁니다.</p>
 <div class="doc-tw">
@@ -154,7 +154,8 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>면</td><td><code>SO</code>, <code>S</code>, <code>STO</code>, <code>SI</code></td><td>물체면·일반면·조리개면·상면. <code>STO</code>가 값 없이 혼자 오면 직전 면을 조리개로 바꿉니다. <code>SI</code>가 없으면 마지막 면을 상면으로 쓰고 경고합니다.</td></tr>
 <tr><td>처방 수정</td><td><code>RDY</code>, <code>CUY</code>, <code>THI</code>, <code>GLA</code>, <code>K</code></td><td>면 지정자를 붙여 쓰는 LDM 편집(<code>THI S3 1.2</code>, <code>RDY S4 -10</code> 같은 꼴)도 읽습니다.</td></tr>
 <tr><td>비구면</td><td><code>ASP</code>, <code>A · B · C · D · E · F · G · H · J</code>, <code>K</code>, <code>CON</code>, <code>SPH</code></td><td>원뿔상수와 4차~20차 계수. 계수 이름에 <code>I</code>는 쓰지 않습니다.</td></tr>
-<tr><td>특수면</td><td><code>SPS QBF</code>, <code>SPS XYP</code>, <code>SPS ZFR</code>, <code>SPS ZRN</code> + <code>SCO</code></td><td>Q-bfs 비구면, XY 다항식, Fringe Zernike(37항), 표준 Zernike(66항) 자유곡면. <code>SCO</code> 계수는 번호(<code>C1</code>…)와 이름(<code>K</code>, <code>NRADIUS</code>, <code>X2Y</code>, <code>ZF5</code>, <code>ZP7</code> 같은 꼴)을 모두 읽습니다. 정규화 반경(<code>NRADIUS</code>)의 1.2배 밖에서는 광선이 실패합니다 — XYP·ZRN 은 그 값이 0 이나 1 이 아닐 때만이고, <code>CIR EDG</code> 가 있으면 그 구경이 대신합니다. 그 밖의 특수면 형식은 기저 원뿔면으로만 추적합니다.</td></tr>
+<tr><td>특수면</td><td><code>SPS QBF</code>, <code>SPS QCN</code>, <code>SPS ODD</code>, <code>SPS XYP</code>, <code>SPS ZFR</code>, <code>SPS ZRN</code>, <code>SPS ZFE</code> + <code>SCO</code></td><td>Q-bfs 비구면, Q-con 비구면, 홀수차 비구면(r¹~r³⁰), XY 다항식, Fringe Zernike(37항), 표준 Zernike(66항), 확장 Fringe Zernike 자유곡면. <code>SCO</code> 계수는 번호(<code>C1</code>…)와 이름(<code>K</code>, <code>NRADIUS</code>, <code>X2Y</code>, <code>ZF5</code>, <code>ZP7</code>, <code>QC4</code>, <code>AR3</code>, <code>ZFE9</code> 같은 꼴)을 모두 읽습니다. ZFE 는 축외 기저면 각도(<code>W</code>)와 x·y 오프셋(<code>XOFFSET</code>, <code>YOFFSET</code>)도 읽습니다. 정규화 반경(<code>NRADIUS</code>)의 1.2배 밖에서는 광선이 실패합니다 — XYP·ZRN·ODD 는 그 값이 0 이나 1 이 아닐 때만이고, <code>CIR EDG</code> 가 있으면 그 구경이 대신합니다. 그 밖의 특수면 형식은 기저 원뿔면으로만 추적합니다.</td></tr>
+<tr><td>회절면</td><td><code>DIF DOE</code>, <code>DIF HOE</code>, <code>HOR</code>, <code>HWL</code>, <code>HCT</code>, <code>HCO</code>, <code>HX1 · HY1 · HZ1</code>, <code>HX2 · HY2 · HZ2</code>, <code>HI1 · HI2</code>, <code>HV1 · HV2</code></td><td>회절 차수, 구성 파장(없으면 기준 파장), 위상 다항식(<code>HCT</code> 의 <code>R</code>·<code>AR</code>·<code>XY</code>·<code>AXY</code>·<code>XAY</code>·<code>XYA</code>)과 HOE 의 두 구성 점. 회절면의 굴절력은 1차 특성에도 들어가고, 저장한 <code>.seq</code> 에도 그대로 남습니다.</td></tr>
 <tr><td>구경</td><td><code>CIR</code>, <code>CIR EDG</code>, <code>CIR OBS</code>, <code>REX / REY</code>, <code>ELX / ELY</code></td><td>반구경·에지 두께 기준 구경·중심 차폐·사각 및 타원 구경.</td></tr>
 <tr><td>편심 · 기울기</td><td><code>XDE / YDE / ZDE</code>, <code>ADE / BDE / CDE</code>, <code>XOD / YOD / ZOD</code>, <code>ADX / ADY</code>, <code>DAR</code>, <code>BEN</code>, <code>REV</code>, <code>RET</code></td><td><code>RET</code>는 앞선 면의 국부 좌표계를 가져옵니다.</td></tr>
 <tr><td>기타 면 속성</td><td><code>SLB</code>, <code>PIM</code></td><td>면 이름표와 상면 위치 자동 보정.</td></tr>
@@ -185,10 +186,27 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 </tbody>
 </table>
 </div>
+<h3>렌즈 표 <code>.csv</code> · <code>.tsv</code></h3>
+<p>한 줄이 면 하나인 표입니다. 파일로 열거나, 머리 메뉴의 <strong>예제 ▾ → 표 붙여넣기 (CSV)</strong> 창에 엑셀에서 복사한 표를 넣습니다. 칸 구분은 탭, 세미콜론, 쉼표, 공백 순서로 찾고, 탭이나 세미콜론으로 나눈 표는 소수점 쉼표(<code>1,5168</code>)도 읽습니다. 머리글이 없으면 면 번호(있을 때), 반경, 두께, 굴절률, 아베수, 반구경 순서로 읽습니다. <code>.txt</code> 파일은 <code>.seq</code> 로 읽히지 않으면 표로 읽습니다.</p>
+<div class="doc-tw">
+<table class="doc">
+<thead><tr><th>칸</th><th>머리글 예</th><th>읽는 내용</th></tr></thead>
+<tbody>
+<tr><td>면 번호</td><td><code>no</code>, <code>surf</code>, <code>면</code>, <code>번호</code></td><td>칸에 <code>STO</code> 나 <code>조리개</code> 가 있으면 그 면이 조리개입니다(없으면 첫 면). <code>OBJ</code>·<code>물체</code> 줄은 물체 거리로, <code>IMG</code>·<code>상면</code> 줄은 상면으로 읽습니다.</td></tr>
+<tr><td>반경</td><td><code>R</code>, <code>radius</code>, <code>곡률반경</code>, <code>반경</code></td><td><code>inf</code>, <code>∞</code>, <code>평면</code> 은 평면입니다.</td></tr>
+<tr><td>두께</td><td><code>d</code>, <code>t</code>, <code>thickness</code>, <code>두께</code>, <code>간격</code></td><td>마지막 두께를 비우면 근축 상면까지의 거리로 둡니다.</td></tr>
+<tr><td>굴절률 · 아베수</td><td><code>nd</code>, <code>vd</code>, <code>굴절률</code>, <code>아베수</code></td><td>두 값으로 모델 유리를 만듭니다. 비어 있거나 1 이면 공기이고, 아베수가 없으면 분산이 없는 유리로 둡니다.</td></tr>
+<tr><td>유리</td><td><code>glass</code>, <code>material</code>, <code>유리</code>, <code>재질</code></td><td>카탈로그 유리 이름. <code>air</code>·<code>공기</code> 는 공기, <code>mirror</code>·<code>거울</code> 은 반사면입니다.</td></tr>
+<tr><td>반구경</td><td><code>SD</code>, <code>CIR</code>, <code>유효반경</code>, <code>반구경</code></td><td><code>CIR</code> 로 읽습니다.</td></tr>
+<tr><td>비구면</td><td><code>K</code>, <code>A4</code> … <code>A20</code></td><td>원뿔상수와 4차~20차 계수.</td></tr>
+</tbody>
+</table>
+</div>
+<p>조리개·필드·파장은 <code># FNO 2.8</code>, <code># YAN 0 10 20</code>, <code># WL 486 588 656</code> 같은 줄로 정합니다. 쓸 수 있는 이름은 <code>FNO</code>, <code>EPD</code>, <code>NA</code>, <code>NAO</code>, <code>WL</code>, <code>REF</code>, <code>WTW</code>, <code>YAN</code>, <code>XAN</code>, <code>YOB</code>, <code>XOB</code>, <code>YIM</code>, <code>XIM</code>, <code>DIM</code>, <code>TITLE</code> 입니다. 조리개나 필드가 없으면 F/4 와 축상 필드로 열고 경고합니다. 파장이 없으면 F·d·C 세 파장에 기준은 d 입니다. 표로 연 렌즈도 <code>.seq</code> 로 저장할 수 있습니다.</p>
 <h3>파일 인코딩</h3>
 <p>OpticStudio 가 내보낸 <code>.zmx</code> 는 UTF-16 인 경우가 많고, BOM 이 없는 파일도 있습니다. 다음 순서로 판별합니다.</p>
 <ul><li>BOM 이 있으면 UTF-16 LE / BE</li><li>BOM 이 없어도 바이트의 홀수 또는 짝수 자리가 0 으로 채워져 있으면 UTF-16 로 봅니다</li><li>그다음 UTF-8 (엄격 모드)</li><li>그래도 실패하면 EUC-KR, 마지막으로 Latin-1</li></ul>
-<p>오래된 한글 주석이 들어간 <code>.seq</code> 가 EUC-KR 로 저장돼 있어도 제목과 면 이름표가 깨지지 않습니다.</p>
+<p>오래된 한글 주석이 들어간 <code>.seq</code> 가 EUC-KR 로 저장돼 있어도 제목과 면 이름표가 깨지지 않습니다. 엑셀이 한글 머리글로 저장한 <code>.csv</code> 도 같은 순서로 읽습니다.</p>
 <div class="doc-note"><p>어느 형식이든, 읽지 못한 항목이나 근사로 바꾼 항목은 파일을 열 때 경고로 모아 보여 줍니다. 경고가 비어 있으면 파일의 모든 내용이 그대로 들어왔다는 뜻입니다.</p></div>
 </div></section>
 <section class="doc-sec" id="limits"><div class="wrap">
@@ -200,7 +218,9 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tbody>
 <tr><td>비순차 추적</td><td><code>.zmx</code> 의 NSC 데이터</td><td>읽지 않습니다.</td></tr>
 <tr><td>멀티 컨피그 일부</td><td>위 목록에 없는 <code>.zmx</code> 멀티 컨피그 연산자(면 무시, 자유곡면 계수 등)</td><td>읽지 않고 경고합니다. 컨피그마다 다른 온도·기압은 계산에 넣지 않습니다.</td></tr>
-<tr><td>특수면</td><td>회절면(DOE·HOE), 사용자 정의면(UDS), Q-con(QCN), <code>.seq</code> 의 홀수차 비구면(ODD), 확장 Fringe Zernike(ZFE)</td><td>기저 원뿔면으로만 추적하고 면마다 경고합니다.</td></tr>
+<tr><td>특수면</td><td>사용자 정의면(UDS), 선형 격자(<code>DIF GRT</code>), 사용자 정의 위상(<code>HCT USR</code>·<code>US2</code>)</td><td>기저 원뿔면으로만 추적하고 면마다 경고합니다.</td></tr>
+<tr><td>회절 효율</td><td>회절면의 블레이즈 데이터와 지정하지 않은 차수</td><td>읽지 않습니다. 광선은 지정한 차수로만 진행하고 효율은 100 % 로 계산합니다.</td></tr>
+<tr><td>엑셀 파일</td><td><code>.xlsx</code></td><td>직접 열지 않습니다. 표를 복사해 붙여넣거나 CSV 로 저장해 엽니다.</td></tr>
 <tr><td>Zernike 면의 추가 항</td><td><code>.zmx</code> <code>FZERNSAG</code>·<code>SZERNSAG</code> 의 <code>PARM</code>(짝수 비구면 항·외삽·편심)</td><td>쓰지 않고 경고합니다.</td></tr>
 <tr><td>근축 이상렌즈</td><td>paraxial / ideal lens 면</td><td>두께 0 의 평면 더미면으로 추적합니다.</td></tr>
 <tr><td>전역 좌표</td><td><code>GLB</code></td><td>두께만으로 면을 놓습니다.</td></tr>
@@ -223,7 +243,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <div class="doc-note"><p>최적화와 공차 해석은 들어 있지 않습니다. Lens 는 이미 있는 설계를 열어 읽고 고쳐 보는 도구입니다. 최적화·공차·고스트 해석이 필요한 작업은 CODE V 나 OpticStudio 에서 하시는 것이 맞습니다.</p></div>
 </div></section>
 <section class="doc-sec" id="analyses"><div class="wrap">
-<h2>해석 일곱 탭 — 계산 방식과 규약</h2>
+<h2>해석 여덟 탭 — 계산 방식과 규약</h2>
 <p class="lede">같은 이름의 그래프라도 도구마다 기준이 다릅니다. RMS 를 반경으로 내는지 직경으로 내는지, 왜곡을 f·tanθ 로 보는지 f·θ 로 보는지에 따라 값이 2배, 혹은 몇 % 씩 갈립니다. Lens 가 쓰는 기준은 다음과 같습니다.</p>
 <div class="doc-tw">
 <table class="doc">
@@ -244,6 +264,8 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>에너지 집중도</td><td>같은 PSF 를 원 안에서 적분</td><td>원 지름별 에너지 비율. 원 중심은 최소 지름(주광선을 지나는 Y선 위에서 탐색) · 무게중심 · 주광선 중에서 고릅니다. 회색 점선은 첫 필드의 회절 한계.</td></tr>
 <tr><td>RMS 파면 오차</td><td>출사동 기준구에 대한 광로차</td><td>상높이별로, 기울기를 뺀 RMS 를 각 파장의 파장 단위로 냅니다. 초점 이동을 반영합니다.</td></tr>
 <tr><td>상대 조도</td><td>실제 광속의 출사동을 상점에서 본 투영 입체각</td><td>모든 개구를 통과하는 광속으로 계산해 파장 가중치로 평균하고, 가장 큰 값을 100 % 로 둡니다. 기본값은 반사·흡수 손실을 넣지 않으며, 반사 손실을 ‘코팅 없음’이나 ‘λ/4 MgF₂ 단층 코팅’(공기 면 굴절률 1.38 막, 접합면 접착제 1.5585)으로 고르면 편광 없는 빛의 면 반사 손실을 넣은 값과 필드별 평균 투과율도 보여 줍니다. ‘유리 흡수’를 켜면 제조사 카탈로그의 내부 투과율에서 얻은 소광 계수(refractiveindex.info, CC0)로 유리 속 흡수도 뺍니다(데이터가 없는 개인·모델 유리와 플라스틱은 흡수 없음).</td></tr>
+<tr><td>Seidel 3차 수차</td><td>근축 주변 광선과 주광선에서 구한 면별 기여와 합</td><td>전체 구경, 가장 큰 필드, 기준 파장 기준입니다. S I~S V 와 색수차 합 C I·C II(쓰는 파장 중 가장 짧은 것과 가장 긴 것의 차이)를 면마다 내고, 합을 근축 상면의 횡수차와 파면 수차로도 보여 줍니다. 틸트·디센터, 회절면, 축외 기저면, r·r³ 항이 있는 면, 회전 대칭이 아닌 면이 있으면 표시하지 않습니다.</td></tr>
+<tr><td>풋프린트</td><td>기준 파장의 실제 광속</td><td>각 필드의 광속 테두리를 그 면의 좌표로 그립니다. 점선은 그 면의 개구이고, 사용률은 광속 최대 반경 ÷ 유효 반경입니다.</td></tr>
 </tbody>
 </table>
 </div>
@@ -290,6 +312,8 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>색수차 단위</td><td>µm</td></tr>
 <tr><td>RMS 파면 오차 단위</td><td>각 파장의 파장(λ)</td></tr>
 <tr><td>상대 조도</td><td>가장 큰 값 = 100 %</td></tr>
+<tr><td>Seidel 합 · 횡수차</td><td>치수 단위</td></tr>
+<tr><td>파면 수차(W040 등)</td><td>기준 파장(λ)</td></tr>
 </tbody>
 </table>
 </div>
@@ -311,14 +335,20 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <dt>CIR OBS</dt><dd>면 중심의 차폐 반지름.</dd>
 <dt>K</dt><dd>원뿔상수(conic constant). 0 이면 구면, −1 이면 포물면.</dd>
 <dt>A … J</dt><dd>비구면 짝수차 계수. 4차부터 20차까지이며, 계수 이름에 <code>I</code> 는 쓰지 않습니다.</dd>
-<dt>XYP / ZFR / ZRN</dt><dd>자유곡면 형식. XY 다항식(xᵐyⁿ, 10차까지) / Fringe Zernike / 표준 Zernike 항을 기저 원뿔면에 더합니다.</dd>
-<dt>NRADIUS</dt><dd>자유곡면·Q 비구면 계수의 정규화 반경. 계수는 x/NRADIUS, y/NRADIUS 에 곱해집니다.</dd>
+<dt>XYP / ZFR / ZRN / ZFE</dt><dd>자유곡면 형식. XY 다항식(xᵐyⁿ, 10차까지) / Fringe Zernike / 표준 Zernike / 확장 Fringe Zernike 항을 기저 원뿔면에 더합니다.</dd>
+<dt>QCN</dt><dd>Q-con 비구면. 원뿔면에 Q 다항식 항에 u⁴ 를 곱해 더합니다(u = r/NRADIUS).</dd>
+<dt>ODD</dt><dd>홀수차 비구면. 원뿔면에 r¹~r³⁰ 항을 더합니다.</dd>
+<dt>DOE / HOE</dt><dd>회절 광학 소자 / 홀로그램 면. 위상 다항식이나 두 구성 점으로 광선 방향을 바꿉니다.</dd>
+<dt>NRADIUS</dt><dd>자유곡면·Q·홀수차 비구면 계수의 정규화 반경. 계수는 x/NRADIUS, y/NRADIUS 에 곱해집니다.</dd>
 <dt>PIM</dt><dd>상면 위치를 근축 상면에 자동으로 맞춥니다.</dd>
 <dt>SLB</dt><dd>면 이름표(surface label).</dd>
 <dt>T / S</dt><dd>접선(tangential) / 시상(sagittal). 필드 곡선에서 실선 / 점선.</dd>
 <dt>f·tanθ</dt><dd>평면 상면의 이상적 상높이 기준. 보통 말하는 왜곡.</dd>
 <dt>f·θ</dt><dd>각도에 비례하는 상높이 기준. 어안·스캔 광학에서 씁니다.</dd>
 <dt>ZOO</dt><dd>줌 위치. 위치마다 두께·간격이 바뀝니다.</dd>
+<dt>S I … S V</dt><dd>Seidel 합. 차례로 구면수차, 코마, 비점수차, Petzval, 왜곡입니다.</dd>
+<dt>C I / C II</dt><dd>축상 색수차 / 배율 색수차의 Seidel 합.</dd>
+<dt>풋프린트</dt><dd>한 면 위에서 광속이 차지하는 모양과 크기.</dd>
 </dl>
 </div></section>
 <section class="doc-cta"><div class="wrap">

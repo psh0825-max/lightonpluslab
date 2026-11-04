@@ -11,21 +11,21 @@ ray, 처짐 → sag, CRA → chief ray angle). 직역하면 검색도 안 되고
 무슨 지표인지 못 알아본다.
 """
 
-_LENS_DESC = ("CODE V .seq와 Zemax OpticStudio .zmx 렌즈 파일을 브라우저에서 열어 단면과 1차 특성, "
-              "스팟 다이어그램, MTF, 광선 수차, 필드 곡률·왜곡·색수차, PSF·에너지 집중도, 상대 조도를 "
-              "해석합니다. 파일은 브라우저 안에서만 계산되고 서버로 올라가지 않습니다. 무료.")
+_LENS_DESC = ("CODE V .seq와 Zemax OpticStudio .zmx, CSV 렌즈 표를 브라우저에서 열어 단면과 1차 특성, "
+              "스팟 다이어그램, MTF, 광선 수차, 필드 곡률·왜곡·색수차, PSF·에너지 집중도, 상대 조도, "
+              "Seidel 3차 수차와 풋프린트를 해석합니다. 파일은 브라우저 안에서만 계산되고 서버로 올라가지 않습니다. 무료.")
 
 # 인라인 태그가 섞여 조각으로 쪼개지는 문단은 요소째 바꾼다.
 BLOCKS4 = {
-    'CODE V <code>.seq</code>와 Zemax OpticStudio <code>.zmx</code>를 그대로 열어 단면과 1차 특성, 스팟 다이어그램, MTF, 광선 수차, 필드 곡률·왜곡, PSF, 상대 조도를 봅니다. 설치할 것도, 계정을 만들 것도 없습니다.': {
-        "en": 'Open CODE V <code>.seq</code> and Zemax OpticStudio <code>.zmx</code> files as they are and read the cross-section and first-order data, spot diagrams, MTF, ray aberrations, field curvature and distortion, PSF and relative illumination. Nothing to install, no account to create.',
-        "ja": 'CODE V の <code>.seq</code> と Zemax OpticStudio の <code>.zmx</code> をそのまま開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲・歪曲、PSF、相対照度を見ます。インストールも、アカウント作成も要りません。',
-        "zh": '直接打开 CODE V 的 <code>.seq</code> 与 Zemax OpticStudio 的 <code>.zmx</code>，查看剖面与一阶特性、点列图、MTF、光线像差、场曲·畸变、PSF、相对照度。无需安装，也不必注册账号。',
+    'CODE V <code>.seq</code>와 Zemax OpticStudio <code>.zmx</code>, CSV 렌즈 표를 그대로 열어 단면과 1차 특성, 스팟 다이어그램, MTF, 광선 수차, 필드 곡률·왜곡, PSF, 상대 조도, Seidel 수차를 봅니다. 설치할 것도, 계정을 만들 것도 없습니다.': {
+        "en": 'Open CODE V <code>.seq</code>, Zemax OpticStudio <code>.zmx</code> and CSV lens tables as they are and read the cross-section and first-order data, spot diagrams, MTF, ray aberrations, field curvature and distortion, PSF, relative illumination and Seidel aberrations. Nothing to install, no account to create.',
+        "ja": 'CODE V の <code>.seq</code>、Zemax OpticStudio の <code>.zmx</code>、CSV のレンズ表をそのまま開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲・歪曲、PSF、相対照度、ザイデル収差を見ます。インストールも、アカウント作成も要りません。',
+        "zh": '直接打开 CODE V 的 <code>.seq</code>、Zemax OpticStudio 的 <code>.zmx</code> 与 CSV 镜头表格，查看剖面与一阶特性、点列图、MTF、光线像差、场曲·畸变、PSF、相对照度、赛德尔像差。无需安装，也不必注册账号。',
     },
-    '해석 탭 일곱 개와 유리 탭. 열면 바로 계산해서 그립니다. 축과 단위, 계산 방식은 <a href="lens-docs.html">문서</a>에 전부 적어 뒀습니다.': {
-        "en": 'Seven analysis tabs and a glass tab. Open a file and it computes and plots straight away. The axes, the units and the method behind each number are all written out in the <a href="lens-docs.html">docs</a>.',
-        "ja": '解析タブ七つとガラスタブ。開けばすぐ計算して描きます。軸と単位、計算方法は<a href="lens-docs.html">ドキュメント</a>にすべて書いてあります。',
-        "zh": '七个解析标签页与一个玻璃标签页。打开文件即刻计算并绘图。坐标轴、单位与计算方式都写在<a href="lens-docs.html">文档</a>里。',
+    '해석 탭 여덟 개와 유리 탭. 열면 바로 계산해서 그립니다. 축과 단위, 계산 방식은 <a href="lens-docs.html">문서</a>에 전부 적어 뒀습니다.': {
+        "en": 'Eight analysis tabs and a glass tab. Open a file and it computes and plots straight away. The axes, the units and the method behind each number are all written out in the <a href="lens-docs.html">docs</a>.',
+        "ja": '解析タブ八つとガラスタブ。開けばすぐ計算して描きます。軸と単位、計算方法は<a href="lens-docs.html">ドキュメント</a>にすべて書いてあります。',
+        "zh": '八个解析标签页与一个玻璃标签页。打开文件即刻计算并绘图。坐标轴、单位与计算方式都写在<a href="lens-docs.html">文档</a>里。',
     },
 }
 
@@ -50,15 +50,15 @@ T4 = {
 
     # 메타 설명 — meta·og·JSON-LD 세 곳이 같은 문장을 쓴다
     _LENS_DESC: (
-        'Open CODE V .seq and Zemax OpticStudio .zmx lens files in your browser and read the cross-section '
+        'Open CODE V .seq, Zemax OpticStudio .zmx and CSV lens tables in your browser and read the cross-section '
         'and first-order data, spot diagrams, MTF, ray aberrations, field curvature, distortion and chromatic '
-        'aberration, PSF and enclosed energy, and relative illumination. The file is computed inside your '
-        'browser and never uploaded to a server. Free.',
-        'CODE V の .seq と Zemax OpticStudio の .zmx をブラウザで開き、断面と一次特性、スポットダイアグラム、'
-        'MTF、光線収差、像面湾曲・歪曲・色収差、PSF・集光エネルギー、相対照度を解析します。'
+        'aberration, PSF and enclosed energy, relative illumination, and Seidel third-order aberrations and '
+        'footprints. The file is computed inside your browser and never uploaded to a server. Free.',
+        'CODE V の .seq、Zemax OpticStudio の .zmx、CSV のレンズ表をブラウザで開き、断面と一次特性、スポットダイアグラム、'
+        'MTF、光線収差、像面湾曲・歪曲・色収差、PSF・集光エネルギー、相対照度、ザイデル 3 次収差とフットプリントを解析します。'
         'ファイルはブラウザの中だけで計算され、サーバーには送りません。無料。',
-        '在浏览器中打开 CODE V .seq 与 Zemax OpticStudio .zmx 镜头文件，解析剖面与一阶特性、点列图、MTF、'
-        '光线像差、场曲·畸变·色差、PSF·包围能量、相对照度。文件只在浏览器内计算，不会上传到服务器。免费。'),
+        '在浏览器中打开 CODE V .seq、Zemax OpticStudio .zmx 与 CSV 镜头表格，解析剖面与一阶特性、点列图、MTF、'
+        '光线像差、场曲·畸变·色差、PSF·包围能量、相对照度、赛德尔三阶像差与光束足迹。文件只在浏览器内计算，不会上传到服务器。免费。'),
 
     # 해석 탭
     '곡률 · 왜곡 · 색수차': (
@@ -100,6 +100,15 @@ T4 = {
         'Computes how far the edge of the frame falls off, from the real flux that makes it through every aperture.',
         'すべての開口を通る実際の光束から、画面周辺がどれだけ暗くなるかを計算します。',
         '用实际通过所有光阑的光通量，计算画面边缘会暗多少。'),
+    'Seidel · 풋프린트': (
+        'Seidel · Footprint',
+        'ザイデル・フットプリント',
+        '赛德尔 · 光束足迹'),
+    '면별 Seidel 3차 수차와 그 합을 횡수차와 파면 수차로 읽고, 각 면을 지나는 광속의 모양과 개구 사용률을 봅니다.': (
+        'Seidel third-order aberrations by surface and in total, read as ray errors and wave aberration, plus '
+        'the beam shape on each surface and how much of its aperture it fills.',
+        '面ごとのザイデル 3 次収差とその和を横収差と波面収差で読み、各面を通る光束の形と開口の使用率を見ます。',
+        '各面的赛德尔三阶像差及其总和，以横向像差与波像差给出，并可查看各面上的光束形状与孔径使用率。'),
 
     # 가이드 절
     '가이드': (
@@ -219,6 +228,22 @@ T4 = {
         'XY polynomial · Zernike freeform',
         'XY 多項式・Zernike 自由曲面',
         'XY 多项式 · Zernike 自由曲面'),
+    'Q-con · 홀수차 비구면': (
+        'Q-con · Odd aspheres',
+        'Q-con・奇数次非球面',
+        'Q-con · 奇次非球面'),
+    '회절면(DOE · HOE)': (
+        'Diffractive surfaces (DOE · HOE)',
+        '回折面（DOE・HOE）',
+        '衍射面（DOE · HOE）'),
+    'CSV 렌즈 표': (
+        'CSV lens tables',
+        'CSV レンズ表',
+        'CSV 镜头表格'),
+    'Seidel 3차 수차 · 풋프린트': (
+        'Seidel third-order aberrations · Footprint',
+        'ザイデル 3 次収差・フットプリント',
+        '赛德尔三阶像差 · 光束足迹'),
     '단면 · 1차 특성': (
         'Cross-section · First-order data',
         '断面・一次特性',

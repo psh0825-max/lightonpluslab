@@ -5,10 +5,10 @@
 <meta name="google-adsense-account" content="ca-pub-7180935400084577">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lens — 在浏览器解析镜头设计文件 — LightOn Plus Lab</title>
-<meta name="description" content="在浏览器中打开 CODE V .seq 与 Zemax OpticStudio .zmx 镜头文件，解析剖面与一阶特性、点列图、MTF、光线像差、场曲·畸变·色差、PSF·包围能量、相对照度。文件只在浏览器内计算，不会上传到服务器。免费。" />
+<meta name="description" content="在浏览器中打开 CODE V .seq、Zemax OpticStudio .zmx 与 CSV 镜头表格，解析剖面与一阶特性、点列图、MTF、光线像差、场曲·畸变·色差、PSF·包围能量、相对照度、赛德尔三阶像差与光束足迹。文件只在浏览器内计算，不会上传到服务器。免费。" />
 <meta property="og:title" content="Lens — 镜头解析 — LightOn Plus Lab" />
 <meta property="og:type" content="website" />
-<meta property="og:description" content="在浏览器中打开 CODE V .seq 与 Zemax OpticStudio .zmx 镜头文件，解析剖面与一阶特性、点列图、MTF、光线像差、场曲·畸变·色差、PSF·包围能量、相对照度。文件只在浏览器内计算，不会上传到服务器。免费。" />
+<meta property="og:description" content="在浏览器中打开 CODE V .seq、Zemax OpticStudio .zmx 与 CSV 镜头表格，解析剖面与一阶特性、点列图、MTF、光线像差、场曲·畸变·色差、PSF·包围能量、相对照度、赛德尔三阶像差与光束足迹。文件只在浏览器内计算，不会上传到服务器。免费。" />
 <meta property="og:url" content="https://lightonpluslab.com/zh/lens.html" />
 <meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -31,9 +31,9 @@
 "@id":"https://lightonpluslab.com/lens.html#app","name":"LightOn Plus Lab Lens",
 "applicationCategory":"DesignApplication","operatingSystem":"Web",
 "browserRequirements":"Requires JavaScript","url":"https://lens.lightonpluslab.com/",
-"description":"在浏览器中打开 CODE V .seq 与 Zemax OpticStudio .zmx 镜头文件，解析剖面与一阶特性、点列图、MTF、光线像差、场曲·畸变·色差、PSF·包围能量、相对照度。文件只在浏览器内计算，不会上传到服务器。免费。",
+"description":"在浏览器中打开 CODE V .seq、Zemax OpticStudio .zmx 与 CSV 镜头表格，解析剖面与一阶特性、点列图、MTF、光线像差、场曲·畸变·色差、PSF·包围能量、相对照度、赛德尔三阶像差与光束足迹。文件只在浏览器内计算，不会上传到服务器。免费。",
 "inLanguage":["ko","en","ja","zh-Hans"],
-"featureList":["读取 CODE V .seq","读取 Zemax OpticStudio .zmx","XY 多项式 · Zernike 自由曲面","剖面 · 一阶特性","点列图","MTF","光线像差","场曲 · 畸变 · 色差","PSF · 包围能量","相对照度","玻璃图"],
+"featureList":["读取 CODE V .seq","读取 Zemax OpticStudio .zmx","XY 多项式 · Zernike 自由曲面","Q-con · 奇次非球面","衍射面（DOE · HOE）","CSV 镜头表格","剖面 · 一阶特性","点列图","MTF","光线像差","场曲 · 畸变 · 色差","PSF · 包围能量","相对照度","赛德尔三阶像差 · 光束足迹","玻璃图"],
 "publisher":{"@type":"Organization","name":"LightOn Plus Lab","url":"https://lightonpluslab.com/"},
 "offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}
 </script>
@@ -59,7 +59,7 @@ main code{
 .lens-claim b{display:block;font-size:clamp(18px,2.2vw,23px);letter-spacing:-.024em;line-height:1.45;margin-bottom:10px;color:var(--ink);word-break:keep-all}
 .lens-claim span{display:block;font-size:var(--t-sm);color:var(--ink-2);line-height:1.8;word-break:keep-all}
 
-/* 탭 8개 — 도구가 실제로 보여 주는 화면 목록 */
+/* 탭 9개 — 도구가 실제로 보여 주는 화면 목록 */
 .lens-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,4vw,56px);border-top:1px solid var(--rule)}
 .lens-tab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule);min-width:0}
 .lens-tab i{font-style:normal;font-size:var(--t-xs);color:var(--ink-4);font-variant-numeric:tabular-nums}
@@ -132,7 +132,7 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap">
     <span class="eyebrow reveal">光学设计 · 免费</span>
     <h1 class="reveal reveal-d1"><em>在浏览器里</em>打开镜头文件</h1>
-    <p class="reveal reveal-d2">直接打开 CODE V 的 <code>.seq</code> 与 Zemax OpticStudio 的 <code>.zmx</code>，查看剖面与一阶特性、点列图、MTF、光线像差、场曲·畸变、PSF、相对照度。无需安装，也不必注册账号。</p>
+    <p class="reveal reveal-d2">直接打开 CODE V 的 <code>.seq</code>、Zemax OpticStudio 的 <code>.zmx</code> 与 CSV 镜头表格，查看剖面与一阶特性、点列图、MTF、光线像差、场曲·畸变、PSF、相对照度、赛德尔像差。无需安装，也不必注册账号。</p>
     <div class="act-row reveal reveal-d3" style="justify-content:center;margin-top:32px">
       <a class="btn-play" href="https://lens.lightonpluslab.com/zh" target="_blank" rel="noopener">打开 Lens <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn-sm" href="/zh/contact.html">设计咨询</a>
@@ -161,7 +161,7 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
 <section>
   <div class="wrap">
     <h2 class="section-title reveal">能看到什么</h2>
-    <p class="section-desc reveal reveal-d1">七个解析标签页与一个玻璃标签页。打开文件即刻计算并绘图。坐标轴、单位与计算方式都写在<a href="/lens-docs.html" hreflang="ko">文档</a>里。</p>
+    <p class="section-desc reveal reveal-d1">八个解析标签页与一个玻璃标签页。打开文件即刻计算并绘图。坐标轴、单位与计算方式都写在<a href="/lens-docs.html" hreflang="ko">文档</a>里。</p>
     <div class="lens-tabs">
       <div class="lens-tab reveal"><i>01</i><div><b>剖面 · 一阶特性</b><span>镜头剖面与光线路径，并同时读取焦距、F 数等一阶量。</span></div></div>
       <div class="lens-tab reveal"><i>02</i><div><b>点列图</b><span>以基准波长的主光线为基准，RMS 以质心（centroid）为参考的直径给出。并附各像高的 RMS 直径曲线。</span></div></div>
@@ -170,7 +170,8 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
       <div class="lens-tab reveal"><i>05</i><div><b>场曲 · 畸变 · 色差</b><span>非点像差场曲线（T 实线·S 虚线）、以 f·tanθ 与 f·θ 为基准的畸变、畸变网格、倍率色差与轴向色差。</span></div></div>
       <div class="lens-tab reveal"><i>06</i><div><b>PSF · 包围能量</b><span>多色衍射 PSF 与 Strehl 比、按圆直径的包围能量、各像高的 RMS 波前误差。</span></div></div>
       <div class="lens-tab reveal"><i>07</i><div><b>相对照度</b><span>用实际通过所有光阑的光通量，计算画面边缘会暗多少。</span></div></div>
-      <div class="lens-tab reveal"><i>08</i><div><b>玻璃</b><span>SCHOTT、HOYA、OHARA、CDGM、SUMITA、HIKARI 六家共 1,615 种，另有石英、CaF₂、PMMA 等常用材料。来自 refractiveindex.info 的公开数据。</span></div></div>
+      <div class="lens-tab reveal"><i>08</i><div><b>赛德尔 · 光束足迹</b><span>各面的赛德尔三阶像差及其总和，以横向像差与波像差给出，并可查看各面上的光束形状与孔径使用率。</span></div></div>
+      <div class="lens-tab reveal"><i>09</i><div><b>玻璃</b><span>SCHOTT、HOYA、OHARA、CDGM、SUMITA、HIKARI 六家共 1,615 种，另有石英、CaF₂、PMMA 等常用材料。来自 refractiveindex.info 的公开数据。</span></div></div>
     </div>
 
     <div class="lens-gallery">
@@ -216,7 +217,7 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap">
     <h2 class="section-title reveal">如何开始</h2>
     <div class="lens-steps">
-      <div class="lens-step reveal"><b>拖入文件</b><span>把 <code>.seq</code> 或 <code>.zmx</code> 文件拖到页面上即可打开，粘贴也行。</span></div>
+      <div class="lens-step reveal"><b>拖入文件</b><span>把 <code>.seq</code>、<code>.zmx</code> 或 <code>.csv</code> 文件拖到页面上即可打开。从 Excel 复制的表格可通过示例菜单中的“粘贴表格”放入。</span></div>
       <div class="lens-step reveal reveal-d1"><b>手头没有文件？</b><span>内置示例镜头。可以先打开，把整个流程走一遍。</span></div>
       <div class="lens-step reveal reveal-d2"><b>四种语言</b><span>中文、English、한국어、日本語。也可切换为深色界面。</span></div>
     </div>
