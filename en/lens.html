@@ -5,10 +5,10 @@
 <meta name="google-adsense-account" content="ca-pub-7180935400084577">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lens — read lens design files in the browser — LightOn Plus Lab</title>
-<meta name="description" content="Open CODE V .seq and Zemax OpticStudio .zmx lens files in your browser and read the cross-section and first-order data, spot diagrams, MTF, ray aberrations, field curvature, distortion and chromatic aberration, PSF and enclosed energy, and relative illumination. The file is computed inside your browser and never uploaded to a server. Free." />
+<meta name="description" content="Open CODE V .seq, Zemax OpticStudio .zmx and CSV lens tables in your browser and read the cross-section and first-order data, spot diagrams, MTF, ray aberrations, field curvature, distortion and chromatic aberration, PSF and enclosed energy, relative illumination, and Seidel third-order aberrations and footprints. The file is computed inside your browser and never uploaded to a server. Free." />
 <meta property="og:title" content="Lens — optical analysis — LightOn Plus Lab" />
 <meta property="og:type" content="website" />
-<meta property="og:description" content="Open CODE V .seq and Zemax OpticStudio .zmx lens files in your browser and read the cross-section and first-order data, spot diagrams, MTF, ray aberrations, field curvature, distortion and chromatic aberration, PSF and enclosed energy, and relative illumination. The file is computed inside your browser and never uploaded to a server. Free." />
+<meta property="og:description" content="Open CODE V .seq, Zemax OpticStudio .zmx and CSV lens tables in your browser and read the cross-section and first-order data, spot diagrams, MTF, ray aberrations, field curvature, distortion and chromatic aberration, PSF and enclosed energy, relative illumination, and Seidel third-order aberrations and footprints. The file is computed inside your browser and never uploaded to a server. Free." />
 <meta property="og:url" content="https://lightonpluslab.com/en/lens.html" />
 <meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -31,9 +31,9 @@
 "@id":"https://lightonpluslab.com/lens.html#app","name":"LightOn Plus Lab Lens",
 "applicationCategory":"DesignApplication","operatingSystem":"Web",
 "browserRequirements":"Requires JavaScript","url":"https://lens.lightonpluslab.com/",
-"description":"Open CODE V .seq and Zemax OpticStudio .zmx lens files in your browser and read the cross-section and first-order data, spot diagrams, MTF, ray aberrations, field curvature, distortion and chromatic aberration, PSF and enclosed energy, and relative illumination. The file is computed inside your browser and never uploaded to a server. Free.",
+"description":"Open CODE V .seq, Zemax OpticStudio .zmx and CSV lens tables in your browser and read the cross-section and first-order data, spot diagrams, MTF, ray aberrations, field curvature, distortion and chromatic aberration, PSF and enclosed energy, relative illumination, and Seidel third-order aberrations and footprints. The file is computed inside your browser and never uploaded to a server. Free.",
 "inLanguage":["ko","en","ja","zh-Hans"],
-"featureList":["Reads CODE V .seq","Reads Zemax OpticStudio .zmx","XY polynomial · Zernike freeform","Cross-section · First-order data","Spot diagram","MTF","Ray aberrations","Field curvature · Distortion · Chromatic aberration","PSF · Enclosed energy","Relative illumination","Glass map"],
+"featureList":["Reads CODE V .seq","Reads Zemax OpticStudio .zmx","XY polynomial · Zernike freeform","Q-con · Odd aspheres","Diffractive surfaces (DOE · HOE)","CSV lens tables","Cross-section · First-order data","Spot diagram","MTF","Ray aberrations","Field curvature · Distortion · Chromatic aberration","PSF · Enclosed energy","Relative illumination","Seidel third-order aberrations · Footprint","Glass map"],
 "publisher":{"@type":"Organization","name":"LightOn Plus Lab","url":"https://lightonpluslab.com/"},
 "offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}
 </script>
@@ -59,7 +59,7 @@ main code{
 .lens-claim b{display:block;font-size:clamp(18px,2.2vw,23px);letter-spacing:-.024em;line-height:1.45;margin-bottom:10px;color:var(--ink);word-break:keep-all}
 .lens-claim span{display:block;font-size:var(--t-sm);color:var(--ink-2);line-height:1.8;word-break:keep-all}
 
-/* 탭 8개 — 도구가 실제로 보여 주는 화면 목록 */
+/* 탭 9개 — 도구가 실제로 보여 주는 화면 목록 */
 .lens-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,4vw,56px);border-top:1px solid var(--rule)}
 .lens-tab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule);min-width:0}
 .lens-tab i{font-style:normal;font-size:var(--t-xs);color:var(--ink-4);font-variant-numeric:tabular-nums}
@@ -132,7 +132,7 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap">
     <span class="eyebrow reveal">Optical design · free</span>
     <h1 class="reveal reveal-d1">Open lens files <em>in the browser</em></h1>
-    <p class="reveal reveal-d2">Open CODE V <code>.seq</code> and Zemax OpticStudio <code>.zmx</code> files as they are and read the cross-section and first-order data, spot diagrams, MTF, ray aberrations, field curvature and distortion, PSF and relative illumination. Nothing to install, no account to create.</p>
+    <p class="reveal reveal-d2">Open CODE V <code>.seq</code>, Zemax OpticStudio <code>.zmx</code> and CSV lens tables as they are and read the cross-section and first-order data, spot diagrams, MTF, ray aberrations, field curvature and distortion, PSF, relative illumination and Seidel aberrations. Nothing to install, no account to create.</p>
     <div class="act-row reveal reveal-d3" style="justify-content:center;margin-top:32px">
       <a class="btn-play" href="https://lens.lightonpluslab.com/en" target="_blank" rel="noopener">Open Lens <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn-sm" href="/en/contact.html">Design enquiry</a>
@@ -161,7 +161,7 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
 <section>
   <div class="wrap">
     <h2 class="section-title reveal">What it shows</h2>
-    <p class="section-desc reveal reveal-d1">Seven analysis tabs and a glass tab. Open a file and it computes and plots straight away. The axes, the units and the method behind each number are all written out in the <a href="/lens-docs.html" hreflang="ko">docs</a>.</p>
+    <p class="section-desc reveal reveal-d1">Eight analysis tabs and a glass tab. Open a file and it computes and plots straight away. The axes, the units and the method behind each number are all written out in the <a href="/lens-docs.html" hreflang="ko">docs</a>.</p>
     <div class="lens-tabs">
       <div class="lens-tab reveal"><i>01</i><div><b>Cross-section · First-order data</b><span>The lens cross-section and the ray paths, with first-order quantities like focal length and F-number alongside.</span></div></div>
       <div class="lens-tab reveal"><i>02</i><div><b>Spot diagram</b><span>Referenced to the chief ray at the primary wavelength; RMS is reported as a centroid-referenced diameter. With an RMS diameter curve across field heights.</span></div></div>
@@ -170,7 +170,8 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
       <div class="lens-tab reveal"><i>05</i><div><b>Field curvature · Distortion · Chromatic</b><span>Astigmatic field curves (T solid, S dashed), distortion against both f·tanθ and f·θ, a distortion grid, and lateral and axial chromatic aberration.</span></div></div>
       <div class="lens-tab reveal"><i>06</i><div><b>PSF · Enclosed energy</b><span>Polychromatic diffraction PSF and Strehl ratio, enclosed energy by circle diameter, and RMS wavefront error across field heights.</span></div></div>
       <div class="lens-tab reveal"><i>07</i><div><b>Relative illumination</b><span>Computes how far the edge of the frame falls off, from the real flux that makes it through every aperture.</span></div></div>
-      <div class="lens-tab reveal"><i>08</i><div><b>Glass</b><span>1,615 glasses from six makers — SCHOTT, HOYA, OHARA, CDGM, SUMITA and HIKARI — plus common materials such as fused silica, CaF₂ and PMMA. Open data from refractiveindex.info.</span></div></div>
+      <div class="lens-tab reveal"><i>08</i><div><b>Seidel · Footprint</b><span>Seidel third-order aberrations by surface and in total, read as ray errors and wave aberration, plus the beam shape on each surface and how much of its aperture it fills.</span></div></div>
+      <div class="lens-tab reveal"><i>09</i><div><b>Glass</b><span>1,615 glasses from six makers — SCHOTT, HOYA, OHARA, CDGM, SUMITA and HIKARI — plus common materials such as fused silica, CaF₂ and PMMA. Open data from refractiveindex.info.</span></div></div>
     </div>
 
     <div class="lens-gallery">
@@ -216,7 +217,7 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap">
     <h2 class="section-title reveal">How to start</h2>
     <div class="lens-steps">
-      <div class="lens-step reveal"><b>Drop a file</b><span>Drop a <code>.seq</code> or <code>.zmx</code> file on the page and it opens. Pasting works too.</span></div>
+      <div class="lens-step reveal"><b>Drop a file</b><span>Drop a <code>.seq</code>, <code>.zmx</code> or <code>.csv</code> file on the page and it opens. A table copied from Excel goes in through “Paste a table” in the sample menu.</span></div>
       <div class="lens-step reveal reveal-d1"><b>No file to hand?</b><span>A sample lens is included — open it and walk the whole flow first.</span></div>
       <div class="lens-step reveal reveal-d2"><b>Four languages</b><span>English, 한국어, 日本語 and 中文. There is a dark theme too.</span></div>
     </div>

@@ -5,10 +5,10 @@
 <meta name="google-adsense-account" content="ca-pub-7180935400084577">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lens — レンズ設計ファイルをブラウザで解析 — LightOn Plus Lab</title>
-<meta name="description" content="CODE V の .seq と Zemax OpticStudio の .zmx をブラウザで開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲・歪曲・色収差、PSF・集光エネルギー、相対照度を解析します。ファイルはブラウザの中だけで計算され、サーバーには送りません。無料。" />
+<meta name="description" content="CODE V の .seq、Zemax OpticStudio の .zmx、CSV のレンズ表をブラウザで開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲・歪曲・色収差、PSF・集光エネルギー、相対照度、ザイデル 3 次収差とフットプリントを解析します。ファイルはブラウザの中だけで計算され、サーバーには送りません。無料。" />
 <meta property="og:title" content="Lens — レンズ解析 — LightOn Plus Lab" />
 <meta property="og:type" content="website" />
-<meta property="og:description" content="CODE V の .seq と Zemax OpticStudio の .zmx をブラウザで開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲・歪曲・色収差、PSF・集光エネルギー、相対照度を解析します。ファイルはブラウザの中だけで計算され、サーバーには送りません。無料。" />
+<meta property="og:description" content="CODE V の .seq、Zemax OpticStudio の .zmx、CSV のレンズ表をブラウザで開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲・歪曲・色収差、PSF・集光エネルギー、相対照度、ザイデル 3 次収差とフットプリントを解析します。ファイルはブラウザの中だけで計算され、サーバーには送りません。無料。" />
 <meta property="og:url" content="https://lightonpluslab.com/ja/lens.html" />
 <meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -31,9 +31,9 @@
 "@id":"https://lightonpluslab.com/lens.html#app","name":"LightOn Plus Lab Lens",
 "applicationCategory":"DesignApplication","operatingSystem":"Web",
 "browserRequirements":"Requires JavaScript","url":"https://lens.lightonpluslab.com/",
-"description":"CODE V の .seq と Zemax OpticStudio の .zmx をブラウザで開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲・歪曲・色収差、PSF・集光エネルギー、相対照度を解析します。ファイルはブラウザの中だけで計算され、サーバーには送りません。無料。",
+"description":"CODE V の .seq、Zemax OpticStudio の .zmx、CSV のレンズ表をブラウザで開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲・歪曲・色収差、PSF・集光エネルギー、相対照度、ザイデル 3 次収差とフットプリントを解析します。ファイルはブラウザの中だけで計算され、サーバーには送りません。無料。",
 "inLanguage":["ko","en","ja","zh-Hans"],
-"featureList":["CODE V .seq を読む","Zemax OpticStudio .zmx を読む","XY 多項式・Zernike 自由曲面","断面・一次特性","スポットダイアグラム","MTF","光線収差","像面湾曲・歪曲・色収差","PSF・集光エネルギー","相対照度","ガラス線図"],
+"featureList":["CODE V .seq を読む","Zemax OpticStudio .zmx を読む","XY 多項式・Zernike 自由曲面","Q-con・奇数次非球面","回折面（DOE・HOE）","CSV レンズ表","断面・一次特性","スポットダイアグラム","MTF","光線収差","像面湾曲・歪曲・色収差","PSF・集光エネルギー","相対照度","ザイデル 3 次収差・フットプリント","ガラス線図"],
 "publisher":{"@type":"Organization","name":"LightOn Plus Lab","url":"https://lightonpluslab.com/"},
 "offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}
 </script>
@@ -59,7 +59,7 @@ main code{
 .lens-claim b{display:block;font-size:clamp(18px,2.2vw,23px);letter-spacing:-.024em;line-height:1.45;margin-bottom:10px;color:var(--ink);word-break:keep-all}
 .lens-claim span{display:block;font-size:var(--t-sm);color:var(--ink-2);line-height:1.8;word-break:keep-all}
 
-/* 탭 8개 — 도구가 실제로 보여 주는 화면 목록 */
+/* 탭 9개 — 도구가 실제로 보여 주는 화면 목록 */
 .lens-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,4vw,56px);border-top:1px solid var(--rule)}
 .lens-tab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule);min-width:0}
 .lens-tab i{font-style:normal;font-size:var(--t-xs);color:var(--ink-4);font-variant-numeric:tabular-nums}
@@ -132,7 +132,7 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap">
     <span class="eyebrow reveal">光学設計 · 無料</span>
     <h1 class="reveal reveal-d1">レンズファイルを<em>ブラウザで</em>開きます</h1>
-    <p class="reveal reveal-d2">CODE V の <code>.seq</code> と Zemax OpticStudio の <code>.zmx</code> をそのまま開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲・歪曲、PSF、相対照度を見ます。インストールも、アカウント作成も要りません。</p>
+    <p class="reveal reveal-d2">CODE V の <code>.seq</code>、Zemax OpticStudio の <code>.zmx</code>、CSV のレンズ表をそのまま開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲・歪曲、PSF、相対照度、ザイデル収差を見ます。インストールも、アカウント作成も要りません。</p>
     <div class="act-row reveal reveal-d3" style="justify-content:center;margin-top:32px">
       <a class="btn-play" href="https://lens.lightonpluslab.com/ja" target="_blank" rel="noopener">Lens を開く <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn-sm" href="/ja/contact.html">設計のご相談</a>
@@ -161,7 +161,7 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
 <section>
   <div class="wrap">
     <h2 class="section-title reveal">何を見せるか</h2>
-    <p class="section-desc reveal reveal-d1">解析タブ七つとガラスタブ。開けばすぐ計算して描きます。軸と単位、計算方法は<a href="/lens-docs.html" hreflang="ko">ドキュメント</a>にすべて書いてあります。</p>
+    <p class="section-desc reveal reveal-d1">解析タブ八つとガラスタブ。開けばすぐ計算して描きます。軸と単位、計算方法は<a href="/lens-docs.html" hreflang="ko">ドキュメント</a>にすべて書いてあります。</p>
     <div class="lens-tabs">
       <div class="lens-tab reveal"><i>01</i><div><b>断面・一次特性</b><span>レンズ断面と光線経路。焦点距離・F値といった一次量も併せて読みます。</span></div></div>
       <div class="lens-tab reveal"><i>02</i><div><b>スポットダイアグラム</b><span>基準波長の主光線を基準に、RMS は重心（centroid）基準の直径で出します。像高ごとの RMS 直径曲線も併せて。</span></div></div>
@@ -170,7 +170,8 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
       <div class="lens-tab reveal"><i>05</i><div><b>像面湾曲・歪曲・色収差</b><span>非点収差のフィールド曲線（T 実線・S 点線）、f·tanθ と f·θ 基準の歪曲、歪曲格子、倍率色収差と軸上色収差。</span></div></div>
       <div class="lens-tab reveal"><i>06</i><div><b>PSF・集光エネルギー</b><span>多色回折 PSF と Strehl 比、円直径ごとの集光エネルギー、像高ごとの RMS 波面誤差。</span></div></div>
       <div class="lens-tab reveal"><i>07</i><div><b>相対照度</b><span>すべての開口を通る実際の光束から、画面周辺がどれだけ暗くなるかを計算します。</span></div></div>
-      <div class="lens-tab reveal"><i>08</i><div><b>硝材</b><span>SCHOTT・HOYA・OHARA・CDGM・SUMITA・HIKARI の6社1,615種と、石英・CaF₂・PMMA などの一般材料。refractiveindex.info の公開データ。</span></div></div>
+      <div class="lens-tab reveal"><i>08</i><div><b>ザイデル・フットプリント</b><span>面ごとのザイデル 3 次収差とその和を横収差と波面収差で読み、各面を通る光束の形と開口の使用率を見ます。</span></div></div>
+      <div class="lens-tab reveal"><i>09</i><div><b>硝材</b><span>SCHOTT・HOYA・OHARA・CDGM・SUMITA・HIKARI の6社1,615種と、石英・CaF₂・PMMA などの一般材料。refractiveindex.info の公開データ。</span></div></div>
     </div>
 
     <div class="lens-gallery">
@@ -216,7 +217,7 @@ a.lens-step:hover b{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap">
     <h2 class="section-title reveal">始め方</h2>
     <div class="lens-steps">
-      <div class="lens-step reveal"><b>ファイルをドロップ</b><span><code>.seq</code> または <code>.zmx</code> のファイルを画面に置けばすぐ開きます。貼り付けでも構いません。</span></div>
+      <div class="lens-step reveal"><b>ファイルをドロップ</b><span><code>.seq</code>、<code>.zmx</code>、<code>.csv</code> のファイルを画面に置けばすぐ開きます。Excel からコピーした表は、サンプルメニューの「表を貼り付け」から入れます。</span></div>
       <div class="lens-step reveal reveal-d1"><b>ファイルがなければ</b><span>サンプルレンズが入っています。押して一連の流れを先に見ても構いません。</span></div>
       <div class="lens-step reveal reveal-d2"><b>4つの言語</b><span>日本語・English・한국어・中文。ダークテーマにも切り替えられます。</span></div>
     </div>
