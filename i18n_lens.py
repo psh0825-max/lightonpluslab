@@ -39,13 +39,13 @@ T4 = {
         'Supported scope · analysis conventions',
         '対応範囲・解析規約のドキュメント',
         '支持范围 · 解析约定文档'),
-    'CODE V는 Synopsys, Inc.의, Zemax OpticStudio는 Ansys, Inc.의 상표입니다. 그 밖의 상표는 각 소유자의 재산입니다. Lens는 이 회사들과 제휴 관계가 없으며 보증이나 후원을 받지 않습니다.': (
-        'CODE V is a trademark of Synopsys, Inc.; Zemax OpticStudio is a trademark of Ansys, Inc. '
+    'CODE V는 Keysight Technologies, Inc.의, Zemax OpticStudio는 Ansys, Inc.의 상표입니다. 그 밖의 상표는 각 소유자의 재산입니다. Lens는 이 회사들과 제휴 관계가 없으며 보증이나 후원을 받지 않습니다.': (
+        'CODE V is a trademark of Keysight Technologies, Inc.; Zemax OpticStudio is a trademark of Ansys, Inc. '
         'All other trademarks are the property of their respective owners. Lens is not affiliated with, '
         'endorsed by, or sponsored by these companies.',
-        'CODE V は Synopsys, Inc. の、Zemax OpticStudio は Ansys, Inc. の商標です。'
+        'CODE V は Keysight Technologies, Inc. の、Zemax OpticStudio は Ansys, Inc. の商標です。'
         'その他の商標は各所有者に帰属します。Lens はこれらの企業と提携しておらず、推奨・後援も受けていません。',
-        'CODE V 为 Synopsys, Inc. 的商标，Zemax OpticStudio 为 Ansys, Inc. 的商标。'
+        'CODE V 为 Keysight Technologies, Inc. 的商标，Zemax OpticStudio 为 Ansys, Inc. 的商标。'
         '其他商标归各自所有者所有。Lens 与上述公司无隶属关系，也未获其认可或赞助。'),
 
     # 메타 설명 — meta·og·JSON-LD 세 곳이 같은 문장을 쓴다
