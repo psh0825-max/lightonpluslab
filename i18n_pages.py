@@ -22,10 +22,10 @@ BLOCKS2 = {
         "ja": '<p class="reveal reveal-d2">CODE V の <code>.seq</code> と Zemax OpticStudio の <code>.zmx</code> をそのまま開き、断面と一次特性、スポットダイアグラム、MTF、光線収差、像面湾曲を見ます。インストールもアカウント登録も不要です。</p>',
         "zh": '<p class="reveal reveal-d2">直接打开 CODE V 的 <code>.seq</code> 与 Zemax OpticStudio 的 <code>.zmx</code>，查看剖面与一阶特性、点列图、MTF、光线像差与场曲。无需安装，也不用注册。</p>',
     },
-    '<span><code>.seq</code>, <code>.zmx</code>, <code>.csv</code> 파일을 화면에 놓으면 바로 열립니다. 엑셀에서 복사한 표는 예제 메뉴의 ‘표 붙여넣기’로 넣습니다.</span>': {
-        "en": '<span>Drop a <code>.seq</code>, <code>.zmx</code> or <code>.csv</code> file on the page and it opens. A table copied from Excel goes in through “Paste a table” in the sample menu.</span>',
-        "ja": '<span><code>.seq</code>、<code>.zmx</code>、<code>.csv</code> のファイルを画面に置けばすぐ開きます。Excel からコピーした表は、サンプルメニューの「表を貼り付け」から入れます。</span>',
-        "zh": '<span>把 <code>.seq</code>、<code>.zmx</code> 或 <code>.csv</code> 文件拖到页面上即可打开。从 Excel 复制的表格可通过示例菜单中的“粘贴表格”放入。</span>',
+    '<span><code>.seq</code>, <code>.zmx</code>, <code>.csv</code> 파일을 화면에 놓으면 바로 열립니다. 엑셀에서 복사한 표는 열기 버튼 옆 ▾ 메뉴의 ‘표 붙여넣기’로 넣습니다. 고친 렌즈는 <code>.seq</code>, <code>.zmx</code>, <code>.csv</code>로 저장합니다.</span>': {
+        "en": '<span>Drop a <code>.seq</code>, <code>.zmx</code> or <code>.csv</code> file on the page and it opens. A table copied from Excel goes in through “Paste a table” in the ▾ menu beside the open button. Save an edited lens as <code>.seq</code>, <code>.zmx</code> or <code>.csv</code>.</span>',
+        "ja": '<span><code>.seq</code>、<code>.zmx</code>、<code>.csv</code> のファイルを画面に置けばすぐ開きます。Excel からコピーした表は、開くボタン横の ▾ メニューの「表を貼り付け」から入れます。編集したレンズは <code>.seq</code>、<code>.zmx</code>、<code>.csv</code> で保存します。</span>',
+        "zh": '<span>把 <code>.seq</code>、<code>.zmx</code> 或 <code>.csv</code> 文件拖到页面上即可打开。从 Excel 复制的表格可通过打开按钮旁 ▾ 菜单中的“粘贴表格”放入。修改后的镜头可保存为 <code>.seq</code>、<code>.zmx</code> 或 <code>.csv</code>。</span>',
     },
 }
 

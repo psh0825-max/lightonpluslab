@@ -240,6 +240,10 @@ T4 = {
         'CSV lens tables',
         'CSV レンズ表',
         'CSV 镜头表格'),
+    '.seq · .zmx · .csv 저장': (
+        'Saves .seq · .zmx · .csv',
+        '.seq・.zmx・.csv で保存',
+        '保存为 .seq · .zmx · .csv'),
     'Seidel 3차 수차 · 풋프린트': (
         'Seidel third-order aberrations · Footprint',
         'ザイデル 3 次収差・フットプリント',
