@@ -130,6 +130,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <p>Lens 는 CODE V 시퀀스 파일(<code>.seq</code>), Zemax OpticStudio 파일(<code>.zmx</code>), 렌즈 표(<code>.csv</code>)를 브라우저에서 열어 해석합니다. 해석 도구는 지원 범위를 모르면 쓸 수 없습니다 — 읽지 못한 명령을 조용히 넘기면 화면의 숫자가 설계와 다른 렌즈의 숫자가 되기 때문입니다. 이 문서는 읽는 명령, 읽지 않는 기능과 그때 대신 하는 일, 그래프마다의 축·단위·기준을 전부 적어 둔 것입니다.</p>
 <nav class="doc-toc" aria-label="목차"><h2>목차</h2><ol>
 <li><a href="#files">읽는 파일과 지원 명령</a></li>
+<li><a href="#save">저장하는 파일</a></li>
 <li><a href="#limits">지원하지 않는 것</a></li>
 <li><a href="#analyses">해석 여덟 탭 — 계산 방식과 규약</a></li>
 <li><a href="#glass">유리와 분산 데이터</a></li>
@@ -162,7 +163,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>초점 이동</td><td><code>NFO</code>, <code>FFO</code>, <code>IFO</code></td><td>스루포커스 계산 개수·시작·증분.</td></tr>
 <tr><td>주광선 조준</td><td><code>CRA</code></td><td>파장·필드·면·줌 위치별 조준점. <code>CRA SI</code>(상면 조준)는 무시하고 경고합니다.</td></tr>
 <tr><td>사설 유리</td><td><code>PRV … END</code>, <code>PWL</code></td><td>뒤의 유리 절에서 설명합니다.</td></tr>
-<tr><td>줌</td><td><code>ZOO</code></td><td>줌 위치 수와 위치별 값. 조리개 면(<code>ZOO STO</code>)도 위치마다 바꿀 수 있고, 저장한 <code>.seq</code> 에도 줌 데이터가 그대로 남습니다.</td></tr>
+<tr><td>줌</td><td><code>ZOO</code></td><td>줌 위치 수와 위치별 값. 조리개 면(<code>ZOO STO</code>)도 위치마다 바꿀 수 있고, 저장한 <code>.seq</code> 와 <code>.zmx</code> 에도 줌 데이터가 남습니다.</td></tr>
 <tr><td>그 외</td><td><code>WID</code>, <code>CA</code>, <code>TEL</code></td><td>광각 모드·구경 계산 방식·물체공간 텔레센트릭(미지원, 경고).</td></tr>
 </tbody>
 </table>
@@ -173,8 +174,8 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <table class="doc">
 <thead><tr><th>분류</th><th>키워드</th></tr></thead>
 <tbody>
-<tr><td>면 형식</td><td><code>STANDARD</code>, <code>EVENASPH</code>, <code>ODDASPHE</code>, <code>QED_TYPE</code>(Q-bfs), <code>XPOLYNOM</code>, <code>FZERNSAG</code>, <code>SZERNSAG</code>, <code>COORDBRK</code></td></tr>
-<tr><td>면 처방</td><td><code>TYPE</code>, <code>CURV</code>, <code>CONI</code>, <code>PARM</code>, <code>DISZ</code>, <code>GLAS</code>, <code>STOP</code>, <code>DIAM</code>, <code>COMM</code>, <code>SLAB</code></td></tr>
+<tr><td>면 형식</td><td><code>STANDARD</code>, <code>EVENASPH</code>, <code>ODDASPHE</code>, <code>XASPHERE</code>, <code>XOSPHERE</code>, <code>QED_TYPE</code>(Qbfs, Qcon), <code>XPOLYNOM</code>, <code>FZERNSAG</code>, <code>SZERNSAG</code>, <code>BINARY_1</code>, <code>BINARY_2</code>, <code>COORDBRK</code></td></tr>
+<tr><td>면 처방</td><td><code>TYPE</code>, <code>CURV</code>, <code>CONI</code>, <code>PARM</code>, <code>DISZ</code>, <code>GLAS</code>, <code>STOP</code>, <code>DIAM</code>, <code>COMM</code>, <code>SCBD</code>, <code>SLAB</code></td></tr>
 <tr><td>구경 · 차폐</td><td><code>CLAP</code>, <code>OBSC</code>, <code>SQAP</code>, <code>ELAP</code>, <code>SQOB</code>, <code>ELOB</code>, <code>FLAP</code>, <code>OBDC</code>, <code>UDAP</code>, <code>XDAT</code></td></tr>
 <tr><td>면 플래그</td><td><code>IGNR</code>, <code>HIDE</code>, <code>MIRR</code>, <code>COAT</code>, <code>FLAG</code>, <code>POPS</code>, <code>MEMA</code></td></tr>
 <tr><td>시스템</td><td><code>NAME</code>, <code>UNIT</code>, <code>MODE</code>, <code>MNUM</code></td></tr>
@@ -187,7 +188,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 </table>
 </div>
 <h3>렌즈 표 <code>.csv</code> · <code>.tsv</code></h3>
-<p>한 줄이 면 하나인 표입니다. 파일로 열거나, 머리 메뉴의 <strong>예제 ▾ → 표 붙여넣기 (CSV)</strong> 창에 엑셀에서 복사한 표를 넣습니다. 칸 구분은 탭, 세미콜론, 쉼표, 공백 순서로 찾고, 탭이나 세미콜론으로 나눈 표는 소수점 쉼표(<code>1,5168</code>)도 읽습니다. 머리글이 없으면 면 번호(있을 때), 반경, 두께, 굴절률, 아베수, 반구경 순서로 읽습니다. <code>.txt</code> 파일은 <code>.seq</code> 로 읽히지 않으면 표로 읽습니다.</p>
+<p>한 줄이 면 하나인 표입니다. 파일로 열거나, 머리 메뉴의 <strong>렌즈 파일 열기 옆 ▾ → 표 붙여넣기 (CSV)</strong> 창에 엑셀에서 복사한 표를 넣습니다. 칸 구분은 탭, 세미콜론, 쉼표, 공백 순서로 찾고, 탭이나 세미콜론으로 나눈 표는 소수점 쉼표(<code>1,5168</code>)도 읽습니다. 머리글이 없으면 면 번호(있을 때), 반경, 두께, 굴절률, 아베수, 반구경 순서로 읽습니다. <code>.txt</code> 파일은 <code>.seq</code> 로 읽히지 않으면 표로 읽습니다.</p>
 <div class="doc-tw">
 <table class="doc">
 <thead><tr><th>칸</th><th>머리글 예</th><th>읽는 내용</th></tr></thead>
@@ -202,12 +203,27 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 </tbody>
 </table>
 </div>
-<p>조리개·필드·파장은 <code># FNO 2.8</code>, <code># YAN 0 10 20</code>, <code># WL 486 588 656</code> 같은 줄로 정합니다. 쓸 수 있는 이름은 <code>FNO</code>, <code>EPD</code>, <code>NA</code>, <code>NAO</code>, <code>WL</code>, <code>REF</code>, <code>WTW</code>, <code>YAN</code>, <code>XAN</code>, <code>YOB</code>, <code>XOB</code>, <code>YIM</code>, <code>XIM</code>, <code>DIM</code>, <code>TITLE</code> 입니다. 조리개나 필드가 없으면 F/4 와 축상 필드로 열고 경고합니다. 파장이 없으면 F·d·C 세 파장에 기준은 d 입니다. 표로 연 렌즈도 <code>.seq</code> 로 저장할 수 있습니다.</p>
+<p>조리개·필드·파장은 <code># FNO 2.8</code>, <code># YAN 0 10 20</code>, <code># WL 486 588 656</code> 같은 줄로 정합니다. 쓸 수 있는 이름은 <code>FNO</code>, <code>EPD</code>, <code>NA</code>, <code>NAO</code>, <code>WL</code>, <code>REF</code>, <code>WTW</code>, <code>YAN</code>, <code>XAN</code>, <code>YOB</code>, <code>XOB</code>, <code>YIM</code>, <code>XIM</code>, <code>YRI</code>, <code>XRI</code>, <code>WTF</code>, <code>VUX</code>, <code>VLX</code>, <code>VUY</code>, <code>VLY</code>, <code>DIM</code>, <code>TITLE</code> 입니다. 조리개나 필드가 없으면 F/4 와 축상 필드로 열고 경고합니다. 파장이 없으면 F·d·C 세 파장에 기준은 d 입니다. 표로 연 렌즈도 <code>.seq</code> 로 저장할 수 있습니다.</p>
 <h3>파일 인코딩</h3>
 <p>OpticStudio 가 내보낸 <code>.zmx</code> 는 UTF-16 인 경우가 많고, BOM 이 없는 파일도 있습니다. 다음 순서로 판별합니다.</p>
 <ul><li>BOM 이 있으면 UTF-16 LE / BE</li><li>BOM 이 없어도 바이트의 홀수 또는 짝수 자리가 0 으로 채워져 있으면 UTF-16 로 봅니다</li><li>그다음 UTF-8 (엄격 모드)</li><li>그래도 실패하면 EUC-KR, 마지막으로 Latin-1</li></ul>
 <p>오래된 한글 주석이 들어간 <code>.seq</code> 가 EUC-KR 로 저장돼 있어도 제목과 면 이름표가 깨지지 않습니다. 엑셀이 한글 머리글로 저장한 <code>.csv</code> 도 같은 순서로 읽습니다.</p>
 <div class="doc-note"><p>어느 형식이든, 읽지 못한 항목이나 근사로 바꾼 항목은 파일을 열 때 경고로 모아 보여 줍니다. 경고가 비어 있으면 파일의 모든 내용이 그대로 들어왔다는 뜻입니다.</p></div>
+</div></section>
+<section class="doc-sec" id="save"><div class="wrap">
+<h2>저장하는 파일</h2>
+<p>머리 메뉴의 <strong>저장 ▾</strong> 에서 지금 렌즈를 세 형식으로 내려받습니다. 형식에 담지 못한 항목이 있으면 저장한 뒤 창으로 알려 줍니다.</p>
+<div class="doc-tw">
+<table class="doc">
+<thead><tr><th>형식</th><th>담는 것</th><th>담지 못하는 것</th></tr></thead>
+<tbody>
+<tr><td><code>.seq</code></td><td>읽은 렌즈 데이터 전체와 줌 위치</td><td>r² 비구면 항과 줌 위치별 파장은 주석으로만 남습니다.</td></tr>
+<tr><td><code>.zmx</code></td><td>구면, 코닉, 짝수·홀수 비구면, Qbfs, Qcon, XY 다항식, Fringe·표준 Zernike, DOE(<code>HCT R</code>, <code>HCT XY</code>), 틸트·디센터, 개구, 비네팅, 줌 위치</td><td>HOE, 그 밖의 <code>HCT</code>, 축외 확장 Fringe Zernike, 토로이달은 기본 곡면만 씁니다. 개인 유리(<code>PRV</code>)는 모델 유리로 바꾸고 굴절률 차이를 알려 줍니다.</td></tr>
+<tr><td><code>.csv</code></td><td>반경, 두께, 유리, 반구경, 코닉, 짝수차 비구면, 조리개, 필드, 파장, 비네팅</td><td>틸트·디센터, 특수면, 회절면, 사각·타원 개구는 빠지고, 줌 렌즈는 보고 있는 위치만 씁니다.</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>.seq</code> 로 연 렌즈를 <code>.zmx</code> 로 저장하면 면마다 광선을 자르는 기본 구경을 <code>CLAP</code> 으로 적습니다. <code>.zmx</code> 를 열어 다시 저장하면 파일의 유리 이름과 <code>GCAT</code> 을 그대로 씁니다. 솔브와 픽업은 저장된 값으로 들어갑니다. 저장한 <code>.zmx</code> 는 OpticStudio 에서 연 뒤 EFL 과 유리가 같은지 확인해 주세요.</p>
 </div></section>
 <section class="doc-sec" id="limits"><div class="wrap">
 <h2>지원하지 않는 것</h2>
