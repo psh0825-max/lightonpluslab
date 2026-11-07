@@ -680,6 +680,7 @@ PAGE_LASTMOD = {
     "about.html": "2026-08-13",
     "services.html": "2026-08-13",
     "products.html": "2026-08-13",
+    "korean-pronunciation-rules.html": "2026-11-07",
     "lens.html": "2026-10-22",
     "lens-docs.html": "2026-10-30",
     "momoi.html": "2026-08-13",
