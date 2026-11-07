@@ -46,6 +46,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://lightonpluslab.com/korean-pronunciation-rules.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://lightonpluslab.com/lens.html</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://lightonpluslab.com/lens.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://lightonpluslab.com/en/lens.html" />
