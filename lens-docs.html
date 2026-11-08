@@ -175,18 +175,20 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <thead><tr><th>분류</th><th>키워드</th></tr></thead>
 <tbody>
 <tr><td>면 형식</td><td><code>STANDARD</code>, <code>EVENASPH</code>, <code>ODDASPHE</code>, <code>XASPHERE</code>, <code>XOSPHERE</code>, <code>QED_TYPE</code>(Qbfs, Qcon), <code>XPOLYNOM</code>, <code>FZERNSAG</code>, <code>SZERNSAG</code>, <code>BINARY_1</code>, <code>BINARY_2</code>, <code>COORDBRK</code></td></tr>
-<tr><td>면 처방</td><td><code>TYPE</code>, <code>CURV</code>, <code>CONI</code>, <code>PARM</code>, <code>DISZ</code>, <code>GLAS</code>, <code>STOP</code>, <code>DIAM</code>, <code>COMM</code>, <code>SCBD</code>, <code>SLAB</code></td></tr>
+<tr><td>면 처방</td><td><code>TYPE</code>, <code>CURV</code>, <code>CONI</code>, <code>PARM</code>, <code>DISZ</code>, <code>THIC</code>, <code>GLAS</code>, <code>STOP</code>, <code>DIAM</code>, <code>COMM</code>, <code>SCBD</code>, <code>SLAB</code>, <code>TOLE</code>, <code>PZUP</code></td></tr>
 <tr><td>구경 · 차폐</td><td><code>CLAP</code>, <code>OBSC</code>, <code>SQAP</code>, <code>ELAP</code>, <code>SQOB</code>, <code>ELOB</code>, <code>FLAP</code>, <code>OBDC</code>, <code>UDAP</code>, <code>XDAT</code></td></tr>
 <tr><td>면 플래그</td><td><code>IGNR</code>, <code>HIDE</code>, <code>MIRR</code>, <code>COAT</code>, <code>FLAG</code>, <code>POPS</code>, <code>MEMA</code></td></tr>
-<tr><td>시스템</td><td><code>NAME</code>, <code>UNIT</code>, <code>MODE</code>, <code>MNUM</code></td></tr>
+<tr><td>시스템</td><td><code>NAME</code>, <code>UNIT</code>, <code>MODE</code>, <code>ENVD</code>, <code>MNUM</code></td></tr>
 <tr><td>조리개 · 물체</td><td><code>ENPD</code>, <code>FNUM</code>, <code>OBNA</code>, <code>FLOA</code>, <code>GCAT</code></td></tr>
 <tr><td>필드</td><td><code>FTYP</code>, <code>XFLN</code>, <code>YFLN</code>, <code>FWGN</code>, <code>XFLD</code>, <code>YFLD</code>, <code>FWGT</code></td></tr>
-<tr><td>필드 비네팅</td><td><code>VDXN</code>, <code>VDYN</code>, <code>VCXN</code>, <code>VCYN</code>, <code>VDXF</code>, <code>VDYF</code>, <code>VCXF</code>, <code>VCYF</code></td></tr>
+<tr><td>필드 비네팅</td><td><code>VDXN</code>, <code>VDYN</code>, <code>VCXN</code>, <code>VCYN</code>, <code>VDXF</code>, <code>VDYF</code>, <code>VCXF</code>, <code>VCYF</code>, 옛 이름 <code>ZVDX</code>·<code>ZVDY</code>·<code>ZVCX</code>·<code>ZVCY</code></td></tr>
 <tr><td>파장</td><td><code>WAVM</code>, <code>WAVL</code>, <code>WWGT</code>, <code>PWAV</code></td></tr>
-<tr><td>멀티 컨피그</td><td><code>MNUM</code> 뒤의 <code>THIC</code>, <code>CRVT</code>, <code>CONN</code>, <code>GLSS</code>, <code>SDIA</code>, <code>APMX</code>, <code>APDX</code>, <code>APDY</code>, <code>STPS</code>, <code>APER</code>, <code>XFIE</code>, <code>YFIE</code>, <code>FLWT</code>, <code>WLWT</code>, <code>WAVE</code>, <code>PRWV</code>, <code>FVDX</code>·<code>FVDY</code>·<code>FVCX</code>·<code>FVCY</code>, <code>PRAM</code>(짝수·홀수 비구면 계수, 좌표 브레이크) — 컨피그마다 줌 위치 하나로 읽습니다. 조리개가 FLOA 이면 컨피그마다 입사동을 다시 계산합니다.</td></tr>
+<tr><td>멀티 컨피그</td><td><code>MNUM</code> 뒤의 <code>THIC</code>, <code>CRVT</code>, <code>CONN</code>, <code>GLSS</code>, <code>SDIA</code>, <code>APMX</code>, <code>APDX</code>, <code>APDY</code>, <code>STPS</code>, <code>APER</code>, <code>XFIE</code>, <code>YFIE</code>, <code>FLWT</code>, <code>WLWT</code>, <code>WAVE</code>, <code>PRWV</code>, <code>FVDX</code>·<code>FVDY</code>·<code>FVCX</code>·<code>FVCY</code>, <code>PRAM</code>(짝수·홀수 비구면 계수, 좌표 브레이크), <code>EDVA</code>(확장 비구면 계수) — 컨피그마다 줌 위치 하나로 읽습니다. 조리개가 <code>FLOA</code> 나 <code>FNUM</code> 이면 컨피그마다 입사동을 다시 계산합니다.</td></tr>
 </tbody>
 </table>
 </div>
+<p>읽는 규칙 몇 가지:</p>
+<ul><li><code>GLAS</code> 의 두 번째 값이 1 이거나 이름이 <code>___BLANK</code> 이면, 이름과 관계없이 그 줄의 n<sub>d</sub>·v<sub>d</sub> 로 모델 유리를 만듭니다. v<sub>d</sub> 가 0 이면 분산이 없는 유리입니다.</li><li><code>FNUM</code> 은 물체 거리와 관계없이 EFL ÷ 입사동 지름으로 읽습니다.</li><li><code>TOLE</code>(위치 솔브)와<code>PZUP</code>(두께 픽업)은 파일에 현재 컨피그의 값만 적혀 있습니다. 그래서 컨피그마다 다시 풀어 두께를 정합니다.</li><li>면 안에 <code>DISZ</code> 대신 쓴 <code>THIC</code> 는 그 면의 두께입니다.</li><li><code>ENVD</code> 의 온도·기압이 20 °C, 1기압이 아니면 경고합니다. 굴절률은 20 °C, 1기압 기준으로 계산합니다.</li></ul>
 <h3>렌즈 표 <code>.csv</code> · <code>.tsv</code></h3>
 <p>한 줄이 면 하나인 표입니다. 파일로 열거나, 머리 메뉴의 <strong>렌즈 파일 열기 옆 ▾ → 표 붙여넣기 (CSV)</strong> 창에 엑셀에서 복사한 표를 넣습니다. 칸 구분은 탭, 세미콜론, 쉼표, 공백 순서로 찾고, 탭이나 세미콜론으로 나눈 표는 소수점 쉼표(<code>1,5168</code>)도 읽습니다. 머리글이 없으면 면 번호(있을 때), 반경, 두께, 굴절률, 아베수, 반구경 순서로 읽습니다. <code>.txt</code> 파일은 <code>.seq</code> 로 읽히지 않으면 표로 읽습니다.</p>
 <div class="doc-tw">
@@ -223,7 +225,9 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 </tbody>
 </table>
 </div>
-<p><code>.seq</code> 로 연 렌즈를 <code>.zmx</code> 로 저장하면 면마다 광선을 자르는 기본 구경을 <code>CLAP</code> 으로 적습니다. <code>.zmx</code> 를 열어 다시 저장하면 파일의 유리 이름과 <code>GCAT</code> 을 그대로 씁니다. 솔브와 픽업은 저장된 값으로 들어갑니다. 저장한 <code>.zmx</code> 는 OpticStudio 에서 연 뒤 EFL 과 유리가 같은지 확인해 주세요.</p>
+<p><code>.seq</code> 로 연 렌즈를 <code>.zmx</code> 로 저장하면 면마다 광선을 자르는 기본 구경을 <code>CLAP</code> 으로 적습니다. <code>.zmx</code> 를 열어 다시 저장하면 다음 항목을 파일에 있던 그대로 씁니다.</p>
+<ul><li>유리 이름과 <code>GCAT</code></li><li>조리개 형식(<code>FNUM</code>·<code>FLOA</code>)과 <code>ENVD</code></li><li>파일에 적힌 반구경(0 포함)과 곡면 물체의 곡률</li><li>Lens 가 추적하지 못하는 면 형식의 <code>PARM</code>·<code>XDAT</code></li><li>Lens 가 쓰지 않는 멀티 컨피그 행(면 수와 컨피그 수가 그대로일 때)</li></ul>
+<p>솔브와 픽업은 풀어 낸 값으로 들어가고, 줌 렌즈는 컨피그마다 물체 거리도 적습니다. 저장한 <code>.zmx</code> 는 OpticStudio 에서 연 뒤 EFL 과 유리가 같은지 확인해 주세요.</p>
 </div></section>
 <section class="doc-sec" id="limits"><div class="wrap">
 <h2>지원하지 않는 것</h2>
@@ -233,7 +237,8 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <thead><tr><th>항목</th><th>파일에 있는 것</th><th>대신 하는 일</th></tr></thead>
 <tbody>
 <tr><td>비순차 추적</td><td><code>.zmx</code> 의 NSC 데이터</td><td>읽지 않습니다.</td></tr>
-<tr><td>멀티 컨피그 일부</td><td>위 목록에 없는 <code>.zmx</code> 멀티 컨피그 연산자(면 무시, 자유곡면 계수 등)</td><td>읽지 않고 경고합니다. 컨피그마다 다른 온도·기압은 계산에 넣지 않습니다.</td></tr>
+<tr><td>멀티 컨피그 일부</td><td>위 목록에 없는 <code>.zmx</code> 멀티 컨피그 연산자(면 무시, 자유곡면 계수 등)</td><td>계산에 쓰지 않고 경고합니다. <code>.zmx</code> 로 다시 저장하면 그 행은 남습니다. 컨피그마다 다른 온도·기압도 계산에 넣지 않습니다.</td></tr>
+<tr><td>온도 · 기압</td><td><code>.zmx</code> <code>ENVD</code> 의 20 °C, 1기압이 아닌 값</td><td>굴절률은 20 °C, 1기압 기준으로 계산하고 경고합니다. 다시 저장하면 원래 값을 씁니다.</td></tr>
 <tr><td>특수면</td><td>사용자 정의면(UDS), 선형 격자(<code>DIF GRT</code>), 사용자 정의 위상(<code>HCT USR</code>·<code>US2</code>)</td><td>기저 원뿔면으로만 추적하고 면마다 경고합니다.</td></tr>
 <tr><td>회절 효율</td><td>회절면의 블레이즈 데이터와 지정하지 않은 차수</td><td>읽지 않습니다. 광선은 지정한 차수로만 진행하고 효율은 100 % 로 계산합니다.</td></tr>
 <tr><td>엑셀 파일</td><td><code>.xlsx</code></td><td>직접 열지 않습니다. 표를 복사해 붙여넣거나 CSV 로 저장해 엽니다.</td></tr>
@@ -245,7 +250,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>HAR 분산식</td><td><code>PRV … HAR</code></td><td>읽지 않습니다.</td></tr>
 <tr><td>물체공간 텔레센트릭</td><td><code>TEL</code></td><td>조리개를 향해 광선을 조준합니다.</td></tr>
 <tr><td>상면 주광선 조준</td><td><code>CRA SI</code></td><td>무시합니다.</td></tr>
-<tr><td>곡면 물체</td><td>곡률이 있는 <code>SO</code></td><td>평면으로 취급합니다.</td></tr>
+<tr><td>곡면 물체</td><td>곡률이 있는 <code>SO</code>, <code>.zmx</code> 의 <code>SURF 0</code></td><td>평면으로 취급하고 경고합니다. <code>.zmx</code> 로 다시 저장하면 곡률은 남습니다.</td></tr>
 <tr><td>물체면 편심·기울기</td><td><code>SO</code> 의 틸트·디센터</td><td>무시합니다.</td></tr>
 <tr><td>사각·타원 차폐</td><td>rectangular / elliptical obscuration, 사용자 정의 구경</td><td>무시합니다.</td></tr>
 <tr><td>광각 모드</td><td><code>WID</code> + 유한 물체</td><td>무한 물체에서만 지원합니다.</td></tr>
@@ -308,6 +313,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <p>파일 안에 분산 계수를 직접 적는 사설 카탈로그를 읽습니다. 지원하는 형식은 <code>LAU</code>, <code>GML</code>, <code>GMS</code>, <code>SLM</code>, <code>CAU</code> 다섯 가지와, <code>PWL</code> 로 파장 목록을 주고 굴절률을 나열하는 표 방식입니다. <code>HAR</code> 분산식과 <code>MLT</code> 용해 데이터 피팅, GRIN 은 읽지 않고 경고합니다.</p>
 <h3>카탈로그에 없는 유리</h3>
 <p>공개 카탈로그에 없는 이름이 나오면 n<sub>d</sub>·v<sub>d</sub> 가 가까운 유리로 치환한 뒤, 바뀐 이름을 전부 경고에 적습니다. 치환된 유리의 성능 숫자는 원래 설계의 숫자가 아니므로, 경고에 이름이 올라왔다면 그 값을 그대로 쓰시면 안 됩니다.</p>
+<p><code>.zmx</code> 의 <code>GLAS</code> 줄에 n<sub>d</sub>·v<sub>d</sub> 가 적혀 있으면, 카탈로그에 없는 이름은 그 값으로 모델 유리를 만듭니다. OpticStudio 가 카탈로그 유리에 채워 넣는 자리표시 값 1.5 / 40 은 쓰지 않습니다.</p>
 </div></section>
 <section class="doc-sec" id="units"><div class="wrap">
 <h2>단위 · 상수 · 기본값</h2>
