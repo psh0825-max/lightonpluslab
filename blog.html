@@ -19,7 +19,7 @@
 <link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="styles.css?v=076b16fa" />
+<link rel="stylesheet" href="styles.css?v=f0ce776f" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
 <style>
@@ -103,6 +103,51 @@
 <section>
   <div class="wrap">
     <div class="post-list">
+<a class="post-card" href="blog-pdf-lib-korean-font-subset.html">
+  <h2>pdf-lib 한글 PDF 글자 누락: subset:true와 fontkit long loca 버그</h2>
+  <p>pdf-lib에서 나눔명조를 subset: true로 넣으면 일부 한글이 빈칸이 됩니다. 원인은 fontkit 포크가 loca 오프셋을 2로 나누며 생긴 1바이트 오차였고, HarfBuzz로 미리 서브셋해 해결했습니다.</p>
+  <div class="pc-meta">Dev Note · 2026-11-09</div>
+</a>
+<a class="post-card" href="blog-mtf-spot-diagram-reading.html">
+  <h2>스팟 다이어그램·MTF 읽는 법 — 에어리 원과 센서 나이퀴스트로 렌즈 판정하기</h2>
+  <p>렌즈 설계 결과의 스팟 다이어그램과 MTF를 무엇과 겹쳐 읽어야 하는지 정리했습니다. RMS·GEO 반경과 에어리 원, 수차별 스팟 모양, 픽셀 피치에서 구한 나이퀴스트 주파수와 MTF 목표값까지 다룹니다.</p>
+  <div class="pc-meta">Guide · 2026-11-09</div>
+</a>
+<a class="post-card" href="blog-play-memory-r8-dex-optimization.html">
+  <h2>Play DEX 최적화 25% 기준 대응기 — R8을 꺼 버린 라이브러리 규칙 한 줄</h2>
+  <p>2027년 2월 시행되는 Play 메모리 기준에 맞춰 여러 앱의 R8을 손봤습니다. minify를 켰는데도 최적화가 꺼져 있던 원인, 비율을 깎던 keep 규칙, AGP 9 전환의 함정과 점검 순서를 정리했습니다.</p>
+  <div class="pc-meta">Dev Note · 2026-11-09</div>
+</a>
+<a class="post-card" href="blog-capacitor-plugin-await-hang.html">
+  <h2>Capacitor 플러그인을 return 하면 await 가 멈추는 이유 — thenable 함정</h2>
+  <p>iOS 에서 'Try Pro' 버튼이 무반응이었습니다. 스토어도 SDK 도 정상이었고, 원인은 Proxy 로 만든 Capacitor 플러그인이 thenable 로 취급돼 await 가 끝나지 않은 것이었습니다. 진단 과정과 명세 수준의 원리, 재발 방지법.</p>
+  <div class="pc-meta">Dev Note · 2026-11-09</div>
+</a>
+<a class="post-card" href="blog-flutter-notification-icon-shrink.html">
+  <h2>Flutter 릴리스 빌드만 스플래시에서 멈출 때: 리소스 축소가 지운 알림 아이콘</h2>
+  <p>디버그와 프로파일에선 멀쩡한 Flutter 앱이 릴리스 APK에서만 스플래시에 멈췄습니다. 리소스 축소가 Dart 문자열로만 참조한 알림 아이콘을 지운 것이 원인이었고, 진단법과 keep.xml 해결을 정리했습니다.</p>
+  <div class="pc-meta">Dev Note · 2026-11-09</div>
+</a>
+<a class="post-card" href="blog-flutter-scheduled-notification-missing.html">
+  <h2>flutter_local_notifications 예약 알림이 안 뜰 때 — 원인 4가지와 점검표</h2>
+  <p>매일 복습 알림이 출시 후 한 번도 뜨지 않았습니다. 빠진 리시버, 비어 있던 저장본, 서울로 고정된 시간대, 연결되지 않은 iOS를 adb와 시뮬레이터로 하나씩 확인한 기록과 점검표입니다.</p>
+  <div class="pc-meta">Dev Note · 2026-11-09</div>
+</a>
+<a class="post-card" href="blog-live-transcript-follow-scroll.html">
+  <h2>실시간 전사가 멈춘 것처럼 보이고 다른 언어가 섞이던 세 가지 원인</h2>
+  <p>강의 녹음 중 전사 화면이 멈춘 듯 보이고 가끔 엉뚱한 언어가 찍혔습니다. 캐럿 기준 자동 스크롤, 휴지에만 기대는 확정, 느슨한 언어 감지를 고치고 시뮬레이터와 say 명령으로 검증한 기록입니다.</p>
+  <div class="pc-meta">Dev Note · 2026-11-09</div>
+</a>
+<a class="post-card" href="blog-storekit-test-without-device.html">
+  <h2>실기기 없이 iOS 인앱결제 검증하기 — 시뮬레이터 샌드박스 로그인 실패와 SKTestSession</h2>
+  <p>시뮬레이터에서는 샌드박스 테스터 로그인이 AMSErrorDomain 100으로 실패했습니다. .storekit 구성과 앱 호스티드 SKTestSession 테스트로 xcodebuild만으로 구매·복원을 검증한 방법과, 이 방식으로 확인할 수 없는 것의 경계를 정리했습니다.</p>
+  <div class="pc-meta">Dev Note · 2026-11-09</div>
+</a>
+<a class="post-card" href="blog-samsung-side-key-app-shortcut.html">
+  <h2>갤럭시 측면 버튼 '앱 열기'에 activity-alias 아이콘이 안 뜨는 이유</h2>
+  <p>기능 하나만 여는 두 번째 런처 아이콘을 만들었는데 갤럭시 측면 버튼 목록에는 앱 항목 하나만 보였습니다. 목록이 앱마다 첫 진입점만 저장하는 동작을 확인하고, 선언 순서와 INFO 카테고리로 고친 기록입니다.</p>
+  <div class="pc-meta">Dev Note · 2026-11-09</div>
+</a>
 <a class="post-card" href="blog-why-summary-is-not-memory.html">
   <h2>강의를 녹음하고 요약해도 왜 안 외워질까</h2>
   <p>전사와 요약은 이제 흔한 기능이 됐습니다. 그런데 노트가 깔끔할수록 다시 안 보게 되는 역설이 있습니다. 망각 곡선과 간격 반복이 그 빈틈을 어떻게 메우는지 정리했습니다.</p>
@@ -202,6 +247,6 @@
   </div>
 </footer>
 
-<script src="app.js?v=cc60ac47"></script>
+<script src="app.js?v=11b4789a"></script>
 </body>
 </html>

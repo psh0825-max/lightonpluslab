@@ -232,6 +232,21 @@ T = {
         "What we actually ran into while building apps and getting them onto the stores.",
         "アプリを作ってストアに出す中で実際にぶつかったことを記録しています。",
         "记录做应用、上架过程中真正遇到的问题。"),
+    "pdf-lib 한글 PDF 글자 누락: subset:true와 fontkit long loca 버그": ("Missing Korean glyphs in pdf-lib PDFs: subset: true and the fontkit long-loca bug", "pdf-lib の韓国語 PDF で文字が抜ける — subset: true と fontkit の long loca バグ", "pdf-lib 韩文 PDF 缺字：subset: true 与 fontkit 的 long loca 缺陷"),
+    "pdf-lib에서 나눔명조를 subset: true로 넣으면 일부 한글이 빈칸이 됩니다. 원인은 fontkit 포크가 loca 오프셋을 2로 나누며 생긴 1바이트 오차였고, HarfBuzz로 미리 서브셋해 해결했습니다.": (
+        "Embedding Nanum Myeongjo in pdf-lib with subset: true left some Hangul blank. The cause was a one-byte error when the fontkit fork halves loca offsets; pre-subsetting with HarfBuzz fixed it.",
+        "pdf-lib にナヌム明朝を subset: true で埋め込むと一部のハングルが空白になりました。原因は fontkit フォークが loca オフセットを 2 で割るときの 1 バイトのずれで、HarfBuzz で事前にサブセット化して解決しました。",
+        "在 pdf-lib 中以 subset: true 嵌入 Nanum 明朝体时，部分韩文变成空白。原因是 fontkit 分支把 loca 偏移除以 2 时产生的 1 字节误差，改用 HarfBuzz 预先子集化后解决。"),
+    "스팟 다이어그램·MTF 읽는 법 — 에어리 원과 센서 나이퀴스트로 렌즈 판정하기": ("Reading spot diagrams and MTF — judging a lens against the Airy disk and the sensor's Nyquist", "スポットダイアグラムと MTF の読み方 — エアリーディスクとセンサーのナイキストでレンズを判定する", "如何读点列图与 MTF — 用艾里斑和传感器奈奎斯特频率评判镜头"),
+    "렌즈 설계 결과의 스팟 다이어그램과 MTF를 무엇과 겹쳐 읽어야 하는지 정리했습니다. RMS·GEO 반경과 에어리 원, 수차별 스팟 모양, 픽셀 피치에서 구한 나이퀴스트 주파수와 MTF 목표값까지 다룹니다.": (
+        "What to overlay when you read a lens design's spot diagram and MTF: RMS and GEO radius against the Airy disk, spot shapes by aberration, and MTF targets at the Nyquist frequency set by pixel pitch.",
+        "レンズ設計のスポットダイアグラムと MTF を何と重ねて読むか。RMS・GEO 半径とエアリーディスク、収差ごとのスポット形状、画素ピッチから求めるナイキスト周波数と MTF の目標値まで。",
+        "读镜头设计的点列图和 MTF 时该与什么对照：RMS/GEO 半径与艾里斑、各像差的点列形状，以及由像素间距得到的奈奎斯特频率和 MTF 目标值。"),
+    "Play DEX 최적화 25% 기준 대응기 — R8을 꺼 버린 라이브러리 규칙 한 줄": ("Meeting Play's 25% DEX optimisation bar — the one library rule that switched R8 off", "Play の DEX 最適化 25% 基準への対応記 — R8 を止めていたライブラリのルール 1 行", "应对 Play 的 DEX 优化 25% 标准 — 关掉 R8 的那一行库规则"),
+    "2027년 2월 시행되는 Play 메모리 기준에 맞춰 여러 앱의 R8을 손봤습니다. minify를 켰는데도 최적화가 꺼져 있던 원인, 비율을 깎던 keep 규칙, AGP 9 전환의 함정과 점검 순서를 정리했습니다.": (
+        "Reworking R8 across several apps for Play's memory standard taking effect in February 2027: why optimisation was off despite minify, the keep rules dragging the ratio down, AGP 9 traps and a checklist.",
+        "2027 年 2 月施行の Play メモリ基準に合わせて複数アプリの R8 を見直しました。minify を有効にしても最適化が切れていた原因、比率を下げる keep ルール、AGP 9 移行の落とし穴と点検手順。",
+        "为配合 2027 年 2 月施行的 Play 内存标准，调整了多个应用的 R8：开启 minify 后优化仍被关闭的原因、拉低比例的 keep 规则、AGP 9 迁移的陷阱与检查顺序。"),
     "강의를 녹음하고 요약해도 왜 안 외워질까": ("Why recording and summarising a lecture still does not make it stick", "講義を録音して要約しても、なぜ覚えられないのか", "录音加摘要，为什么还是记不住"),
     "전사와 요약은 이제 흔한 기능이 됐습니다. 그런데 노트가 깔끔할수록 다시 안 보게 되는 역설이 있습니다. 망각 곡선과 간격 반복이 그 빈틈을 어떻게 메우는지 정리했습니다.": (
         "Transcription and summaries are everywhere now. The paradox is that the tidier the note, the less you go back to it. On the forgetting curve and what spaced repetition fills in.",

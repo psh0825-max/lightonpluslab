@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="google-adsense-account" content="ca-pub-7180935400084577">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Play DEX 최적화 25% 기준 대응기 — R8을 꺼 버린 라이브러리 규칙 한 줄 — LightOn Plus Lab</title>
+<meta name="description" content="2027년 2월 시행되는 Play 메모리 기준에 맞춰 여러 앱의 R8을 손봤습니다. minify를 켰는데도 최적화가 꺼져 있던 원인, 비율을 깎던 keep 규칙, AGP 9 전환의 함정과 점검 순서를 정리했습니다." />
+<meta property="og:title" content="Play DEX 최적화 25% 기준 대응기 — R8을 꺼 버린 라이브러리 규칙 한 줄 — LightOn Plus Lab" />
+<meta property="og:type" content="article" />
+<meta property="og:description" content="2027년 2월 시행되는 Play 메모리 기준에 맞춰 여러 앱의 R8을 손봤습니다. minify를 켰는데도 최적화가 꺼져 있던 원인, 비율을 깎던 keep 규칙, AGP 9 전환의 함정과 점검 순서를 정리했습니다." />
+<meta property="og:url" content="https://lightonpluslab.com/blog-play-memory-r8-dex-optimization.html" />
+<meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#FBFAF8" />
+<link rel="icon" href="img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="img/logo-mark.png" />
+<link rel="canonical" href="https://lightonpluslab.com/blog-play-memory-r8-dex-optimization.html" />
+<link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="styles.css?v=f0ce776f" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<style>
+.page-hero{padding:72px 0 24px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px}
+.page-hero h1 em{font-style:normal;color:var(--ink)}
+.page-hero p{color:var(--text-3);max-width:56ch;margin:0 auto;font-size:15px;line-height:1.7}
+.article-meta{color:var(--text-3);font-size:13px;margin-top:14px}
+.prose{max-width:720px;margin:0 auto;padding:8px 0 72px;font-size:15.5px;line-height:1.85;color:var(--text-2,#cdd5e1)}
+.prose h2{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:44px 0 14px;color:var(--text-1,#eef2f8)}
+.prose h3{font-size:17px;font-weight:600;margin:30px 0 10px;color:var(--text-1,#eef2f8)}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0 0 18px;padding-left:22px}
+.prose li{margin:6px 0}
+.prose strong{color:var(--text-1,#eef2f8)}
+.prose table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14px}
+.prose th,.prose td{border:1px solid var(--panel-border,#232b3d);padding:9px 12px;text-align:left;vertical-align:top}
+.prose th{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}
+.prose .tip{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}
+.prose a{color:var(--cyan,#5eead4)}
+.prose pre{margin:0 0 18px;padding:16px 18px;border-radius:8px;background:var(--paper-2);border:1px solid var(--rule);overflow-x:auto;font-size:13px;line-height:1.7}
+.prose pre code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);background:none;padding:0;border:0;white-space:pre}
+.prose code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;padding:2px 6px;border-radius:4px;background:var(--paper-2);border:1px solid var(--rule);color:var(--accent)}
+.prose img,.post-hero img{max-width:100%;height:auto;border-radius:16px;display:block;margin:0 auto}
+.post-hero{margin:18px 0 26px}
+.post-hero img{width:min(560px,100%)}
+.back-link{display:inline-block;margin:28px 0 0;font-size:14px;color:var(--cyan,#5eead4);text-decoration:none}
+.post-list{max-width:760px;margin:0 auto;padding:8px 0 72px;display:grid;gap:14px}
+.post-card{display:block;padding:24px 26px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);text-decoration:none;transition:background .25s,border-color .25s,transform .25s}
+.post-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.post-card h2{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;color:var(--text-1,#eef2f8)}
+.post-card p{font-size:14px;color:var(--text-3);line-height:1.7;margin:0 0 10px}
+.post-card .pc-meta{font-size:12.5px;color:var(--text-3);opacity:.8}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Play DEX 최적화 25% 기준 대응기 — R8을 꺼 버린 라이브러리 규칙 한 줄",
+ "description": "2027년 2월 시행되는 Play 메모리 기준에 맞춰 여러 앱의 R8을 손봤습니다. minify를 켰는데도 최적화가 꺼져 있던 원인, 비율을 깎던 keep 규칙, AGP 9 전환의 함정과 점검 순서를 정리했습니다.",
+ "image": "https://lightonpluslab.com/hero-apps.jpg",
+ "datePublished": "2026-11-09",
+ "dateModified": "2026-11-09",
+ "inLanguage": "ko",
+ "mainEntityOfPage": "https://lightonpluslab.com/blog-play-memory-r8-dex-optimization.html",
+ "author": {
+  "@type": "Organization",
+  "name": "LightOn Plus Lab",
+  "url": "https://lightonpluslab.com/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "LightOn Plus Lab",
+  "logo": {
+   "@type": "ImageObject",
+   "url": "https://lightonpluslab.com/img/logo-mark.png"
+  }
+ }
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+    <nav class="nav-links" aria-label="메뉴">
+      <a href="products.html">Apps</a>
+      <a href="lens.html">Lens</a>
+<a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">
+      Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
+  <a href="products.html">Apps</a>
+  <a href="lens.html">Lens</a>
+<a href="services.html">Services</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Dev Note</span>
+    <h1 class="reveal">Play DEX 최적화 25% 기준 대응기 — R8을 꺼 버린 라이브러리 규칙 한 줄</h1>
+    <div class="article-meta">2026-11-09 · LightOn Plus Lab</div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <article class="prose">
+
+<p>2026년 10월, Play Console 에 "Play 표준 변경사항이 적용되기 전에 앱의 메모리 사용량을 최적화하세요"라는 알림이 떴습니다. 프로덕션 앱 8개의 Android vitals 대시보드 전부에 경고가 붙어 있었습니다. Flutter·Capacitor·웹뷰 래퍼 앱이 섞여 있었고, 경고는 비슷해도 원인은 앱마다 달랐습니다.</p>
+<p>가장 오래 걸린 건 <code>minifyEnabled true</code> 와 <code>proguard-android-optimize.txt</code> 가 제대로 적혀 있는데도 "최적화가 꺼져 있다"고 나온 앱이었습니다. 원인은 제 빌드 파일이 아니라 결제 SDK 가 끌어온 라이브러리의 ProGuard 규칙 한 줄이었습니다.</p>
+
+<h2>Play 가 요구하는 것</h2>
+<p><a href="https://android-developers.googleblog.com/2026/08/app-quality-memory-optimization-secure-onboarding.html" target="_blank" rel="noopener">Android Developers Blog</a>에 따르면 2027년 2월부터 앱은 동적 메모리(익명 RSS + 스왑), 백그라운드 비트맵 메모리, DEX 코드 최적화 기준을 맞춰야 하고, 못 맞추면 노출과 게시 기능이 제한될 수 있습니다. DEX 쪽은 R8 같은 도구로 최적화·축소·난독화 커버리지를 최소 25% 확보하라는 요구입니다.</p>
+<p><a href="https://support.google.com/googleplay/android-developer/answer/17492799" target="_blank" rel="noopener">Play 고객센터 문서</a>에는 이 요건이 DEX 10MB 초과 앱(게임은 50MB)에만 강제된다고 적혀 있습니다. 그런데 Vitals 권장 조치는 크기와 상관없이 떴습니다. DEX 7.1MB 앱에도 "앱이 최적화되지 않았습니다"가 붙었습니다. 메모리 항목은 아직 현장 데이터가 집계되지 않아, 빌드 결과물만으로 판정되는 DEX 최적화부터 잡았습니다.</p>
+<table>
+<thead><tr><th>Vitals 의 R8 항목</th><th>앱</th></tr></thead>
+<tbody>
+<tr><td>"앱이 최적화되지 않았습니다"</td><td>Capacitor 1개, Flutter 1개</td></tr>
+<tr><td>R8 은 도는데 최적화가 꺼져 있다는 판정</td><td>Flutter 1개</td></tr>
+<tr><td>AGP 9.0 업그레이드, 최적화된 리소스 축소 권장</td><td>나머지 5개</td></tr>
+</tbody>
+</table>
+
+<h2>판정 근거는 AAB 안에 있다</h2>
+<p>콘솔에 올리기 전에 로컬에서 같은 숫자를 봐야 반복이 빨라집니다. AAB 안의 <code>BUNDLE-METADATA/com.android.tools/r8.json</code> 에 R8 이 어떤 옵션으로 돌았는지와 결과 통계가 들어 있습니다.</p>
+<pre><code>unzip -p app-release.aab BUNDLE-METADATA/com.android.tools/r8.json | python3 -m json.tool
+
+"options": { ..., "isOptimizationsEnabled": true, ... },
+"stats": {
+    "noObfuscationPercentage": 70.37,
+    "noOptimizationPercentage": 70.9,
+    "noShrinkingPercentage": 70.45
+},
+"resourceOptimization": { "isOptimizedShrinkingEnabled": true }</code></pre>
+<p>위 값은 Vitals 가 "낮은 최적화 비율 29%"라고 한 앱의 번들입니다. 100 − 70.9 = 29.1 입니다. 다른 두 앱도 67.92 → 32%, 55.58 → 44% 로 Vitals 숫자와 일치했습니다. 공식 문서에서 이 대응을 본 적은 없지만 제 앱 세 개에서는 어긋난 적이 없습니다.</p>
+<p>이 파일에서 두 경우를 구분하면 진단 방향이 갈립니다.</p>
+<ul>
+<li><strong><code>isOptimizationsEnabled: false</code></strong> — 스위치 자체가 꺼진 상태입니다. keep 규칙은 특정 클래스·멤버만 지키므로 이 스위치를 끄지 못합니다. 어딘가에 <code>-dontoptimize</code> 같은 전역 옵션이 있습니다.</li>
+<li><strong>스위치는 켜졌는데 비율이 낮음</strong> — 넓은 keep 규칙이 코드 상당 부분을 최적화에서 빼고 있습니다.</li>
+</ul>
+
+<h2>사례 1 — 템플릿 기본값 그대로였던 두 앱</h2>
+<p>Capacitor 로 만든 유아용 한글 앱은 Capacitor CLI 안드로이드 템플릿(8.5 기준)의 기본 설정 그대로였습니다.</p>
+<pre><code>release {
+    minifyEnabled false
+    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+}</code></pre>
+<p>여기서 <code>minifyEnabled</code> 만 켜면 절반만 고친 것입니다. AGP 기본 파일 <code>proguard-android.txt</code> 안에 <code>-dontoptimize</code> 가 들어 있어서, 축소·난독화는 되지만 최적화는 꺼진 채 나갑니다. <code>proguard-android-optimize.txt</code> 로 바꾸고 <code>shrinkResources true</code> 를 더했습니다. 플러그인을 리플렉션으로 찾는 Capacitor 가 깨질까 걱정했지만, <code>@capacitor/android</code> 의 consumer 규칙이 <code>Plugin</code> 하위 클래스와 <code>@PluginMethod</code> 를 이미 지키고 있어 앱 규칙은 더할 필요가 없었습니다.</p>
+<p>Flutter 보드게임 앱은 <code>isMinifyEnabled = false</code> 가 명시돼 있었습니다. 켜고 optimize 파일을 지정한 것이 전부입니다. 엔진용 keep 규칙은 Flutter Gradle 플러그인이 붙여 줍니다.</p>
+<p>DEX 는 7.1MB → 0.8MB, 9.0MB → 1.0MB 로 줄었고 최적화 비율은 약 81%, 87% 가 됐습니다. 출시 당일 두 앱의 Vitals 항목은 경미 단계로 내려갔습니다.</p>
+
+<h2>사례 2 — 설정은 맞는데 최적화가 꺼져 있던 앱</h2>
+<p>강의 노트 앱(Flutter)은 처음부터 minify 와 optimize 파일이 켜져 있었는데 r8.json 이 <code>isOptimizationsEnabled: false</code> 였습니다.</p>
+<h3>처음 의심한 것</h3>
+<pre><code># Riverpod + freezed codegen — preserve generated classes referenced by name.
+-keep class **.*$* { *; }</code></pre>
+<p><code>**</code> 는 패키지 구분자를 포함한 아무 이름이므로, 이 규칙은 모든 라이브러리의 내부·익명 클래스를 통째로 지킵니다. 목적도 성립하지 않습니다. Riverpod·freezed 는 Dart 코드이고 릴리스에서 Dart 는 <code>libapp.so</code> 로 AOT 컴파일됩니다. R8 은 Java/Kotlin 바이트코드만 봅니다. 나쁜 규칙이지만, 앞의 기준으로 보면 비율을 깎을 뿐 스위치를 끄지는 못합니다. 다른 곳에 전역 옵션이 있어야 했습니다.</p>
+<h3>진단: 합쳐진 설정 파일을 본다</h3>
+<p>R8 이 받는 규칙은 앱 파일, AGP 기본 파일, Flutter 규칙, 모든 의존성 AAR 의 consumer 규칙을 합친 것입니다. 제 빌드 환경에서는 릴리스 빌드를 하면 이 합본이 <code>configuration.txt</code> 로 남고, 구간마다 출처 주석이 붙었습니다.</p>
+<pre><code>grep -n -- '-dontoptimize' build/app/outputs/mapping/release/configuration.txt   # Flutter
+grep -n -- '-dontoptimize' app/build/outputs/mapping/release/configuration.txt   # 일반 프로젝트
+
+# The proguard configuration file for the following section is …/purchases-store-amazon-10.14.1/proguard.txt
+-dontwarn com.amazon.**
+-keep class com.amazon.** {*;}
+-keepattributes *Annotation*
+-dontoptimize</code></pre>
+<p>RevenueCat <code>purchases_flutter</code> 10.4.3 이 끌어온 <code>purchases-store-amazon</code> 10.14.1 의 마지막 줄이었습니다. Amazon 앱스토어에 나가지도 않는 앱에서, 의존성으로 딸려 온 모듈 하나가 앱 전체의 최적화를 끄고 있었습니다.</p>
+<p>R8 의 <a href="https://developer.android.com/topic/performance/app-optimization/global-options" target="_blank" rel="noopener">전역 옵션</a>은 어느 파일에 적혔든 앱 전체에 적용됩니다. <a href="https://developer.android.com/topic/performance/app-optimization/choose-libraries-wisely" target="_blank" rel="noopener">라이브러리 선택 가이드</a>도 keep 규칙은 더해지기만 하고, 라이브러리가 최적화를 끄는 규칙을 넣으면 프로젝트 전체가 꺼진다고 설명합니다. Gradle 캐시에서 비교해 보니 10.19.1 에는 이 줄이 없었고, 그 버전을 끌어오는 <code>purchases_flutter</code> 10.11.0 이상으로 올렸습니다. 누가 되돌리지 않도록 버전 제약 옆에 이유를 주석으로 남겼습니다.</p>
+<p>AGP 9 에서는 <code>android.r8.globalOptionsInConsumerRules.disallowed</code> 가 기본으로 켜져, AAR·JAR 의존성의 전역 옵션이 무시되고 <code>configuration.txt</code> 에 <code># REMOVED CONSUMER RULE: -dontoptimize</code> 주석이 남는다고 <a href="https://developer.android.com/build/releases/agp-9-0-0-release-notes" target="_blank" rel="noopener">AGP 9.0 릴리스 노트</a>에 나와 있습니다. 이 함정은 주로 AGP 8.x 프로젝트의 문제이고, 당시 이 앱은 AGP 8.9 였습니다.</p>
+<h3>넓은 규칙을 지운 자리</h3>
+<p><code>**.*$*</code> 와 Dart 대상 규칙을 지우고, Java 쪽에서 실제로 리플렉션을 쓰는 곳만 지켰습니다. <code>flutter_local_notifications</code> 는 예약 알림을 Gson JSON 으로 저장했다가 다시 읽는데, 난독화된 필드 이름은 빌드마다 달라질 수 있어 지켜 두지 않으면 업데이트 후 이전 예약을 못 읽습니다.</p>
+<pre><code>-keep class com.dexterous.flutterlocalnotifications.models.** { *; }
+-keepattributes Signature
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken</code></pre>
+<p>새로 설치하는 테스트로는 안 보이는 문제라, keep 을 지울 때는 이전 버전이 남긴 데이터를 읽을 수 있는지도 따져야 합니다. 결과는 DEX 19.2MB → 8.2MB, 최적화 비율 약 46% 였습니다.</p>
+
+<h2>사례 3 — 켜져 있지만 29% 였던 앱</h2>
+<p>외국인용 한글 학습 앱(Capacitor)은 "낮은 최적화 비율 29%"였습니다. 기준은 넘지만 여유가 4%p 였습니다. 원인은 두 갈래였습니다.</p>
+<ul>
+<li><strong>라이브러리의 패키지 전체 keep</strong> — RevenueCat 안드로이드 SDK 의 consumer 규칙 <code>-keep class com.revenuecat.** { *; }</code>. 전역 옵션이 아니라 AGP 9 에서도 그대로 적용됩니다.</li>
+<li><strong>앱이 쓴 통째 keep</strong> — <code>com.getcapacitor.**</code>, <code>org.apache.cordova.**</code>, Play Billing, 앱 패키지 전체. Capacitor 와 Play Billing 의 consumer 규칙, <code>@JavascriptInterface</code> 를 지키는 AGP 기본 파일이 이미 하는 일이라 지웠습니다.</li>
+</ul>
+<p>이 앱은 안드로이드 결제를 Play Billing 직접 호출 플러그인으로 처리하고 RevenueCat 은 iOS 에서만 씁니다. 그런데 Capacitor 는 따로 지정하지 않으면 <code>package.json</code> 의 플러그인을 다 넣습니다. <a href="https://capacitorjs.com/docs/config" target="_blank" rel="noopener">Capacitor 설정</a>의 <code>android.includePlugins</code> 로 안드로이드 쪽만 골랐습니다.</p>
+<pre><code>"android": {
+  "includePlugins": ["@capacitor/app"]
+}</code></pre>
+<p><code>noOptimizationPercentage</code> 는 70.9 → 14.9(최적화 약 85%), DEX 는 4.6MB → 1.2MB 가 됐습니다. 안드로이드에서도 RevenueCat 을 쓰는 두 앱(32%, 44%)은 이 방법을 못 씁니다. AGP 8.4 이상의 <code>optimization.keepRules { it.ignoreFrom(...) }</code> 로 라이브러리 규칙을 걸러낼 수는 있지만 그러면 SDK 의 리플렉션 지점을 제가 대신 지켜야 해서, 결제 코드에는 적용하지 않았습니다.</p>
+
+<h2>AGP 9 로 올리면서 생긴 일</h2>
+<p>남은 두 권장 항목 때문에 앱 5개를 AGP 9.4.1·Gradle 9.6.1 로 올렸습니다. 릴리스 노트상 R8 관련 기본값 중 영향을 준 것은 이렇습니다(모두 false → true).</p>
+<table>
+<thead><tr><th>속성</th><th>바뀐 내용</th></tr></thead>
+<tbody>
+<tr><td><code>android.r8.proguardAndroidTxt.disallowed</code></td><td><code>proguard-android.txt</code> 지원 중단</td></tr>
+<tr><td><code>android.r8.globalOptionsInConsumerRules.disallowed</code></td><td>의존성의 전역 옵션 무시</td></tr>
+<tr><td><code>android.r8.optimizedResourceShrinking</code></td><td>코드와 리소스를 함께 보고 리소스를 더 적게 남김</td></tr>
+<tr><td><code>android.r8.strictFullModeForKeepRules</code></td><td><code>-keep class A</code> 가 기본 생성자를 지키지 않음</td></tr>
+</tbody>
+</table>
+<p>Flutter 앱은 당시 Flutter 3.41 의 플러그인들이 Kotlin Gradle 플러그인과 이전 DSL 을 써서 <code>android.builtInKotlin=false</code>, <code>android.newDsl=false</code> 를 넣었습니다. 또 AGP 9 는 라이브러리가 요구하는 compileSdk 를 검사해서, compileSdk 34 로 고정된 플러그인 때문에 빌드가 멈췄습니다. 루트 <code>build.gradle</code> 에서 36 미만인 라이브러리 모듈만 36 으로 컴파일하게 했습니다.</p>
+<pre><code>subprojects {   // evaluationDependsOn(":app") 블록보다 위에 둔다
+    afterEvaluate { project -&gt;
+        def android = project.extensions.findByName("android")
+        if (android != null &amp;&amp; project.plugins.hasPlugin("com.android.library")) {
+            def sdk = (android.compileSdkVersion ?: "").replaceAll("[^0-9]", "")
+            if (sdk &amp;&amp; sdk.toInteger() &lt; 36) android.compileSdkVersion 36
+        }
+    }
+}</code></pre>
+<p>r8.json 의 <code>isOptimizedShrinkingEnabled</code> 는 <code>true</code> 가 됐습니다. 문제는 표의 아래 두 줄이었습니다.</p>
+<h3>함정 1: 이름으로 찾는 리소스가 사라진다</h3>
+<p>음악 생성 앱(Flutter)의 AGP 9 빌드를 출시 전 태블릿에서 점검하다가, 소리는 나는데 알림창에 재생 컨트롤이 없는 것을 발견했습니다. <code>dumpsys media_session</code> 은 <code>active=false</code>, 로그에는 이 예외가 반복됐습니다.</p>
+<pre><code>You must specify an icon resource id to build a CustomAction</code></pre>
+<p><code>audio_service</code> 아이콘 이름은 Dart 에 문자열로 있고 네이티브 쪽은 이름으로 리소스를 찾으니, 축소기 눈에는 안 쓰는 리소스입니다. 직전 AGP 8 빌드에 남아 있던 리소스 444개가 지워졌고 그 안에 이 아이콘들이 있었습니다. analyze·테스트·재생 안 하는 실행으로는 안 잡힙니다.</p>
+<p><code>tools:keep</code> 으로 하나씩 지킬 수도 있지만 그건 제가 아는 조회만 지킵니다. 소스를 볼 수 없는 구글 라이브러리가 이름으로 무엇을 찾는지는 알 수 없어서, 이 앱은 <code>android.r8.optimizedResourceShrinking=false</code> 로 되돌렸습니다(APK 약 250KB 증가, Vitals 항목은 알고서 남김). 대신 이름으로 찾는 리소스 목록을 두고, 릴리스 빌드 뒤 <code>aapt2 dump resources</code> 로 하나라도 없으면 빌드를 실패시킵니다. AAB 는 지워진 리소스 이름이 경로 문자열로 남아 문자열 검색으로는 "있다"고 나오므로, <code>base/resources.pb</code> 의 항목을 <code>type/name</code> 으로 대조해야 합니다.</p>
+<h3>함정 2: <code>-keep class</code> 가 생성자를 지키지 않는다</h3>
+<p>웹뷰 래퍼 앱은 AGP 9 첫 빌드가 실행 즉시 죽었습니다.</p>
+<pre><code>Failed to create an instance of androidx.work.impl.WorkDatabase
+
+# Room 2.2.5 의 consumer 규칙
+-keep class * extends androidx.room.RoomDatabase</code></pre>
+<p>광고 SDK 가 WorkManager 2.7.0 을, 그것이 Room 2.2.5 를 끌어옵니다. Room 은 생성된 <code>WorkDatabase_Impl</code> 을 리플렉션으로 만드는데, strict full mode 에서는 위 규칙이 클래스만 지키고 생성자는 지키지 않습니다. 릴리스 노트가 권하는 방법은 <code>-keep class A { &lt;init&gt;(); }</code> 형태로 바꾸는 것이고, 저는 이번엔 <code>android.r8.strictFullModeForKeepRules=false</code> 로 출시본과 같은 의미를 유지했습니다. 최적화와 리소스 축소는 켜진 채라는 것을 r8.json 으로 확인했습니다.</p>
+<p>두 함정 모두 빌드와 정적 검사는 통과하고, 이름이나 리플렉션으로 무언가를 찾는 실행 경로에서만 드러납니다.</p>
+
+<h2>어떻게 검증했나</h2>
+<p>에뮬레이터에 릴리스 빌드를 올려 리플렉션과 이름 조회에 기대는 기능을 밟았습니다. 웹뷰의 플러그인 호출, 결제 플러그인의 구독 조회·구매 복원, 파일 선택기, 알림 예약과 실제 알람 등록, 재시작 후 설정 유지 같은 것들입니다. 에뮬레이터 결제는 <code>BILLING_UNAVAILABLE</code> 로 떨어져서 그 안내까지만 볼 수 있고, 실기기 결제 확인은 일부 앱에서 아직 남아 있습니다. 출시 후에는 Vitals 문구로 확인했습니다. 완전 미최적화였던 두 앱과 29% 였던 앱은 이후 판에서 R8 관련 권장 조치가 사라졌습니다.</p>
+
+<h2>점검 순서</h2>
+<ol>
+<li><strong>r8.json 부터 연다.</strong> <code>isOptimizationsEnabled</code>, <code>noOptimizationPercentage</code>, <code>isOptimizedShrinkingEnabled</code> 를 적어 두고 고친 뒤 같은 값으로 비교합니다.</li>
+<li><strong>스위치가 꺼져 있으면 전역 옵션을 찾는다.</strong> <code>minifyEnabled</code> 와 기본 파일 이름을 보고, <code>configuration.txt</code> 에서 <code>-dontoptimize</code>·<code>-dontshrink</code>·<code>-dontobfuscate</code> 를 검색해 출처를 확인합니다. 라이브러리면 그 줄이 없는 버전으로 올리고 이유를 남깁니다.</li>
+<li><strong>비율이 낮으면 넓은 keep 을 찾는다.</strong> <code>**</code> 패턴, Dart·JS 를 지키려는 규칙, consumer 규칙과 겹치는 규칙. 그 플랫폼에서 안 쓰는 라이브러리는 빼고, 쓰는 라이브러리는 <code>ignoreFrom</code> 의 대가를 따집니다. AGP 9.3 이상이면 <a href="https://developer.android.com/topic/performance/app-optimization/r8-configuration-analyzer" target="_blank" rel="noopener">R8 Configuration Analyzer</a> 가 규칙별 영향을 보여 줍니다(저는 이번엔 쓰지 않았습니다).</li>
+<li><strong>지운 자리에 진짜 리플렉션 지점만 남긴다.</strong> JNI <code>native</code> 메서드, Gson 같은 저장 포맷, 이전 버전 데이터 호환.</li>
+<li><strong>AGP 9 에서는 두 기본값을 의심한다.</strong> 이름으로 찾는 리소스를 목록으로 만들어 결과물과 대조하고, <code>-keep class</code> 에 기대는 리플렉션 생성을 찾습니다. 되돌릴 땐 그 플래그만 끕니다.</li>
+<li><strong>릴리스 빌드를 기기에서 돌린다.</strong> 결제·알림·미디어 세션·백그라운드 작업·업데이트 후 데이터를 직접 밟습니다.</li>
+<li><strong>출시 후 Vitals 문구로 확인하고</strong>, 다음 판에서 1번으로 돌아갑니다.</li>
+</ol>
+<p><code>minifyEnabled true</code> 는 R8 이 돈다는 뜻이지 최적화된다는 뜻이 아니었습니다. 판정은 내가 쓴 설정 파일이 아니라, 결과물(r8.json)과 R8 이 실제로 받은 합본(configuration.txt)으로 해야 합니다.</p>
+
+    <a class="back-link" href="blog.html">← 블로그 목록으로</a>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">전체 앱</a>
+<a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens 렌즈 해석</a>
+<a href="lens-docs.html">Lens 문서</a>
+        <a href="momoi.html">모모아이</a>
+        <a href="lighton-ai-note.html">라이트온 AI 노트</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">카카오톡 1:1 문의</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
+    </div>
+  </div>
+</footer>
+
+<script src="app.js?v=11b4789a"></script>
+</body>
+</html>

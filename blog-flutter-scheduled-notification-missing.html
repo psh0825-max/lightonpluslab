@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="google-adsense-account" content="ca-pub-7180935400084577">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>flutter_local_notifications 예약 알림이 안 뜰 때 — 원인 4가지와 점검표 — LightOn Plus Lab</title>
+<meta name="description" content="매일 복습 알림이 출시 후 한 번도 뜨지 않았습니다. 빠진 리시버, 비어 있던 저장본, 서울로 고정된 시간대, 연결되지 않은 iOS를 adb와 시뮬레이터로 하나씩 확인한 기록과 점검표입니다." />
+<meta property="og:title" content="flutter_local_notifications 예약 알림이 안 뜰 때 — 원인 4가지와 점검표 — LightOn Plus Lab" />
+<meta property="og:type" content="article" />
+<meta property="og:description" content="매일 복습 알림이 출시 후 한 번도 뜨지 않았습니다. 빠진 리시버, 비어 있던 저장본, 서울로 고정된 시간대, 연결되지 않은 iOS를 adb와 시뮬레이터로 하나씩 확인한 기록과 점검표입니다." />
+<meta property="og:url" content="https://lightonpluslab.com/blog-flutter-scheduled-notification-missing.html" />
+<meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#FBFAF8" />
+<link rel="icon" href="img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="img/logo-mark.png" />
+<link rel="canonical" href="https://lightonpluslab.com/blog-flutter-scheduled-notification-missing.html" />
+<link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="styles.css?v=f0ce776f" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<style>
+.page-hero{padding:72px 0 24px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px}
+.page-hero h1 em{font-style:normal;color:var(--ink)}
+.page-hero p{color:var(--text-3);max-width:56ch;margin:0 auto;font-size:15px;line-height:1.7}
+.article-meta{color:var(--text-3);font-size:13px;margin-top:14px}
+.prose{max-width:720px;margin:0 auto;padding:8px 0 72px;font-size:15.5px;line-height:1.85;color:var(--text-2,#cdd5e1)}
+.prose h2{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:44px 0 14px;color:var(--text-1,#eef2f8)}
+.prose h3{font-size:17px;font-weight:600;margin:30px 0 10px;color:var(--text-1,#eef2f8)}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0 0 18px;padding-left:22px}
+.prose li{margin:6px 0}
+.prose strong{color:var(--text-1,#eef2f8)}
+.prose table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14px}
+.prose th,.prose td{border:1px solid var(--panel-border,#232b3d);padding:9px 12px;text-align:left;vertical-align:top}
+.prose th{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}
+.prose .tip{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}
+.prose a{color:var(--cyan,#5eead4)}
+.prose pre{margin:0 0 18px;padding:16px 18px;border-radius:8px;background:var(--paper-2);border:1px solid var(--rule);overflow-x:auto;font-size:13px;line-height:1.7}
+.prose pre code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);background:none;padding:0;border:0;white-space:pre}
+.prose code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;padding:2px 6px;border-radius:4px;background:var(--paper-2);border:1px solid var(--rule);color:var(--accent)}
+.prose img,.post-hero img{max-width:100%;height:auto;border-radius:16px;display:block;margin:0 auto}
+.post-hero{margin:18px 0 26px}
+.post-hero img{width:min(560px,100%)}
+.back-link{display:inline-block;margin:28px 0 0;font-size:14px;color:var(--cyan,#5eead4);text-decoration:none}
+.post-list{max-width:760px;margin:0 auto;padding:8px 0 72px;display:grid;gap:14px}
+.post-card{display:block;padding:24px 26px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);text-decoration:none;transition:background .25s,border-color .25s,transform .25s}
+.post-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.post-card h2{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;color:var(--text-1,#eef2f8)}
+.post-card p{font-size:14px;color:var(--text-3);line-height:1.7;margin:0 0 10px}
+.post-card .pc-meta{font-size:12.5px;color:var(--text-3);opacity:.8}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "flutter_local_notifications 예약 알림이 안 뜰 때 — 원인 4가지와 점검표",
+ "description": "매일 복습 알림이 출시 후 한 번도 뜨지 않았습니다. 빠진 리시버, 비어 있던 저장본, 서울로 고정된 시간대, 연결되지 않은 iOS를 adb와 시뮬레이터로 하나씩 확인한 기록과 점검표입니다.",
+ "image": "https://lightonpluslab.com/hero-apps.jpg",
+ "datePublished": "2026-11-09",
+ "dateModified": "2026-11-09",
+ "inLanguage": "ko",
+ "mainEntityOfPage": "https://lightonpluslab.com/blog-flutter-scheduled-notification-missing.html",
+ "author": {
+  "@type": "Organization",
+  "name": "LightOn Plus Lab",
+  "url": "https://lightonpluslab.com/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "LightOn Plus Lab",
+  "logo": {
+   "@type": "ImageObject",
+   "url": "https://lightonpluslab.com/img/logo-mark.png"
+  }
+ }
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+    <nav class="nav-links" aria-label="메뉴">
+      <a href="products.html">Apps</a>
+      <a href="lens.html">Lens</a>
+<a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">
+      Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
+  <a href="products.html">Apps</a>
+  <a href="lens.html">Lens</a>
+<a href="services.html">Services</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Dev Note</span>
+    <h1 class="reveal">flutter_local_notifications 예약 알림이 안 뜰 때 — 원인 4가지와 점검표</h1>
+    <div class="article-meta">2026-11-09 · LightOn Plus Lab</div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <article class="prose">
+
+<p>라이트온 AI 노트는 강의 노트에서 플래시카드를 만들어 간격 반복으로 복습하게 하는 앱이고, 설정에서 켜 두면 매일 정한 시각에 복습할 때를 알려 주는 <strong>복습 알림</strong>이 있습니다. 그런데 이 알림은 안드로이드에서 기능을 넣은 뒤로 <strong>한 번도 뜬 적이 없었고</strong>, iOS에서는 토글이 켜지지도 않았습니다. 따라가 보니 원인은 넷이었고, 모두 에러 메시지 하나 없이 조용히 어긋나는 종류였습니다.</p>
+
+<h2>증상</h2>
+<p>예약은 <code>flutter_local_notifications</code> 17.2.4의 <code>zonedSchedule</code>로 합니다. 매일 반복은 <code>matchDateTimeComponents</code>로 걸고, 안드로이드는 정확한 알람 권한이 필요 없는 inexact 모드를 씁니다.</p>
+<pre><code>await _plugin.zonedSchedule(
+  _dailyReviewId,
+  _title,
+  _body,
+  _nextInstanceOf(hour, minute),
+  details,
+  androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+  uiLocalNotificationDateInterpretation:
+      UILocalNotificationDateInterpretation.absoluteTime,
+  matchDateTimeComponents: DateTimeComponents.time,
+);</code></pre>
+<p>안드로이드에서는 토글을 켜고 시각을 골라도 그 시각에도, 다음 날에도 알림이 오지 않았습니다. iOS에서는 토글을 누르면 설정에서 알림을 허용하라는 안내만 떴는데, 정작 시스템 권한 창은 한 번도 나온 적이 없었습니다.</p>
+
+<h2>먼저 가를 것: 알람이 울렸나, 알림이 게시됐나</h2>
+<p>안드로이드의 예약 알림은 두 단계로 움직입니다. 플러그인이 <code>AlarmManager</code>에 알람을 걸고, 시각이 되면 시스템이 브로드캐스트한 인텐트를 플러그인의 리시버가 받아 알림을 게시합니다. 알림이 안 뜨면 어느 단계에서 끊겼는지부터 갈라야 합니다.</p>
+<p>문제의 1.2.8을 릴리스 빌드로 다시 만들어 API 36 에뮬레이터에 깔고, 시계를 건드리지 않은 채 설정 화면에서 알림 시각을 3분 뒤로 잡았습니다.</p>
+<pre><code>$ adb shell dumpsys alarm | grep -A3 'ailecturenote}'
+  tag=*walarm*:com.lightonpluslab.ailecturenote/com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver
+  type=RTC_WAKEUP origWhen=2026-10-16 14:37:00.000 window=+2m15s896ms repeatInterval=0 ...</code></pre>
+<p>알람은 걸렸고, 시각이 지나자 대기 목록에서 사라졌으며, 같은 출력의 알람 통계에는 <code>1 wakes 1 alarms</code>로 전달된 기록이 남았습니다. <strong>알람은 울렸습니다.</strong> 그런데 게시된 알림은 0건이었습니다.</p>
+<pre><code>$ adb shell dumpsys notification --noredact | grep -c 'pkg=com.lightonpluslab.ailecturenote'
+0</code></pre>
+<p>이것만으로 도즈·배터리 최적화(전달 기록이 있음)와 inexact 지연(창이 끝났음)은 빠집니다. 알람은 울렸는데, 그걸 받아 알림을 만드는 쪽이 일하지 않은 겁니다. logcat을 앱과 플러그인 이름으로 걸러 봐도 관련된 줄은 없었습니다.</p>
+
+<h2>원인 1: 아무도 받지 않는 브로드캐스트</h2>
+<p>dumpsys의 <code>tag</code>가 가리키는 대상은 <code>ScheduledNotificationReceiver</code>라는 명시적 컴포넌트입니다. 그런데 빌드된 APK의 매니페스트에는 플러그인 이름이 한 번도 나오지 않았습니다.</p>
+<pre><code>$ aapt2 dump xmltree --file AndroidManifest.xml app-1.2.8.apk | grep -c -i flutterlocalnotifications
+0</code></pre>
+<p>이 플러그인은 16 버전부터 자기 매니페스트에 <code>VIBRATE</code>와 <code>POST_NOTIFICATIONS</code>만 선언하고, 예약 알림에 필요한 리시버 두 개는 앱이 직접 넣도록 README에 적어 둡니다. 처음 기능을 넣을 때 그 절을 놓쳤습니다. 명시적 인텐트의 대상이 매니페스트에 없으니 브로드캐스트는 갈 곳이 없고, 실행되지 않은 플러그인 코드는 예외도 로그도 남기지 않습니다.</p>
+<p>다음 날 알람이 생기지 않은 것도 같은 이유입니다. 안드로이드에서 매일 반복은 운영체제의 반복 알람이 아닙니다. 한 번짜리 알람을 받은 리시버가 알림을 띄운 직후 <strong>다음 회차를 직접 다시 겁니다.</strong></p>
+<pre><code>// flutter_local_notifications 17.2.4, ScheduledNotificationReceiver.onReceive
+FlutterLocalNotificationsPlugin.showNotification(context, notificationDetails);
+FlutterLocalNotificationsPlugin.scheduleNextNotification(context, notificationDetails);</code></pre>
+<p>수정은 README에 적힌 그대로입니다.</p>
+<pre><code>&lt;uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/&gt;
+
+&lt;!-- &lt;application&gt; 안 --&gt;
+&lt;receiver
+    android:exported="false"
+    android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" /&gt;
+&lt;receiver
+    android:exported="false"
+    android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.intent.action.BOOT_COMPLETED"/&gt;
+        &lt;action android:name="android.intent.action.MY_PACKAGE_REPLACED"/&gt;
+        &lt;action android:name="android.intent.action.QUICKBOOT_POWERON" /&gt;
+        &lt;action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;</code></pre>
+<p><code>RECEIVE_BOOT_COMPLETED</code>는 다른 플러그인이 병합해 오고 있었지만, 그 플러그인이 빠지는 날 부트 리시버가 다시 조용히 죽지 않도록 직접 선언했습니다. 플러그인이 런타임에 이름으로 찾는 알림 아이콘 <code>@mipmap/ic_launcher</code>도 리소스 축소기가 지우지 않게 <code>res/raw/keep.xml</code>에 넣었습니다. README는 아이콘이 지워지면 알림이 조용히 실패할 수 있다고 경고합니다.</p>
+
+<h2>원인 2: 리시버를 넣어도 돌아오지 않은 알림</h2>
+<p>여기서 끝난 줄 알았습니다. 그런데 <strong>1.2.8에서 알림을 켜 둔 채 업데이트하는 경우</strong>를 재현하자 결과가 이상했습니다. 리시버를 넣은 빌드를 <code>adb install -r</code>로 덮어 설치하자 부트 리시버가 실행된 흔적은 logcat에 찍혔는데, <code>dumpsys alarm</code>에는 알람이 없었습니다.</p>
+<pre><code>I/ActivityManager: Start proc ...:com.lightonpluslab.ailecturenote/... for broadcast
+  {com.lightonpluslab.ailecturenote/com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver}</code></pre>
+<p>플러그인은 예약한 알림의 사본을 SharedPreferences에 Gson JSON으로 저장하고, 부트 리시버는 재부팅이나 업데이트 때 그 사본으로 알람을 다시 겁니다. <code>AlarmManager</code> 문서에 적혀 있듯 알람은 재부팅하면 지워지므로 플러그인에게는 이 사본이 유일한 복구 수단입니다. 사본은 이렇게 읽습니다.</p>
+<pre><code>// flutter_local_notifications 17.2.4, loadScheduledNotifications
+Type type = new TypeToken&lt;ArrayList&lt;NotificationDetails&gt;&gt;() {}.getType();
+scheduledNotifications = gson.fromJson(json, type);</code></pre>
+<p>가장 유력하게 본 용의자는 이 <code>TypeToken</code>입니다. TypeToken은 익명 하위 클래스에 남은 제네릭 시그니처를 리플렉션으로 읽는데, AGP 8.0부터 기본인 R8 full mode는 <code>-keepattributes Signature</code>가 있어도 keep 규칙에 걸린 클래스에만 시그니처를 남깁니다. 시그니처를 잃은 TypeToken은 이렇게 시작하는 예외를 던집니다.</p>
+<pre><code>TypeToken must be created with a type argument: new TypeToken&lt;...&gt;() {};</code></pre>
+<p>앱 빌드가 쓰던 Gson 2.10.1 jar에는 R8 규칙이 들어 있지 않고(2.11.0부터 <code>META-INF/proguard/gson.pro</code>가 포함됩니다), README도 플러그인 v18 이하는 Gson 규칙을 앱이 직접 넣으라고 안내합니다. 1.2.8의 앱 규칙 파일에는 Gson 규칙이 없었습니다. 이 가설대로라면 순서는 이렇습니다. 앱은 예약 전에 항상 <code>cancel</code>을 부르고, cancel은 저장본이 없으면 TypeToken을 거치지 않고 빈 목록 <code>[]</code>을 씁니다. 이어지는 <code>zonedSchedule</code>은 <strong>알람을 먼저 건 뒤</strong> 사본을 저장하려고 그 <code>[]</code>을 읽다가 예외를 내고, 예외는 Dart로 올라와 <code>NotificationService</code>의 <code>catch</code>에서 사라집니다. 알람은 걸리고 사본은 빈 채로 남습니다.</p>
+<p>다만 이 가설은 끝까지 확인하지 못했습니다. 릴리스 빌드는 <code>run-as</code>가 막혀 사본 파일을 열어 볼 수 없었고, 1.2.8의 R8 매핑도 남아 있지 않았습니다. 게다가 1.2.8에는 모든 내부 클래스를 지키는 넓은 규칙(<code>-keep class **.*$* { *; }</code>)이 있었고 익명 TypeToken 하위 클래스도 여기에 걸리므로, 시그니처가 정말 지워졌다고 단정할 수는 없습니다. 확인된 것은 1.2.8에서 켠 알림이 부트 리시버로는 돌아오지 않는다는 사실, 그리고 Gson 규칙이 들어간 빌드에서는 재부팅 복구가 동작한다는 결과입니다.</p>
+<p>원인이 어느 쪽이든 대응은 같았습니다. 지난 버전이 플러그인 사본에 남긴 상태는 새 버전의 규칙으로 고칠 수 없습니다(Gson 규칙은 1.2.9에서 이미 추가돼 있었습니다). 그래서 앱이 가진 진실의 원천, 즉 설정 화면이 Hive에 저장한 켜짐 여부와 시각으로 <strong>매 실행마다 다시 예약</strong>하게 했습니다. 같은 ID를 취소하고 다시 거는 동작이라 여러 번 불러도 안전합니다.</p>
+<pre><code>// main.dart, 시작 시
+await NotificationService.init();
+unawaited(NotificationService.restoreDailyReviewReminder());
+
+// NotificationService
+static Future&lt;void&gt; restoreDailyReviewReminder() async {
+  final enabled =
+      DatabaseService.getSetting&lt;bool&gt;(enabledSettingKey) ?? false;
+  if (!enabled) return;
+  await scheduleDailyReviewReminder(
+    hour: DatabaseService.getSetting&lt;int&gt;(hourSettingKey) ?? defaultHour,
+    minute:
+        DatabaseService.getSetting&lt;int&gt;(minuteSettingKey) ?? defaultMinute,
+  );
+}</code></pre>
+<p>코드 경로상 예상되는 부수 효과도 하나 있습니다. 1.2.9에서 켠 알림은 사본은 남지만 리시버가 없어 그 시각이 과거에 멈춰 있습니다. 업데이트 순간 부트 리시버가 그 과거 시각으로 알람을 걸면 <code>AlarmManager</code>는 문서대로 즉시 울리므로, 지난 알림이 한 번 뜰 수 있습니다. 해롭지 않다고 보고 두었습니다.</p>
+
+<h2>원인 3: 서울에 고정된 시간대</h2>
+<p>리시버가 생기자 가려져 있던 문제가 드러났습니다. 기기 시간대를 읽는 함수가 나중에 채울 자리로 남은 채 서울을 돌려주고 있었습니다.</p>
+<pre><code>static Future&lt;String&gt; _localTimeZoneName() async {
+  // Without a dedicated tz plugin we cannot reliably read the device zone,
+  // so we use the app's primary locale zone. Kept as a hook for future use.
+  return 'Asia/Seoul';
+}</code></pre>
+<p><code>timezone</code> 패키지는 기기 시간대를 알려 주지 않으므로, README 안내대로 플랫폼 채널이나 <code>flutter_timezone</code> 같은 패키지로 얻어 <code>tz.setLocalLocation</code>에 넣어야 합니다. 이 이름은 첫 회차만 정하지 않습니다. 플러그인의 안드로이드 코드는 <code>ZoneId.of(timeZoneName)</code>로 <strong>매일의 다음 회차를 그 시간대에서</strong> 계산하고, iOS도 반복 트리거에 그 시간대를 넣습니다. 캘리포니아에서 20:00으로 맞춘 알림이 현지 새벽 4시에 울리는 구조였지만, 알림이 아예 안 울리던 동안에는 보일 리 없었습니다.</p>
+<p>플러그인을 더하지 않고, 앱이 이미 쓰던 MethodChannel 패턴으로 기기 시간대를 넘겼습니다. 안드로이드는 <code>TimeZone.getDefault().id</code>, iOS는 <code>TimeZone.current.identifier</code>를 돌려줍니다. 받은 이름이 IANA DB에 없으면 서울로 떨어집니다. 자바 <code>TimeZone</code>은 <code>GMT+09:00</code> 같은 사용자 지정 ID도 허용하기 때문입니다.</p>
+<pre><code>// MainActivity.kt
+MethodChannel(flutterEngine.dartExecutor.binaryMessenger, timeZoneChannelName)
+    .setMethodCallHandler { call, result -&gt;
+        when (call.method) {
+            "getLocalTimeZone" -&gt; result.success(TimeZone.getDefault().id)
+            else -&gt; result.notImplemented()
+        }
+    }
+
+// notification_service.dart
+@visibleForTesting
+static tz.Location locationFor(String? name) {
+  if (name != null) {
+    try {
+      return tz.getLocation(name);
+    } on tz.LocationNotFoundException {
+      // fall through
+    }
+  }
+  return tz.getLocation(_fallbackTimeZone);
+}</code></pre>
+<p>이 함수에는 옛 ID인 <code>Asia/Calcutta</code>, 빈 값, <code>GMT+09:00</code>을 포함한 단위 테스트 네 개를 붙였습니다. 매 실행 재예약 덕분에 여행으로 시간대가 바뀌어도 다음에 앱을 열면 알림이 새 시간대로 옮겨집니다.</p>
+
+<h2>원인 4: iOS는 처음부터 연결돼 있지 않았다</h2>
+<p>iOS는 두 누락이 겹쳤습니다. 초기화에 iOS 설정을 넘기지 않아 플러그인이 <code>ArgumentError('iOS settings must be set when targeting iOS platform.')</code>를 던졌고, 앱 시작을 막지 않으려고 모든 예외를 잡던 <code>init()</code>이 이를 삼켰습니다. 또 권한 요청이 안드로이드 구현만 찾아서 iOS에서는 묻지도 않고 <code>false</code>를 돌려줬고, 설정 화면은 그걸 거부로 읽었습니다. 고친 것은 넷입니다.</p>
+<ul>
+<li><code>DarwinInitializationSettings</code>를 넘기되 권한 요청은 모두 <code>false</code>로 두어, 앱을 열 때가 아니라 토글을 켤 때 권한 창이 뜨게 했습니다.</li>
+<li>안드로이드 구현이 없으면 <code>IOSFlutterLocalNotificationsPlugin</code>의 <code>requestPermissions(alert: true, sound: true)</code>를 부릅니다.</li>
+<li>예약할 때 <code>DarwinNotificationDetails</code>를 함께 넣습니다.</li>
+<li><code>AppDelegate</code>에서 <code>UNUserNotificationCenter.current().delegate = self</code>를 설정했습니다. README가 요구하는 부분이고, iOS는 따로 설정하지 않으면 앱이 포그라운드일 때 알림을 표시하지 않습니다.</li>
+</ul>
+<pre><code>const darwinSettings = DarwinInitializationSettings(
+  requestAlertPermission: false,
+  requestSoundPermission: false,
+  requestBadgePermission: false,
+);
+const initSettings = InitializationSettings(
+  android: androidSettings,
+  iOS: darwinSettings,
+);</code></pre>
+<p>iOS에서는 플러그인이 <code>UNCalendarNotificationTrigger</code>를 반복으로 등록해 운영체제가 매일 반복을 처리합니다. 안드로이드식 리시버나 부트 복구는 필요 없고, 시작 시 재예약은 시간대를 현재 값으로 옮기는 역할만 합니다.</p>
+
+<h2>검증</h2>
+<p>원인 2의 용의자가 R8이라 축소를 하지 않는 디버그 빌드로는 재현을 믿을 수 없습니다. 그래서 안드로이드는 전부 릴리스 빌드로 확인했고, 시계를 돌리는 대신 알림 시각을 2~3분 뒤로 잡았습니다.</p>
+<table>
+<thead><tr><th>시나리오</th><th>결과</th></tr></thead>
+<tbody>
+<tr><td>1.2.8, 3분 뒤 예약</td><td>알람은 전달, 게시된 알림 0건, 다음 날 알람 없음</td></tr>
+<tr><td>1.2.8에서 켠 채 리시버만 넣은 빌드로 업데이트</td><td>부트 리시버는 실행, 크래시 없음, 복구된 알람 없음</td></tr>
+<tr><td>시작 시 재예약 빌드로 업데이트 후 실행</td><td>다음 날 같은 시각 알람 복구</td></tr>
+<tr><td>14:56 예약</td><td>14:57 무렵 게시, 다음 날 14:56 알람 자동 생성</td></tr>
+<tr><td>재부팅</td><td>앱을 열지 않아도 알람 복구, Gson 관련 오류 없음</td></tr>
+<tr><td>로스앤젤레스 시간대</td><td>수정 전 14:56 알림이 현지 22:56, 수정 후 현지 14:56. 현지 00:33 예약은 00:33에 게시</td></tr>
+<tr><td>앱을 멈춘 채 서울 시간대로 바꾸고 실행</td><td>다음 알람이 서울 00:33으로 이동</td></tr>
+<tr><td>iOS 시뮬레이터, 로스앤젤레스 시간대</td><td>권한 창, 포그라운드 배너, 백그라운드 알림 모두 현지 시각에 표시</td></tr>
+</tbody>
+</table>
+<pre><code># 산출물 매니페스트에 리시버가 있는지
+aapt2 dump xmltree --file AndroidManifest.xml app-release.apk | grep -c -i flutterlocalnotifications
+
+# 걸린 알람과 창, 실제 게시 여부
+adb shell dumpsys alarm | grep -A3 '&lt;패키지명&gt;}'
+adb shell dumpsys notification --noredact | grep -A3 'pkg=&lt;패키지명&gt;'
+
+# 업데이트 경로: 옛 버전에서 알림을 켠 뒤 덮어 설치 / 재부팅 경로
+adb install old.apk
+adb install -r new.apk
+adb reboot
+
+# 시간대
+emulator -avd &lt;AVD 이름&gt; -timezone America/Los_Angeles
+adb shell settings put global auto_time_zone 0
+adb shell cmd alarm set-timezone Asia/Seoul
+
+# iOS 시뮬레이터: 앱 프로세스에만 TZ를 넣는다(시스템 시계는 맥 기준)
+SIMCTL_CHILD_TZ=America/Los_Angeles xcrun simctl launch &lt;UDID&gt; &lt;번들 ID&gt;</code></pre>
+<p>몇 가지를 덧붙입니다.</p>
+<ul>
+<li><strong>inexact 창은 넓습니다.</strong> 3분 뒤 알람의 창은 <code>+2m15s</code>, 다음 날 알람의 창은 <code>+1h</code>였습니다. 안 뜬다고 판단하기 전에 창이 끝났는지부터 봅니다.</li>
+<li><strong>업데이트는 별도의 경로입니다.</strong> 새로 설치해서 켜는 테스트만 했다면 원인 2는 보이지 않았습니다.</li>
+<li><strong>강제 종료는 결과를 흐립니다.</strong> 시간대를 바꾸고 앱을 강제 종료한 직후에는 대기 알람이 목록에 없었습니다. 어느 쪽이 지웠는지는 나눠 보지 않았지만, 다시 실행하자 재예약 코드가 새 시간대로 알람을 걸었습니다.</li>
+<li><strong><code>SIMCTL_CHILD_TZ</code>는 앱 프로세스의 시간대만 바꿉니다.</strong> 현지 01:00 알림이 맥 시계로 17:00에 떴습니다. 시뮬레이터는 릴리스 빌드를 돌리지 못해 동작은 디버그 빌드로 봤습니다.</li>
+</ul>
+
+<h2>예약 알림을 넣을 때 쓰는 점검표</h2>
+<h3>안드로이드</h3>
+<ul>
+<li>빌드 산출물(병합된 매니페스트나 APK)에 <code>ScheduledNotificationReceiver</code>와 <code>ScheduledNotificationBootReceiver</code>가 있는가.</li>
+<li><code>RECEIVE_BOOT_COMPLETED</code>를 앱 매니페스트에 직접 선언했는가.</li>
+<li>정확한 시각이 꼭 필요한가. 필요하면 <code>SCHEDULE_EXACT_ALARM</code>과 <code>requestExactAlarmsPermission()</code>, 또는 스토어 심사 대상인 <code>USE_EXACT_ALARM</code>이 필요합니다. README에 따르면 정확한 알람 권한이 취소되면 반복 알림의 다음 회차도 예약되지 않습니다.</li>
+<li>Android 13 이상에서 <code>POST_NOTIFICATIONS</code>를 런타임에 요청하는가.</li>
+<li>플러그인 v18 이하라면 Gson 규칙을 넣었는가. 릴리스 빌드에서 재부팅 후 알람이 복구되는지로 확인합니다.</li>
+<li>알림 아이콘을 이름으로 넘긴다면 <code>keep.xml</code>로 지켰는가.</li>
+<li>백그라운드 실행을 막는 제조사 기기(README의 Caveats)를 도움말에 안내했는가.</li>
+</ul>
+<h3>iOS</h3>
+<ul>
+<li><code>InitializationSettings</code>에 <code>iOS:</code>를 넘겼는가.</li>
+<li>권한 요청이 iOS 구현도 부르는가.</li>
+<li><code>AppDelegate</code>에서 <code>UNUserNotificationCenter</code> delegate를 설정했는가.</li>
+</ul>
+<h3>공통</h3>
+<ul>
+<li><code>tz.setLocalLocation()</code>에 기기 시간대를 넣고, 모르는 ID에 대비했는가.</li>
+<li>플러그인 사본이 아니라 앱 설정을 진실의 원천으로 두고, 시작할 때마다 다시 예약하는가.</li>
+<li>알림 관련 예외를 삼키더라도 어딘가에 남기는가. 이번 iOS 초기화 실패는 앱 코드의 <code>catch</code>에서 흔적 없이 사라졌습니다.</li>
+<li>새 설치뿐 아니라 업데이트, 재부팅, 시간대 변경을 각각 릴리스 빌드로 돌려 봤는가.</li>
+</ul>
+
+<h2>남는 교훈</h2>
+<p><strong>예약 호출의 성공은 알림의 성공이 아닙니다.</strong> 알람이 울리는지, 누가 받는지, 받은 쪽이 다음 회차를 거는지는 별개의 단계입니다. <code>dumpsys alarm</code>과 <code>dumpsys notification</code>을 나란히 보면 어디서 끊겼는지가 바로 갈립니다.</p>
+<p><strong>시작을 막지 않되, 기록은 남겨야 합니다.</strong> 부가 기능의 실패가 앱 시작을 막으면 안 된다는 판단은 맞았지만, 삼킨 예외가 아무 데도 남지 않으면 그 기능은 몇 달이고 죽은 채로 출시됩니다.</p>
+<p><strong>문제는 겹쳐서 숨습니다.</strong> 시간대 버그는 알림이 울리지 않는 동안 보이지 않았습니다. 하나를 고치면 그 수정이 새로 연 경로를 곧바로 돌려 봐야 합니다.</p>
+<div class="tip"><strong>라이트온 AI 노트</strong> — 강의 녹음·전사·요약부터 플래시카드와 간격 반복 복습까지 한 앱에서 이어집니다. <a href="https://play.google.com/store/apps/details?id=com.lightonpluslab.ailecturenote" target="_blank" rel="noopener">Google Play에서 받기</a></div>
+
+    <a class="back-link" href="blog.html">← 블로그 목록으로</a>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">전체 앱</a>
+<a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens 렌즈 해석</a>
+<a href="lens-docs.html">Lens 문서</a>
+        <a href="momoi.html">모모아이</a>
+        <a href="lighton-ai-note.html">라이트온 AI 노트</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">카카오톡 1:1 문의</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
+    </div>
+  </div>
+</footer>
+
+<script src="app.js?v=11b4789a"></script>
+</body>
+</html>

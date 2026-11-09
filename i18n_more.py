@@ -117,10 +117,10 @@ T3 = {
         'Track record',
         'リリース実績',
         '上线记录'),
-    'Google Play: 모모아이 · 송빗 · 라이트온 AI 노트. 웹: 영수증 AI · 말씀찾기 · 노딱 · 쿠폰북 · 멍냥로그 · 수학친구 등 운영 중.': (
-        'Google Play: Momoi · Songbit · LightOn AI Note. Web: Receipt AI · Bible Search · Noddak · Coupon Book · Pet Log · Math Friend and more, all in service.',
-        'Google Play: モモアイ · Songbit · LightOn AI ノート。ウェブ: レシート AI · みことば検索 · ノッタク · クーポンブック · わんにゃんログ · 数学フレンドなどを運営中。',
-        'Google Play：Momoi · Songbit · LightOn AI 笔记。网页：票据 AI · 经文检索 · Noddak · 优惠券本 · 宠物日志 · 数学伙伴等，均在运营。'),
+    '스토어: 모모아이 · 송빗 · 라이트온 AI 노트 · SayBetter AI · 쿠폰북 · Hangul Lab · 가나다 놀이 · 돌맹이 아레나 · 타워 디펜스 · CORE SIEGE (Google Play 8개, App Store 7개). 웹: 영수증 AI · 녹취록AI · 노딱 · 멍냥로그 · 수학친구 · 말씀찾기 등 운영 중.': (
+        'Stores: Momoi · Songbit · LightOn AI Note · SayBetter AI · Coupon Book · Hangul Lab · Ganada Play · Stone Arena · Tower Defense · CORE SIEGE (8 on Google Play, 7 on the App Store). Web: Receipt AI · Transcript AI · Noddak · Pet Log · Math Friend · Bible Search and more, all in service.',
+        'ストア: モモアイ · Songbit · LightOn AI ノート · SayBetter AI · クーポンブック · Hangul Lab · ガナダ遊び · ストーンアリーナ · タワーディフェンス · CORE SIEGE（Google Play 8本、App Store 7本）。ウェブ: レシート AI · 録取録 AI · ノッタク · わんにゃんログ · 数学フレンド · みことば検索などを運営中。',
+        '应用商店：Momoi · Songbit · LightOn AI 笔记 · SayBetter AI · 优惠券本 · Hangul Lab · Ganada 识字 · 石子竞技场 · 塔防 · CORE SIEGE（Google Play 8 款，App Store 7 款）。网页：票据 AI · 笔录 AI · Noddak · 宠物日志 · 数学伙伴 · 经文检索等，均在运营。'),
     '함께 만들고 싶은 프로젝트가 있으신가요?': (
         "Have a project you'd like to build together?",
         '一緒に作りたいプロジェクトはありますか？',

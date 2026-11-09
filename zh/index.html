@@ -557,20 +557,20 @@
 
     <div class="post-grid">
       
-      <a class="post-card reveal" href="/blog-why-summary-is-not-memory.html">
-        <h3>录音加摘要，为什么还是记不住</h3>
-        <p>转写和摘要早已普及。悖论在于：笔记越整洁，越不会再看。关于遗忘曲线，以及间隔重复如何补上这段空缺。</p>
-        <div class="pc-meta">Product · 2026-08-13</div>
+      <a class="post-card reveal" href="/blog-pdf-lib-korean-font-subset.html">
+        <h3>pdf-lib 韩文 PDF 缺字：subset: true 与 fontkit 的 long loca 缺陷</h3>
+        <p>在 pdf-lib 中以 subset: true 嵌入 Nanum 明朝体时，部分韩文变成空白。原因是 fontkit 分支把 loca 偏移除以 2 时产生的 1 字节误差，改用 HarfBuzz 预先子集化后解决。</p>
+        <div class="pc-meta">Dev Note · 2026-11-09</div>
       </a>
-      <a class="post-card reveal reveal-d1" href="/blog-lyrics-alignment-drift.html">
-        <h3>歌词最多偏移 16 秒的原因 — 别数，去比对</h3>
-        <p>卡拉OK歌词越到后半越偏，韩语歌尤其严重。问题不在时间戳，而在数词的方式。把比例估算改为字符偏移比对的记录。</p>
-        <div class="pc-meta">Dev Note · 2026-08-13</div>
+      <a class="post-card reveal reveal-d1" href="/blog-mtf-spot-diagram-reading.html">
+        <h3>如何读点列图与 MTF — 用艾里斑和传感器奈奎斯特频率评判镜头</h3>
+        <p>读镜头设计的点列图和 MTF 时该与什么对照：RMS/GEO 半径与艾里斑、各像差的点列形状，以及由像素间距得到的奈奎斯特频率和 MTF 目标值。</p>
+        <div class="pc-meta">Guide · 2026-11-09</div>
       </a>
-      <a class="post-card reveal reveal-d2" href="/blog-twa-play-store.html">
-        <h3>把网页应用上架 Google Play — TWA 发布实录</h3>
-        <p>把 PWA 包成 TWA 上架 Google Play 的实际流程与坑 — assetlinks、AAB 签名、target API、封闭测试要求。</p>
-        <div class="pc-meta">Dev Note · 2026-07-03</div>
+      <a class="post-card reveal reveal-d2" href="/blog-play-memory-r8-dex-optimization.html">
+        <h3>应对 Play 的 DEX 优化 25% 标准 — 关掉 R8 的那一行库规则</h3>
+        <p>为配合 2027 年 2 月施行的 Play 内存标准，调整了多个应用的 R8：开启 minify 后优化仍被关闭的原因、拉低比例的 keep 规则、AGP 9 迁移的陷阱与检查顺序。</p>
+        <div class="pc-meta">Dev Note · 2026-11-09</div>
       </a>
       
     </div>

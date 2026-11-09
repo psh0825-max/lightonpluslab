@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="google-adsense-account" content="ca-pub-7180935400084577">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Capacitor 플러그인을 return 하면 await 가 멈추는 이유 — thenable 함정 — LightOn Plus Lab</title>
+<meta name="description" content="iOS 에서 'Try Pro' 버튼이 무반응이었습니다. 스토어도 SDK 도 정상이었고, 원인은 Proxy 로 만든 Capacitor 플러그인이 thenable 로 취급돼 await 가 끝나지 않은 것이었습니다. 진단 과정과 명세 수준의 원리, 재발 방지법." />
+<meta property="og:title" content="Capacitor 플러그인을 return 하면 await 가 멈추는 이유 — thenable 함정 — LightOn Plus Lab" />
+<meta property="og:type" content="article" />
+<meta property="og:description" content="iOS 에서 'Try Pro' 버튼이 무반응이었습니다. 스토어도 SDK 도 정상이었고, 원인은 Proxy 로 만든 Capacitor 플러그인이 thenable 로 취급돼 await 가 끝나지 않은 것이었습니다. 진단 과정과 명세 수준의 원리, 재발 방지법." />
+<meta property="og:url" content="https://lightonpluslab.com/blog-capacitor-plugin-await-hang.html" />
+<meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#FBFAF8" />
+<link rel="icon" href="img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="img/logo-mark.png" />
+<link rel="canonical" href="https://lightonpluslab.com/blog-capacitor-plugin-await-hang.html" />
+<link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="styles.css?v=f0ce776f" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<style>
+.page-hero{padding:72px 0 24px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px}
+.page-hero h1 em{font-style:normal;color:var(--ink)}
+.page-hero p{color:var(--text-3);max-width:56ch;margin:0 auto;font-size:15px;line-height:1.7}
+.article-meta{color:var(--text-3);font-size:13px;margin-top:14px}
+.prose{max-width:720px;margin:0 auto;padding:8px 0 72px;font-size:15.5px;line-height:1.85;color:var(--text-2,#cdd5e1)}
+.prose h2{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:44px 0 14px;color:var(--text-1,#eef2f8)}
+.prose h3{font-size:17px;font-weight:600;margin:30px 0 10px;color:var(--text-1,#eef2f8)}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0 0 18px;padding-left:22px}
+.prose li{margin:6px 0}
+.prose strong{color:var(--text-1,#eef2f8)}
+.prose table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14px}
+.prose th,.prose td{border:1px solid var(--panel-border,#232b3d);padding:9px 12px;text-align:left;vertical-align:top}
+.prose th{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}
+.prose .tip{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}
+.prose a{color:var(--cyan,#5eead4)}
+.prose pre{margin:0 0 18px;padding:16px 18px;border-radius:8px;background:var(--paper-2);border:1px solid var(--rule);overflow-x:auto;font-size:13px;line-height:1.7}
+.prose pre code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);background:none;padding:0;border:0;white-space:pre}
+.prose code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;padding:2px 6px;border-radius:4px;background:var(--paper-2);border:1px solid var(--rule);color:var(--accent)}
+.prose img,.post-hero img{max-width:100%;height:auto;border-radius:16px;display:block;margin:0 auto}
+.post-hero{margin:18px 0 26px}
+.post-hero img{width:min(560px,100%)}
+.back-link{display:inline-block;margin:28px 0 0;font-size:14px;color:var(--cyan,#5eead4);text-decoration:none}
+.post-list{max-width:760px;margin:0 auto;padding:8px 0 72px;display:grid;gap:14px}
+.post-card{display:block;padding:24px 26px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);text-decoration:none;transition:background .25s,border-color .25s,transform .25s}
+.post-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.post-card h2{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;color:var(--text-1,#eef2f8)}
+.post-card p{font-size:14px;color:var(--text-3);line-height:1.7;margin:0 0 10px}
+.post-card .pc-meta{font-size:12.5px;color:var(--text-3);opacity:.8}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Capacitor 플러그인을 return 하면 await 가 멈추는 이유 — thenable 함정",
+ "description": "iOS 에서 'Try Pro' 버튼이 무반응이었습니다. 스토어도 SDK 도 정상이었고, 원인은 Proxy 로 만든 Capacitor 플러그인이 thenable 로 취급돼 await 가 끝나지 않은 것이었습니다. 진단 과정과 명세 수준의 원리, 재발 방지법.",
+ "image": "https://lightonpluslab.com/hero-apps.jpg",
+ "datePublished": "2026-11-09",
+ "dateModified": "2026-11-09",
+ "inLanguage": "ko",
+ "mainEntityOfPage": "https://lightonpluslab.com/blog-capacitor-plugin-await-hang.html",
+ "author": {
+  "@type": "Organization",
+  "name": "LightOn Plus Lab",
+  "url": "https://lightonpluslab.com/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "LightOn Plus Lab",
+  "logo": {
+   "@type": "ImageObject",
+   "url": "https://lightonpluslab.com/img/logo-mark.png"
+  }
+ }
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+    <nav class="nav-links" aria-label="메뉴">
+      <a href="products.html">Apps</a>
+      <a href="lens.html">Lens</a>
+<a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">
+      Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
+  <a href="products.html">Apps</a>
+  <a href="lens.html">Lens</a>
+<a href="services.html">Services</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Dev Note</span>
+    <h1 class="reveal">Capacitor 플러그인을 return 하면 await 가 멈추는 이유 — thenable 함정</h1>
+    <div class="article-meta">2026-11-09 · LightOn Plus Lab</div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <article class="prose">
+
+<p>Hangul Lab 은 외국인 성인이 한글을 배우는 앱입니다. 웹으로 만든 화면을 Capacitor 로 감싸 Android 와 iOS 에 내놓고, iOS 의 Pro 구독 결제는 RevenueCat SDK(<code>@revenuecat/purchases-capacitor</code>)에 맡깁니다.</p>
+<p>그 iOS 빌드에서 <strong>'Try Pro' 버튼을 눌러도 아무 일도 일어나지 않는다</strong>는 보고를 받았습니다. 결제창도, 오류 문구도, 크래시도 없었습니다. 원인은 결제 초기화 함수 마지막 줄의 <code>return Purchases</code> 였습니다. 이 한 줄이 왜 <code>await</code> 를 영원히 멈추게 하는지 기록해 둡니다. 버전은 <code>@capacitor/core</code> 8.5.0, <code>@revenuecat/purchases-capacitor</code> 13.5.0 기준입니다.</p>
+
+<h2>증상: 가격이 빠진 버튼</h2>
+<p>보고에 딸린 화면에서 먼저 눈에 띈 건 버튼 문구였습니다. 업셀 버튼은 상품 정보를 받으면 <code>Try Pro — (가격)</code>, 못 받으면 <code>Try Pro</code> 로 그립니다. 앱 시작 때의 상품 조회가 끝나지 않았다는 뜻입니다.</p>
+<p>눌러도 반응이 없는 이유는 당시 버튼 핸들러에 그대로 있었습니다.</p>
+<pre><code>// 당시 useEntitlement.js 의 버튼 핸들러
+const subscribe = useCallback(async () =&gt; {
+  if (state.billingReady) {
+    const r = await purchase();
+    // ...
+    return;
+  }
+  // 여기 오면 스토어 결제를 못 쓰는 상태다(웹 개발 환경 등).
+  if (!BETA_GRANT) return;             // &lt;- 상품을 못 받았으면 조용히 끝난다
+  // ...
+}, []);</code></pre>
+
+<p>상품 조회가 끝나지 않으면 <code>billingReady</code> 가 <code>false</code> 로 남고, 버튼은 개발용 분기로 빠져 조용히 돌아갑니다. 그러니 진짜 질문은 <em>상품 조회가 왜 끝나지 않는가</em>였습니다.</p>
+<p>같은 빌드를 iPad 시뮬레이터에 올리자 똑같이 재현됐습니다.</p>
+
+<h2>처음 의심한 것들, 그리고 아니었던 이유</h2>
+<h3>1. 스토어·RevenueCat 설정</h3>
+<p>RevenueCat 의 오퍼링과 상품 연결, App Store Connect 의 구독 상품 상태, 유료 앱 계약, 번들 ID, 인앱 결제 키, 웹 번들에 들어간 RevenueCat 공개 키까지 전부 정상이었습니다. RevenueCat 쪽에는 문제가 난 기기의 익명 고객 레코드도 생겨 있었습니다. SDK 가 <code>configure</code> 까지는 했다는 뜻입니다.</p>
+<h3>2. 새 OS 의 StoreKit 샌드박스</h3>
+<p>새 iOS 직후 시뮬레이터에서 오퍼링이 안 내려오던 사례가 실제로 있어서(RevenueCat purchases-ios #4954, iOS 18.4), 시뮬레이터의 통합 로그를 직접 받아 봤습니다.</p>
+<pre><code>xcrun simctl spawn &lt;UDID&gt; log stream --style compact --predicate 'process == "App"'</code></pre>
+
+<p>StoreKit 로그에는 상품 요청 뒤 <code>Parsing 1 products in response</code> 가 찍혀 있었습니다. 상품이 정상으로 왔습니다. 함께 보인 <code>ASDErrorDomain Code=509 "No active account"</code> 는 샌드박스 계정이 없는 시뮬레이터에서 거래 내역 조회가 실패한 것이라 상품 조회와는 무관했습니다. 그리고 이 상품 요청은 JS 가 아무것도 묻기 전, <code>configure</code> 직후에 네이티브 SDK 가 스스로 보낸 것이었습니다. 스토어도 SDK 도 살아 있었습니다.</p>
+<h3>3. 브리지 콜백 ID <code>-1</code></h3>
+<p>Capacitor 는 JS 에서 네이티브로 넘어가는 호출을 Xcode 콘솔에 남깁니다.</p>
+<pre><code>⚡️  To Native -&gt;  App addListener 34321175
+⚡️  To Native -&gt;  Purchases setLogLevel -1
+⚡️  To Native -&gt;  Purchases configure -1</code></pre>
+
+<p>끝의 숫자는 콜백 ID 입니다. RevenueCat 호출만 <code>-1</code> 이라 "응답 콜백이 없어서 <code>await configure()</code> 가 안 끝난다"고 의심했는데, 틀렸습니다. 플러그인의 Swift 소스에서 <code>configure</code> 는 응답 없는 호출(<code>CAPPluginReturnNone</code>)이고, 브리지는 콜백이 없는 호출에 원래 <code>'-1'</code> 을 붙입니다. 이런 호출은 보내는 즉시 끝나므로 <code>await</code> 도 바로 풀립니다.</p>
+<p>대신 같은 로그에 진짜 단서가 있었습니다. <strong><code>configure</code> 다음에 와야 할 <code>getOfferings</code> 호출이 한 번도 네이티브로 넘어오지 않았습니다.</strong> 네이티브는 멀쩡한데 JS 가 다음 질문을 하지 않고 있었던 겁니다.</p>
+
+<h2>진단: 체크포인트를 화면에 그리기</h2>
+<p>JS 가 어느 <code>await</code> 에서 멈추는지 보려 했지만, <code>xcrun simctl launch --console-pty</code> 로 받은 앱 출력은 브리지 로그 몇 줄 뒤로 끊겼고 <code>console.log</code> 는 한 줄도 보이지 않았습니다. 로그 경로와 씨름하는 대신, 단계마다 체크포인트를 배열에 쌓아 화면에 그리기로 했습니다. 진단 빌드에서만 켜지게 빌드 변수로 막았습니다.</p>
+<pre><code>// 진단용 체크포인트 (당시 코드를 줄인 것). VITE_RC_DEBUG=1 빌드에서만 쌓인다.
+const TRACE = [];
+export const getTrace = () =&gt; TRACE.join(' &gt; ');
+const trace = (s) =&gt; { if (import.meta.env.VITE_RC_DEBUG === '1') TRACE.push(s); };
+
+async function rc() {
+  trace('rc');
+  const { Purchases } = await import('@revenuecat/purchases-capacitor');
+  trace('import-ok');
+  if (!rcInit) {
+    rcInit = (async () =&gt; {
+      // (setLogLevel 단계도 같은 식으로 찍었다)
+      trace('configure');
+      const r = await Purchases.configure({ apiKey: IOS_KEY });
+      trace('configure-ok:' + String(r));
+    })();
+  }
+  await rcInit;
+  trace('rcInit-ok');
+  return Purchases;
+}
+
+// 호출하는 쪽: const Purchases = await rc(); trace('getOfferings'); ...
+// 화면 쪽: 1초마다 getTrace() 를 읽어 &lt;p&gt;trace: {trace}&lt;/p&gt; 로 그린다.</code></pre>
+
+<p>시뮬레이터 화면에 찍힌 결과는 이랬습니다.</p>
+<pre><code>debug: ready=false price=null reason=null
+trace: rc &gt; rc &gt; rc &gt; import-ok &gt; setLogLevel &gt; import-ok &gt; import-ok &gt;
+       setLogLevel-ok:-1 &gt; configure &gt; configure-ok:-1 &gt;
+       rcInit-ok &gt; rcInit-ok &gt; rcInit-ok</code></pre>
+
+<p>앱 시작 때 상품 조회, 구독 복원, 리스너 등록이 동시에 <code>rc()</code> 를 불러 <code>rc</code> 가 세 번 찍혔고, 셋 다 <code>await rcInit</code> 를 통과했습니다(<code>rcInit-ok</code> 세 번). 그런데 호출한 쪽에서 찍혀야 할 <code>getOfferings</code> 는 하나도 없습니다. <code>reason=null</code> 은 상품 조회가 성공도 실패도 하지 않았다는 뜻입니다. <code>try/catch</code> 의 <code>catch</code> 에도 걸린 게 없었습니다.</p>
+<p><code>rcInit-ok</code> 와 호출한 쪽의 다음 줄 사이에 있는 코드는 단 한 줄입니다.</p>
+<pre><code>// 당시 billing.js (iOS 경로)
+let rcInit = null;
+async function rc() {
+  const { Purchases } = await import('@revenuecat/purchases-capacitor');
+  if (!rcInit) rcInit = Purchases.configure({ apiKey: IOS_KEY });
+  await rcInit;
+  return Purchases;                    // &lt;- 이 한 줄
+}
+
+export async function getSubscription() {
+  // ...
+  try {
+    const Purchases = await rc();      // &lt;- 여기서 영원히 멈춘다
+    const pkg = await monthlyPackage(Purchases);
+    if (!pkg) return { available: false, reason: 'no-offering' };
+    return { available: true, price: pkg.product?.priceString || null };
+  } catch (e) {
+    return { available: false, reason: String(e?.message || e) };
+  }
+}</code></pre>
+
+<p>초기화가 끝난 객체를 돌려줄 뿐인데, 돌려받는 쪽의 <code>await rc()</code> 가 끝나지 않습니다.</p>
+
+<h2>원인: 모든 질문에 "예"라고 답하는 객체</h2>
+<h3>Capacitor 플러그인은 Proxy 다</h3>
+<p><code>registerPlugin()</code> 이 돌려주는 플러그인 객체는 메서드가 미리 정의된 평범한 객체가 아닙니다.</p>
+<pre><code>// @capacitor/core 8.5.0 — registerPlugin() 안쪽
+const proxy = new Proxy({}, {
+  get(_, prop) {
+    switch (prop) {
+      // https://github.com/facebook/react/issues/20030
+      case '$$typeof':
+        return undefined;
+      case 'toJSON':
+        return () =&gt; ({});
+      case 'addListener':
+        return pluginHeader ? addListenerNative : addListener;
+      case 'removeListener':
+        return removeListener;
+      default:
+        return createPluginMethodWrapper(prop);   // 그 밖의 이름은 전부 함수
+    }
+  },
+});</code></pre>
+
+<p>몇 가지 예외를 빼면 <strong>어떤 이름을 물어도 그 이름의 메서드 래퍼를 돌려줍니다.</strong> 네이티브 메서드 목록을 JS 가 미리 알 필요가 없게 하려는 설계입니다. 그래서 존재하지 않는 <code>Purchases.then</code> 도 함수입니다. RevenueCat 이 내보내는 <code>Purchases</code> 는 이 Proxy 를 한 번 더 Proxy 로 감쌌지만, 메서드 하나만 가로채고 나머지는 그대로 넘기므로 결과는 같습니다.</p>
+<p><code>$$typeof</code> 를 막아 둔 줄의 링크(facebook/react#20030)가 힌트입니다. React 가 묻는 속성에 플러그인이 함수로 답해서 생긴 문제를 막은 것입니다. 같은 일이 <code>then</code> 에서도 일어나는데, 이번에 묻는 쪽은 언어 자체입니다.</p>
+
+<h3>async 함수의 return 은 resolve 를 거친다</h3>
+<p>async 함수가 <code>return</code> 한 값은 곧바로 결과가 되지 않고, 함수가 돌려준 프로미스의 resolve 함수에 넘겨집니다(ECMAScript 명세의 AsyncBlockStart). resolve 함수는 값을 이렇게 처리합니다(CreateResolvingFunctions 의 resolve 단계).</p>
+<ol>
+<li>값이 객체가 아니면 그 값으로 이행(fulfill)하고 끝낸다.</li>
+<li>객체면 <code>then</code> 속성을 읽는다.</li>
+<li><code>then</code> 이 호출 가능하지 않으면 그 객체로 이행하고 끝낸다.</li>
+<li>호출 가능하면 작업(NewPromiseResolveThenableJob)을 마이크로태스크로 예약하고, <strong>거기서 <code>then</code> 을 이 프로미스의 <code>resolve</code>·<code>reject</code> 를 인자로 해서 부른다.</strong> 이제 프로미스의 운명은 그 <code>then</code> 이 둘 중 하나를 불러 주는 데 달렸다.</li>
+</ol>
+<p>Promises/A+ 명세가 "Promise Resolution Procedure"(2.3절)라고 부르는 절차입니다. 다른 구현의 프로미스와 섞어 쓸 수 있도록 언어는 <code>then</code> 메서드가 있는지만 보고 상대를 프로미스처럼 다룹니다(MDN 의 Thenable). 그리고 이 절차 어디에도 <strong>타임아웃은 없습니다.</strong> <code>then</code> 이 두 콜백 중 어느 것도 부르지 않으면 프로미스는 영원히 대기합니다.</p>
+<p><code>await x</code> 도 먼저 <code>PromiseResolve(%Promise%, x)</code> 로 x 를 프로미스로 바꾸는데, x 가 진짜 프로미스가 아니면 새 프로미스를 만들어 같은 resolve 절차에 넘깁니다. 그래서 <code>await Purchases</code> 나 <code>Promise.resolve(Purchases)</code> 도 결과가 같습니다.</p>
+
+<h3>Capacitor 의 then 래퍼는 resolve 를 부르지 않는다</h3>
+<p>그러면 <code>Purchases.then(resolve, reject)</code> 는 무엇을 할까요. Proxy 가 돌려주는 래퍼는 이렇습니다.</p>
+<pre><code>// @capacitor/core 8.5.0 — createPluginMethodWrapper (일부 생략, 주석은 덧붙인 것)
+const wrapper = (...args) =&gt; {            // then(resolve, reject) 이면 args = [resolve, reject]
+  const p = loadPluginImplementation().then((impl) =&gt; {
+    const fn = createPluginMethod(impl, prop);   // 네이티브 메서드 목록에서 'then' 을 찾는다
+    if (fn) {
+      return fn(...args);
+    } else {
+      throw new CapacitorException(
+        `"${pluginName}.${prop}()" is not implemented on ${platform}`,
+        ExceptionCode.Unimplemented);
+    }
+  });
+  return p;                               // 이 프로미스가 거부될 뿐, resolve/reject 는 안 불린다
+};</code></pre>
+
+<ol>
+<li>래퍼는 <code>resolve</code> 와 <code>reject</code> 를 "네이티브에 넘길 인자"로 받아 둘 뿐, 어느 쪽도 부르지 않습니다.</li>
+<li>네이티브가 등록한 메서드 목록에서 <code>then</code> 을 찾습니다. 당연히 없고, iOS 용 JS 구현도 없으니 메서드를 만들지 못합니다.</li>
+<li><code>"Purchases.then()" is not implemented on ios</code> 예외가 납니다. 그런데 이 예외는 <strong>래퍼가 돌려준 별개의 프로미스 안에서, 비동기로</strong> 납니다.</li>
+</ol>
+<p>NewPromiseResolveThenableJob 은 <code>then</code> 호출이 <em>동기적으로</em> 예외를 던질 때만 <code>reject</code> 를 대신 불러 주고, <code>then</code> 의 반환값은 보지 않습니다. 결국 원래 프로미스는 <code>resolve</code> 도 <code>reject</code> 도 받지 못한 채 대기하고, 에러는 아무도 구독하지 않는 프로미스에 실려 처리되지 않은 거부(unhandled rejection)가 됩니다. 이 호출은 브리지를 건너기 전에 JS 안에서 거부되므로 네이티브 로그에도 <code>then</code> 은 나오지 않습니다. 로그가 <code>configure</code> 에서 끊겨 있던 이유입니다.</p>
+
+<h3>동기냐 비동기냐가 갈랐다</h3>
+<p>이 차이를 확인하려고 Capacitor 의 Proxy 를 흉내 낸 객체로 Node 22 에서 실험했습니다.</p>
+<pre><code>// 예시: Capacitor 플러그인 Proxy 를 흉내 낸 최소 재현 (Node 22)
+function fakePlugin(name, syncThrow = false) {
+  return new Proxy({}, {
+    get(_, prop) {
+      if (prop === '$$typeof') return undefined;
+      if (prop === 'toJSON') return () =&gt; ({});
+      return (...args) =&gt; {
+        const err = new Error(`"${name}.${String(prop)}()" is not implemented on ios`);
+        if (syncThrow) throw err;                         // 동기로 던지면
+        return Promise.resolve().then(() =&gt; { throw err; }); // 비동기로 거부하면 (Capacitor 와 같은 모양)
+      };
+    },
+  });
+}
+
+// 브라우저처럼 처리되지 않은 거부가 프로세스를 끝내지 않게 한다
+process.on('unhandledRejection', (e) =&gt; console.log('unhandledRejection:', e.message));
+
+async function getPlugin() { return fakePlugin('Purchases', process.argv[2] === 'sync'); }
+
+try {
+  console.log('before');
+  const p = await getPlugin();
+  console.log('after');
+} catch (e) {
+  console.log('caught:', e.message);
+}
+
+// $ node repro.mjs sync
+//   before
+//   caught: "Purchases.then()" is not implemented on ios
+// $ node repro.mjs async
+//   before
+//   unhandledRejection: "Purchases.then()" is not implemented on ios
+//   (after 도 caught 도 찍히지 않고, Node 가 끝나지 않은 최상위 await 를 경고한다)</code></pre>
+
+<p>래퍼가 예외를 바로 던지면 <code>catch</code> 에 잡히고, 비동기로 거부하면 <code>before</code> 만 찍히고 끝납니다. Node 는 이를 경고로 알려 주지만 앱의 WebView 에서는 반응 없는 버튼으로 보일 뿐입니다.</p>
+<p>같은 가짜 플러그인으로 흔한 모양들이 0.5초 안에 끝나는지 본 결과입니다.</p>
+<table>
+<thead><tr><th>코드 모양</th><th>결과</th></tr></thead>
+<tbody>
+<tr><td><code>await P</code></td><td><strong>멈춤</strong></td></tr>
+<tr><td><code>async () =&gt; P</code> 의 결과를 await</td><td><strong>멈춤</strong></td></tr>
+<tr><td><code>Promise.resolve(P)</code></td><td><strong>멈춤</strong></td></tr>
+<tr><td><code>Promise.all([P])</code></td><td><strong>멈춤</strong></td></tr>
+<tr><td><code>.then(() =&gt; P)</code></td><td><strong>멈춤</strong></td></tr>
+<tr><td><code>async () =&gt; ({ plugin: P })</code></td><td>정상</td></tr>
+<tr><td>모듈 변수에 담고 아무것도 반환하지 않음</td><td>정상</td></tr>
+</tbody>
+</table>
+<p><code>const { Purchases } = await import(...)</code> 는 안전합니다. await 대상이 <code>then</code> 을 내보내지 않는 모듈 네임스페이스 객체이기 때문입니다.</p>
+
+<h2>고친 방법</h2>
+<p>원칙은 하나입니다. <strong>플러그인 객체를 프로미스의 결과값 자리에 두지 않는다.</strong> 초기화 함수는 아무것도 반환하지 않고, 플러그인 객체는 모듈 변수에만 담습니다.</p>
+<pre><code>// 고친 billing.js — 플러그인 객체는 모듈 변수에만 담고, 어떤 async 함수도 그것을 반환하지 않는다.
+let RC = null;
+let rcInit = null;
+async function ensureRC() {
+  if (!rcInit) {
+    rcInit = (async () =&gt; {
+      const { Purchases, LOG_LEVEL } = await import('@revenuecat/purchases-capacitor');
+      // 진단 빌드에서만 SDK 로그를 푼다.
+      if (import.meta.env.VITE_RC_DEBUG === '1') await Purchases.setLogLevel({ level: LOG_LEVEL.VERBOSE });
+      await Purchases.configure({ apiKey: IOS_KEY });
+      RC = Purchases;
+    })().catch((e) =&gt; {
+      rcInit = null;                 // 다음 시도에서 다시 초기화할 수 있게
+      throw e;
+    });
+  }
+  await rcInit;                      // 반환값 없음
+}
+
+async function monthlyPackage() {
+  const { current } = await RC.getOfferings();
+  const pkgs = current?.availablePackages || [];
+  return pkgs.find((p) =&gt; p.identifier === '$rc_monthly') || pkgs[0] || null;
+}
+
+export async function getSubscription() {
+  // ...
+  try {
+    await ensureRC();
+    const pkg = await monthlyPackage();
+    // ...
+  } catch (e) { /* ... */ }
+}</code></pre>
+
+<p>초기화 약속은 하나만 두어 동시에 불려도 <code>configure</code> 가 한 번만 돌고, 실패하면 비워서 다시 시도합니다. Android 쪽 자체 결제 플러그인(<code>Billing</code>)도 같은 Proxy 라 같은 규칙을 적용했습니다.</p>
+
+<h3>함께 고친 것: 조용한 버튼</h3>
+<p>사용자 입장에서 더 나빴던 건 "아무 일도 일어나지 않는다"는 점이라 버튼 쪽도 손봤습니다.</p>
+<ul>
+<li>스토어와 통신하는 동안 버튼을 잠그고 <code>Connecting…</code> 으로 바꿉니다.</li>
+<li>상품 조회를 0초·4초·15초에 시도하고 버튼을 누르는 순간에도 한 번 더 봅니다. 그래도 없으면 연결을 확인해 달라는 문구를, 구매가 실패하면 실패 문구를 띄웁니다. 사용자가 결제 시트를 직접 닫은 경우만 조용히 넘어갑니다.</li>
+<li>앱을 켤 때마다 부르던 <code>restorePurchases()</code> 를 <code>getCustomerInfo()</code> 로 바꾸고 '구매 복원' 버튼을 따로 달았습니다. RevenueCat 문서는 <code>restorePurchases</code> 가 OS 로그인 창을 띄울 수 있으니 사용자 동작으로만 부르라고 안내합니다.</li>
+</ul>
+<pre><code>// 유료 화면 세 곳이 같이 쓰는 구독 버튼
+export default function UpsellCta() {
+  const { price, subscribe, restorePurchases, busy, notice } = useEntitlement();
+  return (
+    &lt;&gt;
+      &lt;button className="upsell-cta" disabled={busy} onClick={subscribe}&gt;
+        {busy ? 'Connecting…' : price ? `Try Pro — ${price}` : 'Try Pro'}
+      &lt;/button&gt;
+      {notice &amp;&amp; &lt;p className="upsell-notice" role="status"&gt;{notice}&lt;/p&gt;}
+      &lt;p className="upsell-note"&gt;
+        Cancel any time in your app store.{' '}
+        &lt;button className="upsell-restore" disabled={busy} onClick={restorePurchases}&gt;Restore purchases&lt;/button&gt;
+      &lt;/p&gt;
+    &lt;/&gt;
+  );
+}</code></pre>
+
+
+<h2>검증</h2>
+<p>같은 시뮬레이터에서 버튼에 가격이 붙어 <code>Try Pro — (가격)</code> 으로 그려졌고, 누르면 StoreKit 결제 흐름이 시작돼 Apple 계정 로그인 창이 떴습니다(샌드박스 계정이 없는 시뮬레이터라 여기까지가 정상). 창을 닫으면 버튼이 원래대로 돌아왔고, 회화 탭의 업셀 버튼도 같았습니다. 체크포인트 코드는 정식 빌드에서 걷어내고 SDK 상세 로그만 빌드 변수로 켤 수 있게 남겼습니다.</p>
+
+<h2>Capacitor 쪽은 아직 그대로다</h2>
+<p>같은 문제가 Capacitor 저장소에 이슈로 올라가 있고(<a href="https://github.com/ionic-team/capacitor/issues/8469" target="_blank" rel="noopener">ionic-team/capacitor#8469</a>), <code>then</code> 에 <code>undefined</code> 를 돌려주게 하는 수정 PR 도 두 개(#8473, #8582) 있습니다. 다만 2026년 11월 확인 시점에 셋 다 열린 상태였고 main 브랜치의 Proxy 도 위 코드와 같았습니다. 버전을 올린다고 사라지는 문제가 아직 아니므로 앱 코드에서 피해야 합니다.</p>
+
+<h2>재발 방지 체크리스트</h2>
+<h3>코드 규칙</h3>
+<ul>
+<li><strong>플러그인 객체를 async 함수에서 return 하지 않는다.</strong> <code>await</code>, <code>Promise.resolve()</code>, <code>Promise.all()</code>, <code>.then()</code> 콜백의 반환값도 같은 자리입니다. 값을 프로미스로 감싸 돌려주는 지연 로딩·싱글턴 헬퍼가 특히 위험합니다.</li>
+<li>꼭 넘겨야 하면 <strong>평범한 객체로 감싼다.</strong> resolve 절차가 <code>then</code> 을 묻는 대상은 바깥 객체이고, 거기엔 <code>then</code> 이 없습니다.</li>
+<li>Proxy 로 감쌀 거라면 <strong><code>then</code> 을 명시적으로 막는다.</strong> 그대로 통과시키는 래퍼는 소용없습니다.</li>
+<li><strong>타입 검사기는 잡아 주지 않는다.</strong> 인터페이스에 <code>then</code> 이 없으니 TypeScript 에게 <code>Promise&lt;PurchasesPlugin&gt;</code> 은 멀쩡한 타입입니다. 문제는 런타임 Proxy 에 있습니다.</li>
+</ul>
+<pre><code>// 예시 1: 꼭 반환해야 한다면 평범한 객체로 감싼다
+async function loadPurchases() {
+  const { Purchases } = await import('@revenuecat/purchases-capacitor');
+  await Purchases.configure({ apiKey: IOS_KEY });
+  return { plugin: Purchases };      // resolve 절차가 then 을 묻는 대상은 바깥 객체다
+}
+const { plugin } = await loadPurchases();
+
+// 예시 2: Proxy 로 한 번 더 감쌀 거라면 then 을 명시적으로 막는다
+const nonThenable = (plugin) =&gt;
+  new Proxy(plugin, {
+    get: (target, prop, receiver) =&gt;
+      prop === 'then' ? undefined : Reflect.get(target, prop, receiver),
+  });</code></pre>
+
+<h3>진단할 때 볼 지문</h3>
+<ul>
+<li>네이티브 브리지 로그에 초기화 호출까지만 있고 <strong>그다음 호출이 넘어오지 않는다.</strong> <code>try/catch</code> 에도 아무것도 안 걸린다.</li>
+<li>처리되지 않은 거부에 <code>"플러그인이름.then()" is not implemented</code> 가 있다. 디버그 빌드에서 <code>unhandledrejection</code> 이벤트를 화면에 내보내 두면 바로 보입니다.</li>
+<li>WebView 의 <code>console.log</code> 가 잘 잡히지 않으면 단계별 체크포인트를 화면에 그리는 편이 빠릅니다.</li>
+</ul>
+<h3>UI 규칙</h3>
+<ul>
+<li>결제 버튼은 누르면 반드시 무언가를 보여 줘야 합니다. 진행 중 상태가 있었다면 이 버그는 "반응 없음"이 아니라 "계속 연결 중"으로 보였을 겁니다.</li>
+<li>스토어 호출에 타임아웃을 걸면 무한 대기를 오류로 바꿀 수 있습니다. 명세에 대기의 끝이 없으니 끝은 앱이 정해야 합니다.</li>
+</ul>
+
+<h2>남는 교훈</h2>
+<p><strong>모든 속성에 답하는 객체는 덕 타이핑과 상극이다.</strong> 프로미스 절차는 <code>then</code> 을, <code>JSON.stringify</code> 는 <code>toJSON</code> 을, React 는 <code>$$typeof</code> 를 묻습니다. Capacitor 는 뒤의 둘만 막아 두었습니다. Proxy 기반 객체를 다룬다면 그 객체가 어디까지 흘러가는지 따져 봐야 합니다.</p>
+<p><strong>"끝나지 않음"은 "실패"보다 찾기 어렵다.</strong> 실패는 스택 트레이스를 남기지만 끝나지 않는 <code>await</code> 는 아무것도 남기지 않습니다. 이번에 답을 준 것도 에러 메시지가 아니라 "어디까지 왔는가"를 순서대로 찍은 기록이었습니다.</p>
+<div class="tip"><strong>Hangul Lab</strong> — 외국인을 위한 한글 학습 앱입니다. 자모와 받침, 음절 소리부터 생활 회화까지 단계별로 익힙니다. <a href="https://play.google.com/store/apps/details?id=com.lightonpluslab.hangullab" target="_blank" rel="noopener">Google Play에서 받기</a></div>
+
+    <a class="back-link" href="blog.html">← 블로그 목록으로</a>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">전체 앱</a>
+<a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens 렌즈 해석</a>
+<a href="lens-docs.html">Lens 문서</a>
+        <a href="momoi.html">모모아이</a>
+        <a href="lighton-ai-note.html">라이트온 AI 노트</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">카카오톡 1:1 문의</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
+    </div>
+  </div>
+</footer>
+
+<script src="app.js?v=11b4789a"></script>
+</body>
+</html>
