@@ -1,7 +1,7 @@
 {
  "": {
-  "date": "2026-11-04",
-  "hash": "e058ccb1ab3fbe5b275be619d5a44287bbdc7902"
+  "date": "2026-11-09",
+  "hash": "8ea48c17fb39749c6aa68baa685087da5addf248"
  },
  "about.html": {
   "date": "2026-11-09",
@@ -10,6 +10,22 @@
  "blog-ai-assisted-development.html": {
   "date": "2026-11-02",
   "hash": "1e2920860468e5d68cbf30abf442311a37f70a73"
+ },
+ "blog-capacitor-plugin-await-hang.html": {
+  "date": "2026-11-09",
+  "hash": "eeeb8f6d6dbc5df28d51dd9c76d6db99f7c13a20"
+ },
+ "blog-flutter-notification-icon-shrink.html": {
+  "date": "2026-11-09",
+  "hash": "ec9708afeff503e6f0879ff212c69b0eef02cb56"
+ },
+ "blog-flutter-scheduled-notification-missing.html": {
+  "date": "2026-11-09",
+  "hash": "9957af84e827541141f1ee9b862bbe54bd00b3bf"
+ },
+ "blog-live-transcript-follow-scroll.html": {
+  "date": "2026-11-09",
+  "hash": "6ce03329093ce28e59d18a0b0c8c09d22ab81b1d"
  },
  "blog-local-first-apps.html": {
   "date": "2026-11-02",
@@ -23,6 +39,10 @@
   "date": "2026-11-02",
   "hash": "f4850ccf0dc00e0259a02eb92bd11b31eb983429"
  },
+ "blog-mtf-spot-diagram-reading.html": {
+  "date": "2026-11-09",
+  "hash": "b59a00cabda673abcd7efbfab1988e82f92e9808"
+ },
  "blog-notification-ux.html": {
   "date": "2026-11-02",
   "hash": "e47a35b61edcd2a078bd4df5c1ab798b204ea952"
@@ -31,9 +51,25 @@
   "date": "2026-11-02",
   "hash": "9451ebcf6e9d22c381bd4903e7fbbe8663a5de6c"
  },
+ "blog-pdf-lib-korean-font-subset.html": {
+  "date": "2026-11-09",
+  "hash": "586bb5a220b8c08cdb9f6458303225b4cc446b76"
+ },
+ "blog-play-memory-r8-dex-optimization.html": {
+  "date": "2026-11-09",
+  "hash": "245943dc357b8332db987f3d0e7407b4952aade1"
+ },
  "blog-pwa-vs-native.html": {
   "date": "2026-11-02",
   "hash": "b5584a7b2ebbac2ea1b5258199e925e3c7916312"
+ },
+ "blog-samsung-side-key-app-shortcut.html": {
+  "date": "2026-11-09",
+  "hash": "fce6a1f7467006e43bb7c7291dfd3efdd64d09e3"
+ },
+ "blog-storekit-test-without-device.html": {
+  "date": "2026-11-09",
+  "hash": "a79734fc09c28e39e47355cc69be03efc62bbc0c"
  },
  "blog-twa-play-store.html": {
   "date": "2026-11-02",
@@ -48,8 +84,8 @@
   "hash": "93c9a4edfbf32f11356493bc68e3e50d988a71c4"
  },
  "blog.html": {
-  "date": "2026-11-02",
-  "hash": "1ed1fafb94c9fc25eee049ea78b8a6b32a64f587"
+  "date": "2026-11-09",
+  "hash": "a4b66a5531191d572405b0b5731603e3491be3cd"
  },
  "contact.html": {
   "date": "2026-11-02",

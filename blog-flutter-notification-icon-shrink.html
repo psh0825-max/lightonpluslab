@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="google-adsense-account" content="ca-pub-7180935400084577">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flutter 릴리스 빌드만 스플래시에서 멈출 때: 리소스 축소가 지운 알림 아이콘 — LightOn Plus Lab</title>
+<meta name="description" content="디버그와 프로파일에선 멀쩡한 Flutter 앱이 릴리스 APK에서만 스플래시에 멈췄습니다. 리소스 축소가 Dart 문자열로만 참조한 알림 아이콘을 지운 것이 원인이었고, 진단법과 keep.xml 해결을 정리했습니다." />
+<meta property="og:title" content="Flutter 릴리스 빌드만 스플래시에서 멈출 때: 리소스 축소가 지운 알림 아이콘 — LightOn Plus Lab" />
+<meta property="og:type" content="article" />
+<meta property="og:description" content="디버그와 프로파일에선 멀쩡한 Flutter 앱이 릴리스 APK에서만 스플래시에 멈췄습니다. 리소스 축소가 Dart 문자열로만 참조한 알림 아이콘을 지운 것이 원인이었고, 진단법과 keep.xml 해결을 정리했습니다." />
+<meta property="og:url" content="https://lightonpluslab.com/blog-flutter-notification-icon-shrink.html" />
+<meta property="og:image" content="https://lightonpluslab.com/hero-apps.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#FBFAF8" />
+<link rel="icon" href="img/logo-mark-180.png" />
+<link rel="apple-touch-icon" href="img/logo-mark.png" />
+<link rel="canonical" href="https://lightonpluslab.com/blog-flutter-notification-icon-shrink.html" />
+<link rel="alternate" type="application/rss+xml" title="LightOn Plus Lab Blog" href="https://lightonpluslab.com/feed.xml" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="styles.css?v=f0ce776f" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9LHH5465Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D9LHH5465Q');</script>
+<style>
+.page-hero{padding:72px 0 24px;text-align:center}
+.page-hero .eyebrow{margin-bottom:20px}
+.page-hero h1{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px}
+.page-hero h1 em{font-style:normal;color:var(--ink)}
+.page-hero p{color:var(--text-3);max-width:56ch;margin:0 auto;font-size:15px;line-height:1.7}
+.article-meta{color:var(--text-3);font-size:13px;margin-top:14px}
+.prose{max-width:720px;margin:0 auto;padding:8px 0 72px;font-size:15.5px;line-height:1.85;color:var(--text-2,#cdd5e1)}
+.prose h2{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:44px 0 14px;color:var(--text-1,#eef2f8)}
+.prose h3{font-size:17px;font-weight:600;margin:30px 0 10px;color:var(--text-1,#eef2f8)}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0 0 18px;padding-left:22px}
+.prose li{margin:6px 0}
+.prose strong{color:var(--text-1,#eef2f8)}
+.prose table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14px}
+.prose th,.prose td{border:1px solid var(--panel-border,#232b3d);padding:9px 12px;text-align:left;vertical-align:top}
+.prose th{color:var(--text-1,#eef2f8);background:var(--panel,#0b1020)}
+.prose .tip{padding:16px 18px;border-radius:14px;background:var(--panel,#0b1020);border:1px solid var(--panel-border,#232b3d);margin:0 0 18px}
+.prose a{color:var(--cyan,#5eead4)}
+.prose pre{margin:0 0 18px;padding:16px 18px;border-radius:8px;background:var(--paper-2);border:1px solid var(--rule);overflow-x:auto;font-size:13px;line-height:1.7}
+.prose pre code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);background:none;padding:0;border:0;white-space:pre}
+.prose code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;padding:2px 6px;border-radius:4px;background:var(--paper-2);border:1px solid var(--rule);color:var(--accent)}
+.prose img,.post-hero img{max-width:100%;height:auto;border-radius:16px;display:block;margin:0 auto}
+.post-hero{margin:18px 0 26px}
+.post-hero img{width:min(560px,100%)}
+.back-link{display:inline-block;margin:28px 0 0;font-size:14px;color:var(--cyan,#5eead4);text-decoration:none}
+.post-list{max-width:760px;margin:0 auto;padding:8px 0 72px;display:grid;gap:14px}
+.post-card{display:block;padding:24px 26px;border-radius:16px;background:var(--panel);border:1px solid var(--panel-border);text-decoration:none;transition:background .25s,border-color .25s,transform .25s}
+.post-card:hover{background:var(--panel-hover);border-color:var(--panel-border-hover);transform:translateY(-3px)}
+.post-card h2{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;color:var(--text-1,#eef2f8)}
+.post-card p{font-size:14px;color:var(--text-3);line-height:1.7;margin:0 0 10px}
+.post-card .pc-meta{font-size:12.5px;color:var(--text-3);opacity:.8}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Flutter 릴리스 빌드만 스플래시에서 멈출 때: 리소스 축소가 지운 알림 아이콘",
+ "description": "디버그와 프로파일에선 멀쩡한 Flutter 앱이 릴리스 APK에서만 스플래시에 멈췄습니다. 리소스 축소가 Dart 문자열로만 참조한 알림 아이콘을 지운 것이 원인이었고, 진단법과 keep.xml 해결을 정리했습니다.",
+ "image": "https://lightonpluslab.com/hero-apps.jpg",
+ "datePublished": "2026-11-09",
+ "dateModified": "2026-11-09",
+ "inLanguage": "ko",
+ "mainEntityOfPage": "https://lightonpluslab.com/blog-flutter-notification-icon-shrink.html",
+ "author": {
+  "@type": "Organization",
+  "name": "LightOn Plus Lab",
+  "url": "https://lightonpluslab.com/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "LightOn Plus Lab",
+  "logo": {
+   "@type": "ImageObject",
+   "url": "https://lightonpluslab.com/img/logo-mark.png"
+  }
+ }
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+    </a>
+    <nav class="nav-links" aria-label="메뉴">
+      <a href="products.html">Apps</a>
+      <a href="lens.html">Lens</a>
+<a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">
+      Launch Lab
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 8h16M4 16h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
+  <a href="products.html">Apps</a>
+  <a href="lens.html">Lens</a>
+<a href="services.html">Services</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">Studio</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--purple);font-weight:600">Launch Lab →</a>
+</nav>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Dev Note</span>
+    <h1 class="reveal">Flutter 릴리스 빌드만 스플래시에서 멈출 때: 리소스 축소가 지운 알림 아이콘</h1>
+    <div class="article-meta">2026-11-09 · LightOn Plus Lab</div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <article class="prose">
+
+<p>경품·이벤트 소식을 알림으로 알려 주는 안드로이드 앱(경품 레이더)을 Flutter로 만들 때 일입니다. <code>flutter run</code>으로 띄운 디버그 빌드도, 성능을 보려고 만든 프로파일 빌드도 멀쩡했는데, 릴리스 APK만 스플래시 화면에서 더 나아가지 않았습니다. 크래시 대화상자도 없고 앱이 꺼지지도 않았습니다.</p>
+<p>원인은 Android의 리소스 축소(<code>isShrinkResources</code>)였습니다. Dart 코드에서 문자열로만 이름을 넘긴 알림 아이콘을 축소기가 안 쓰는 리소스로 보고 지웠고, 아이콘을 못 찾은 <code>flutter_local_notifications</code> 초기화가 <code>runApp</code> 앞에서 예외를 던졌습니다.</p>
+<h2>배경: 리소스 축소를 켠 이유</h2>
+<p>Play Console은 2027년 2월부터 메모리 표준을 넘는 앱의 공개 상태나 게시 기능을 제한할 수 있다고 예고했고, 그 기준 하나가 R8 같은 도구로 얻는 DEX 최적화 커버리지 25% 이상입니다. 스튜디오의 다른 앱들도 차례로 R8을 켜던 중이라, 이 앱은 첫 커밋부터 R8과 리소스 축소를 켰습니다.</p>
+<pre><code>buildTypes {
+    release {
+        // (서명 설정 생략)
+        // Play 메모리 표준(DEX 최적화 25% 이상) — R8 최적화 + 리소스 축소
+        isMinifyEnabled = true
+        isShrinkResources = true
+        proguardFiles(
+            getDefaultProguardFile("proguard-android-optimize.txt"),
+            "proguard-rules.pro",
+        )
+    }
+}</code></pre>
+<p>사실 이 두 줄을 쓰지 않아도 Flutter 앱의 릴리스 빌드는 대개 이미 리소스를 축소하고 있습니다. 뒤에서 다시 다룹니다.</p>
+<h2>크래시가 아니라 첫 프레임이 없는 것</h2>
+<p>릴리스 전용 문제라면 R8이 리플렉션용 클래스를 지운 경우를 먼저 떠올리지만, 그런 문제는 대개 프로세스가 죽으며 크래시로 남습니다. 이번에는 프로세스가 살아 있었으니, Dart 쪽에서 무언가 실패해 첫 프레임까지 못 갔다고 보는 편이 맞습니다.</p>
+<p>Flutter 템플릿의 <code>LaunchTheme</code>은 창 배경으로 <code>launch_background</code>를 깔고, 템플릿 주석대로 이 배경은 엔진이 첫 프레임을 그릴 때 사라집니다. 스플래시에서 멈춘다는 건 첫 프레임이 없다는 뜻이고, 그렇다면 <code>runApp</code>이 불렸는지부터 봐야 합니다. 당시 <code>main()</code>은 이랬습니다.</p>
+<pre><code>Future&lt;void&gt; main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final controller = AppController();
+  await Notifier.init(onTap: (url) {
+    if (url != null) controller.openFromNotification(url);
+  });
+  await Workmanager().initialize(callbackDispatcher);
+  await registerBackgroundPoll();
+  runApp(PrizeRadarApp(controller: controller));
+  // ...
+}</code></pre>
+<p>알림 초기화와 백그라운드 작업 등록을 모두 기다린 뒤에야 <code>runApp</code>을 부릅니다. 하나라도 예외를 던지면 <code>main()</code>의 Future가 실패로 끝나고 <code>runApp</code>에는 끝내 닿지 못합니다. Dart의 처리되지 않은 비동기 예외는 프로세스를 죽이지 않습니다. 엔진이 로그 한 줄을 남길 뿐이고, 시스템은 이것을 크래시로 보지 않습니다.</p>
+<h2>진단 1: logcat의 flutter 태그</h2>
+<p>릴리스 빌드에서도 처리되지 않은 Dart 예외는 logcat에 <code>flutter</code> 태그로 찍힙니다.</p>
+<pre><code>flutter build apk --release
+adb install -r build/app/outputs/flutter-apk/app-release.apk
+adb logcat -s flutter</code></pre>
+<p>앱을 띄우면 아래 모양의 줄이 나옵니다. 메시지는 플러그인 소스에 있는 문구 그대로입니다(읽기 좋게 줄을 나눴습니다).</p>
+<pre><code>E flutter : [ERROR:flutter/runtime/dart_vm_initializer.cc(..)] Unhandled Exception:
+PlatformException(invalid_icon, The resource @drawable/ic_stat_radar could not be found.
+Please make sure it has been added as a drawable resource to your Android head project., null, null)</code></pre>
+<p>알림 초기화에서 넘긴 값은 이것이었습니다.</p>
+<pre><code>await _plugin.initialize(
+  settings: const InitializationSettings(
+    android: AndroidInitializationSettings('@drawable/ic_stat_radar'),
+  ),
+  // ...
+);</code></pre>
+<p>에러 코드 <code>invalid_icon</code>을 플러그인의 안드로이드 소스에서 찾으면 이 지점이 나옵니다(flutter_local_notifications 22.3.2, 발췌).</p>
+<pre><code>private void initialize(MethodCall call, Result result) {
+  Map&lt;String, Object&gt; arguments = call.arguments();
+  String defaultIcon = (String) arguments.get(DEFAULT_ICON);
+  if (!isValidDrawableResource(
+      applicationContext, defaultIcon, result, INVALID_ICON_ERROR_CODE)) {
+    return;
+  }
+  // ...
+}
+private static boolean isValidDrawableResource(
+    Context context, String name, Result result, String errorCode) {
+  int resourceId = context.getResources().getIdentifier(name, DRAWABLE, context.getPackageName());
+  if (resourceId == 0) {
+    result.error(errorCode, String.format(INVALID_DRAWABLE_RESOURCE_ERROR_MESSAGE, name), null);
+    return false;
+  }
+  return true;
+}</code></pre>
+<p>Dart에서 넘긴 이름이 메서드 채널을 타고 <code>Resources.getIdentifier()</code>에 그대로 들어가고, 그 이름의 리소스가 없으면 0이 돌아와 초기화가 곧바로 실패합니다. 아이콘 파일은 <code>res/drawable/ic_stat_radar.xml</code>에 분명히 있었으니, 남은 질문은 빌드 결과물에도 있느냐였습니다.</p>
+<h2>진단 2: 파일 목록 말고 리소스 테이블을 본다</h2>
+<p>APK를 zip으로 열어 파일 이름을 찾는 방법은 릴리스 빌드에서 믿을 수 없습니다. 디버그 APK와 릴리스 APK를 비교하면 이렇습니다(고친 뒤 빌드의 출력입니다).</p>
+<pre><code>$ unzip -l app-debug.apk | grep ic_stat_radar
+     1064  01-01-1981 01:01   res/drawable/ic_stat_radar.xml
+$ unzip -l app-release.apk | grep ic_stat_radar
+(출력 없음)
+$ aapt2 dump resources app-release.apk | grep -A1 "drawable/ic_stat_radar"
+    resource 0x7f070082 drawable/ic_stat_radar
+      () (file) res/K2.xml type=XML</code></pre>
+<p>릴리스 APK에서는 리소스 파일 경로가 <code>res/K2.xml</code>처럼 짧게 바뀌어 있어서, 리소스가 살아 있어도 파일 목록에서는 보이지 않습니다. 판단은 <code>aapt2 dump resources</code>가 보여 주는 리소스 테이블로 해야 합니다. <code>aapt2</code>는 Android SDK의 <code>build-tools/&lt;버전&gt;/</code> 아래에 있습니다. <code>getIdentifier()</code>가 0을 돌려줬다는 것은 이 테이블에 그 이름의 항목이 없었다는 뜻입니다.</p>
+<p>AAB는 더 조심해야 합니다. 나중에 다른 앱에서 확인해 보니 AAB의 리소스 테이블에는 지워진 리소스 이름이 원본 경로 문자열로 남아 있어, 문자열 검색으로는 판별되지 않았습니다. <code>resource 0x… type/name</code> 줄을 정확히 맞춰 비교해야 합니다.</p>
+<h3>축소기의 판단 기록: resources.txt</h3>
+<p>축소기가 무엇을 남기고 지웠는지는 <code>build/app/outputs/mapping/release/resources.txt</code>에 남습니다. 앞부분에 이번 문제의 핵심이 있습니다.</p>
+<pre><code>android.content.res.Resources#getIdentifier present: true
+Web content present: true
+Referenced Strings:
+cancel
+Rap
+callerContext
+...
+Marking drawable:admob_close_button_black_circle_white_cross:2131165270 used because it matches string pool constant admob</code></pre>
+<p>축소기는 코드에 <code>getIdentifier()</code> 호출이 있다는 것을 알고(<code>present: true</code>), 코드의 문자열 상수(<code>Referenced Strings</code>)를 리소스 이름과 맞춰 봅니다. <code>admob</code>이라는 상수 때문에 <code>admob_</code>으로 시작하는 drawable을 살려 뒀다는 기록도 보입니다. 그런데 이 문자열 목록 어디에도 <code>ic_stat_radar</code>는 없습니다.</p>
+<h2>근본 원인: 축소기는 Dart 코드를 읽지 못한다</h2>
+<p>축소기가 리소스를 쓰인다고 보는 근거는 코드의 리소스 ID 참조(<code>R.drawable.ic_xxx</code>), 매니페스트·레이아웃 같은 XML의 참조, keep 파일입니다. 기본값인 안전 모드에서는 <a href="https://developer.android.com/topic/performance/app-optimization/customize-which-resources-to-keep" target="_blank" rel="noopener">공식 문서</a> 설명대로, 동적으로 불러올 리소스 이름을 만드는 데 쓰일 법한 문자열 상수가 있으면 그 리소스도 도달 가능한 것으로 표시될 수 있습니다. 위의 <code>admob</code> 기록이 그 흔적입니다.</p>
+<p>문제는 여기서 말하는 코드가 DEX, 곧 Java·Kotlin 바이트코드라는 점입니다. Flutter 릴리스 빌드에서 Dart 코드는 AOT 컴파일되어 <code>libapp.so</code>라는 네이티브 라이브러리에 들어갑니다. 릴리스 APK를 풀어 문자열을 찾아보면 위치가 분명히 갈립니다.</p>
+<pre><code>$ strings -a lib/arm64-v8a/libapp.so | grep ic_stat_radar
+@drawable/ic_stat_radar
+$ strings -a classes.dex classes2.dex | grep -c ic_stat_radar
+0</code></pre>
+<p>아이콘 이름은 <code>libapp.so</code>에만 있고 DEX에는 한 번도 나오지 않습니다. 이 아이콘에 이르는 경로는 "Dart 문자열 → 메서드 채널 → 플러그인의 <code>getIdentifier()</code>" 하나뿐인데, 이 경로는 실행 중에만 존재합니다. 빌드 시점의 축소기에게는 아무도 가리키지 않는 drawable이었고, 규칙대로 지웠습니다. 축소기가 틀린 게 아니라, 판단에 필요한 정보가 축소기가 읽을 수 없는 곳에 있었습니다.</p>
+<h3>런처 아이콘을 쓰면 괜찮아 보이는 이유</h3>
+<p>알림 아이콘으로 <code>@mipmap/ic_launcher</code>를 넘기면 이 문제가 드러나지 않습니다. 매니페스트의 <code>android:icon</code>이 같은 리소스를 가리켜 살아남기 때문인데, 알림 쪽 참조를 알아본 게 아니라 우연입니다. 라이트온 AI 노트가 이렇게 쓰고 있어서, 런처 아이콘 이름을 바꾸는 순간 알림이 조용히 깨지지 않도록 그 앱에도 keep 파일을 넣었습니다. 반대로 상태 표시줄용 단색 아이콘을 따로 만드는 정석을 따를수록 이 함정에 바로 걸립니다. 플러그인 README도 릴리스 빌드에서는 알림 아이콘을 keep 파일로 남기라고 안내합니다.</p>
+<h3>디버그와 프로파일에서 재현되지 않는 이유</h3>
+<p>디버그 빌드는 리소스를 축소하지 않습니다. 의외였던 건 프로파일입니다. Flutter Gradle 플러그인 소스(<code>FlutterPlugin.kt</code>)는 <code>profile</code> 빌드 타입을 <code>initWith(debug)</code>로 만듭니다. Dart는 AOT로 컴파일돼도 안드로이드 빌드 설정은 디버그의 복사본이라 R8도 리소스 축소도 돌지 않습니다. 실제로 프로파일 APK에는 아이콘이 원래 경로 그대로 들어 있었습니다.</p>
+<p>같은 파일에서 릴리스 쪽 동작도 보입니다. Flutter 3.47.9 기준으로 이 플러그인은 앱이 덮어쓰지 않는 한 release 빌드 타입에 <code>isMinifyEnabled = true</code>와 <code>isShrinkResources = true</code>를 넣고, <code>flutter build</code>의 <code>--no-shrink</code> 플래그는 도움말에 효과가 없다고 적혀 있습니다. 축소 설정을 적지 않은 Flutter 앱도 릴리스에서는 이미 리소스를 줄이고 있습니다.</p>
+<h2>고친 방법</h2>
+<h3>1. res/raw/keep.xml로 남길 리소스를 알려 준다</h3>
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!-- 알림 아이콘은 Dart 에서 이름(문자열)으로만 참조해 리소스 축소가 지워 버린다 — 릴리스에서 유지 --&gt;
+&lt;resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/ic_stat_radar" /&gt;</code></pre>
+<p><code>tools:keep</code>에는 남길 리소스를 쉼표로 나열하고 <code>@drawable/ic_stat_*</code>처럼 와일드카드도 쓸 수 있습니다. <a href="https://developer.android.com/topic/performance/app-optimization/customize-which-resources-to-keep" target="_blank" rel="noopener">공식 문서</a>에 따르면 keep 파일 자체는 앱에 패키징되지 않고, 전역으로 적용되니 패키지 이름을 넣은 고유한 파일 이름을 쓰라고 권합니다. 플러그인 예제 앱은 drawable 전부를 남기지만, 아이콘이 몇 개뿐이라면 이름을 적는 쪽이 낭비가 적습니다.</p>
+<h3>2. 부가 기능의 초기화가 앱 시작을 막지 않게 한다</h3>
+<pre><code>Future&lt;void&gt; main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final controller = AppController();
+  // 알림·백그라운드 작업 설정이 실패해도 앱은 떠야 한다
+  try {
+    await Notifier.init(onTap: (url) {
+      if (url != null) controller.openFromNotification(url);
+    });
+  } catch (e) {
+    debugPrint('알림 초기화 실패: $e');
+  }
+  try {
+    await Workmanager().initialize(callbackDispatcher);
+    await registerBackgroundPoll();
+  } catch (e) {
+    debugPrint('백그라운드 작업 등록 실패: $e');
+  }
+  runApp(PrizeRadarApp(controller: controller));
+  await controller.start();
+  final launchUrl = await Notifier.launchPayload().catchError((_) =&gt; null);
+  if (launchUrl != null) unawaited(controller.openFromNotification(launchUrl));
+  unawaited(Ads.init());
+}</code></pre>
+<p>keep 파일이 원인을 고친다면, 이 수정은 다음 사고의 크기를 줄입니다. 초기화가 예외를 잡고 있었다면 이번 일도 "앱이 안 열린다"가 아니라 "알림이 안 온다"로 끝났을 겁니다. 알림을 눌러 실행됐는지 확인하는 <code>launchPayload()</code>도 같은 플러그인을 타므로 <code>catchError</code>로 감쌌습니다. 다만 <code>try/catch</code>만 넣고 keep 파일을 빠뜨리면 증상이 조용해질 뿐이니, 둘은 함께 들어가야 합니다.</p>
+<h2>검증</h2>
+<p>다시 만든 릴리스 APK의 리소스 테이블에 <code>drawable/ic_stat_radar</code>가 돌아왔고, <code>resources.txt</code>에서는 참조와 상관없이 살려 두는 <code>The root reachable resources are:</code> 목록에 올라 있었습니다. keep 파일 자체(<code>raw:keep</code>)는 <code>Unused resources are:</code> 쪽에 있어 문서대로 패키징되지 않았습니다. 다시 설치한 릴리스 APK는 스플래시를 지나 정상적으로 시작했습니다.</p>
+<h2>같은 함정이 숨어 있는 다른 자리</h2>
+<p>조건은 두 가지입니다. 리소스를 이름으로 찾고, 그 이름이 축소기가 읽지 못하는 곳(Dart 코드, 서버 응답, 설정 파일)에 있는 경우입니다. Flutter에서는 플러그인이 메서드 채널로 이름을 받아 네이티브에서 <code>getIdentifier()</code>를 부르는 구조가 전형입니다.</p>
+<h3>flutter_local_notifications의 다른 인자</h3>
+<p>알림마다 지정하는 <code>icon</code>, <code>DrawableResourceAndroidBitmap</code>으로 넘기는 큰 아이콘, BigPicture 스타일의 drawable, <code>RawResourceAndroidNotificationSound</code>로 넘기는 알림음도 모두 이름으로 조회됩니다. 알림음은 <code>raw</code> 타입으로 찾고, 없으면 <code>invalid_sound</code> 에러를 돌려줍니다. README는 최악의 경우 알림이 조용히 안 뜰 수 있다고 경고합니다.</p>
+<h3>audio_service: 플러그인이 자기 리소스를 이름으로 찾는다</h3>
+<p>음악 앱 송빗에서 겪은 경우는 더 까다로웠습니다. audio_service는 미디어 컨트롤 아이콘을 Dart 쪽에서 이름으로 지정하고, 그 아이콘 PNG는 플러그인이 직접 들고 있습니다.</p>
+<pre><code>// audio_service (Dart) — 미디어 컨트롤 아이콘을 이름으로 지정
+androidIcon: 'drawable/audio_service_play_arrow',
+// audio_service (Java) — "type/name" 을 잘라 이름으로 조회
+int getResourceId(String resource) {
+    String[] parts = resource.split("/");
+    String resourceType = parts[0];
+    String resourceName = parts[1];
+    return getResources().getIdentifier(resourceName, resourceType, getApplicationContext().getPackageName());
+}</code></pre>
+<p>AGP 9로 올린 빌드를 태블릿에서 확인해 보니 소리는 나는데 알림창에 미디어 컨트롤이 없었고, 상태가 바뀔 때마다 <code>You must specify an icon resource id to build a CustomAction</code>이 찍혔습니다. AGP 9에서 기본으로 켜지는 최적화된 리소스 축소가 이전 버전이 남기던 리소스 444개를 더 지웠고, audio_service 아이콘 일곱 개가 모두 그 안에 있었습니다. 전에 살아 있었다는 사실은 아무것도 보장하지 않았습니다.</p>
+<p>이때는 keep 목록 대신 최적화된 리소스 축소를 껐습니다. keep 목록은 이름을 아는 조회만 막을 수 있는데 Google 라이브러리는 소스가 닫혀 있고, 로그인과 결제를 새 도구 체인에서 아직 시험하지 못했기 때문입니다. 대가는 APK 약 250KB였습니다.</p>
+<pre><code># AGP 9 turns on R8's optimized resource shrinking. It cannot see resources found by name at runtime,
+# so it removed every audio_service icon (the names are in Dart) and 1.8.40 (74) lost its media controls.
+android.r8.optimizedResourceShrinking=false</code></pre>
+<p>대신 이름으로 찾는 리소스 아홉 개(audio_service 아이콘, <code>mipmap/ic_launcher</code>, Google 로그인 플러그인이 찾는 <code>string/default_web_client_id</code>)를 목록으로 적고, 릴리스 빌드 끝에 <code>aapt2</code>로 테이블을 읽어 하나라도 빠지면 빌드가 실패하게 했습니다.</p>
+<h3>빌드 도구가 올라갈수록 범위가 넓어진다</h3>
+<p><a href="https://developer.android.com/topic/performance/app-optimization/enable-app-optimization" target="_blank" rel="noopener">Android 문서</a>에 따르면 AGP 9.0부터는 <code>isShrinkResources = true</code>만으로 최적화된 리소스 축소가 적용되고, AGP 9.3의 새 <code>optimization { enable = true }</code> DSL은 코드와 리소스 최적화를 한 번에 켭니다. 새 DSL에서는 코드 최적화를 켜면 리소스 축소가 기본으로 따라오는 구조입니다.</p>
+<h2>출시 전 체크리스트</h2>
+<ol>
+<li><strong>Dart 코드에서 리소스 이름 문자열을 찾는다.</strong> <code>'@drawable/…'</code>, <code>'mipmap/…'</code>, <code>'raw/…'</code> 같은 리터럴이 가리키는 리소스는 축소기가 보지 못합니다.</li>
+<li><strong>쓰는 플러그인의 안드로이드 소스에서 <code>getIdentifier()</code>를 찾는다.</strong> 플러그인이 자기 리소스를 찾는 경우는 앱 코드에 드러나지 않습니다. 소스가 닫힌 라이브러리는 이렇게 볼 수 없습니다.</li>
+<li><strong>찾은 이름을 <code>res/raw/keep.xml</code>에 적는다.</strong> 런처 아이콘을 알림에 쓰고 있어도 적어 둡니다.</li>
+<li><strong>릴리스 산출물의 리소스 테이블로 확인한다.</strong> zip 파일 목록이 아니라 <code>aapt2 dump resources</code>의 <code>type/name</code> 항목으로 보고, 가능하면 빌드 단계에 넣습니다.</li>
+<li><strong><code>runApp</code> 앞의 <code>await</code>를 줄인다.</strong> 앱이 뜨는 데 꼭 필요하지 않은 초기화는 예외를 잡거나 <code>runApp</code> 뒤로 옮깁니다.</li>
+<li><strong>출시 전에 릴리스 APK를 기기에서 한 번 띄운다.</strong> 멈추면 <code>adb logcat -s flutter</code>부터 봅니다.</li>
+</ol>
+<pre><code># Dart 코드에 박힌 리소스 이름 찾기
+grep -rnE "'@?(drawable|mipmap|raw)/[a-z0-9_]+'" lib</code></pre>
+<pre><code># 이 프로젝트가 실제로 쓰는 플러그인의 안드로이드 소스에서 이름 조회 찾기 (예시)
+python3 - &lt;&lt;'EOF'
+import json, pathlib, subprocess
+from urllib.parse import urlparse, unquote
+cfg = json.load(open('.dart_tool/package_config.json'))
+for p in cfg['packages']:
+    uri = p['rootUri']
+    if not uri.startswith('file://'):
+        continue
+    src = pathlib.Path(unquote(urlparse(uri).path)) / 'android' / 'src'
+    if src.exists():
+        subprocess.run(['grep', '-rnE', r'\.getIdentifier\(', str(src)])
+EOF</code></pre>
+<p>패턴을 <code>.getIdentifier(</code>로 좁힌 것은 <code>getIdentifier</code>만으로 찾으면 webview_flutter_android의 <code>getIdentifierForStrongReference</code>처럼 리소스와 무관한 이름도 걸리기 때문입니다. 걸린 줄은 열어서 조회하는 이름이 어디서 오는지 확인해야 합니다.</p>
+<h2>남는 교훈</h2>
+<p><strong>축소기는 자기가 읽을 수 있는 코드만 믿습니다.</strong> Flutter 앱의 로직은 대부분 그 바깥, <code>libapp.so</code>에 있습니다. 리소스를 이름으로 넘기는 순간 그 연결은 빌드 도구에게 보이지 않으니, 사람이 keep 파일로 적어 줘야 합니다.</p>
+<p><strong>"디버그에서 된다"는 릴리스에 대해 아무것도 말해 주지 않습니다.</strong> 프로파일조차 안드로이드 쪽 설정은 디버그의 복사본이었습니다. 릴리스에서만 켜지는 단계가 있다면, 그 단계를 거친 산출물을 한 번은 직접 실행해 봐야 합니다.</p>
+<div class="tip"><strong>한 줄 요약</strong> — Dart에서 문자열로 넘기는 Android 리소스 이름은 리소스 축소기가 보지 못합니다. <code>res/raw/keep.xml</code>의 <code>tools:keep</code>에 적고, 출시 전에 릴리스 APK를 기기에서 한 번 띄워 보세요.</div>
+
+    <a class="back-link" href="blog.html">← 블로그 목록으로</a>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-img" src="img/logo-mark.png" alt="LightOn Plus Lab" width="36" height="36" />
+            <span class="brand-text"><span class="brand-name">LightOn<span class="plus">+</span>Lab</span><span class="brand-sub">AI Apps · Innovation</span></span>
+          </a>
+        </div>
+        <div class="footer-tagline">AI를 실제 제품으로 만드는 1인 스튜디오. 경기도 안양.</div>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <a href="products.html">전체 앱</a>
+<a href="https://lens.lightonpluslab.com" target="_blank" rel="noopener">Lens 렌즈 해석</a>
+<a href="lens-docs.html">Lens 문서</a>
+        <a href="momoi.html">모모아이</a>
+        <a href="lighton-ai-note.html">라이트온 AI 노트</a>
+        <a href="contact.html">New project</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach out</h5>
+        <a href="mailto:support@lightonpluslab.com">support@lightonpluslab.com</a>
+        <a href="https://pf.kakao.com/_QxjxeiX/chat" target="_blank" rel="noopener">카카오톡 1:1 문의</a>
+        <a href="tel:07080985734">070-8098-5734</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>© <span id="year"></span> LightOn Plus Lab. All rights reserved. · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></div>
+    </div>
+    <div class="footer-biz">
+      상호: 라이트온 플러스 랩 · 대표: 박승혁 · 사업자등록번호 229-15-70907 · 통신판매업신고: 제 2026-안양동안-0514 호 · 경기도 안양시 동안구 관평로 333, 6동 504호(관양동)
+    </div>
+  </div>
+</footer>
+
+<script src="app.js?v=11b4789a"></script>
+</body>
+</html>
