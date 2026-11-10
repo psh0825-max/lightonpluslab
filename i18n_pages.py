@@ -201,10 +201,10 @@ T2 = {
         "非点収差のフィールドカーブを T 実線・S 点線で、歪曲は f·tanθ と f·θ の両基準で。",
         "像散场曲以 T 实线、S 虚线表示，畸变同时给出 f·tanθ 与 f·θ 两种基准。"),
     "유리": ("Glass", "硝材", "玻璃"),
-    "SCHOTT·HOYA·OHARA·CDGM·SUMITA·HIKARI 6개사 1,615종과 석영·CaF₂·PMMA 같은 일반 재료. refractiveindex.info 공개 데이터.": (
-        "1,615 glasses from six makers — SCHOTT, HOYA, OHARA, CDGM, SUMITA and HIKARI — plus common materials such as fused silica, CaF₂ and PMMA. Open data from refractiveindex.info.",
-        "SCHOTT・HOYA・OHARA・CDGM・SUMITA・HIKARI の6社1,615種と、石英・CaF₂・PMMA などの一般材料。refractiveindex.info の公開データ。",
-        "SCHOTT、HOYA、OHARA、CDGM、SUMITA、HIKARI 六家共 1,615 种，另有石英、CaF₂、PMMA 等常用材料。来自 refractiveindex.info 的公开数据。"),
+    "SCHOTT·HOYA·OHARA·CDGM·SUMITA·HIKARI 6개사 1,623종에 석영·CaF₂·PMMA 같은 일반 재료와 게르마늄·ZnSe 같은 적외선 재료를 더해 1,655종. refractiveindex.info 공개 데이터.": (
+        "1,623 glasses from six makers — SCHOTT, HOYA, OHARA, CDGM, SUMITA and HIKARI — plus common materials such as fused silica, CaF₂ and PMMA and infrared materials such as germanium and ZnSe: 1,655 in all. Open data from refractiveindex.info.",
+        "SCHOTT・HOYA・OHARA・CDGM・SUMITA・HIKARI の6社1,623種に、石英・CaF₂・PMMA などの一般材料とゲルマニウム・ZnSe などの赤外材料を加えた1,655種。refractiveindex.info の公開データ。",
+        "SCHOTT、HOYA、OHARA、CDGM、SUMITA、HIKARI 六家共 1,623 种，另有石英、CaF₂、PMMA 等常用材料和锗、ZnSe 等红外材料，共 1,655 种。来自 refractiveindex.info 的公开数据。"),
     "스팟 다이어그램 — 필드별 스팟과 RMS 직경을 한 화면에.": (
         "Spot diagram — every field's spot and RMS diameter on one screen.",
         "スポットダイアグラム — フィールドごとのスポットと RMS 直径を一画面に。",
