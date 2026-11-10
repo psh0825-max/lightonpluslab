@@ -5,7 +5,7 @@
 <meta name="google-adsense-account" content="ca-pub-7180935400084577">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lens 문서 — .seq / .zmx / .csv 지원 범위와 해석 규약 — LightOn Plus Lab</title>
-<meta name="description" content="Lens 가 CODE V .seq 와 Zemax .zmx, CSV 렌즈 표에서 읽는 항목, 지원하지 않는 기능과 그때의 대체 동작, 스팟·MTF·광선수차·필드곡률·왜곡·Seidel 수차의 계산 방식과 축·단위 규약, 유리 1,621종의 분산식까지 정리한 기술 문서." />
+<meta name="description" content="Lens 가 CODE V .seq 와 Zemax .zmx, CSV 렌즈 표에서 읽는 항목, 지원하지 않는 기능과 그때의 대체 동작, 스팟·MTF·광선수차·필드곡률·왜곡·Seidel 수차의 계산 방식과 축·단위 규약, 유리 1,655종의 분산 데이터까지 정리한 기술 문서." />
 <meta property="og:title" content="Lens 문서 — 지원 범위와 해석 규약" />
 <meta property="og:type" content="website" />
 <meta property="og:description" content="Lens 의 .seq / .zmx / .csv 지원 범위, 미지원 기능과 대체 동작, 해석 탭 여덟 개의 계산 방식과 단위 규약, 유리 분산 데이터를 정리한 기술 문서." />
@@ -293,7 +293,7 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 </div></section>
 <section class="doc-sec" id="glass"><div class="wrap">
 <h2>유리와 분산 데이터</h2>
-<p class="lede">분산 데이터는 refractiveindex.info 데이터베이스(CC0 1.0 퍼블릭 도메인, 각 제조사 카탈로그 값)에서 가져온 것입니다. 모두 파장별 굴절률을 분산식으로 계산하며, n<sub>d</sub>·v<sub>d</sub> 보간이 아닙니다.</p>
+<p class="lede">분산 데이터는 refractiveindex.info 데이터베이스(CC0 1.0 퍼블릭 도메인, 각 제조사 카탈로그 값)에서 가져온 것입니다. 모두 파장별 굴절률을 분산식이나 측정 표로 계산하며, n<sub>d</sub>·v<sub>d</sub> 보간이 아닙니다.</p>
 <h3>카탈로그</h3>
 <div class="doc-tw">
 <table class="doc">
@@ -304,11 +304,14 @@ dl.doc-dl dd{margin:0;color:var(--ink-2);font-size:var(--t-sm)}
 <tr><td>CDGM</td><td>314</td></tr>
 <tr><td>HOYA</td><td>190</td></tr>
 <tr><td>SUMITA</td><td>176</td></tr>
-<tr><td>SCHOTT</td><td>162</td></tr>
+<tr><td>SCHOTT</td><td>170</td></tr>
 </tbody>
 </table>
 </div>
-<p>여섯 제조사 1,615종에, 일반 재료 6종(<code>SILICA</code>, <code>CAF2</code>, <code>SAPPHIRE</code>, <code>PMMA</code>, <code>POLYCARB</code>, <code>POLYSTYR</code>)을 더해 모두 1,621종입니다. 제조사를 적지 않은 유리 이름은 SCHOTT → OHARA → HOYA → CDGM → HIKARI → SUMITA 순으로 찾습니다.</p>
+<p>여섯 제조사 1,623종에, 제조사 없이 쓰는 재료 32종을 더해 모두 1,655종입니다. 제조사를 적지 않은 유리 이름은 SCHOTT → OHARA → HOYA → CDGM → HIKARI → SUMITA 순으로 찾습니다.</p>
+<h3>일반 재료와 적외선 재료</h3>
+<p>제조사 없이 쓰는 재료는 석영·CaF₂·사파이어·플라스틱(<code>SILICA</code>, <code>CAF2</code>, <code>SAPPHIRE</code>, <code>PMMA</code>, <code>POLYCARB</code>, <code>POLYSTYR</code>)과 적외선 결정·칼코게나이드 유리(<code>GERMANIUM</code>, <code>SILICON</code>, <code>ZNSE</code>, <code>ZNS</code>, <code>BAF2</code>, <code>MGF2</code>, <code>GAAS</code>, <code>AMTIR1</code>, <code>IG2</code>, <code>BD2</code> 등)입니다. <code>.seq</code> 파일이 쓰는 이름(<code>CAFL</code>, <code>SAPHIR</code>, <code>GERM</code>, <code>SILICN</code> 등)과 <code>.zmx</code> 파일의 <code>INFRARED</code>·<code>MISC</code> 카탈로그로도 찾습니다. <code>.seq</code> 로 저장할 때 카탈로그에 없는 재료는 렌즈 파장의 굴절률 표(<code>PRV</code>)로 적습니다.</p>
+<p>측정 표로만 나온 재료(SCHOTT B270, AMTIR1, BD2 등)는 표 사이를 단조 3차 보간으로 계산합니다. 유리를 데이터 범위 밖 파장에서 쓰면(예: 게르마늄을 가시광에서) 그 파장의 굴절률이 외삽한 값이라고 경고합니다.</p>
 <h3>사설 유리 <code>PRV</code></h3>
 <p>파일 안에 분산 계수를 직접 적는 사설 카탈로그를 읽습니다. 지원하는 형식은 <code>LAU</code>, <code>GML</code>, <code>GMS</code>, <code>SLM</code>, <code>CAU</code> 다섯 가지와, <code>PWL</code> 로 파장 목록을 주고 굴절률을 나열하는 표 방식입니다. <code>HAR</code> 분산식과 <code>MLT</code> 용해 데이터 피팅, GRIN 은 읽지 않고 경고합니다.</p>
 <h3>카탈로그에 없는 유리</h3>
